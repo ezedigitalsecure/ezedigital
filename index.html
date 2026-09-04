@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en-GB">
 <head>
@@ -9,130 +8,191 @@
         * {margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', sans-serif;}
 
         body {
+            /* ✅ NEW CLEAN BACKGROUND — fills screen perfectly */
             background: url('mockup-bg.png') no-repeat center center fixed;
             background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
             min-height: 100vh;
             color: white;
         }
 
-        .overlay {
+        .page-wrapper {
             width: 100%;
             min-height: 100vh;
-            padding: 2rem 4rem;
+            padding: 2.5rem 4.5rem;
+            position: relative;
         }
 
+        /* ======================================
+           TOP NAVIGATION — matches mockup exactly
+           ====================================== */
         header {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 6rem;
+            align-items: flex-start;
+            margin-bottom: 5rem;
         }
 
-        .brand h1 {font-size: 1.4rem;}
-        .brand p {font-size: 0.8rem; opacity: 0.7; letter-spacing: 2px;}
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .brand h1 {font-size: 1.35rem; font-weight: 600; letter-spacing: 0.5px;}
+        .brand p {font-size: 0.75rem; opacity: 0.65; letter-spacing: 2px; margin-top: 2px;}
 
+        nav {margin-top: 0.25rem;}
         nav a {
             color: white;
             text-decoration: none;
-            margin-left: 2rem;
-            font-size: 0.95rem;
-            opacity: 0.85;
+            margin-left: 2.2rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
         }
         nav a:hover {opacity: 1;}
-        nav a.contact {
-            border: 1px solid rgba(0,255,255,0.5);
-            padding: 0.5rem 1.2rem;
-            border-radius: 25px;
+        nav a:last-child {
+            border: 1px solid rgba(0,220,220,0.4);
+            padding: 0.4rem 1.1rem;
+            border-radius: 20px;
+            margin-left: 1.5rem;
         }
 
+        /* ======================================
+           MAIN HEADING — positioned exactly like mockup
+           ====================================== */
         .hero {
-            max-width: 520px;
-            margin-top: 2rem;
+            max-width: 540px;
+            margin-top: 1.5rem;
         }
 
         .hero h2 {
-            font-size: 3.4rem;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
+            font-size: 3.2rem;
+            line-height: 1.15;
+            margin-bottom: 1.4rem;
+            font-weight: 600;
         }
 
         .hero p {
-            font-size: 1rem;
+            font-size: 0.95rem;
             line-height: 1.6;
-            opacity: 0.75;
+            opacity: 0.7;
             margin-bottom: 2rem;
+            max-width: 460px;
         }
 
         .btn {
             display: inline-block;
-            background: linear-gradient(90deg, #008888, #00BBBB);
+            background: linear-gradient(90deg, #00777A, #00B8BB);
             color: white;
-            padding: 0.9rem 2.2rem;
-            border-radius: 25px;
+            padding: 0.85rem 2rem;
+            border-radius: 24px;
             text-decoration: none;
-            font-weight: 600;
-            box-shadow: 0 0 20px rgba(0,200,200,0.3);
+            font-weight: 500;
+            font-size: 0.95rem;
+            box-shadow: 0 0 18px rgba(0,180,180,0.25);
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s ease;
         }
         .btn:hover {transform: translateY(-2px);}
 
-        .cards {
+        /* ======================================
+           THREE SERVICE BOXES — EXACT MOCKUP STYLE
+           ====================================== */
+        .services {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            max-width: 900px;
-            margin-top: 4rem;
+            gap: 0; /* no gap — connected look like mockup */
+            max-width: 840px;
+            margin-top: 5rem;
         }
 
-        .card {
-            background: rgba(0,60,80,0.5);
-            border: 1px solid rgba(0,200,200,0.2);
-            border-radius: 10px;
-            padding: 1.5rem;
-            backdrop-filter: blur(8px);
+        .service-card {
+            background: rgba(0,50,65,0.45);
+            border: 1px solid rgba(0,180,180,0.15);
+            border-right: none;
+            padding: 1.4rem 1.6rem;
+            backdrop-filter: blur(10px);
+        }
+        .service-card:first-child {border-radius: 10px 0 0 10px;}
+        .service-card:last-child {
+            border-right: 1px solid rgba(0,180,180,0.15);
+            border-radius: 0 10px 10px 0;
+        }
+        .service-card:nth-child(2) {background: rgba(0,70,85,0.4);}
+        .service-card:nth-child(3) {background: rgba(0,90,100,0.35);}
+
+        .service-card h3 {
+            font-size: 1.05rem;
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        .service-card p {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            line-height: 1.5;
         }
 
+        /* ======================================
+           MOBILE — clean responsive layout
+           ====================================== */
         @media (max-width: 900px) {
-            .cards {grid-template-columns: 1fr;}
-            nav a {margin-left: 0.8rem;}
-            .hero h2 {font-size: 2.2rem;}
+            .page-wrapper {padding: 1.5rem;}
+            header {flex-direction: column; gap: 1.5rem; margin-bottom: 2rem;}
+            nav a {margin-left: 1rem; font-size: 0.8rem;}
+            nav a:last-child {margin-left: 0.5rem; padding: 0.3rem 0.8rem;}
+            .hero h2 {font-size: 2.1rem;}
+            .services {grid-template-columns: 1fr; gap: 0.5rem; margin-top: 3rem;}
+            .service-card {border-radius: 10px !important; border-right: 1px solid rgba(0,180,180,0.15);}
         }
     </style>
 </head>
 <body>
-    <div class="overlay">
+    <div class="page-wrapper">
+
+        <!-- TOP LOGO + NAV -->
         <header>
             <div class="brand">
-                <h1>EZE DIGITAL</h1>
-                <p>Secure & Evolve</p>
+                <div>
+                    <h1>EZE DIGITAL</h1>
+                    <p>Secure & Evolve</p>
+                </div>
             </div>
             <nav>
                 <a href="#">Home</a>
                 <a href="#">Services</a>
                 <a href="#">About</a>
-                <a href="#" class="contact">Contact</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
             </nav>
         </header>
 
+        <!-- MAIN HEADING + BUTTON -->
         <section class="hero">
             <h2>Secure Your Digital Future</h2>
             <p>Professional cybersecurity assessments, GDPR compliance frameworks, secure web development, and custom app creation — built to protect, designed to evolve.</p>
             <a href="#" class="btn">Get in Touch</a>
         </section>
 
-        <section class="cards">
-            <div class="card">
+        <!-- THREE SERVICE BOXES — EXACT MOCKUP STYLE -->
+        <section class="services">
+            <div class="service-card">
                 <h3>🛡️ Cybersecurity Assessments</h3>
                 <p>Audits, reviews, and infrastructure hardening.</p>
             </div>
-            <div class="card">
+            <div class="service-card">
                 <h3>📋 GDPR Compliance</h3>
                 <p>Complete frameworks and documentation.</p>
             </div>
-            <div class="card">
+            <div class="service-card">
                 <h3>🔗 Digital Trust Solutions</h3>
                 <p>Secure development, apps, and training.</p>
             </div>
         </section>
+
     </div>
 </body>
 </html>
