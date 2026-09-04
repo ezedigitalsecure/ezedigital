@@ -12,37 +12,43 @@
             font-family: 'Segoe UI', sans-serif;
         }
 
-        html, body {
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
             margin: 0;
             padding: 0;
             min-height: 100vh;
             height: 100%;
+            width: 100%;
             color: white;
             overflow-x: hidden;
-        }
-
-        /* ========== DARK GRADIENT — LOADS INSTANTLY ========== */
-        body {
+            /* LOAD GRADIENT FIRST — INSTANTLY — NO WHITE SCREEN */
             background: linear-gradient(180deg, #001418 0%, #00222a 45%, #001115 100%);
             background-size: 100% 100%;
             background-attachment: fixed;
             background-position: top center;
+            background-repeat: no-repeat;
         }
 
-        /* ========== BACKGROUND IMAGE ========== */
+        /* BACKGROUND IMAGE — LOADS BEHIND, NEVER PUSHES CONTENT */
         .bg-image {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
             background: url('mockup-bg.png') no-repeat top center;
             background-size: cover;
             z-index: 0;
             opacity: 0.95;
         }
 
-        /* ========== NAV TABS — TEAL UNDERLINE ========== */
+        /* ========== NAVIGATION ========== */
         header {
             padding: 1.5rem 4.5rem;
             width: 100%;
@@ -65,6 +71,7 @@
             padding: 0.5rem 0;
             border-bottom: 2px solid transparent;
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         nav a:hover,
@@ -73,28 +80,25 @@
             border-bottom: 2px solid #00B8BB;
         }
 
-        /* ========== PAGE WRAPPER ========== */
+        /* ========== PAGE WRAPPER — FORCE TOP POSITION ========== */
         .page-wrapper {
             width: 100%;
             min-height: 100vh;
             padding: 8rem 4.5rem 4rem;
             position: relative;
             z-index: 1;
+            margin: 0;
+            top: 0;
         }
 
-        /* ========== TAB CONTENT ========== */
+        /* ========== TAB CONTENT — RELIABLE SWITCHING ========== */
         .tab-content {
             display: none;
-            animation: fadeIn 0.4s ease;
+            width: 100%;
         }
 
         .tab-content.active {
             display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         /* ========== HOME PAGE ========== */
@@ -183,7 +187,7 @@
             opacity: 0.72;
         }
 
-        /* ========== ABOUT US PAGE — COMPANY BIO + FOUNDER PROFILE ========== */
+        /* ========== ABOUT US PAGE ========== */
         .about-container {
             display: flex;
             gap: 3rem;
@@ -238,7 +242,7 @@
         .about-panel p { font-size: 1rem; line-height: 1.7; opacity: 0.8; margin-bottom: 0.8rem; }
         .about-panel .tagline { margin-top: 1.2rem; color: #00B8BB; font-weight: 500; font-size: 1.05rem; }
 
-        /* ========== CONTACT PAGE ========== */
+        /* ========== CONTACT PAGE — RELIABLE FORM ========== */
         .contact-panel {
             background: rgba(0, 40, 50, 0.6);
             border: 1px solid rgba(0, 180, 180, 0.18);
@@ -264,13 +268,10 @@
             color: white;
             font-size: 0.95rem;
             outline: none;
-            transition: border 0.2s;
         }
-        .form-group input:focus, .form-group textarea:focus { border-color: rgba(0, 180, 180, 0.6); }
         .form-group textarea { min-height: 120px; resize: vertical; }
-        .submit-btn { width: 100%; margin-top: 0.5rem; }
 
-        /* ========== MOBILE RESPONSIVE ========== */
+        /* ========== MOBILE ========== */
         @media (max-width: 900px) {
             header { justify-content: center; padding: 1.2rem 1.5rem; }
             nav a { margin-left: 1.2rem; font-size: 0.85rem; }
@@ -285,23 +286,20 @@
 </head>
 <body>
 
-    <!-- Background Layer -->
     <div class="bg-image"></div>
 
-    <!-- Navigation Tabs -->
     <header>
         <nav>
-            <a href="#" class="tab-link active" data-page="home">Home</a>
-            <a href="#" class="tab-link" data-page="services">Cyber Services</a>
-            <a href="#" class="tab-link" data-page="about">About Us</a>
-            <a href="#" class="tab-link" data-page="contact">Contact</a>
+            <a class="tab-link active" data-page="home">Home</a>
+            <a class="tab-link" data-page="services">Cyber Services</a>
+            <a class="tab-link" data-page="about">About Us</a>
+            <a class="tab-link" data-page="contact">Contact</a>
         </nav>
     </header>
 
-    <!-- Page Content -->
     <div class="page-wrapper">
 
-        <!-- HOME PAGE -->
+        <!-- HOME -->
         <div id="home" class="tab-content active">
             <div class="hero-panel">
                 <h2>Secure Your Digital Future</h2>
@@ -310,7 +308,7 @@
             </div>
         </div>
 
-        <!-- CYBER SERVICES PAGE -->
+        <!-- SERVICES -->
         <div id="services" class="tab-content">
             <div class="services-container">
                 <div class="services-heading">
@@ -320,91 +318,97 @@
                 <div class="services-grid">
                     <div class="service-card">
                         <h3>🛡️ Security Assessments</h3>
-                        <p>Comprehensive security audits and vulnerability reviews. I identify risks across your systems, prioritise what matters most, and give you a clear action plan to harden your infrastructure.</p>
+                        <p>Comprehensive audits, vulnerability reviews, infrastructure hardening — clear action plans to protect your business.</p>
                     </div>
                     <div class="service-card">
                         <h3>📋 GDPR & ICO Compliance</h3>
-                        <p>Complete UK-compliant data protection frameworks — privacy policies, consent records, breach procedures, and staff guidance. Everything documented so you can demonstrate compliance with confidence.</p>
+                        <p>Complete UK-compliant data protection frameworks, policies, and documentation — ready to demonstrate compliance.</p>
                     </div>
                     <div class="service-card">
                         <h3>🔗 Secure Development & Apps</h3>
-                        <p>Secure website and application development built with security from the ground up. Includes cybersecurity training and ongoing guidance to keep your digital presence protected as you grow.</p>
+                        <p>Secure websites, custom applications, and cybersecurity training — built securely from the ground up.</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- ABOUT US PAGE — COMPANY BIO + FOUNDER PROFILE -->
+        <!-- ABOUT US -->
         <div id="about" class="tab-content">
             <div class="about-container">
-                <!-- PHOTO AREA — UPLOAD YOUR IMAGE HERE -->
                 <div class="about-photo">
-                    <!-- TO ADD YOUR PHOTO: upload a file named 'profile.jpg' into your website files, then remove the comment tags below -->
                     <!-- <img src="profile.jpg" alt="Nicola King — Founder, Eze Digital"> -->
                     Photo of Nicola<br>(upload profile.jpg)
                 </div>
-
                 <div class="about-content-wrapper">
-                    <!-- COMPANY BIO -->
                     <div class="about-panel">
                         <h2>About Eze Digital</h2>
                         <p>Eze Digital was founded on a straightforward belief: robust cybersecurity and professional compliance should be accessible to every business — not just large corporations with substantial budgets.</p>
-                        <p>We provide clear, practical cybersecurity assessments, GDPR & ICO compliance frameworks, and secure development solutions. Our approach is built on clarity — we translate technical security into actionable business steps, so you stay protected without getting lost in complexity.</p>
+                        <p>We provide clear, practical cybersecurity assessments, GDPR & ICO compliance frameworks, and secure development solutions. Our approach is built on clarity — we translate technical security into actionable business steps.</p>
                         <p>Security should support your growth, not slow you down. That is the foundation of everything we do.</p>
                     </div>
-
-                    <!-- FOUNDER PROFILE -->
                     <div class="about-panel">
                         <h3>Meet the Founder — Nicola King</h3>
                         <p>With a background spanning cybersecurity, compliance, education, and business development, I bring together technical awareness with a deep understanding of what businesses actually need to succeed.</p>
-                        <p><strong>Marketing & Client Development:</strong> I understand that great security means nothing if no one knows it exists. I build relationships, communicate clearly, and ensure the value of what we do is understood.</p>
-                        <p><strong>Sales & Growth:</strong> I know how to connect solutions to real business needs. Every conversation is rooted in understanding your challenges and delivering exactly what will move you forward.</p>
-                        <p><strong>Education & Training:</strong> With formal qualifications in education and years of experience designing and delivering professional training, I don't just hand over documents — I ensure you understand them, too. Knowledge is the most powerful security tool of all.</p>
+                        <p><strong>Marketing & Client Development:</strong> I build genuine relationships and communicate clearly — ensuring the value of security is understood, not just assumed.</p>
+                        <p><strong>Sales & Growth:</strong> I connect solutions to real business needs. Every conversation is rooted in understanding your challenges and delivering exactly what moves you forward.</p>
+                        <p><strong>Education & Training:</strong> With formal qualifications in education and years of experience designing professional training, I don't just hand over documents — I ensure you understand them too.</p>
                         <p class="tagline">Secure. Compliant. Evolving.</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- CONTACT PAGE -->
+        <!-- CONTACT -->
         <div id="contact" class="tab-content">
             <div class="contact-panel">
                 <h2>Get in Touch</h2>
-                <p>Tell me about your project or challenge — I respond personally to every message.</p>
-                <form action="https://formspree.io/f/mvkoqvnp" method="POST" data-ajax="true">
+                <p>Tell me about your project — I respond personally to every message.</p>
+                <form action="https://formspree.io/f/mvkoqvnp" method="POST">
                     <div class="form-group">
                         <label for="name">Your Name</label>
                         <input type="text" id="name" name="name" required>
                     </div>
                     <div class="form-group">
                         <label for="email">Email Address</label>
-                        <input type="email" id="email" name="_replyto" required>
+                        <input type="email" id="email" name="email" required>
                     </div>
                     <div class="form-group">
                         <label for="message">Your Message</label>
-                        <textarea id="message" name="message" required placeholder="Tell me about your business, your goals, and what support you're looking for..."></textarea>
+                        <textarea id="message" name="message" required placeholder="Tell me about your business and what support you're looking for..."></textarea>
                     </div>
-                    <button type="submit" class="btn submit-btn">Send Message ✉️</button>
+                    <button type="submit" class="btn">Send Message ✉️</button>
                 </form>
             </div>
         </div>
 
     </div>
 
-    <!-- Tab Switching Script -->
+    <!-- ========== RELIABLE TAB SWITCHING SCRIPT ========== -->
     <script>
         function switchTab(pageName) {
-            document.querySelectorAll('.tab-content').forEach(page => page.classList.remove('active'));
-            document.querySelectorAll('.tab-link').forEach(tab => tab.classList.remove('active'));
+            // Hide ALL content
+            document.querySelectorAll('.tab-content').forEach(page => {
+                page.classList.remove('active');
+            });
+            // Remove active from ALL tabs
+            document.querySelectorAll('.tab-link').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            // Show selected page
             document.getElementById(pageName).classList.add('active');
+            // Mark tab as active
             document.querySelector(`[data-page="${pageName}"]`).classList.add('active');
+            // Jump to top instantly
             window.scrollTo(0, 0);
         }
 
-        document.querySelectorAll('.tab-link').forEach(tab => {
-            tab.addEventListener('click', (e) => {
-                e.preventDefault();
-                switchTab(tab.dataset.page);
+        // Attach click to ALL tabs — RELIABLE
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.tab-link').forEach(tab => {
+                tab.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    switchTab(this.getAttribute('data-page'));
+                });
             });
         });
     </script>
