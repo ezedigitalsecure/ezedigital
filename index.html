@@ -12,29 +12,35 @@
             font-family: 'Segoe UI', sans-serif;
         }
 
-        html {
-            scroll-behavior: smooth;
-            height: 100%;
-        }
-
-        body {
+        html, body {
             margin: 0;
             padding: 0;
             min-height: 100vh;
             height: 100%;
             color: white;
-            background:
-                url('mockup-bg.png') no-repeat fixed top center,
-                linear-gradient(180deg, #001418 0%, #00222a 45%, #001115 100%) fixed;
-            background-size: cover, 100% 100%;
-            background-position: top center;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
+            overflow-x: hidden;
         }
 
-        /* ========== CLEAN NAV — NO UGLY THICK BAR ========== */
+        body {
+            background: linear-gradient(180deg, #001418 0%, #00222a 45%, #001115 100%) fixed;
+            background-size: 100% 100%;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('mockup-bg.png') no-repeat top center;
+            background-size: cover;
+            z-index: -1;
+        }
+
+        /* ========== CLEAN TRANSPARENT NAV ========== */
         header {
-            background: transparent;
             padding: 2rem 4.5rem;
             width: 100%;
             position: fixed;
@@ -44,6 +50,7 @@
             display: flex;
             justify-content: flex-end;
             align-items: center;
+            background: transparent;
         }
 
         nav a {
@@ -52,40 +59,22 @@
             margin-left: 2.2rem;
             font-size: 0.9rem;
             opacity: 0.85;
-            transition: opacity 0.2s;
         }
 
-        nav a:hover {
-            opacity: 1;
-        }
+        nav a:hover { opacity: 1; }
 
-        /* ========== CONTENT STARTS AT TOP PROPERLY ========== */
+        /* ========== CONTENT STARTS AT TOP ========== */
         .page-wrapper {
             width: 100%;
             min-height: 100vh;
             padding: 8rem 4.5rem 4rem;
             position: relative;
+            z-index: 1;
         }
 
-        .hero {
-            max-width: 520px;
-            margin: 0 0 0 10%;
-        }
-
-        .hero h2 {
-            font-size: 3.2rem;
-            line-height: 1.15;
-            margin-bottom: 1.4rem;
-            font-weight: 600;
-        }
-
-        .hero p {
-            font-size: 0.95rem;
-            line-height: 1.6;
-            opacity: 0.75;
-            margin-bottom: 2rem;
-            max-width: 460px;
-        }
+        .hero { max-width: 520px; margin: 0 0 0 10%; }
+        .hero h2 { font-size: 3.2rem; line-height: 1.15; margin-bottom: 1.4rem; }
+        .hero p { font-size: 0.95rem; line-height: 1.6; opacity: 0.75; margin-bottom: 2rem; max-width: 460px; }
 
         .btn {
             display: inline-block;
@@ -99,12 +88,8 @@
             box-shadow: 0 0 18px rgba(0,180,180,0.25);
             border: none;
             cursor: pointer;
-            transition: transform 0.2s ease;
         }
-
-        .btn:hover {
-            transform: translateY(-2px);
-        }
+        .btn:hover { transform: translateY(-2px); }
 
         .services {
             display: grid;
@@ -121,28 +106,12 @@
             padding: 1.4rem 1.6rem;
             backdrop-filter: blur(10px);
         }
-
         .service-card:first-child { border-radius: 10px 0 0 10px; }
-        .service-card:last-child {
-            border-right: 1px solid rgba(0,180,180,0.15);
-            border-radius: 0 10px 10px 0;
-        }
+        .service-card:last-child { border-right: 1px solid rgba(0,180,180,0.15); border-radius: 0 10px 10px 0; }
         .service-card:nth-child(2) { background: rgba(0,70,85,0.4); }
         .service-card:nth-child(3) { background: rgba(0,90,100,0.35); }
-
-        .service-card h3 {
-            font-size: 1.05rem;
-            margin-bottom: 0.4rem;
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-        }
-
-        .service-card p {
-            font-size: 0.85rem;
-            line-height: 1.5;
-            opacity: 0.7;
-        }
+        .service-card h3 { font-size: 1.05rem; margin-bottom: 0.4rem; }
+        .service-card p { font-size: 0.85rem; line-height: 1.5; opacity: 0.7; }
 
         .modal-overlay {
             display: none;
@@ -157,7 +126,6 @@
             justify-content: center;
             padding: 2rem;
         }
-
         .modal-overlay.active { display: flex; }
 
         .contact-form {
@@ -171,9 +139,8 @@
             box-shadow: 0 0 40px rgba(0,180,180,0.15);
             position: relative;
         }
-
-        .contact-form h3 { font-size: 1.8rem; margin-bottom: 0.5rem; color: white; }
-        .contact-form p { opacity: 0.7; margin-bottom: 1.8rem; font-size: 0.95rem; }
+        .contact-form h3 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+        .contact-form p { opacity: 0.7; margin-bottom: 1.8rem; }
 
         .close-btn {
             position: absolute;
@@ -182,19 +149,12 @@
             font-size: 1.5rem;
             color: rgba(255,255,255,0.6);
             cursor: pointer;
-            transition: color 0.2s;
         }
         .close-btn:hover { color: white; }
 
         .form-group { margin-bottom: 1.2rem; }
-        .form-group label {
-            display: block;
-            margin-bottom: 0.4rem;
-            font-size: 0.9rem;
-            opacity: 0.85;
-        }
-        .form-group input,
-        .form-group textarea {
+        .form-group label { display: block; margin-bottom: 0.4rem; font-size: 0.9rem; opacity: 0.85; }
+        .form-group input, .form-group textarea {
             width: 100%;
             padding: 0.9rem 1rem;
             background: rgba(0,30,36,0.8);
@@ -202,11 +162,8 @@
             border-radius: 8px;
             color: white;
             font-size: 0.95rem;
-            outline: none;
-            transition: border 0.2s;
         }
-        .form-group input:focus,
-        .form-group textarea:focus { border-color: rgba(0,180,180,0.6); }
+        .form-group input:focus, .form-group textarea:focus { border-color: rgba(0,180,180,0.6); outline: none; }
         .form-group textarea { min-height: 120px; resize: vertical; }
         .submit-btn { width: 100%; margin-top: 0.5rem; }
 
@@ -218,7 +175,6 @@
             .hero h2 { font-size: 2.1rem; }
             .services { grid-template-columns: 1fr; gap: 0.5rem; margin: 3rem auto 0; max-width: 500px; }
             .service-card { border-radius: 10px !important; border-right: 1px solid rgba(0,180,180,0.15); }
-            .contact-form { padding: 1.8rem; }
         }
     </style>
 </head>
@@ -281,23 +237,9 @@
         const openBtn = document.getElementById('openFormBtn');
         const closeBtn = document.getElementById('closeFormBtn');
         const overlay = document.getElementById('contactFormOverlay');
-
-        openBtn.addEventListener('click', () => {
-            overlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
-
-        closeBtn.addEventListener('click', () => {
-            overlay.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-
-        overlay.addEventListener('click', (e) => {
-            if (e.target === overlay) {
-                overlay.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        });
+        openBtn.addEventListener('click', () => { overlay.classList.add('active'); document.body.style.overflow = 'hidden'; });
+        closeBtn.addEventListener('click', () => { overlay.classList.remove('active'); document.body.style.overflow = ''; });
+        overlay.addEventListener('click', (e) => { if (e.target === overlay) { overlay.classList.remove('active'); document.body.style.overflow = ''; } });
     </script>
 </body>
 </html>
