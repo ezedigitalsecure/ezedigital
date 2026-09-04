@@ -3,89 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eze Digital Ltd — Cybersecurity & GDPR Compliance</title>
+    <title>Eze Digital Ltd — Secure & Evolve</title>
     <style>
         * {margin:0; padding:0; box-sizing:border-box;}
 
-        /* 🎯 EXACT MOCKUP COLOURS */
+        /* 🎨 EXACT MOCKUP COLOURS */
         :root {
-            --bg-ultra: #020812;
-            --bg-deep: #051020;
-            --bg-mid: #0A1A2F;
-            --neon-cyan: #00FFF5;
-            --neon-teal: #4ECDC4;
-            --neon-glow: rgba(0,255,245,0.7);
-            --neon-dim: rgba(78,205,196,0.35);
-            --text-white: #F8FFFF;
-            --text-dim: #88B0B0;
-            --line-faint: rgba(0,255,245,0.08);
-            --line-soft: rgba(78,205,196,0.15);
+            --deep-navy: #021020;
+            --teal-dark: #0A3040;
+            --teal-mid: #009999;
+            --teal-bright: #00DDDD;
+            --teal-glow: rgba(0,221,221,0.6);
+            --cyan: #00FFFF;
+            --text-white: #FFFFFF;
+            --text-soft: #B0E0E0;
+            --circuit-line: rgba(0,221,221,0.35);
+            --circuit-dot: rgba(0,255,255,0.9);
         }
 
         body {
             font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, var(--bg-ultra) 0%, var(--bg-deep) 45%, var(--bg-mid) 100%);
+            background: radial-gradient(ellipse at top left, #0A2A38 0%, var(--deep-navy) 60%, #000810 100%);
             color: var(--text-white);
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
         }
 
-        /* ⚡ NEON CIRCUIT GRID — EXACT MOCKUP PATTERN */
-        .circuit-overlay {
+        /* ⚡ EXACT CIRCUIT BOARD BACKGROUND — MOCKUP STYLE */
+        .circuit-bg {
             position: fixed;
             top:0; left:0;
             width:100%; height:100%;
             background-image: 
-                linear-gradient(90deg, var(--line-faint) 1px, transparent 1px),
-                linear-gradient(var(--line-faint) 1px, transparent 1px);
-            background-size: 80px 80px;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* ⚡ GLOWING DIAGONAL CIRCUIT LINES LIKE MOCKUP */
-        .circuit-traces {
-            position:fixed;
-            top:0; left:0;
-            width:100%; height:100%;
-            background: 
-                linear-gradient(55deg, transparent 48%, var(--line-soft) 49%, var(--line-soft) 51%, transparent 52%),
-                linear-gradient(-55deg, transparent 48%, var(--line-soft) 49%, var(--line-soft) 51%, transparent 52%);
-            background-size: 160px 160px;
+                radial-gradient(circle at 10% 15%, var(--circuit-dot) 2px, transparent 2px),
+                radial-gradient(circle at 30% 25%, var(--circuit-dot) 2px, transparent 2px),
+                radial-gradient(circle at 50% 10%, var(--circuit-dot) 2px, transparent 2px),
+                radial-gradient(circle at 70% 20%, var(--circuit-dot) 2px, transparent 2px),
+                radial-gradient(circle at 90% 15%, var(--circuit-dot) 2px, transparent 2px),
+                radial-gradient(circle at 20% 50%, var(--circuit-dot) 2px, transparent 2px),
+                radial-gradient(circle at 80% 45%, var(--circuit-dot) 2px, transparent 2px),
+                radial-gradient(circle at 40% 80%, var(--circuit-dot) 2px, transparent 2px),
+                radial-gradient(circle at 60% 85%, var(--circuit-dot) 2px, transparent 2px),
+                radial-gradient(circle at 15% 90%, var(--circuit-dot) 2px, transparent 2px),
+                linear-gradient(45deg, transparent 48%, var(--circuit-line) 49%, var(--circuit-line) 51%, transparent 52%),
+                linear-gradient(-45deg, transparent 48%, var(--circuit-line) 49%, var(--circuit-line) 51%, transparent 52%);
+            background-size: 
+                20% 20%, 20% 20%, 20% 20%, 20% 20%, 20% 20%,
+                20% 20%, 20% 20%, 20% 20%, 20% 20%, 20% 20%,
+                120px 120px, 120px 120px;
             pointer-events: none;
             z-index: 1;
+            opacity: 0.8;
         }
 
-        /* ⚡ GLOWING ORBS / NODES */
-        .glow-1, .glow-2, .glow-3 {
+        /* 💫 CENTRAL GLOW ORB behind logo chip */
+        .central-glow {
             position:fixed;
+            top:15%; right:8%;
+            width:450px; height:450px;
+            background: radial-gradient(circle, rgba(0,255,255,0.18) 0%, rgba(0,180,180,0.06) 40%, transparent 70%);
             border-radius:50%;
-            filter: blur(100px);
+            filter: blur(40px);
             pointer-events:none;
-            z-index:0;
+            z-index:2;
         }
-        .glow-1 { width:400px; height:400px; background:rgba(0,255,245,0.08); top:5%; left:5%; }
-        .glow-2 { width:500px; height:500px; background:rgba(78,205,196,0.06); bottom:0; right:5%; }
-        .glow-3 { width:300px; height:300px; background:rgba(0,180,160,0.05); top:40%; left:60%; }
 
         .container {
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
-            padding: 0 2.5rem;
+            padding: 0 3rem;
             position: relative;
             z-index: 10;
         }
 
-        /* 🧠 HEADER — TRANSPARENT LIKE MOCKUP */
+        /* 🧠 HEADER — EXACT MOCKUP LAYOUT */
         header {
-            background: transparent;
-            padding: 1.8rem 2.5rem;
+            padding: 2rem 3rem;
             position: relative;
             z-index: 50;
         }
         .header-inner {
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
             display: flex;
             align-items: center;
@@ -94,221 +93,179 @@
         .logo-wrap {
             display: flex;
             align-items: center;
-            gap: 1.2rem;
+            gap: 1rem;
         }
         .logo-wrap img {
-            height: 70px;
+            height: 55px;
             width: auto;
-            filter: drop-shadow(0 0 12px rgba(78,205,196,0.45));
+            filter: drop-shadow(0 0 20px rgba(0,221,221,0.5));
         }
         .logo-text h1 {
-            font-size: 1.6rem;
+            font-size: 1.45rem;
             font-weight: 600;
-            color: var(--neon-teal);
-            letter-spacing: 1px;
+            color: var(--text-white);
+            letter-spacing: 0.8px;
         }
         .logo-text p {
-            font-size: 0.8rem;
-            color: var(--text-dim);
+            font-size: 0.75rem;
+            color: var(--teal-bright);
             letter-spacing: 2px;
             text-transform: uppercase;
-            margin-top: 0.2rem;
+            margin-top: 0.15rem;
         }
         nav a {
             color: var(--text-white);
             text-decoration: none;
             margin-left: 2.2rem;
             font-size: 0.95rem;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            position: relative;
-            transition: color 0.3s;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+            opacity: 0.9;
+            transition: all 0.3s;
         }
-        nav a::after {
-            content:'';
-            position:absolute;
-            bottom:-6px; left:0;
-            width:0; height:2px;
-            background:var(--neon-cyan);
-            box-shadow:0 0 8px var(--neon-glow);
-            transition:width 0.3s;
+        nav a:hover {
+            opacity: 1;
+            color: var(--teal-bright);
+            text-shadow: 0 0 10px var(--teal-glow);
         }
-        nav a:hover { color:var(--neon-cyan); }
-        nav a:hover::after { width:100%; }
+        nav a.contact-btn {
+            background: rgba(0,150,150,0.25);
+            border: 1px solid rgba(0,221,221,0.35);
+            padding: 0.55rem 1.4rem;
+            border-radius: 6px;
+            margin-left: 1.5rem;
+            transition: all 0.3s;
+        }
+        nav a.contact-btn:hover {
+            background: rgba(0,200,200,0.35);
+            box-shadow: 0 0 15px rgba(0,221,221,0.25);
+        }
 
-        /* 🛡️ HERO — EXACT MOCKUP CENTERED */
+        /* 🛡️ HERO SECTION — EXACT MOCKUP */
         .hero {
-            padding: 6rem 2.5rem 8rem;
-            text-align: center;
+            padding: 3rem 3rem 8rem;
             position: relative;
             z-index: 10;
+            display: flex;
+            align-items: center;
+            min-height: 70vh;
         }
-        .hero-lock {
-            font-size: 4.5rem;
-            margin-bottom: 2rem;
-            filter: drop-shadow(0 0 30px rgba(255,180,60,0.4));
+        .hero-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: 4rem;
+            align-items: center;
         }
-        .hero h2 {
-            font-size: 2.8rem;
-            letter-spacing: 1px;
-            margin-bottom: 1.4rem;
-            color: #FFFFFF;
-            text-shadow: 0 0 40px rgba(0,255,245,0.25);
+        .hero-content h2 {
+            font-size: 3.4rem;
+            line-height: 1.15;
+            font-weight: 600;
+            margin-bottom: 1.8rem;
+            color: var(--text-white);
+            letter-spacing: 0.5px;
         }
-        .hero p {
+        .hero-content p {
             font-size: 1.1rem;
-            max-width: 740px;
-            margin: 0 auto 3rem;
-            color: #A0D0CC;
-            line-height: 1.7;
+            max-width: 480px;
+            color: var(--text-soft);
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
         }
         .btn {
             display: inline-block;
-            background: linear-gradient(135deg, var(--neon-teal) 0%, var(--neon-cyan) 100%);
-            color: #030C18;
-            font-weight: 700;
+            background: linear-gradient(90deg, #00AAAA 0%, #00CCCC 100%);
+            color: var(--text-white);
+            font-weight: 600;
             font-size: 1rem;
-            letter-spacing: 0.5px;
-            padding: 1.1rem 3rem;
-            border-radius: 4px;
+            padding: 0.95rem 2.4rem;
+            border-radius: 25px;
             border: none;
-            box-shadow: 0 0 20px var(--neon-dim), 0 0 40px rgba(0,255,245,0.15), inset 0 0 0 1px rgba(255,255,255,0.15);
+            box-shadow: 0 0 20px rgba(0,200,200,0.35);
             text-decoration: none;
             transition: all 0.3s ease;
         }
         .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 0 30px var(--neon-glow), 0 0 60px rgba(0,255,245,0.25), inset 0 0 0 1px rgba(255,255,255,0.25);
+            box-shadow: 0 0 30px rgba(0,221,221,0.5);
         }
 
-        /* ⚙️ SECTIONS — GLOWING BORDER CARDS */
-        section {
+        /* 💠 GLOWING LOGO CHIP — THE BIG E ON RIGHT */
+        .hero-chip {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: relative;
-            z-index: 10;
         }
-        .services {
-            padding: 5rem 2.5rem;
-        }
-        .section-heading {
-            text-align: center;
-            margin-bottom: 3.5rem;
-        }
-        .section-heading h2 {
-            font-size: 2rem;
-            color: var(--neon-teal);
-            margin-bottom: 0.8rem;
-            letter-spacing: 0.5px;
-        }
-        .section-heading p {
-            color: var(--text-dim);
-            font-size: 1.05rem;
-        }
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-        .card {
-            background: rgba(5,16,32,0.6);
-            padding: 2.2rem;
-            border-radius: 6px;
-            border: 1px solid rgba(78,205,196,0.18);
+        .chip-outer {
+            width: 380px;
+            height: 380px;
             position: relative;
-            overflow: hidden;
-            transition: all 0.35s ease;
         }
-        .card::before {
-            content:'';
+        .chip-package {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 260px; height: 260px;
+            background: linear-gradient(135deg, rgba(0,60,80,0.85) 0%, rgba(0,100,110,0.75) 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 
+                0 0 40px rgba(0,221,221,0.35),
+                inset 0 0 30px rgba(0,255,255,0.1);
+            border: 2px solid rgba(0,221,221,0.5);
+        }
+        .chip-logo {
+            width: 160px; height: 160px;
+            background: linear-gradient(135deg, #00AAAA 0%, #00EEEE 100%);
+            clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 
+                0 0 30px rgba(0,255,255,0.6),
+                inset 0 0 20px rgba(255,255,255,0.2);
+            position: relative;
+        }
+        .chip-logo span {
+            font-size: 5.5rem;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 0 10px rgba(255,255,255,0.8);
+            margin-top: -5px;
+        }
+        /* CHIP PINS — top & bottom */
+        .pins-top, .pins-bot {
             position:absolute;
-            top:0; left:0;
-            width:100%; height:2px;
-            background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
-            opacity:0;
-            transition:opacity 0.35s;
+            left:50%; transform:translateX(-50%);
+            display:flex; gap:10px;
         }
-        .card:hover {
-            border-color: rgba(0,255,245,0.4);
-            box-shadow: 0 0 30px rgba(0,255,245,0.12), inset 0 0 30px rgba(0,255,245,0.03);
-            transform: translateY(-4px);
+        .pins-top { top:10px; }
+        .pins-bot { bottom:10px; }
+        .pin {
+            width:12px; height:20px;
+            background: linear-gradient(180deg, #88FFFF 0%, #00AAAA 100%);
+            border-radius: 2px 2px 0 0;
+            box-shadow: 0 0 6px rgba(0,255,255,0.6);
         }
-        .card:hover::before { opacity:1; }
-        .card h3 {
-            color: var(--neon-cyan);
-            font-size: 1.15rem;
-            margin-bottom: 1rem;
-            letter-spacing: 0.5px;
-        }
-        .card p {
-            color: #98B8B8;
-            line-height: 1.7;
-            font-size: 0.98rem;
-        }
-
-        /* ℹ️ ABOUT & CONTACT */
-        .about-wrap, .contact-wrap {
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 4.5rem 2.5rem;
-            text-align: center;
-        }
-        .about-wrap h2, .contact-wrap h2 {
-            font-size: 2rem;
-            color: var(--neon-teal);
-            margin-bottom: 1.5rem;
-        }
-        .about-wrap p, .contact-wrap p {
-            color: #98C0BC;
-            line-height: 1.8;
-            font-size: 1.05rem;
-            margin-bottom: 1rem;
-        }
-        .email-link {
-            font-size: 1.2rem;
-            color: var(--neon-cyan);
-            text-decoration: none;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            border-bottom: 1px solid rgba(0,255,245,0.3);
-            padding-bottom: 2px;
-            transition: all 0.3s;
-        }
-        .email-link:hover {
-            border-bottom-color: var(--neon-cyan);
-            text-shadow: 0 0 12px var(--neon-glow);
-        }
-
-        /* 🦶 FOOTER */
-        footer {
-            border-top: 1px solid rgba(78,205,196,0.12);
-            padding: 2.5rem;
-            text-align: center;
-            color: var(--text-dim);
-            font-size: 0.9rem;
-            margin-top: 3rem;
-            position: relative;
-            z-index: 10;
-        }
-        footer span { color: var(--neon-teal); }
+        .pins-bot .pin { border-radius: 0 0 2px 2px; }
 
         /* 📱 RESPONSIVE */
-        @media (max-width: 900px) {
-            .grid-3 { grid-template-columns: 1fr; }
-            .header-inner { flex-direction: column; gap: 1.2rem; }
-            nav a { margin: 0 0.7rem; }
-            .hero h2 { font-size: 2.1rem; }
+        @media (max-width: 1100px) {
+            .hero-inner { grid-template-columns: 1fr; text-align:center; }
+            .hero-content p { margin:0 auto 2.5rem; }
+            .hero-chip { margin-top: 2rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ⚡ EXACT MOCKUP BACKGROUND LAYERS -->
-    <div class="circuit-overlay"></div>
-    <div class="circuit-traces"></div>
-    <div class="glow-1"></div>
-    <div class="glow-2"></div>
-    <div class="glow-3"></div>
+    <!-- ⚡ BACKGROUND LAYERS -->
+    <div class="circuit-bg"></div>
+    <div class="central-glow"></div>
 
     <!-- 🧠 HEADER -->
     <header>
@@ -316,78 +273,46 @@
             <div class="logo-wrap">
                 <img src="logo.png" alt="Eze Digital Ltd — Secure & Evolve">
                 <div class="logo-text">
-                    <h1>Eze Digital Ltd</h1>
-                    <p>CYBERSECURITY • GDPR COMPLIANCE • DIGITAL TRUST</p>
+                    <h1>EZE DIGITAL</h1>
+                    <p>Secure & Evolve</p>
                 </div>
             </div>
             <nav>
                 <a href="#home">Home</a>
                 <a href="#services">Services</a>
                 <a href="#about">About</a>
-                <a href="#contact">Contact</a>
+                <a href="#contact" class="contact-btn">Contact</a>
             </nav>
         </div>
     </header>
 
-    <!-- 🛡️ HERO -->
+    <!-- 🛡️ HERO SECTION -->
     <section class="hero" id="home">
         <div class="container">
-            <div class="hero-lock">🔒</div>
-            <h2>Secure Your Digital Future</h2>
-            <p>Professional cybersecurity assessments, GDPR compliance frameworks, and digital trust solutions — built to protect, designed to evolve.</p>
-            <a href="#contact" class="btn">Start Your Security Review</a>
-        </div>
-    </section>
-
-    <!-- ⚙️ SERVICES -->
-    <section class="services" id="services">
-        <div class="container">
-            <div class="section-heading">
-                <h2>Our Services</h2>
-                <p>Expert protection for growing businesses</p>
-            </div>
-            <div class="grid-3">
-                <div class="card">
-                    <h3>Cybersecurity Assessments</h3>
-                    <p>Identify vulnerabilities, strengthen defences, and protect your systems and data from evolving threats. Technical audits, security reviews, and infrastructure hardening.</p>
+            <div class="hero-inner">
+                <div class="hero-content">
+                    <h2>Secure Your Digital Future</h2>
+                    <p>Professional cybersecurity assessments, GDPR compliance frameworks, and digital trust solutions — built to protect, designed to evolve.</p>
+                    <a href="#contact" class="btn">Get in Touch</a>
                 </div>
-                <div class="card">
-                    <h3>GDPR & ICO Compliance</h3>
-                    <p>Complete compliance frameworks, data protection audits, documentation, and ongoing support to meet ICO and GDPR requirements. Peace of mind through proper governance.</p>
-                </div>
-                <div class="card">
-                    <h3>Digital Trust & Training</h3>
-                    <p>Security policies, staff awareness training, data protection guidance, and best practice implementation. Build a culture of security across your organisation.</p>
+                <div class="hero-chip">
+                    <div class="chip-outer">
+                        <div class="chip-package">
+                            <div class="pins-top">
+                                <div class="pin"></div><div class="pin"></div><div class="pin"></div><div class="pin"></div><div class="pin"></div><div class="pin"></div><div class="pin"></div>
+                            </div>
+                            <div class="chip-logo"><span>E</span></div>
+                            <div class="pins-bot">
+                                <div class="pin"></div><div class="pin"></div><div class="pin"></div><div class="pin"></div><div class="pin"></div><div class="pin"></div><div class="pin"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ℹ️ ABOUT -->
-    <section id="about">
-        <div class="about-wrap">
-            <h2>About Eze Digital</h2>
-            <p>We provide accessible, professional cybersecurity and GDPR compliance services to small and growing businesses. Built on expertise in both technical security architecture and regulatory standards, we help you protect what matters most — your data, your reputation, and your clients' trust.</p>
-            <p>Security should never be a luxury. It should be a foundation. <strong style="color:#4ECDC4">Secure & Evolve.</strong></p>
-            <p style="margin-top:1.5rem; font-size:0.95rem; color:#4ECDC4">ICO Registration: ZAXXXXXXXXXX</p>
-        </div>
-    </section>
-
-    <!-- 📧 CONTACT -->
-    <section id="contact">
-        <div class="contact-wrap">
-            <h2>Ready to Secure Your Business?</h2>
-            <p>Get in touch to discuss your requirements or arrange a consultation. Every business deserves protection.</p>
-            <a href="mailto:enquiries@ezedigital.co.uk" class="email-link">enquiries@ezedigital.co.uk</a>
-        </div>
-    </section>
-
-    <!-- 🦶 FOOTER -->
-    <footer>
-        <p><span>Eze Digital Ltd</span> — Cybersecurity • GDPR Compliance • Digital Trust</p>
-        <p style="margin-top:0.5rem;">Email: enquiries@ezedigital.co.uk | ICO Registration: ZAXXXXXXXXXX</p>
-        <p style="margin-top:1rem; font-size:0.85rem;">© 2026 Eze Digital Ltd. All rights reserved. "Secure & Evolve"</p>
-    </footer>
+    <!-- ⏳ Services section coming in CHUNK 2 -->
 
 </body>
 </html>
