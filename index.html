@@ -7,77 +7,100 @@
     <style>
         * {margin:0; padding:0; box-sizing:border-box;}
 
-        /* 🎨 EXACT MOCKUP COLOURS */
         :root {
-            --deep-navy: #021525;
-            --teal-dark: #072A38;
-            --teal-mid: #00AAAA;
-            --teal-bright: #00DDDD;
-            --teal-glow: rgba(0,221,221,0.6);
-            --cyan: #00FFFF;
-            --cyan-soft: rgba(0,255,255,0.7);
+            --bg-deep: #021525;
+            --bg-mid: #072330;
+            --bg-glow: #0A3040;
+            --line: rgba(0,200,200,0.35);
+            --line-bright: rgba(0,220,220,0.5);
+            --dot: rgba(0,255,255,0.95);
+            --glow-soft: rgba(0,255,255,0.15);
             --text-white: #FFFFFF;
-            --text-soft: #B0E0E0;
-            --circuit-line: rgba(0,221,221,0.4);
-            --circuit-dot: rgba(0,255,255,0.95);
-            --card-bg: rgba(0,60,80,0.45);
+            --text-soft: #B0E5E5;
+            --card-bg: rgba(0,60,80,0.4);
         }
 
         body {
             font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-            background: radial-gradient(ellipse at top left, #0A3040 0%, var(--deep-navy) 55%, #000812 100%);
+            background: radial-gradient(ellipse at 72% 48%, var(--bg-glow) 0%, var(--bg-mid) 45%, var(--bg-deep) 75%, #000812 100%);
             color: var(--text-white);
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
         }
 
-        /* ⚡ CIRCUIT BOARD BACKGROUND — matches mockup style */
-        .circuit-bg {
+        /* ======================================
+           LAYER 2 — RADIATING CIRCUIT LINES
+           Flowing FROM logo across ENTIRE page
+           ====================================== */
+        .circuit-radial {
             position: fixed;
-            top:0; left:0;
-            width:100%; height:100%;
-            background-image: 
-                radial-gradient(circle at 8% 12%, var(--circuit-dot) 3px, transparent 3px),
-                radial-gradient(circle at 25% 8%, var(--circuit-dot) 3px, transparent 3px),
-                radial-gradient(circle at 42% 18%, var(--circuit-dot) 3px, transparent 3px),
-                radial-gradient(circle at 60% 10%, var(--circuit-dot) 3px, transparent 3px),
-                radial-gradient(circle at 78% 15%, var(--circuit-dot) 3px, transparent 3px),
-                radial-gradient(circle at 92% 10%, var(--circuit-dot) 3px, transparent 3px),
-                radial-gradient(circle at 12% 45%, var(--circuit-dot) 3px, transparent 3px),
-                radial-gradient(circle at 35% 52%, var(--circuit-dot) 3px, transparent 3px),
-                radial-gradient(circle at 55% 40%, var(--circuit-dot) 3px, transparent 3px),
-                radial-gradient(circle at 75% 48%, var(--circuit-dot) 3px, transparent 3px),
-                radial-gradient(circle at 88% 42%, var(--circuit-dot) 3px, transparent 3px),
-                radial-gradient(circle at 10% 75%, var(--circuit-dot) 3px, transparent 3px),
-                radial-gradient(circle at 30% 85%, var(--circuit-dot) 3px, transparent 3px),
-                radial-gradient(circle at 50% 80%, var(--circuit-dot) 3px, transparent 3px),
-                radial-gradient(circle at 70% 88%, var(--circuit-dot) 3px, transparent 3px),
-                radial-gradient(circle at 90% 80%, var(--circuit-dot) 3px, transparent 3px),
-                linear-gradient(30deg, transparent 49%, var(--circuit-line) 49.5%, var(--circuit-line) 50.5%, transparent 51%),
-                linear-gradient(-30deg, transparent 49%, var(--circuit-line) 49.5%, var(--circuit-line) 50.5%, transparent 51%),
-                linear-gradient(85deg, transparent 49%, var(--circuit-line) 49.5%, var(--circuit-line) 50.5%, transparent 51%),
-                linear-gradient(-85deg, transparent 49%, var(--circuit-line) 49.5%, var(--circuit-line) 50.5%, transparent 51%);
-            background-size: 
-                100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%,
-                100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%,
-                100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%,
-                180px 180px, 180px 180px, 220px 220px, 220px 220px;
-            pointer-events: none;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             z-index: 1;
+            pointer-events: none;
+            background:
+                /* Diagonal flows from centre-right outward — matching mockup's organic traces */
+                linear-gradient(135deg, transparent 47%, var(--line) 49%, transparent 51%),
+                linear-gradient(115deg, transparent 47%, var(--line) 49%, transparent 51%),
+                linear-gradient(65deg, transparent 47%, var(--line) 49%, transparent 51%),
+                linear-gradient(45deg, transparent 47%, var(--line) 49%, transparent 51%),
+                linear-gradient(-45deg, transparent 47%, var(--line) 49%, transparent 51%),
+                linear-gradient(-65deg, transparent 47%, var(--line) 49%, transparent 51%),
+                linear-gradient(-115deg, transparent 47%, var(--line) 49%, transparent 51%),
+                linear-gradient(-135deg, transparent 47%, var(--line) 49%, transparent 51%),
+                /* Horizontal / Vertical secondary grid */
+                linear-gradient(90deg, transparent 48%, rgba(0,180,180,0.18) 49.5%, transparent 51%),
+                linear-gradient(0deg, transparent 48%, rgba(0,180,180,0.18) 49.5%, transparent 51%);
+            background-size:
+                280px 280px, 320px 320px, 260px 260px, 220px 220px,
+                220px 220px, 260px 260px, 320px 320px, 280px 280px,
+                180px 180px, 180px 180px;
+            background-position: 72% 48%;
             opacity: 0.9;
         }
 
-        /* 💫 GLOW HALO behind logo — matches mockup */
-        .central-glow {
-            position:fixed;
-            top:18%; right:10%;
-            width:480px; height:480px;
-            background: radial-gradient(circle, rgba(0,255,255,0.20) 0%, rgba(0,180,180,0.07) 40%, transparent 70%);
-            border-radius:50%;
-            filter: blur(50px);
-            pointer-events:none;
-            z-index:2;
+        /* ======================================
+           LAYER 3 — GLOWING DOTS at intersections
+           ====================================== */
+        .circuit-dots {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 2;
+            pointer-events: none;
+            background:
+                radial-gradient(circle at 72% 48%, var(--dot) 3px, transparent 3px),
+                radial-gradient(circle at 60% 20%, var(--dot) 2px, transparent 2px),
+                radial-gradient(circle at 85% 25%, var(--dot) 2px, transparent 2px),
+                radial-gradient(circle at 40% 15%, var(--dot) 2px, transparent 2px),
+                radial-gradient(circle at 20% 30%, var(--dot) 2px, transparent 2px),
+                radial-gradient(circle at 15% 60%, var(--dot) 2px, transparent 2px),
+                radial-gradient(circle at 35% 80%, var(--dot) 2px, transparent 2px),
+                radial-gradient(circle at 65% 85%, var(--dot) 2px, transparent 2px),
+                radial-gradient(circle at 88% 70%, var(--dot) 2px, transparent 2px),
+                radial-gradient(circle at 50% 60%, var(--dot) 2px, transparent 2px),
+                radial-gradient(circle at 30% 40%, var(--dot) 2px, transparent 2px),
+                radial-gradient(circle at 75% 75%, var(--dot) 2px, transparent 2px),
+                radial-gradient(circle at 90% 40%, var(--dot) 2px, transparent 2px),
+                radial-gradient(circle at 55% 30%, var(--dot) 2px, transparent 2px),
+                radial-gradient(circle at 25% 75%, var(--dot) 2px, transparent 2px);
+            background-size: 100% 100%;
+        }
+
+        /* ======================================
+           LAYER 4 — CENTRE GLOW HALO behind logo
+           ====================================== */
+        .centre-glow {
+            position: fixed;
+            top: 50%; right: 8%;
+            width: 600px; height: 600px;
+            transform: translateY(-50%);
+            background: radial-gradient(circle, var(--glow-soft) 0%, rgba(0,150,150,0.06) 40%, transparent 65%);
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: 3;
+            pointer-events: none;
         }
 
         .container {
@@ -88,7 +111,7 @@
             z-index: 10;
         }
 
-        /* 🧠 HEADER — exact mockup style */
+        /* HEADER */
         header {
             padding: 2rem 3rem;
             position: relative;
@@ -109,7 +132,7 @@
         }
         .logo-text p {
             font-size: 0.75rem;
-            color: var(--teal-bright);
+            color: #00DDDD;
             letter-spacing: 2px;
             text-transform: uppercase;
             margin-top: 0.15rem;
@@ -119,30 +142,26 @@
             text-decoration: none;
             margin-left: 2.2rem;
             font-size: 0.95rem;
-            font-weight: 400;
-            letter-spacing: 0.3px;
             opacity: 0.9;
             transition: all 0.3s;
         }
         nav a:hover {
-            opacity: 1;
-            color: var(--teal-bright);
-            text-shadow: 0 0 10px var(--teal-glow);
+            color: #00FFFF;
+            text-shadow: 0 0 8px rgba(0,255,255,0.4);
         }
         nav a.contact-btn {
             background: rgba(0,150,150,0.25);
-            border: 1px solid rgba(0,221,221,0.4);
+            border: 1px solid rgba(0,220,220,0.4);
             padding: 0.55rem 1.4rem;
             border-radius: 25px;
             margin-left: 1.5rem;
-            transition: all 0.3s;
         }
         nav a.contact-btn:hover {
             background: rgba(0,200,200,0.35);
-            box-shadow: 0 0 15px rgba(0,221,221,0.25);
+            box-shadow: 0 0 12px rgba(0,220,220,0.25);
         }
 
-        /* 🛡️ HERO SECTION */
+        /* HERO */
         .hero {
             padding: 2.5rem 3rem 4rem;
             position: relative;
@@ -155,54 +174,56 @@
             grid-template-columns: 1fr 440px;
             gap: 3rem;
             align-items: center;
+            min-height: 80vh;
         }
         .hero-content h2 {
             font-size: 3.4rem;
             line-height: 1.15;
             font-weight: 600;
             margin-bottom: 1.8rem;
-            color: var(--text-white);
-            letter-spacing: 0.5px;
         }
         .hero-content p {
             font-size: 1.05rem;
-            max-width: 500px;
+            max-width: 520px;
             color: var(--text-soft);
             line-height: 1.6;
             margin-bottom: 2.5rem;
         }
         .btn {
             display: inline-block;
-            background: linear-gradient(90deg, #009999 0%, #00BBBB 100%);
-            color: var(--text-white);
+            background: linear-gradient(90deg, #008888 0%, #00BBBB 100%);
+            color: white;
             font-weight: 600;
             font-size: 1rem;
             padding: 0.9rem 2.3rem;
             border-radius: 25px;
-            border: none;
-            box-shadow: 0 0 18px rgba(0,200,200,0.35);
             text-decoration: none;
-            transition: all 0.3s ease;
+            box-shadow: 0 0 18px rgba(0,200,200,0.35);
+            transition: all 0.3s;
         }
         .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 0 30px rgba(0,221,221,0.5);
+            box-shadow: 0 0 30px rgba(0,220,220,0.5);
         }
 
-        /* 💠 HERO LOGO AREA — YOUR EDLOGO.png */
-        .hero-chip {
+        /* ======================================
+           LAYER 5 — YOUR EDLOGO ON TOP
+           Lines flow BEHIND it, NOT cut off
+           ====================================== */
+        .logo-zone {
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
+            z-index: 15;
         }
-        .hero-chip img {
-            width: 380px;
+        .logo-zone img {
+            width: 400px;
             height: auto;
-            filter: drop-shadow(0 0 40px rgba(0,255,255,0.35));
+            filter: drop-shadow(0 0 50px rgba(0,255,255,0.35));
         }
 
-        /* 📦 SERVICE CARDS — exactly like mockup */
+        /* SERVICE CARDS */
         .services {
             padding: 0 3rem 6rem;
             position: relative;
@@ -220,13 +241,11 @@
             border-radius: 10px;
             border: 1px solid rgba(0,200,200,0.15);
             padding: 1.8rem;
-            position: relative;
-            overflow: hidden;
             backdrop-filter: blur(8px);
-            transition: all 0.35s ease;
+            transition: all 0.35s;
         }
         .service-card:hover {
-            border-color: rgba(0,221,221,0.4);
+            border-color: rgba(0,220,220,0.4);
             box-shadow: 0 0 25px rgba(0,200,200,0.12);
             transform: translateY(-4px);
         }
@@ -243,7 +262,6 @@
         .service-card h3 {
             font-size: 1.25rem;
             font-weight: 500;
-            color: var(--text-white);
             margin-bottom: 0.5rem;
         }
         .service-card p {
@@ -252,19 +270,16 @@
             line-height: 1.6;
         }
         .card-toggle {
-            position:absolute;
-            top:1.5rem; right:1.5rem;
-            color: var(--teal-bright);
+            float: right;
+            color: #00BBBB;
             font-size: 18px;
-            opacity:0.7;
+            opacity: 0.7;
         }
 
-        /* 📱 RESPONSIVE */
         @media (max-width: 1100px) {
-            .hero-inner { grid-template-columns: 1fr; text-align:center; }
-            .hero-content p { margin:0 auto 2.5rem; }
-            .hero-chip { margin-top: 1rem; }
-            .hero-chip img { width: 320px; }
+            .hero-inner { grid-template-columns: 1fr; text-align: center; }
+            .hero-content p { margin: 0 auto 2.5rem; }
+            .logo-zone img { width: 320px; }
             .cards-grid { grid-template-columns: 1fr; }
             nav a { margin-left: 1rem; }
         }
@@ -272,11 +287,12 @@
 </head>
 <body>
 
-    <!-- ⚡ BACKGROUND LAYERS -->
-    <div class="circuit-bg"></div>
-    <div class="central-glow"></div>
+    <!-- 🎯 ALL 4 BACKGROUND LAYERS — lines flow ACROSS WHOLE PAGE -->
+    <div class="circuit-radial"></div>
+    <div class="circuit-dots"></div>
+    <div class="centre-glow"></div>
 
-    <!-- 🧠 HEADER -->
+    <!-- HEADER -->
     <header>
         <div class="header-inner">
             <div class="logo-text">
@@ -292,24 +308,24 @@
         </div>
     </header>
 
-    <!-- 🛡️ HERO SECTION with YOUR LOGO -->
+    <!-- HERO — Logo sits ON TOP of flowing lines -->
     <section class="hero" id="home">
         <div class="container">
             <div class="hero-inner">
                 <div class="hero-content">
                     <h2>Secure Your Digital Future</h2>
-                    <p>Professional cybersecurity assessments, GDPR compliance frameworks, custom web development, and app creation — built to protect, designed to evolve.</p>
+                    <p>Professional cybersecurity assessments, GDPR compliance frameworks, secure web development, and custom app creation — built to protect, designed to evolve.</p>
                     <a href="#contact" class="btn">Get in Touch</a>
                 </div>
-                <!-- 💠 YOUR GLOWING LOGO — UPLOAD EDLOGO.png TO YOUR REPO -->
-                <div class="hero-chip">
+                <!-- YOUR EDLOGO — Lines flow BEHIND it, not cut off -->
+                <div class="logo-zone">
                     <img src="EDLOGO.png" alt="Eze Digital — Secure & Evolve">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 📦 THREE SERVICE CARDS -->
+    <!-- SERVICE CARDS -->
     <section class="services" id="services">
         <div class="cards-grid">
             <div class="service-card">
