@@ -27,7 +27,6 @@
             width: 100%;
             color: white;
             overflow-x: hidden;
-            /* LOAD GRADIENT FIRST — INSTANTLY — NO WHITE SCREEN */
             background: linear-gradient(180deg, #001418 0%, #00222a 45%, #001115 100%);
             background-size: 100% 100%;
             background-attachment: fixed;
@@ -35,7 +34,6 @@
             background-repeat: no-repeat;
         }
 
-        /* BACKGROUND IMAGE — LOADS BEHIND, NEVER PUSHES CONTENT */
         .bg-image {
             position: fixed;
             top: 0;
@@ -48,7 +46,6 @@
             opacity: 0.95;
         }
 
-        /* ========== NAVIGATION ========== */
         header {
             padding: 1.5rem 4.5rem;
             width: 100%;
@@ -80,7 +77,6 @@
             border-bottom: 2px solid #00B8BB;
         }
 
-        /* ========== PAGE WRAPPER — FORCE TOP POSITION ========== */
         .page-wrapper {
             width: 100%;
             min-height: 100vh;
@@ -91,7 +87,6 @@
             top: 0;
         }
 
-        /* ========== TAB CONTENT — RELIABLE SWITCHING ========== */
         .tab-content {
             display: none;
             width: 100%;
@@ -101,7 +96,6 @@
             display: block;
         }
 
-        /* ========== HOME PAGE ========== */
         .hero-panel {
             background: rgba(0, 40, 50, 0.6);
             border: 1px solid rgba(0, 180, 180, 0.18);
@@ -132,7 +126,6 @@
         }
         .btn:hover { transform: translateY(-2px); }
 
-        /* ========== SERVICES PAGE ========== */
         .services-container {
             margin: 0 0 0 10%;
             max-width: 900px;
@@ -187,7 +180,6 @@
             opacity: 0.72;
         }
 
-        /* ========== ABOUT US PAGE ========== */
         .about-container {
             display: flex;
             gap: 3rem;
@@ -242,7 +234,6 @@
         .about-panel p { font-size: 1rem; line-height: 1.7; opacity: 0.8; margin-bottom: 0.8rem; }
         .about-panel .tagline { margin-top: 1.2rem; color: #00B8BB; font-weight: 500; font-size: 1.05rem; }
 
-        /* ========== CONTACT PAGE — RELIABLE FORM ========== */
         .contact-panel {
             background: rgba(0, 40, 50, 0.6);
             border: 1px solid rgba(0, 180, 180, 0.18);
@@ -271,7 +262,6 @@
         }
         .form-group textarea { min-height: 120px; resize: vertical; }
 
-        /* ========== MOBILE ========== */
         @media (max-width: 900px) {
             header { justify-content: center; padding: 1.2rem 1.5rem; }
             nav a { margin-left: 1.2rem; font-size: 0.85rem; }
@@ -291,7 +281,7 @@
     <header>
         <nav>
             <a class="tab-link active" data-page="home">Home</a>
-            <a class="tab-link" data-page="services">Cyber Services</a>
+            <a class="tab-link" data-page="services">Services</a>
             <a class="tab-link" data-page="about">About Us</a>
             <a class="tab-link" data-page="contact">Contact</a>
         </nav>
@@ -302,8 +292,8 @@
         <!-- HOME -->
         <div id="home" class="tab-content active">
             <div class="hero-panel">
-                <h2>Secure Your Digital Future</h2>
-                <p>Eze Digital delivers professional cybersecurity assessments, GDPR & ICO compliance frameworks, secure web development, and custom application creation. We build digital foundations that are protected, practical, and built to grow with you.</p>
+                <h2>Your Digital Presence, Built Securely</h2>
+                <p>Eze Digital designs and builds professional websites, applications, and digital systems — with cybersecurity and compliance built in from day one. We deliver the infrastructure your business needs, protected by the standards your clients deserve.</p>
                 <button class="btn" onclick="switchTab('contact')">Start the Conversation ✉️</button>
             </div>
         </div>
@@ -312,27 +302,27 @@
         <div id="services" class="tab-content">
             <div class="services-container">
                 <div class="services-heading">
-                    <h2>Cyber Services</h2>
-                    <p>Clear, practical security and compliance solutions — tailored for growing businesses.</p>
+                    <h2>What We Do</h2>
+                    <p>Professional digital solutions — built securely, delivered clearly.</p>
                 </div>
                 <div class="services-grid">
                     <div class="service-card">
-                        <h3>🛡️ Security Assessments</h3>
-                        <p>Comprehensive audits, vulnerability reviews, infrastructure hardening — clear action plans to protect your business.</p>
+                        <h3>🌐 Website & App Development</h3>
+                        <p>Professional websites and custom applications built to your exact needs — designed to grow with your business and protect your data.</p>
                     </div>
                     <div class="service-card">
                         <h3>📋 GDPR & ICO Compliance</h3>
-                        <p>Complete UK-compliant data protection frameworks, policies, and documentation — ready to demonstrate compliance.</p>
+                        <p>Complete UK-compliant data protection frameworks, privacy policies, and documentation — so you can trade with confidence.</p>
                     </div>
                     <div class="service-card">
-                        <h3>🔗 Secure Development & Apps</h3>
-                        <p>Secure websites, custom applications, and cybersecurity training — built securely from the ground up.</p>
+                        <h3>🛡️ Security & Training</h3>
+                        <p>Security assessments, staff guidance, and educational resources — because the best protection is understanding what to protect.</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- ABOUT US -->
+        <!-- ABOUT US — REWRITTEN FROM YOUR STRENGTHS -->
         <div id="about" class="tab-content">
             <div class="about-container">
                 <div class="about-photo">
@@ -342,17 +332,18 @@
                 <div class="about-content-wrapper">
                     <div class="about-panel">
                         <h2>About Eze Digital</h2>
-                        <p>Eze Digital was founded on a straightforward belief: robust cybersecurity and professional compliance should be accessible to every business — not just large corporations with substantial budgets.</p>
-                        <p>We provide clear, practical cybersecurity assessments, GDPR & ICO compliance frameworks, and secure development solutions. Our approach is built on clarity — we translate technical security into actionable business steps.</p>
-                        <p>Security should support your growth, not slow you down. That is the foundation of everything we do.</p>
+                        <p>Eze Digital exists because every growing business deserves professional digital infrastructure — without the complexity, jargon, or inflated price tags that usually come with it.</p>
+                        <p>We build websites, applications, and digital systems that work for you. And because security should never be an afterthought, every solution we deliver includes the compliance and protective standards your business needs. We bring together the right technical expertise, the right people, and the right approach — so you get a solution that fits your business perfectly.</p>
+                        <p>We don't just hand you something technical and walk away. We build relationships, we explain things clearly, and we ensure you understand exactly what you have and how to use it.</p>
                     </div>
                     <div class="about-panel">
                         <h3>Meet the Founder — Nicola King</h3>
-                        <p>With a background spanning cybersecurity, compliance, education, and business development, I bring together technical awareness with a deep understanding of what businesses actually need to succeed.</p>
-                        <p><strong>Marketing & Client Development:</strong> I build genuine relationships and communicate clearly — ensuring the value of security is understood, not just assumed.</p>
-                        <p><strong>Sales & Growth:</strong> I connect solutions to real business needs. Every conversation is rooted in understanding your challenges and delivering exactly what moves you forward.</p>
-                        <p><strong>Education & Training:</strong> With formal qualifications in education and years of experience designing professional training, I don't just hand over documents — I ensure you understand them too.</p>
-                        <p class="tagline">Secure. Compliant. Evolving.</p>
+                        <p>I built Eze Digital on one simple belief: great business is built on trust, clarity, and the right people working together. I don't claim to be a technical expert in every field — my expertise is far more valuable.</p>
+                        <p><strong>Business Strategy & Growth:</strong> I understand what businesses actually need to succeed. I see the bigger picture, I spot opportunities, and I connect the dots between what you want to achieve and what will get you there.</p>
+                        <p><strong>Sales & Relationships:</strong> Business is about people. I build genuine connections, I listen, and I communicate clearly. I know how to translate technical possibilities into real business value — so you always understand what you're getting and why it matters.</p>
+                        <p><strong>Education & Empowerment:</strong> With formal qualifications in education and years of experience designing and delivering professional training, I don't just deliver a product — I ensure you understand it, too. Knowledge is the most powerful tool any business can have.</p>
+                        <p><strong>Building the Right Team:</strong> I know exactly what I don't know — and that is my greatest strength. I find, select, and work with the very best technical people to deliver the infrastructure and security your business needs. I vet them, I manage them, and I ensure they deliver exactly what you need — so you get the expertise without the headache.</p>
+                        <p class="tagline">Your vision. Our expertise. Built together.</p>
                     </div>
                 </div>
             </div>
@@ -374,7 +365,7 @@
                     </div>
                     <div class="form-group">
                         <label for="message">Your Message</label>
-                        <textarea id="message" name="message" required placeholder="Tell me about your business and what support you're looking for..."></textarea>
+                        <textarea id="message" name="message" required placeholder="Tell me about your business and what you're looking to build..."></textarea>
                     </div>
                     <button type="submit" class="btn">Send Message ✉️</button>
                 </form>
@@ -383,26 +374,19 @@
 
     </div>
 
-    <!-- ========== RELIABLE TAB SWITCHING SCRIPT ========== -->
     <script>
         function switchTab(pageName) {
-            // Hide ALL content
             document.querySelectorAll('.tab-content').forEach(page => {
                 page.classList.remove('active');
             });
-            // Remove active from ALL tabs
             document.querySelectorAll('.tab-link').forEach(tab => {
                 tab.classList.remove('active');
             });
-            // Show selected page
             document.getElementById(pageName).classList.add('active');
-            // Mark tab as active
             document.querySelector(`[data-page="${pageName}"]`).classList.add('active');
-            // Jump to top instantly
             window.scrollTo(0, 0);
         }
 
-        // Attach click to ALL tabs — RELIABLE
         document.addEventListener('DOMContentLoaded', function() {
             document.querySelectorAll('.tab-link').forEach(tab => {
                 tab.addEventListener('click', function(e) {
