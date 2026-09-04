@@ -30,6 +30,9 @@
             position: relative;
         }
 
+        /* ======================================
+           NAVIGATION — clean top right
+           ====================================== */
         header {
             display: flex;
             justify-content: flex-end;
@@ -49,13 +52,9 @@
             opacity: 1;
         }
 
-        nav a:last-child {
-            border: 1px solid rgba(0,220,220,0.4);
-            padding: 0.4rem 1.1rem;
-            border-radius: 20px;
-            margin-left: 1.5rem;
-        }
-
+        /* ======================================
+           HERO TEXT
+           ====================================== */
         .hero {
             max-width: 520px;
             margin: 0 0 0 10%;
@@ -95,6 +94,9 @@
             transform: translateY(-2px);
         }
 
+        /* ======================================
+           THREE SERVICE BOXES
+           ====================================== */
         .services {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -142,6 +144,107 @@
             opacity: 0.7;
         }
 
+        /* ======================================
+           CONTACT FORM MODAL — beautiful popup
+           ====================================== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,20,24,0.85);
+            z-index: 999;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .contact-form {
+            background: rgba(0,40,50,0.95);
+            border: 1px solid rgba(0,180,180,0.25);
+            border-radius: 16px;
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 500px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 0 40px rgba(0,180,180,0.15);
+            position: relative;
+        }
+
+        .contact-form h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .contact-form p {
+            opacity: 0.7;
+            margin-bottom: 1.8rem;
+            font-size: 0.95rem;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 1.2rem;
+            right: 1.5rem;
+            font-size: 1.5rem;
+            color: rgba(255,255,255,0.6);
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .close-btn:hover {
+            color: white;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
+            opacity: 0.85;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            background: rgba(0,30,36,0.8);
+            border: 1px solid rgba(0,180,180,0.2);
+            border-radius: 8px;
+            color: white;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: rgba(0,180,180,0.6);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+
+        /* ======================================
+           MOBILE RESPONSIVE
+           ====================================== */
         @media (max-width: 900px) {
             .page-wrapper {
                 padding: 2rem 1.5rem 3rem;
@@ -155,11 +258,6 @@
             nav a {
                 margin-left: 1rem;
                 font-size: 0.8rem;
-            }
-
-            nav a:last-child {
-                margin-left: 0.5rem;
-                padding: 0.3rem 0.8rem;
             }
 
             .hero {
@@ -182,27 +280,33 @@
                 border-radius: 10px !important;
                 border-right: 1px solid rgba(0,180,180,0.15);
             }
+
+            .contact-form {
+                padding: 1.8rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="page-wrapper">
 
+        <!-- NAVIGATION -->
         <header>
             <nav>
                 <a href="#">Home</a>
                 <a href="#">Services</a>
                 <a href="#">About</a>
-                <a href="#">Contact</a>
             </nav>
         </header>
 
+        <!-- HERO SECTION -->
         <section class="hero">
             <h2>Secure Your Digital Future</h2>
             <p>Professional cybersecurity assessments, GDPR compliance frameworks, secure web development, and custom app creation — built to protect, designed to evolve.</p>
-            <a href="#" class="btn">Get in Touch</a>
+            <button class="btn" id="openFormBtn">Get in Touch</button>
         </section>
 
+        <!-- SERVICE BOXES -->
         <section class="services">
             <div class="service-card">
                 <h3>🛡️ Cybersecurity Assessments</h3>
@@ -214,11 +318,58 @@
             </div>
             <div class="service-card">
                 <h3>🔗 Digital Trust Solutions</h3>
-                <h3>Digital Trust Solutions</h3>
                 <p>Secure development, apps, and training.</p>
             </div>
         </section>
-
     </div>
+
+    <!-- CONTACT FORM POPUP -->
+    <div class="modal-overlay" id="contactFormOverlay">
+        <div class="contact-form">
+            <span class="close-btn" id="closeFormBtn">&times;</span>
+            <h3>Let's Talk 💬</h3>
+            <p>Tell me about your project — I'll get back to you soon.</p>
+            <form action="https://formspree.io/f/xyzXXXX" method="POST">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="_replyto" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Your Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="btn submit-btn">Send Message ✉️</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT — opens/closes the form -->
+    <script>
+        const openBtn = document.getElementById('openFormBtn');
+        const closeBtn = document.getElementById('closeFormBtn');
+        const overlay = document.getElementById('contactFormOverlay');
+
+        openBtn.addEventListener('click', () => {
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeBtn.addEventListener('click', () => {
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        // Click outside to close
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                overlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+    </script>
 </body>
 </html>
