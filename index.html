@@ -21,14 +21,16 @@
             overflow-x: hidden;
         }
 
+        /* ========== DARK GRADIENT — LOADS INSTANTLY ========== */
         body {
-            background: linear-gradient(180deg, #001418 0%, #00222a 45%, #001115 100%) fixed;
+            background: linear-gradient(180deg, #001418 0%, #00222a 45%, #001115 100%);
             background-size: 100% 100%;
-            position: relative;
+            background-attachment: fixed;
+            background-position: top center;
         }
 
-        body::before {
-            content: "";
+        /* ========== BACKGROUND IMAGE ========== */
+        .bg-image {
             position: fixed;
             top: 0;
             left: 0;
@@ -36,12 +38,13 @@
             height: 100%;
             background: url('mockup-bg.png') no-repeat top center;
             background-size: cover;
-            z-index: -1;
+            z-index: 0;
+            opacity: 0.95;
         }
 
-        /* ========== CLEAN TRANSPARENT NAV ========== */
+        /* ========== NAV TABS — TEAL UNDERLINE ========== */
         header {
-            padding: 2rem 4.5rem;
+            padding: 1.5rem 4.5rem;
             width: 100%;
             position: fixed;
             top: 0;
@@ -56,14 +59,21 @@
         nav a {
             color: white;
             text-decoration: none;
-            margin-left: 2.2rem;
-            font-size: 0.9rem;
-            opacity: 0.85;
+            margin-left: 2.5rem;
+            font-size: 0.95rem;
+            opacity: 0.75;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
         }
 
-        nav a:hover { opacity: 1; }
+        nav a:hover,
+        nav a.active {
+            opacity: 1;
+            border-bottom: 2px solid #00B8BB;
+        }
 
-        /* ========== CONTENT STARTS AT TOP ========== */
+        /* ========== PAGE WRAPPER ========== */
         .page-wrapper {
             width: 100%;
             min-height: 100vh;
@@ -72,9 +82,35 @@
             z-index: 1;
         }
 
-        .hero { max-width: 520px; margin: 0 0 0 10%; }
-        .hero h2 { font-size: 3.2rem; line-height: 1.15; margin-bottom: 1.4rem; }
-        .hero p { font-size: 0.95rem; line-height: 1.6; opacity: 0.75; margin-bottom: 2rem; max-width: 460px; }
+        /* ========== TAB CONTENT ========== */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ========== HOME PAGE ========== */
+        .hero-panel {
+            background: rgba(0, 40, 50, 0.6);
+            border: 1px solid rgba(0, 180, 180, 0.18);
+            border-radius: 16px;
+            padding: 3rem;
+            max-width: 620px;
+            margin: 0 0 0 10%;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 0 30px rgba(0, 180, 180, 0.08);
+        }
+
+        .hero-panel h2 { font-size: 3rem; line-height: 1.15; margin-bottom: 1.4rem; }
+        .hero-panel p { font-size: 1rem; line-height: 1.7; opacity: 0.78; margin-bottom: 2rem; }
 
         .btn {
             display: inline-block;
@@ -85,161 +121,293 @@
             text-decoration: none;
             font-weight: 500;
             font-size: 0.95rem;
-            box-shadow: 0 0 18px rgba(0,180,180,0.25);
+            box-shadow: 0 0 18px rgba(0, 180, 180, 0.25);
             border: none;
             cursor: pointer;
+            transition: transform 0.2s ease;
         }
         .btn:hover { transform: translateY(-2px); }
 
-        .services {
+        /* ========== SERVICES PAGE ========== */
+        .services-container {
+            margin: 0 0 0 10%;
+            max-width: 900px;
+        }
+
+        .services-heading {
+            margin-bottom: 2.5rem;
+        }
+
+        .services-heading h2 {
+            font-size: 2.3rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .services-heading p {
+            opacity: 0.7;
+            font-size: 1.05rem;
+        }
+
+        .services-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 0;
-            max-width: 840px;
-            margin: 5rem 0 0 10%;
+            gap: 1.2rem;
         }
 
         .service-card {
-            background: rgba(0,50,65,0.45);
-            border: 1px solid rgba(0,180,180,0.15);
-            border-right: none;
-            padding: 1.4rem 1.6rem;
-            backdrop-filter: blur(10px);
+            background: rgba(0, 50, 65, 0.55);
+            border: 1px solid rgba(0, 180, 180, 0.18);
+            border-radius: 14px;
+            padding: 2rem;
+            backdrop-filter: blur(12px);
+            transition: all 0.3s ease;
         }
-        .service-card:first-child { border-radius: 10px 0 0 10px; }
-        .service-card:last-child { border-right: 1px solid rgba(0,180,180,0.15); border-radius: 0 10px 10px 0; }
-        .service-card:nth-child(2) { background: rgba(0,70,85,0.4); }
-        .service-card:nth-child(3) { background: rgba(0,90,100,0.35); }
-        .service-card h3 { font-size: 1.05rem; margin-bottom: 0.4rem; }
-        .service-card p { font-size: 0.85rem; line-height: 1.5; opacity: 0.7; }
 
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,20,24,0.85);
-            z-index: 999;
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 180, 180, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .service-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .service-card p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            opacity: 0.72;
+        }
+
+        /* ========== ABOUT US PAGE — COMPANY BIO + FOUNDER PROFILE ========== */
+        .about-container {
+            display: flex;
+            gap: 3rem;
+            align-items: flex-start;
+            margin: 0 0 0 10%;
+            max-width: 920px;
+        }
+
+        .about-photo {
+            flex-shrink: 0;
+            width: 240px;
+            height: 320px;
+            background: rgba(0, 60, 75, 0.5);
+            border: 2px solid rgba(0, 180, 180, 0.25);
+            border-radius: 16px;
+            display: flex;
             align-items: center;
             justify-content: center;
-            padding: 2rem;
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 25px rgba(0, 180, 180, 0.08);
+            overflow: hidden;
         }
-        .modal-overlay.active { display: flex; }
 
-        .contact-form {
-            background: rgba(0,40,50,0.95);
-            border: 1px solid rgba(0,180,180,0.25);
-            border-radius: 16px;
-            padding: 2.5rem;
+        .about-photo img {
             width: 100%;
-            max-width: 500px;
-            backdrop-filter: blur(12px);
-            box-shadow: 0 0 40px rgba(0,180,180,0.15);
-            position: relative;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
-        .contact-form h3 { font-size: 1.8rem; margin-bottom: 0.5rem; }
-        .contact-form p { opacity: 0.7; margin-bottom: 1.8rem; }
 
-        .close-btn {
-            position: absolute;
-            top: 1.2rem;
-            right: 1.5rem;
-            font-size: 1.5rem;
-            color: rgba(255,255,255,0.6);
-            cursor: pointer;
+        .about-content-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
         }
-        .close-btn:hover { color: white; }
+
+        .about-panel {
+            background: rgba(0, 40, 50, 0.6);
+            border: 1px solid rgba(0, 180, 180, 0.18);
+            border-radius: 16px;
+            padding: 2rem;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 0 30px rgba(0, 180, 180, 0.08);
+        }
+
+        .about-panel h2 { font-size: 1.8rem; margin-bottom: 1.2rem; }
+        .about-panel h3 { font-size: 1.1rem; margin: 0.5rem 0 1rem; color: #00B8BB; }
+        .about-panel p { font-size: 1rem; line-height: 1.7; opacity: 0.8; margin-bottom: 0.8rem; }
+        .about-panel .tagline { margin-top: 1.2rem; color: #00B8BB; font-weight: 500; font-size: 1.05rem; }
+
+        /* ========== CONTACT PAGE ========== */
+        .contact-panel {
+            background: rgba(0, 40, 50, 0.6);
+            border: 1px solid rgba(0, 180, 180, 0.18);
+            border-radius: 16px;
+            padding: 3rem;
+            max-width: 550px;
+            margin: 0 0 0 10%;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 0 30px rgba(0, 180, 180, 0.08);
+        }
+
+        .contact-panel h2 { font-size: 2.3rem; margin-bottom: 0.5rem; }
+        .contact-panel p { opacity: 0.7; margin-bottom: 2rem; }
 
         .form-group { margin-bottom: 1.2rem; }
         .form-group label { display: block; margin-bottom: 0.4rem; font-size: 0.9rem; opacity: 0.85; }
         .form-group input, .form-group textarea {
             width: 100%;
             padding: 0.9rem 1rem;
-            background: rgba(0,30,36,0.8);
-            border: 1px solid rgba(0,180,180,0.2);
+            background: rgba(0, 30, 36, 0.8);
+            border: 1px solid rgba(0, 180, 180, 0.2);
             border-radius: 8px;
             color: white;
             font-size: 0.95rem;
+            outline: none;
+            transition: border 0.2s;
         }
-        .form-group input:focus, .form-group textarea:focus { border-color: rgba(0,180,180,0.6); outline: none; }
+        .form-group input:focus, .form-group textarea:focus { border-color: rgba(0, 180, 180, 0.6); }
         .form-group textarea { min-height: 120px; resize: vertical; }
         .submit-btn { width: 100%; margin-top: 0.5rem; }
 
+        /* ========== MOBILE RESPONSIVE ========== */
         @media (max-width: 900px) {
-            header { justify-content: center; padding: 1rem 1.5rem; }
-            nav a { margin-left: 1rem; font-size: 0.8rem; }
+            header { justify-content: center; padding: 1.2rem 1.5rem; }
+            nav a { margin-left: 1.2rem; font-size: 0.85rem; }
             .page-wrapper { padding: 6rem 1.5rem 3rem; }
-            .hero { margin: 0 auto; text-align: center; }
-            .hero h2 { font-size: 2.1rem; }
-            .services { grid-template-columns: 1fr; gap: 0.5rem; margin: 3rem auto 0; max-width: 500px; }
-            .service-card { border-radius: 10px !important; border-right: 1px solid rgba(0,180,180,0.15); }
+            .hero-panel, .services-container, .contact-panel { margin: 0; max-width: 100%; padding: 2rem; }
+            .about-container { flex-direction: column; margin: 0; }
+            .about-photo { width: 100%; height: 280px; }
+            .hero-panel h2, .contact-panel h2 { font-size: 1.8rem; }
+            .services-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
+
+    <!-- Background Layer -->
+    <div class="bg-image"></div>
+
+    <!-- Navigation Tabs -->
+    <header>
+        <nav>
+            <a href="#" class="tab-link active" data-page="home">Home</a>
+            <a href="#" class="tab-link" data-page="services">Cyber Services</a>
+            <a href="#" class="tab-link" data-page="about">About Us</a>
+            <a href="#" class="tab-link" data-page="contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Page Content -->
     <div class="page-wrapper">
-        <header>
-            <nav>
-                <a href="#">Home</a>
-                <a href="#">Services</a>
-                <a href="#">About</a>
-            </nav>
-        </header>
 
-        <section class="hero">
-            <h2>Secure Your Digital Future</h2>
-            <p>Professional cybersecurity assessments, GDPR compliance frameworks, secure web development, and custom app creation — built to protect, designed to evolve.</p>
-            <button class="btn" id="openFormBtn">Get in Touch</button>
-        </section>
-
-        <section class="services">
-            <div class="service-card">
-                <h3>🛡️ Cybersecurity Assessments</h3>
-                <p>Audits, reviews, and infrastructure hardening.</p>
+        <!-- HOME PAGE -->
+        <div id="home" class="tab-content active">
+            <div class="hero-panel">
+                <h2>Secure Your Digital Future</h2>
+                <p>Eze Digital delivers professional cybersecurity assessments, GDPR & ICO compliance frameworks, secure web development, and custom application creation. We build digital foundations that are protected, practical, and built to grow with you.</p>
+                <button class="btn" onclick="switchTab('contact')">Start the Conversation ✉️</button>
             </div>
-            <div class="service-card">
-                <h3>📋 GDPR Compliance</h3>
-                <p>Complete frameworks and documentation.</p>
-            </div>
-            <div class="service-card">
-                <h3>🔗 Digital Trust Solutions</h3>
-                <p>Secure development, apps, and training.</p>
-            </div>
-        </section>
-    </div>
-
-    <div class="modal-overlay" id="contactFormOverlay">
-        <div class="contact-form">
-            <span class="close-btn" id="closeFormBtn">&times;</span>
-            <h3>Let's Talk 💬</h3>
-            <p>Tell me about your project — I'll get back to you soon.</p>
-            <form action="https://formspree.io/f/mvkoqvnp" method="POST" data-ajax="true">
-                <div class="form-group">
-                    <label for="name">Your Name</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="_replyto" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Your Message</label>
-                    <textarea id="message" name="message" required></textarea>
-                </div>
-                <button type="submit" class="btn submit-btn">Send Message ✉️</button>
-            </form>
         </div>
+
+        <!-- CYBER SERVICES PAGE -->
+        <div id="services" class="tab-content">
+            <div class="services-container">
+                <div class="services-heading">
+                    <h2>Cyber Services</h2>
+                    <p>Clear, practical security and compliance solutions — tailored for growing businesses.</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <h3>🛡️ Security Assessments</h3>
+                        <p>Comprehensive security audits and vulnerability reviews. I identify risks across your systems, prioritise what matters most, and give you a clear action plan to harden your infrastructure.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>📋 GDPR & ICO Compliance</h3>
+                        <p>Complete UK-compliant data protection frameworks — privacy policies, consent records, breach procedures, and staff guidance. Everything documented so you can demonstrate compliance with confidence.</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>🔗 Secure Development & Apps</h3>
+                        <p>Secure website and application development built with security from the ground up. Includes cybersecurity training and ongoing guidance to keep your digital presence protected as you grow.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ABOUT US PAGE — COMPANY BIO + FOUNDER PROFILE -->
+        <div id="about" class="tab-content">
+            <div class="about-container">
+                <!-- PHOTO AREA — UPLOAD YOUR IMAGE HERE -->
+                <div class="about-photo">
+                    <!-- TO ADD YOUR PHOTO: upload a file named 'profile.jpg' into your website files, then remove the comment tags below -->
+                    <!-- <img src="profile.jpg" alt="Nicola King — Founder, Eze Digital"> -->
+                    Photo of Nicola<br>(upload profile.jpg)
+                </div>
+
+                <div class="about-content-wrapper">
+                    <!-- COMPANY BIO -->
+                    <div class="about-panel">
+                        <h2>About Eze Digital</h2>
+                        <p>Eze Digital was founded on a straightforward belief: robust cybersecurity and professional compliance should be accessible to every business — not just large corporations with substantial budgets.</p>
+                        <p>We provide clear, practical cybersecurity assessments, GDPR & ICO compliance frameworks, and secure development solutions. Our approach is built on clarity — we translate technical security into actionable business steps, so you stay protected without getting lost in complexity.</p>
+                        <p>Security should support your growth, not slow you down. That is the foundation of everything we do.</p>
+                    </div>
+
+                    <!-- FOUNDER PROFILE -->
+                    <div class="about-panel">
+                        <h3>Meet the Founder — Nicola King</h3>
+                        <p>With a background spanning cybersecurity, compliance, education, and business development, I bring together technical awareness with a deep understanding of what businesses actually need to succeed.</p>
+                        <p><strong>Marketing & Client Development:</strong> I understand that great security means nothing if no one knows it exists. I build relationships, communicate clearly, and ensure the value of what we do is understood.</p>
+                        <p><strong>Sales & Growth:</strong> I know how to connect solutions to real business needs. Every conversation is rooted in understanding your challenges and delivering exactly what will move you forward.</p>
+                        <p><strong>Education & Training:</strong> With formal qualifications in education and years of experience designing and delivering professional training, I don't just hand over documents — I ensure you understand them, too. Knowledge is the most powerful security tool of all.</p>
+                        <p class="tagline">Secure. Compliant. Evolving.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTACT PAGE -->
+        <div id="contact" class="tab-content">
+            <div class="contact-panel">
+                <h2>Get in Touch</h2>
+                <p>Tell me about your project or challenge — I respond personally to every message.</p>
+                <form action="https://formspree.io/f/mvkoqvnp" method="POST" data-ajax="true">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="_replyto" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" required placeholder="Tell me about your business, your goals, and what support you're looking for..."></textarea>
+                    </div>
+                    <button type="submit" class="btn submit-btn">Send Message ✉️</button>
+                </form>
+            </div>
+        </div>
+
     </div>
 
+    <!-- Tab Switching Script -->
     <script>
-        const openBtn = document.getElementById('openFormBtn');
-        const closeBtn = document.getElementById('closeFormBtn');
-        const overlay = document.getElementById('contactFormOverlay');
-        openBtn.addEventListener('click', () => { overlay.classList.add('active'); document.body.style.overflow = 'hidden'; });
-        closeBtn.addEventListener('click', () => { overlay.classList.remove('active'); document.body.style.overflow = ''; });
-        overlay.addEventListener('click', (e) => { if (e.target === overlay) { overlay.classList.remove('active'); document.body.style.overflow = ''; } });
+        function switchTab(pageName) {
+            document.querySelectorAll('.tab-content').forEach(page => page.classList.remove('active'));
+            document.querySelectorAll('.tab-link').forEach(tab => tab.classList.remove('active'));
+            document.getElementById(pageName).classList.add('active');
+            document.querySelector(`[data-page="${pageName}"]`).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        document.querySelectorAll('.tab-link').forEach(tab => {
+            tab.addEventListener('click', (e) => {
+                e.preventDefault();
+                switchTab(tab.dataset.page);
+            });
+        });
     </script>
+
 </body>
 </html>
