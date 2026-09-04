@@ -96,19 +96,25 @@
             display: block;
         }
 
-        .hero-panel {
-            background: rgba(0, 40, 50, 0.6);
-            border: 1px solid rgba(0, 180, 180, 0.18);
-            border-radius: 16px;
-            padding: 3rem;
-            max-width: 620px;
+        /* ========== HOME PAGE — CLEAN TEXT, NO BOX ========== */
+        .home-content {
             margin: 0 0 0 10%;
-            backdrop-filter: blur(12px);
-            box-shadow: 0 0 30px rgba(0, 180, 180, 0.08);
+            max-width: 620px;
+            padding-top: 2rem;
         }
 
-        .hero-panel h2 { font-size: 3rem; line-height: 1.15; margin-bottom: 1.4rem; }
-        .hero-panel p { font-size: 1rem; line-height: 1.7; opacity: 0.78; margin-bottom: 2rem; }
+        .home-content h2 {
+            font-size: 3rem;
+            line-height: 1.15;
+            margin-bottom: 1.4rem;
+        }
+
+        .home-content p {
+            font-size: 1rem;
+            line-height: 1.7;
+            opacity: 0.78;
+            margin-bottom: 2rem;
+        }
 
         .btn {
             display: inline-block;
@@ -126,9 +132,11 @@
         }
         .btn:hover { transform: translateY(-2px); }
 
+        /* ========== SERVICES PAGE — NEAT, CONTAINED CARDS ========== */
         .services-container {
-            margin: 0 0 0 10%;
-            max-width: 900px;
+            margin: 0 auto;
+            max-width: 1000px;
+            padding: 0 10%;
         }
 
         .services-heading {
@@ -148,14 +156,14 @@
         .services-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 1.2rem;
+            gap: 1.5rem;
         }
 
         .service-card {
             background: rgba(0, 50, 65, 0.55);
             border: 1px solid rgba(0, 180, 180, 0.18);
             border-radius: 14px;
-            padding: 2rem;
+            padding: 1.8rem;
             backdrop-filter: blur(12px);
             transition: all 0.3s ease;
         }
@@ -180,47 +188,17 @@
             opacity: 0.72;
         }
 
+        /* ========== ABOUT US — COMPANY TEXT FULL WIDTH, PHOTO BELOW ========== */
         .about-container {
-            display: flex;
-            gap: 3rem;
-            align-items: flex-start;
-            margin: 0 0 0 10%;
-            max-width: 920px;
-        }
-
-        .about-photo {
-            flex-shrink: 0;
-            width: 240px;
-            height: 320px;
-            background: rgba(0, 60, 75, 0.5);
-            border: 2px solid rgba(0, 180, 180, 0.25);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255,255,255,0.5);
-            font-size: 0.9rem;
-            text-align: center;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 0 25px rgba(0, 180, 180, 0.08);
-            overflow: hidden;
-        }
-
-        .about-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .about-content-wrapper {
-            flex: 1;
+            margin: 0 auto;
+            max-width: 1000px;
+            padding: 0 10%;
             display: flex;
             flex-direction: column;
-            gap: 1.8rem;
+            gap: 2.5rem;
         }
 
-        .about-panel {
+        .about-panel-top {
             background: rgba(0, 40, 50, 0.6);
             border: 1px solid rgba(0, 180, 180, 0.18);
             border-radius: 16px;
@@ -229,11 +207,43 @@
             box-shadow: 0 0 30px rgba(0, 180, 180, 0.08);
         }
 
-        .about-panel h2 { font-size: 1.8rem; margin-bottom: 1.2rem; }
+        .about-founder-row {
+            display: flex;
+            gap: 3rem;
+            align-items: flex-start;
+        }
+
+        .about-photo {
+            flex-shrink: 0;
+            width: 280px;
+            height: 360px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(0, 180, 180, 0.15);
+        }
+
+        .about-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-panel {
+            flex: 1;
+            background: rgba(0, 40, 50, 0.6);
+            border: 1px solid rgba(0, 180, 180, 0.18);
+            border-radius: 16px;
+            padding: 2rem;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 0 30px rgba(0, 180, 180, 0.08);
+        }
+
+        .about-panel h2, .about-panel-top h2 { font-size: 1.8rem; margin-bottom: 1.2rem; }
         .about-panel h3 { font-size: 1.1rem; margin: 0.5rem 0 1rem; color: #00B8BB; }
-        .about-panel p { font-size: 1rem; line-height: 1.7; opacity: 0.8; margin-bottom: 0.8rem; }
+        .about-panel p, .about-panel-top p { font-size: 1rem; line-height: 1.7; opacity: 0.8; margin-bottom: 0.8rem; }
         .about-panel .tagline { margin-top: 1.2rem; color: #00B8BB; font-weight: 500; font-size: 1.05rem; }
 
+        /* ========== CONTACT PAGE — NO FORM, JUST MESSAGE ========== */
         .contact-panel {
             background: rgba(0, 40, 50, 0.6);
             border: 1px solid rgba(0, 180, 180, 0.18);
@@ -246,30 +256,18 @@
         }
 
         .contact-panel h2 { font-size: 2.3rem; margin-bottom: 0.5rem; }
-        .contact-panel p { opacity: 0.7; margin-bottom: 2rem; }
+        .contact-panel p { opacity: 0.7; margin-bottom: 1rem; }
 
-        .form-group { margin-bottom: 1.2rem; }
-        .form-group label { display: block; margin-bottom: 0.4rem; font-size: 0.9rem; opacity: 0.85; }
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 0.9rem 1rem;
-            background: rgba(0, 30, 36, 0.8);
-            border: 1px solid rgba(0, 180, 180, 0.2);
-            border-radius: 8px;
-            color: white;
-            font-size: 0.95rem;
-            outline: none;
-        }
-        .form-group textarea { min-height: 120px; resize: vertical; }
-
+        /* ========== MOBILE ========== */
         @media (max-width: 900px) {
             header { justify-content: center; padding: 1.2rem 1.5rem; }
             nav a { margin-left: 1.2rem; font-size: 0.85rem; }
             .page-wrapper { padding: 6rem 1.5rem 3rem; }
-            .hero-panel, .services-container, .contact-panel { margin: 0; max-width: 100%; padding: 2rem; }
-            .about-container { flex-direction: column; margin: 0; }
-            .about-photo { width: 100%; height: 280px; }
-            .hero-panel h2, .contact-panel h2 { font-size: 1.8rem; }
+            .home-content, .services-container, .contact-panel { margin: 0; max-width: 100%; padding: 0; }
+            .about-container { padding: 0; }
+            .about-founder-row { flex-direction: column; }
+            .about-photo { width: 100%; height: 320px; }
+            .home-content h2, .contact-panel h2 { font-size: 1.8rem; }
             .services-grid { grid-template-columns: 1fr; }
         }
     </style>
@@ -289,16 +287,16 @@
 
     <div class="page-wrapper">
 
-        <!-- HOME -->
+        <!-- HOME — CLEAN TEXT, NO BOX -->
         <div id="home" class="tab-content active">
-            <div class="hero-panel">
+            <div class="home-content">
                 <h2>Your Digital Presence, Built Securely</h2>
                 <p>Eze Digital designs and builds professional websites, applications, and digital systems — with cybersecurity and compliance built in from day one. We deliver the infrastructure your business needs, protected by the standards your clients deserve.</p>
                 <button class="btn" onclick="switchTab('contact')">Start the Conversation ✉️</button>
             </div>
         </div>
 
-        <!-- SERVICES -->
+        <!-- SERVICES — NEAT, CENTERED CARDS -->
         <div id="services" class="tab-content">
             <div class="services-container">
                 <div class="services-heading">
@@ -322,19 +320,18 @@
             </div>
         </div>
 
-        <!-- ABOUT US — REWRITTEN FROM YOUR STRENGTHS -->
+        <!-- ABOUT US — COMPANY INTRO FULL WIDTH, PHOTO BELOW NEXT TO BIO -->
         <div id="about" class="tab-content">
             <div class="about-container">
-                <div class="about-photo">
-                    <!-- <img src="profile.jpg" alt="Nicola King — Founder, Eze Digital"> -->
-                    Photo of Nicola<br>(upload profile.jpg)
+                <div class="about-panel-top">
+                    <h2>About Eze Digital</h2>
+                    <p>Eze Digital exists because every growing business deserves professional digital infrastructure — without the complexity, jargon, or inflated price tags that usually come with it.</p>
+                    <p>We build websites, applications, and digital systems that work for you. And because security should never be an afterthought, every solution we deliver includes the compliance and protective standards your business needs. We bring together the right technical expertise, the right people, and the right approach — so you get a solution that fits your business perfectly.</p>
+                    <p>We don't just hand you something technical and walk away. We build relationships, we explain things clearly, and we ensure you understand exactly what you have and how to use it.</p>
                 </div>
-                <div class="about-content-wrapper">
-                    <div class="about-panel">
-                        <h2>About Eze Digital</h2>
-                        <p>Eze Digital exists because every growing business deserves professional digital infrastructure — without the complexity, jargon, or inflated price tags that usually come with it.</p>
-                        <p>We build websites, applications, and digital systems that work for you. And because security should never be an afterthought, every solution we deliver includes the compliance and protective standards your business needs. We bring together the right technical expertise, the right people, and the right approach — so you get a solution that fits your business perfectly.</p>
-                        <p>We don't just hand you something technical and walk away. We build relationships, we explain things clearly, and we ensure you understand exactly what you have and how to use it.</p>
+                <div class="about-founder-row">
+                    <div class="about-photo">
+                        <img src="profile.png" alt="Nicola King — Founder, Eze Digital">
                     </div>
                     <div class="about-panel">
                         <h3>Meet the Founder — Nicola King</h3>
@@ -349,26 +346,12 @@
             </div>
         </div>
 
-        <!-- CONTACT -->
+        <!-- CONTACT PAGE — NO FORM, JUST MESSAGE -->
         <div id="contact" class="tab-content">
             <div class="contact-panel">
                 <h2>Get in Touch</h2>
-                <p>Tell me about your project — I respond personally to every message.</p>
-                <form action="https://formspree.io/f/mvkoqvnp" method="POST">
-                    <div class="form-group">
-                        <label for="name">Your Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Your Message</label>
-                        <textarea id="message" name="message" required placeholder="Tell me about your business and what you're looking to build..."></textarea>
-                    </div>
-                    <button type="submit" class="btn">Send Message ✉️</button>
-                </form>
+                <p>Thank you for your interest. We are currently updating our contact facilities — please check back shortly.</p>
+                <p>In the meantime, we look forward to connecting with you.</p>
             </div>
         </div>
 
