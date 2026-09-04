@@ -12,23 +12,14 @@
             font-family: 'Segoe UI', sans-serif;
         }
 
-        html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            width: 100%;
-        }
-
-        body {
+        html, body {
             margin: 0;
             padding: 0;
             min-height: 100vh;
-            height: 100%;
             width: 100%;
             color: white;
             overflow-x: hidden;
             background: linear-gradient(180deg, #001418 0%, #00222a 45%, #001115 100%);
-            background-size: 100% 100%;
             background-attachment: fixed;
             background-position: top center;
             background-repeat: no-repeat;
@@ -80,11 +71,9 @@
         .page-wrapper {
             width: 100%;
             min-height: 100vh;
-            padding: 8rem 4.5rem 4rem;
+            padding: 8rem 4.5rem 4rem 8%;
             position: relative;
             z-index: 1;
-            margin: 0;
-            top: 0;
         }
 
         .tab-content {
@@ -96,9 +85,9 @@
             display: block;
         }
 
-        /* ========== HOME PAGE — CLEAN TEXT, NO BOX ========== */
+        /* ========== HOME PAGE — CLEAN, PULLED LEFT ========== */
         .home-content {
-            margin: 0 0 0 10%;
+            margin: 0;
             max-width: 620px;
             padding-top: 2rem;
         }
@@ -132,11 +121,10 @@
         }
         .btn:hover { transform: translateY(-2px); }
 
-        /* ========== SERVICES PAGE — NEAT, CONTAINED CARDS ========== */
+        /* ========== SERVICES — ALIGNED WITH HOME ========== */
         .services-container {
-            margin: 0 auto;
+            margin: 0;
             max-width: 1000px;
-            padding: 0 10%;
         }
 
         .services-heading {
@@ -177,9 +165,6 @@
         .service-card h3 {
             font-size: 1.1rem;
             margin-bottom: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
         }
 
         .service-card p {
@@ -188,86 +173,107 @@
             opacity: 0.72;
         }
 
-        /* ========== ABOUT US — COMPANY TEXT FULL WIDTH, PHOTO BELOW ========== */
+        /* ========== ABOUT US — PHOTO CENTRED, BIO FULL WIDTH ========== */
         .about-container {
-            margin: 0 auto;
-            max-width: 1000px;
-            padding: 0 10%;
-            display: flex;
-            flex-direction: column;
-            gap: 2.5rem;
+            margin: 0;
+            max-width: 900px;
         }
 
-        .about-panel-top {
+        .about-intro {
             background: rgba(0, 40, 50, 0.6);
             border: 1px solid rgba(0, 180, 180, 0.18);
             border-radius: 16px;
             padding: 2rem;
             backdrop-filter: blur(12px);
-            box-shadow: 0 0 30px rgba(0, 180, 180, 0.08);
+            margin-bottom: 2.5rem;
         }
 
-        .about-founder-row {
-            display: flex;
-            gap: 3rem;
-            align-items: flex-start;
+        .about-intro h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.2rem;
         }
 
-        .about-photo {
-            flex-shrink: 0;
+        .about-intro p {
+            font-size: 1rem;
+            line-height: 1.7;
+            opacity: 0.8;
+            margin-bottom: 0.8rem;
+        }
+
+        .founder-photo-wrapper {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .founder-photo {
             width: 280px;
             height: 360px;
             border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 0 30px rgba(0, 180, 180, 0.15);
+            display: inline-block;
         }
 
-        .about-photo img {
+        .founder-photo img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .about-panel {
-            flex: 1;
+        .about-bio {
             background: rgba(0, 40, 50, 0.6);
             border: 1px solid rgba(0, 180, 180, 0.18);
             border-radius: 16px;
             padding: 2rem;
             backdrop-filter: blur(12px);
-            box-shadow: 0 0 30px rgba(0, 180, 180, 0.08);
         }
 
-        .about-panel h2, .about-panel-top h2 { font-size: 1.8rem; margin-bottom: 1.2rem; }
-        .about-panel h3 { font-size: 1.1rem; margin: 0.5rem 0 1rem; color: #00B8BB; }
-        .about-panel p, .about-panel-top p { font-size: 1rem; line-height: 1.7; opacity: 0.8; margin-bottom: 0.8rem; }
-        .about-panel .tagline { margin-top: 1.2rem; color: #00B8BB; font-weight: 500; font-size: 1.05rem; }
+        .about-bio h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.2rem;
+            color: #00B8BB;
+        }
 
-        /* ========== CONTACT PAGE — NO FORM, JUST MESSAGE ========== */
-        .contact-panel {
-            background: rgba(0, 40, 50, 0.6);
-            border: 1px solid rgba(0, 180, 180, 0.18);
-            border-radius: 16px;
-            padding: 3rem;
+        .about-bio p {
+            font-size: 1rem;
+            line-height: 1.7;
+            opacity: 0.8;
+            margin-bottom: 0.8rem;
+        }
+
+        .about-bio .tagline {
+            margin-top: 1.2rem;
+            color: #00B8BB;
+            font-weight: 500;
+            font-size: 1.05rem;
+        }
+
+        /* ========== CONTACT — CLEAN TEXT, NO BOX ========== */
+        .contact-content {
+            margin: 0;
             max-width: 550px;
-            margin: 0 0 0 10%;
-            backdrop-filter: blur(12px);
-            box-shadow: 0 0 30px rgba(0, 180, 180, 0.08);
+            padding-top: 2rem;
         }
 
-        .contact-panel h2 { font-size: 2.3rem; margin-bottom: 0.5rem; }
-        .contact-panel p { opacity: 0.7; margin-bottom: 1rem; }
+        .contact-content h2 {
+            font-size: 2.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-content p {
+            font-size: 1rem;
+            line-height: 1.7;
+            opacity: 0.75;
+            margin-bottom: 0.8rem;
+        }
 
         /* ========== MOBILE ========== */
         @media (max-width: 900px) {
             header { justify-content: center; padding: 1.2rem 1.5rem; }
             nav a { margin-left: 1.2rem; font-size: 0.85rem; }
             .page-wrapper { padding: 6rem 1.5rem 3rem; }
-            .home-content, .services-container, .contact-panel { margin: 0; max-width: 100%; padding: 0; }
-            .about-container { padding: 0; }
-            .about-founder-row { flex-direction: column; }
-            .about-photo { width: 100%; height: 320px; }
-            .home-content h2, .contact-panel h2 { font-size: 1.8rem; }
+            .home-content, .services-container, .contact-content { max-width: 100%; }
+            .home-content h2, .contact-content h2 { font-size: 1.8rem; }
             .services-grid { grid-template-columns: 1fr; }
         }
     </style>
@@ -287,70 +293,73 @@
 
     <div class="page-wrapper">
 
-        <!-- HOME — CLEAN TEXT, NO BOX -->
+        <!-- HOME -->
         <div id="home" class="tab-content active">
             <div class="home-content">
                 <h2>Your Digital Presence, Built Securely</h2>
-                <p>Eze Digital designs and builds professional websites, applications, and digital systems — with cybersecurity and compliance built in from day one. We deliver the infrastructure your business needs, protected by the standards your clients deserve.</p>
+                <p>Eze Digital designs and builds professional websites, applications, and digital systems. Cybersecurity and compliance are built in from day one. We deliver the infrastructure your business needs, protected by the standards your clients deserve.</p>
                 <button class="btn" onclick="switchTab('contact')">Start the Conversation ✉️</button>
             </div>
         </div>
 
-        <!-- SERVICES — NEAT, CENTERED CARDS -->
+        <!-- SERVICES -->
         <div id="services" class="tab-content">
             <div class="services-container">
                 <div class="services-heading">
                     <h2>What We Do</h2>
-                    <p>Professional digital solutions — built securely, delivered clearly.</p>
+                    <p>Professional digital solutions. Built securely. Delivered clearly.</p>
                 </div>
                 <div class="services-grid">
                     <div class="service-card">
-                        <h3>🌐 Website & App Development</h3>
-                        <p>Professional websites and custom applications built to your exact needs — designed to grow with your business and protect your data.</p>
+                        <h3>Website & App Development</h3>
+                        <p>Professional websites and custom applications built to your exact needs. They are designed to grow with your business and protect your data.</p>
                     </div>
                     <div class="service-card">
-                        <h3>📋 GDPR & ICO Compliance</h3>
-                        <p>Complete UK-compliant data protection frameworks, privacy policies, and documentation — so you can trade with confidence.</p>
+                        <h3>GDPR & ICO Compliance</h3>
+                        <p>Complete United Kingdom compliant data protection frameworks, privacy policies, and documentation. You can trade with confidence.</p>
                     </div>
                     <div class="service-card">
-                        <h3>🛡️ Security & Training</h3>
-                        <p>Security assessments, staff guidance, and educational resources — because the best protection is understanding what to protect.</p>
+                        <h3>Security & Training</h3>
+                        <p>Security assessments, staff guidance, and educational resources. The best protection comes from understanding what to protect.</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- ABOUT US — COMPANY INTRO FULL WIDTH, PHOTO BELOW NEXT TO BIO -->
+        <!-- ABOUT US — PHOTO CENTRED, BIO FULL WIDTH -->
         <div id="about" class="tab-content">
             <div class="about-container">
-                <div class="about-panel-top">
+                <div class="about-intro">
                     <h2>About Eze Digital</h2>
-                    <p>Eze Digital exists because every growing business deserves professional digital infrastructure — without the complexity, jargon, or inflated price tags that usually come with it.</p>
-                    <p>We build websites, applications, and digital systems that work for you. And because security should never be an afterthought, every solution we deliver includes the compliance and protective standards your business needs. We bring together the right technical expertise, the right people, and the right approach — so you get a solution that fits your business perfectly.</p>
-                    <p>We don't just hand you something technical and walk away. We build relationships, we explain things clearly, and we ensure you understand exactly what you have and how to use it.</p>
+                    <p>Eze Digital exists because every growing business deserves professional digital infrastructure. It should come without the complexity, jargon, or inflated price tags that usually apply.</p>
+                    <p>We build websites, applications, and digital systems that work for you. Security should never be an afterthought. Every solution we deliver includes the compliance and protective standards your business needs. We bring together the right technical expertise, the right people, and the right approach. You get a solution that fits your business perfectly.</p>
+                    <p>We do not just hand you something technical and walk away. We build relationships. We explain things clearly. We ensure you understand exactly what you have and how to use it.</p>
                 </div>
-                <div class="about-founder-row">
-                    <div class="about-photo">
+
+                <div class="founder-photo-wrapper">
+                    <div class="founder-photo">
                         <img src="profile.png" alt="Nicola King — Founder, Eze Digital">
                     </div>
-                    <div class="about-panel">
-                        <h3>Meet the Founder — Nicola King</h3>
-                        <p>I built Eze Digital on one simple belief: great business is built on trust, clarity, and the right people working together. I don't claim to be a technical expert in every field — my expertise is far more valuable.</p>
-                        <p><strong>Business Strategy & Growth:</strong> I understand what businesses actually need to succeed. I see the bigger picture, I spot opportunities, and I connect the dots between what you want to achieve and what will get you there.</p>
-                        <p><strong>Sales & Relationships:</strong> Business is about people. I build genuine connections, I listen, and I communicate clearly. I know how to translate technical possibilities into real business value — so you always understand what you're getting and why it matters.</p>
-                        <p><strong>Education & Empowerment:</strong> With formal qualifications in education and years of experience designing and delivering professional training, I don't just deliver a product — I ensure you understand it, too. Knowledge is the most powerful tool any business can have.</p>
-                        <p><strong>Building the Right Team:</strong> I know exactly what I don't know — and that is my greatest strength. I find, select, and work with the very best technical people to deliver the infrastructure and security your business needs. I vet them, I manage them, and I ensure they deliver exactly what you need — so you get the expertise without the headache.</p>
-                        <p class="tagline">Your vision. Our expertise. Built together.</p>
-                    </div>
+                </div>
+
+                <div class="about-bio">
+                    <h3>Meet the Founder — Nicola King</h3>
+                    <p>I built Eze Digital on one simple belief. Great business is built on trust, clarity, and the right people working together. I do not claim to be a technical expert in every field. My expertise is far more valuable.</p>
+                    <p>Business Strategy and Growth. I understand what businesses actually need to succeed. I see the bigger picture. I spot opportunities. I connect the dots between what you want to achieve and what will get you there.</p>
+                    <p>Sales and Relationships. Business is about people. I build genuine connections. I listen. I communicate clearly. I know how to translate technical possibilities into real business value. You will always understand what you are getting and why it matters.</p>
+                    <p>Education and Empowerment. I hold formal qualifications in education and years of experience designing and delivering professional training. I do not just deliver a product. I ensure you understand it too. Knowledge is the most powerful tool any business can have.</p>
+                    <p>Bridging the Gap. I bridge the gap between technology and people because I understand what it is like to be a client trying to navigate complex systems. That perspective shapes every solution we create.</p>
+                    <p>Building the Right Team. I know exactly what I do not know. That is my greatest strength. I find, select, and work with the very best technical people to deliver the infrastructure and security your business needs. I vet them. I manage them. I ensure they deliver exactly what you need. You get the expertise without the headache.</p>
+                    <p class="tagline">Your vision. Our expertise. Built together.</p>
                 </div>
             </div>
         </div>
 
-        <!-- CONTACT PAGE — NO FORM, JUST MESSAGE -->
+        <!-- CONTACT — CLEAN TEXT, NO BOX -->
         <div id="contact" class="tab-content">
-            <div class="contact-panel">
+            <div class="contact-content">
                 <h2>Get in Touch</h2>
-                <p>Thank you for your interest. We are currently updating our contact facilities — please check back shortly.</p>
+                <p>Thank you for your interest. We are currently updating our contact facilities. Please check back shortly.</p>
                 <p>In the meantime, we look forward to connecting with you.</p>
             </div>
         </div>
@@ -366,7 +375,7 @@
                 tab.classList.remove('active');
             });
             document.getElementById(pageName).classList.add('active');
-            document.querySelector(`[data-page="${pageName}"]`).classList.add('active');
+            document.querySelector('[data-page="' + pageName + '"]').classList.add('active');
             window.scrollTo(0, 0);
         }
 
