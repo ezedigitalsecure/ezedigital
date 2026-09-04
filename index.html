@@ -5,16 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eze Digital — Secure & Evolve</title>
     <style>
-        * {margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', sans-serif;}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
 
         body {
-            /* ✅ NEW CLEAN BACKGROUND — fills screen perfectly */
-            background: url('mockup-bg.png') no-repeat center center fixed;
-            background-size: cover;
-            background-position: center center;
-            background-attachment: fixed;
             min-height: 100vh;
             color: white;
+            background:
+                url('mockup-bg.png') no-repeat center top,
+                linear-gradient(180deg, #001418 0%, #00222a 55%, #001115 100%);
+            background-size: cover, 100% 100%;
+            background-position: center top;
+            background-attachment: fixed;
         }
 
         .page-wrapper {
@@ -24,25 +30,17 @@
             position: relative;
         }
 
-        /* ======================================
-           TOP NAVIGATION — matches mockup exactly
-           ====================================== */
         header {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end;
             align-items: flex-start;
             margin-bottom: 5rem;
         }
 
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
+        nav {
+            margin-top: 0.25rem;
         }
-        .brand h1 {font-size: 1.35rem; font-weight: 600; letter-spacing: 0.5px;}
-        .brand p {font-size: 0.75rem; opacity: 0.65; letter-spacing: 2px; margin-top: 2px;}
 
-        nav {margin-top: 0.25rem;}
         nav a {
             color: white;
             text-decoration: none;
@@ -50,7 +48,11 @@
             font-size: 0.9rem;
             opacity: 0.8;
         }
-        nav a:hover {opacity: 1;}
+
+        nav a:hover {
+            opacity: 1;
+        }
+
         nav a:last-child {
             border: 1px solid rgba(0,220,220,0.4);
             padding: 0.4rem 1.1rem;
@@ -58,12 +60,9 @@
             margin-left: 1.5rem;
         }
 
-        /* ======================================
-           MAIN HEADING — positioned exactly like mockup
-           ====================================== */
         .hero {
             max-width: 540px;
-            margin-top: 1.5rem;
+            margin: 1.5rem 0 0 4%;
         }
 
         .hero h2 {
@@ -95,17 +94,17 @@
             cursor: pointer;
             transition: transform 0.2s ease;
         }
-        .btn:hover {transform: translateY(-2px);}
 
-        /* ======================================
-           THREE SERVICE BOXES — EXACT MOCKUP STYLE
-           ====================================== */
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
         .services {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 0; /* no gap — connected look like mockup */
+            gap: 0;
             max-width: 840px;
-            margin-top: 5rem;
+            margin: 5rem 0 0 4%;
         }
 
         .service-card {
@@ -115,13 +114,23 @@
             padding: 1.4rem 1.6rem;
             backdrop-filter: blur(10px);
         }
-        .service-card:first-child {border-radius: 10px 0 0 10px;}
+
+        .service-card:first-child {
+            border-radius: 10px 0 0 10px;
+        }
+
         .service-card:last-child {
             border-right: 1px solid rgba(0,180,180,0.15);
             border-radius: 0 10px 10px 0;
         }
-        .service-card:nth-child(2) {background: rgba(0,70,85,0.4);}
-        .service-card:nth-child(3) {background: rgba(0,90,100,0.35);}
+
+        .service-card:nth-child(2) {
+            background: rgba(0,70,85,0.4);
+        }
+
+        .service-card:nth-child(3) {
+            background: rgba(0,90,100,0.35);
+        }
 
         .service-card h3 {
             font-size: 1.05rem;
@@ -130,54 +139,79 @@
             align-items: center;
             gap: 0.6rem;
         }
+
         .service-card p {
             font-size: 0.85rem;
             opacity: 0.7;
             line-height: 1.5;
         }
 
-        /* ======================================
-           MOBILE — clean responsive layout
-           ====================================== */
         @media (max-width: 900px) {
-            .page-wrapper {padding: 1.5rem;}
-            header {flex-direction: column; gap: 1.5rem; margin-bottom: 2rem;}
-            nav a {margin-left: 1rem; font-size: 0.8rem;}
-            nav a:last-child {margin-left: 0.5rem; padding: 0.3rem 0.8rem;}
-            .hero h2 {font-size: 2.1rem;}
-            .services {grid-template-columns: 1fr; gap: 0.5rem; margin-top: 3rem;}
-            .service-card {border-radius: 10px !important; border-right: 1px solid rgba(0,180,180,0.15);}
+            .page-wrapper {
+                padding: 1.5rem;
+            }
+
+            header {
+                justify-content: center;
+                margin-bottom: 2rem;
+            }
+
+            nav a {
+                margin-left: 1rem;
+                font-size: 0.8rem;
+            }
+
+            nav a:last-child {
+                margin-left: 0.5rem;
+                padding: 0.3rem 0.8rem;
+            }
+
+            .hero {
+                margin: 2rem auto 0 auto;
+                text-align: center;
+            }
+
+            .hero h2 {
+                font-size: 2.1rem;
+            }
+
+            .hero p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .services {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+                margin: 3rem auto 0 auto;
+                max-width: 500px;
+            }
+
+            .service-card {
+                border-radius: 10px !important;
+                border-right: 1px solid rgba(0,180,180,0.15);
+            }
         }
     </style>
 </head>
 <body>
     <div class="page-wrapper">
 
-        <!-- TOP LOGO + NAV -->
         <header>
-            <div class="brand">
-                <div>
-                    <h1>EZE DIGITAL</h1>
-                    <p>Secure & Evolve</p>
-                </div>
-            </div>
             <nav>
                 <a href="#">Home</a>
                 <a href="#">Services</a>
-                <a href="#">About</a>
                 <a href="#">About</a>
                 <a href="#">Contact</a>
             </nav>
         </header>
 
-        <!-- MAIN HEADING + BUTTON -->
         <section class="hero">
             <h2>Secure Your Digital Future</h2>
             <p>Professional cybersecurity assessments, GDPR compliance frameworks, secure web development, and custom app creation — built to protect, designed to evolve.</p>
             <a href="#" class="btn">Get in Touch</a>
         </section>
 
-        <!-- THREE SERVICE BOXES — EXACT MOCKUP STYLE -->
         <section class="services">
             <div class="service-card">
                 <h3>🛡️ Cybersecurity Assessments</h3>
