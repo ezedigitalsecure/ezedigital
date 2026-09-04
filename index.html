@@ -71,7 +71,7 @@
         .page-wrapper {
             width: 100%;
             min-height: 100vh;
-            padding: 8rem 4.5rem 6rem 12%;
+            padding: 8rem 4.5rem 4rem;
             position: relative;
             z-index: 1;
         }
@@ -85,15 +85,15 @@
             display: block;
         }
 
-        /* ========== HOME PAGE ========== */
+        /* ========== HOME PAGE — NARROW TEXT OVER DARK AREA ========== */
         .home-content {
-            margin: 0;
-            max-width: 620px;
+            margin: 0 0 0 8%;
+            max-width: 480px;
             padding-top: 2rem;
         }
 
         .home-content h2 {
-            font-size: 3rem;
+            font-size: 2.8rem;
             line-height: 1.15;
             margin-bottom: 1.4rem;
         }
@@ -121,14 +121,17 @@
         }
         .btn:hover { transform: translateY(-2px); }
 
-        /* ========== SERVICES PAGE ========== */
+        /* ========== SERVICES PAGE — CENTERED ========== */
         .services-container {
-            margin: 0;
-            max-width: 1000px;
+            margin: 0 auto;
+            max-width: 900px;
+            max-width: 900px;
+            padding: 0 1rem;
         }
 
         .services-heading {
             margin-bottom: 2.5rem;
+            text-align: center;
         }
 
         .services-heading h2 {
@@ -173,10 +176,11 @@
             opacity: 0.72;
         }
 
-        /* ========== ABOUT US ========== */
+        /* ========== ABOUT US — CENTERED ========== */
         .about-container {
-            margin: 0;
-            max-width: 900px;
+            margin: 0 auto;
+            max-width: 850px;
+            padding: 0 1rem;
         }
 
         .about-intro {
@@ -214,6 +218,7 @@
             display: inline-block;
             background: transparent;
             border: none;
+            line-height: 0;
         }
 
         .founder-photo img {
@@ -221,6 +226,7 @@
             height: 100%;
             object-fit: cover;
             display: block;
+            border: none;
         }
 
         .about-bio {
@@ -251,10 +257,10 @@
             font-size: 1.05rem;
         }
 
-        /* ========== CONTACT PAGE ========== */
+        /* ========== CONTACT PAGE — NARROW OVER DARK AREA ========== */
         .contact-content {
-            margin: 0;
-            max-width: 550px;
+            margin: 0 0 0 8%;
+            max-width: 480px;
             padding-top: 2rem;
         }
 
@@ -282,9 +288,10 @@
         }
 
         .footer-logo {
-            height: 24px;
+            height: 20px;
             vertical-align: middle;
             margin-right: 8px;
+            opacity: 0.8;
         }
 
         /* ========== MOBILE ========== */
@@ -292,7 +299,7 @@
             header { justify-content: center; padding: 1.2rem 1.5rem; }
             nav a { margin-left: 1.2rem; font-size: 0.85rem; }
             .page-wrapper { padding: 6rem 1.5rem 3rem; }
-            .home-content, .services-container, .contact-content { max-width: 100%; }
+            .home-content, .contact-content { margin: 0; max-width: 100%; }
             .home-content h2, .contact-content h2 { font-size: 1.8rem; }
             .services-grid { grid-template-columns: 1fr; }
         }
@@ -388,29 +395,29 @@
 
     <!-- FOOTER -->
     <footer>
-        <img src="logo-small.png" alt="Eze Digital" class="footer-logo">
+        <img src="eze-logo.png" alt="Eze Digital" class="footer-logo">
         Powered and Designed by Eze Digital Ltd
     </footer>
 
     <script>
         function switchTab(pageName) {
-            document.querySelectorAll('.tab-content').forEach(page => {
-                page.classList.remove('active');
-            });
-            document.querySelectorAll('.tab-link').forEach(tab => {
-                tab.classList.remove('active');
-            });
+            var pages = document.querySelectorAll('.tab-content');
+            for (var i = 0; i < pages.length; i++) {
+                pages[i].classList.remove('active');
+            }
+            var tabs = document.querySelectorAll('.tab-link');
+            for (var i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove('active');
+            }
             document.getElementById(pageName).classList.add('active');
             document.querySelector('[data-page="' + pageName + '"]').classList.add('active');
             window.scrollTo(0, 0);
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            document.querySelectorAll('.tab-link').forEach(tab => {
-                tab.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    switchTab(this.getAttribute('data-page'));
-                });
+        document.querySelectorAll('.tab-link').forEach(function(tab) {
+            tab.addEventListener('click', function(e) {
+                e.preventDefault();
+                switchTab(this.getAttribute('data-page'));
             });
         });
     </script>
