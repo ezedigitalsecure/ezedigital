@@ -220,7 +220,7 @@
             pointer-events: none;
         }
 
-        /* ===== SCROLLABLE PAGES — NOW WITH SAME BACKGROUND IMAGE ===== */
+        /* ===== SCROLLABLE PAGES — SAME BACKGROUND & BRIGHTNESS AS HOME ===== */
         .scrollable-pages {
             position: absolute;
             top: 0;
@@ -230,12 +230,11 @@
             z-index: 50;
             overflow-y: auto;
             overflow-x: hidden;
-            /* SAME BACKGROUND IMAGE AS HOME PAGE + DARK OVERLAY FOR READABILITY */
+            /* SAME BACKGROUND, SAME GRADIENT — NO EXTRA DARK OVERLAY */
             background:
                 url('mockup-bg.png') no-repeat center center fixed,
-                linear-gradient(180deg, rgba(0,20,24,0.92) 0%, rgba(0,34,42,0.92) 45%, rgba(0,17,21,0.92) 100%);
+                linear-gradient(180deg, #001418 0%, #00222a 45%, #001115 100%);
             background-size: cover;
-            background-blend-mode: multiply;
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.3s ease;
@@ -557,7 +556,7 @@
         <div class="home-tagline">Designed and Built by Eze Digital Ltd © All Rights Reserved 2026</div>
     </div>
 
-    <!-- SERVICES / ABOUT / CONTACT — NOW WITH BACKGROUND IMAGE -->
+    <!-- SERVICES / ABOUT / CONTACT — NOW SAME BRIGHTNESS AS HOME -->
     <div class="scrollable-pages" id="scrollablePages">
 
         <div id="services" class="tab-content">
