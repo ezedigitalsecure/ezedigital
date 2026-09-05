@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eze Digital — Secure & Evolve</title>
+    <title>Eze Digital — Secure and Evolve</title>
     <style>
         * {
             margin: 0;
@@ -28,7 +28,7 @@
         }
 
         header {
-            padding: 1.2rem 4.5rem;
+            padding: 1rem 2.5rem;
             position: fixed;
             top: 0;
             left: 0;
@@ -36,28 +36,58 @@
             z-index: 100;
             display: flex;
             justify-content: flex-end;
+            background: rgba(0, 12, 14, 0.85);
+            border-bottom: 1px solid rgba(0, 184, 187, 0.2);
+            backdrop-filter: blur(8px);
         }
 
-        nav a {
+        .desktop-nav {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .nav-link {
             color: white;
             text-decoration: none;
-            margin-left: 2.5rem;
+            padding: 0.6rem 1.4rem;
             font-size: 0.95rem;
-            opacity: 0.75;
-            padding: 0.5rem 0;
-            border-bottom: 2px solid transparent;
+            border-radius: 8px;
+            position: relative;
             transition: all 0.3s ease;
             cursor: pointer;
         }
 
-        nav a:hover,
-        nav a.active {
-            opacity: 1;
-            border-bottom: 2px solid #00B8BB;
+        .nav-link:hover,
+        .nav-link.active {
+            background: rgba(0, 184, 187, 0.15);
+            box-shadow: 0 0 12px rgba(0, 184, 187, 0.35),
+                        inset 0 0 8px rgba(0, 184, 187, 0.15);
+            color: #ffffff;
+        }
+
+        .nav-link.active {
+            background: rgba(0, 184, 187, 0.25);
+            box-shadow: 0 0 18px rgba(0, 184, 187, 0.5),
+                        inset 0 0 10px rgba(0, 184, 187, 0.2);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background: #00B8BB;
+            transition: 0.3s;
         }
 
         .page-wrapper {
-            padding: 9rem 4.5rem 3rem;
+            padding: 7.5rem 2.5rem 3rem;
             position: relative;
             z-index: 10;
         }
@@ -68,6 +98,12 @@
 
         .tab-content.active {
             display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .about-container {
@@ -81,8 +117,6 @@
             border-radius: 14px;
             padding: 1.8rem;
             margin-bottom: 1.5rem;
-            position: relative;
-            z-index: 15;
         }
 
         .about-block h2 {
@@ -101,8 +135,6 @@
         .founder-photo-wrapper {
             text-align: center;
             margin: 1.5rem 0;
-            position: relative;
-            z-index: 15;
         }
 
         .founder-photo-container {
@@ -132,36 +164,46 @@
 
         .home-content {
             margin-left: 6%;
-            max-width: 420px;
+            max-width: 480px;
+            padding-top: 2rem;
         }
 
         .home-content h2 {
             font-size: 2.4rem;
             color: #ffffff;
             margin-bottom: 1.2rem;
+            line-height: 1.2;
         }
 
         .home-content p {
-            font-size: 0.95rem;
+            font-size: 1rem;
             line-height: 1.7;
             color: #e6f7f8;
-            margin-bottom: 1.8rem;
+            margin-bottom: 2rem;
         }
 
         .btn {
             display: inline-block;
             background: linear-gradient(90deg, #00777A, #00B8BB);
             color: white;
-            padding: 0.8rem 1.8rem;
+            padding: 0.85rem 2rem;
             border-radius: 24px;
             text-decoration: none;
             font-weight: 500;
             border: none;
             cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 0 15px rgba(0, 184, 187, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(0, 184, 187, 0.5);
         }
 
         .services-container {
-            max-width: 1000px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
@@ -169,81 +211,87 @@
             background: rgba(0, 24, 28, 0.95);
             border: 1px solid rgba(0, 184, 187, 0.25);
             border-radius: 14px;
-            padding: 1.2rem 1.5rem;
-            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
             text-align: center;
         }
 
         .services-heading-box h2 {
             font-size: 1.8rem;
             color: #00B8BB;
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.5rem;
         }
 
         .services-heading-box p {
             color: #e6f7f8;
-            opacity: 0.7;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 0.8rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .service-card {
-            background: rgba(0, 24, 28, 0.95);
-            border: 1px solid rgba(0, 184, 187, 0.25);
-            border-radius: 12px;
-            padding: 1.2rem 0.8rem;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .service-card:hover,
-        .service-card.active {
-            border-color: #00B8BB;
-        }
-
-        .service-card h3 {
-            font-size: 0.88rem;
-            color: #fff;
-            margin-bottom: 0.3rem;
-        }
-
-        .service-card p {
-            font-size: 0.75rem;
-            color: #b2e2e3;
             opacity: 0.8;
         }
 
-        .service-detail {
+        .service-block {
             background: rgba(0, 24, 28, 0.95);
             border: 1px solid rgba(0, 184, 187, 0.25);
             border-radius: 14px;
-            padding: 1.5rem 1.8rem;
-            display: none;
+            padding: 0;
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
         }
 
-        .service-detail.active {
-            display: block;
+        .service-corner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 28px;
+            height: 28px;
+            border-top: 2px solid #00B8BB;
+            border-left: 2px solid #00B8BB;
+            box-shadow: -8px -8px 12px rgba(0, 184, 187, 0.35);
+            pointer-events: none;
         }
 
-        .service-detail h3 {
+        .service-title {
             color: #00B8BB;
-            font-size: 1.2rem;
-            margin-bottom: 0.4rem;
+            font-size: 1.25rem;
+            padding: 1.8rem 1.8rem 1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.3s ease;
         }
 
-        .service-detail ul {
-            margin-left: 1.5rem;
+        .service-title:hover {
+            color: #ffffff;
+        }
+
+        .service-title .toggle-icon {
+            font-size: 1.6rem;
+            line-height: 1;
+            transition: transform 0.3s ease;
+            color: #00B8BB;
+        }
+
+        .service-block.expanded .service-title .toggle-icon {
+            transform: rotate(45deg);
+        }
+
+        .service-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            padding: 0 1.8rem;
+        }
+
+        .service-block.expanded .service-content {
+            max-height: 2000px;
+            padding: 0 1.8rem 1.8rem;
+        }
+
+        .service-content p {
             color: #e6f7f8;
-        }
-
-        .service-detail li {
-            margin-bottom: 0.4rem;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 0.7rem;
         }
 
         .contact-container {
@@ -251,15 +299,16 @@
             justify-content: center;
             align-items: center;
             min-height: 70vh;
+            padding-top: 2rem;
         }
 
         .contact-panel {
             background: rgba(0, 24, 28, 0.95);
             border: 1px solid rgba(0, 184, 187, 0.25);
             border-radius: 14px;
-            padding: 2.2rem;
+            padding: 2.5rem;
             width: 100%;
-            max-width: 480px;
+            max-width: 500px;
         }
 
         .contact-panel h2 {
@@ -274,29 +323,29 @@
         }
 
         .form-group {
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
         }
 
         .form-group label {
             display: block;
             color: #c2e9ea;
-            margin-bottom: 0.35rem;
-            font-size: 0.88rem;
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
         }
 
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 0.75rem 1rem;
+            padding: 0.85rem 1rem;
             background: rgba(0, 36, 42, 0.9);
             border: 1px solid rgba(0, 184, 187, 0.3);
             border-radius: 8px;
             color: #fff;
-            font-size: 0.92rem;
+            font-size: 0.95rem;
         }
 
         .form-group textarea {
-            min-height: 100px;
+            min-height: 120px;
         }
 
         .contact-panel .btn {
@@ -307,29 +356,81 @@
         footer {
             text-align: center;
             padding: 1.5rem;
-            margin-top: 2rem;
+            margin-top: 3rem;
             color: #88b8b9;
             font-size: 0.82rem;
             border-top: 1px solid rgba(0, 184, 187, 0.1);
         }
 
-        @media (max-width: 900px) {
-            header { justify-content: center; padding: 1rem 1.5rem; }
-            nav a { margin-left: 1rem; font-size: 0.82rem; }
-            .page-wrapper { padding: 7.5rem 1.2rem 2.5rem; }
-            .home-content { margin: 0 auto; max-width: 100%; }
-            .services-grid { grid-template-columns: repeat(2, 1fr); }
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem 1.5rem;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .desktop-nav {
+                position: absolute;
+                top: 100%;
+                right: 0;
+                left: 0;
+                flex-direction: column;
+                background: rgba(0, 12, 14, 0.95);
+                border-bottom: 1px solid rgba(0, 184, 187, 0.2);
+                padding: 1rem;
+                display: none;
+            }
+
+            .desktop-nav.open {
+                display: flex;
+            }
+
+            .nav-link {
+                text-align: center;
+                padding: 0.9rem;
+            }
+
+            .page-wrapper {
+                padding: 6rem 1.2rem 3rem;
+            }
+
+            .home-content {
+                margin-left: 0;
+                max-width: 100%;
+                text-align: center;
+            }
+
+            .home-content h2 {
+                font-size: 1.8rem;
+            }
+
+            .service-title {
+                font-size: 1.1rem;
+                padding: 1.5rem 1.5rem 0.8rem;
+            }
+
+            .service-block.expanded .service-content {
+                padding: 0 1.5rem 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <nav>
-            <a class="tab-link active" data-page="home">Home</a>
-            <a class="tab-link" data-page="services">Services</a>
-            <a class="tab-link" data-page="about">About Eze</a>
-            <a class="tab-link" data-page="contact">Contact</a>
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav class="desktop-nav" id="navMenu">
+            <a class="nav-link active" data-page="home">Home</a>
+            <a class="nav-link" data-page="services">Services</a>
+            <a class="nav-link" data-page="about">About Eze</a>
+            <a class="nav-link" data-page="contact">Contact</a>
+            <a class="nav-link" id="portalLink">Client Portal</a>
         </nav>
     </header>
 
@@ -338,7 +439,7 @@
         <div id="home" class="tab-content active">
             <div class="home-content">
                 <h2>Your Digital Presence, Built Securely</h2>
-                <p>Eze Digital designs and builds professional websites, applications, and digital systems. Cybersecurity and compliance are built in from day one. We deliver the infrastructure your business needs, protected by the standards your clients deserve.</p>
+                <p>Eze Digital designs and builds professional websites, bespoke booking systems, and digital infrastructure. Cybersecurity and ICO/GDPR compliance are built in from day one. We deliver the foundation your business needs. Protected, clear, and built around you.</p>
                 <button class="btn" onclick="switchTab('contact')">Let's Talk</button>
             </div>
         </div>
@@ -350,83 +451,76 @@
                     <p>Professional digital solutions. Built securely. Delivered clearly.</p>
                 </div>
 
-                <div class="services-grid">
-                    <div class="service-card" data-service="web">
-                        <h3>Web Development</h3>
-                        <p>Custom sites built securely</p>
+                <div class="service-block">
+                    <div class="service-corner"></div>
+                    <div class="service-title">
+                        Web Development and Brand Design
+                        <span class="toggle-icon">+</span>
                     </div>
-                    <div class="service-card" data-service="compliance">
-                        <h3>GDPR & ICO</h3>
-                        <p>Compliance frameworks</p>
-                    </div>
-                    <div class="service-card" data-service="security">
-                        <h3>Cybersecurity</h3>
-                        <p>Protection & assurance</p>
-                    </div>
-                    <div class="service-card" data-service="design">
-                        <h3>Brand & Design</h3>
-                        <p>Identity that stands out</p>
-                    </div>
-                    <div class="service-card" data-service="strategy">
-                        <h3>Business Strategy</h3>
-                        <p>Growth & direction</p>
+                    <div class="service-content">
+                        <p>Custom websites built from the ground up, designed around your brand and your clients. No generic templates, no hidden code. Clean, fast, and fully yours. We build your visual identity alongside your site so your brand feels consistent, professional, and instantly recognisable.</p>
                     </div>
                 </div>
 
-                <div id="detail-web" class="service-detail">
-                    <h3>Website & App Development</h3>
-                    <p>Professional digital platforms built securely from the ground up. Custom design, mobile responsive, clean code, fully yours.</p>
-                    <ul>
-                        <li>Custom design and development tailored to your brand</li>
-                        <li>Built-in security and compliance from day one</li>
-                        <li>Mobile responsive across all devices</li>
-                        <li>Fast-loading, clean code, fully yours</li>
-                    </ul>
-                    <button class="btn" onclick="switchTab('contact')">Discuss Your Project</button>
+                <div class="service-block">
+                    <div class="service-corner"></div>
+                    <div class="service-title">
+                        Bespoke Booking Systems
+                        <span class="toggle-icon">+</span>
+                    </div>
+                    <div class="service-content">
+                        <p>We specialise in building bespoke booking systems designed around your business, not the other way around.</p>
+                        <p>If you are currently paying monthly subscriptions, commission fees, or being locked into platforms that take a cut on every single booking, we build you a system that lives on your website on your terms with zero ongoing commission. You own your data. You own your client relationships. You regain full control.</p>
+                        <p>Perfect for aesthetics clinics and salons which is our speciality. Equally powerful for dance schools, fitness studios, yoga and pilates, restaurants, photographers, tutors, coaches, and any service business that takes appointments or reservations.</p>
+                    </div>
                 </div>
 
-                <div id="detail-compliance" class="service-detail">
-                    <h3>GDPR & ICO Compliance</h3>
-                    <p>Full compliance frameworks — registered and audited.</p>
-                    <ul>
-                        <li>Full ICO registration and data protection policies</li>
-                        <li>Privacy notices and consent management</li>
-                        <li>Data processing records and procedures</li>
-                    </ul>
-                    <button class="btn" onclick="switchTab('contact')">Get Compliant</button>
+                <div class="service-block">
+                    <div class="service-corner"></div>
+                    <div class="service-title">
+                        ICO Registration and GDPR Compliance
+                        <span class="toggle-icon">+</span>
+                    </div>
+                    <div class="service-content">
+                        <p>Never risk a fine or uncertainty again. We guide you step by step through ICO registration and build your full GDPR compliance framework including privacy policies, consent records, data processing documentation, and staff guidance.</p>
+                        <p>Built specifically for small and growing businesses. Plain English. No legal jargon. Complete peace of mind.</p>
+                    </div>
                 </div>
 
-                <div id="detail-security" class="service-detail">
-                    <h3>Cybersecurity & Protection</h3>
-                    <p>Assess, secure, and monitor your digital infrastructure.</p>
-                    <ul>
-                        <li>Security assessment and vulnerability review</li>
-                        <li>SSL, hosting security, and backup configuration</li>
-                        <li>Access controls and best-practice guidance</li>
-                    </ul>
-                    <button class="btn" onclick="switchTab('contact')">Secure Your Business</button>
+                <div class="service-block">
+                    <div class="service-corner"></div>
+                    <div class="service-title">
+                        Cybersecurity and Digital Protection
+                        <span class="toggle-icon">+</span>
+                    </div>
+                    <div class="service-content">
+                        <p>Delivered through our specialist partner Sentia Technologies and Praisegod Eze, MSc Applied Cybersecurity. We provide security monitoring and threat detection across your systems, SIEM deployment for clear visibility, and practical cybersecurity consulting to help you understand your exposure. We also design and strengthen secure cloud infrastructure alongside full compliance guidance including NDPR and GDPR standards. Built on recognised academic and industry expertise.</p>
+                        <p>And if you do not know what you do not know. Relax. Because we have experts to take all of this over. Consider us your fully outsourced IT department.</p>
+                    </div>
                 </div>
 
-                <div id="detail-design" class="service-detail">
-                    <h3>Brand Identity & Design</h3>
-                    <p>Visual identity that builds trust and recognition.</p>
-                    <ul>
-                        <li>Logo design and brand colour palette</li>
-                        <li>Business cards, social assets, and templates</li>
-                        <li>Website visuals and layout design</li>
-                    </ul>
-                    <button class="btn" onclick="switchTab('contact')">Build Your Brand</button>
+                <div class="service-block">
+                    <div class="service-corner"></div>
+                    <div class="service-title">
+                        CPD Accredited Cybersecurity Training
+                        <span class="toggle-icon">+</span>
+                    </div>
+                    <div class="service-content">
+                        <p>We are developing CPD accredited cybersecurity training delivered alongside our specialist cybersecurity partner. Accreditation is currently in progress through Belle and Beau Aesthetics and will be available to Eze Digital as a separate account or additional registration once finalised.</p>
+                        <p>We offer structured entry level courses designed for those starting out on the path to becoming cybersecurity analysts. We also provide in-house staff training to help your team understand threats, best practice, and how to protect your business day to day. And we build fully bespoke training packages developed around your unique needs and the specific systems you use.</p>
+                        <p>All courses will carry formal CPD accreditation upon completion so your learning counts towards your professional development record.</p>
+                    </div>
                 </div>
 
-                <div id="detail-strategy" class="service-detail">
-                    <h3>Business Strategy & Growth</h3>
-                    <p>Clear direction, practical steps, real progress.</p>
-                    <ul>
-                        <li>Digital strategy and roadmap planning</li>
-                        <li>Website and service offering recommendations</li>
-                        <li>Marketing and client acquisition guidance</li>
-                    </ul>
-                    <button class="btn" onclick="switchTab('contact')">Plan Your Growth</button>
+                <div class="service-block">
+                    <div class="service-corner"></div>
+                    <div class="service-title">
+                        Business Strategy and Growth Support
+                        <span class="toggle-icon">+</span>
+                    </div>
+                    <div class="service-content">
+                        <p>Because I know exactly what it feels like to be building a business from the ground up and wishing you had a full team behind you. That is exactly what we become. From your website to your booking system, your brand, your social media presence, and your compliance. We build the whole digital foundation you need to grow with confidence.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -436,9 +530,8 @@
                 <div class="about-block">
                     <h2>Our Vision</h2>
                     <p>Eze Digital exists because every growing business deserves professional digital infrastructure. It should come without the complexity, jargon, or inflated price tags that usually apply.</p>
-                    <p>We build websites, applications, and digital systems that work for you. Security should never be an afterthought. Every solution we deliver includes the compliance and protective standards your business needs. We bring together the right technical expertise, the right people, and the right approach. You get a solution that fits your business perfectly.</p>
+                    <p>We build websites, booking systems, and digital solutions that work for you. Security and compliance should never be an afterthought. Every solution we deliver includes the protective standards your business needs. We bring together the right expertise, the right approach, and the right care so you get something that truly fits.</p>
                     <p>We do not just hand you something technical and walk away. We build relationships. We explain things clearly. We ensure you understand exactly what you have and how to use it.</p>
-                    <p>Our capabilities extend beyond technology. From graphic design that gets you noticed, to business strategy that keeps you organised and growing, we support the whole picture of your business.</p>
                 </div>
 
                 <div class="founder-photo-wrapper">
@@ -449,27 +542,22 @@
 
                 <div class="about-block">
                     <h2>My Story</h2>
-                    <p>My vision for Eze Digital is built on one simple belief. Great business is built on trust, clarity, and the right people working together. I do not claim to be a technical expert in every field. But I definitely know someone who is. That is what great business is about. Teamwork. Playing to our strengths. Bringing together the right people to deliver exactly what you need.</p>
+                    <p>My vision for Eze Digital is built on one simple belief. Great business is built on trust, clarity, and the right people working together. I do not claim to be a technical expert in every field but I definitely know someone who is. That is what great business is about. Teamwork. Playing to our strengths. Bringing together the right people to deliver exactly what you need.</p>
                 </div>
 
                 <div class="about-block">
                     <h2>What Drives Me</h2>
-                    <p>I want Eze Digital to be different. I want to build relationships, not just deliver projects. My intention is to listen first, understand your goals, and then bring together the right expertise to make them real. Technology should serve you, not confuse you. I bridge that gap so you can focus on what you do best.</p>
+                    <p>I want Eze Digital to be different. I want to build relationships not just deliver projects. My intention is to listen first, understand your goals, and then bring together the right expertise to make them real. Technology should serve you not confuse you. I bridge that gap so you can focus on what you do best.</p>
                 </div>
 
                 <div class="about-block">
                     <h2>Where I Add Value</h2>
-                    <h3 style="font-size:1.05rem; color:#00B8BB; margin:1.2rem 0 0.4rem;">Business Strategy & Growth</h3>
-                    <p>I understand what growing businesses actually need. I see the big picture and help you navigate the technical side without getting lost in the jargon.</p>
-                    <h3 style="font-size:1.05rem; color:#00B8BB; margin:1.2rem 0 0.4rem;">Client Relationships & Sales</h3>
-                    <p>I speak your language. I bridge the gap between complex technology and what actually matters to your business and your clients.</p>
-                    <h3 style="font-size:1.05rem; color:#00B8BB; margin:1.2rem 0 0.4rem;">Education & Empowerment</h3>
-                    <p>With a background in teaching and training, I don't just deliver a product — I help you understand it, so you feel confident and in control.</p>
-                </div>
-
-                <div class="about-block">
-                    <h2>How We Work Together</h2>
-                    <p>I bridge the gap between technology and people because I understand what it is like to be a client trying to navigate the technical world. That perspective shapes every solution we create.</p>
+                    <h3 style="font-size:1.05rem; color:#00B8BB; margin:1.2rem 0 0.4rem;">Understanding Your Business</h3>
+                    <p>I speak your language. I know what it feels like to build a business. I understand the pain points including platform fees, compliance worry, and that feeling that you need a whole team just to stay visible. I do not just build websites. I build solutions that actually save you money and give you back control.</p>
+                    <h3 style="font-size:1.05rem; color:#00B8BB; margin:1.2rem 0 0.4rem;">Education and Empowerment</h3>
+                    <p>With a background in teaching and training, I do not just hand you a finished product. I help you understand it so you feel confident and in control of your own digital presence.</p>
+                    <h3 style="font-size:1.05rem; color:#00B8BB; margin:1.2rem 0 0.4rem;">A Full Team Behind You</h3>
+                    <p>You should not need to hire a web developer, a booking system expert, a compliance consultant, and a marketing agency separately. We become that team. One place for your website, your bookings, your compliance, your brand, and your growth.</p>
                 </div>
 
                 <div class="about-block">
@@ -495,7 +583,7 @@
                         </div>
                         <div class="form-group">
                             <label for="message">Your Message</label>
-                            <textarea id="message" name="message" required></textarea>
+                            <textarea id="message" name="message" required placeholder="Tell me about your business and what you need."></textarea>
                         </div>
                         <button type="submit" class="btn">Send Message</button>
                     </form>
@@ -506,32 +594,39 @@
     </div>
 
     <footer>
-        Designed & Built by Eze Digital Ltd
+        Designed and Built by Eze Digital Ltd
     </footer>
 
     <script>
         function switchTab(pageId) {
             document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-            document.querySelectorAll('.tab-link').forEach(link => link.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
             document.getElementById(pageId).classList.add('active');
-            document.querySelector(`.tab-link[data-page="${pageId}"]`).classList.add('active');
+            document.querySelector(`.nav-link[data-page="${pageId}"]`).classList.add('active');
+            document.getElementById('navMenu').classList.remove('open');
             window.scrollTo(0, 0);
         }
 
-        document.querySelectorAll('.tab-link').forEach(link => {
-            link.addEventListener('click', function() {
-                switchTab(this.getAttribute('data-page'));
+        document.querySelectorAll('.nav-link').forEach(link => {
+            if(link.getAttribute('data-page')) {
+                link.addEventListener('click', function() {
+                    switchTab(this.getAttribute('data-page'));
+                });
+            }
+        });
+
+        document.getElementById('portalLink').addEventListener('click', function() {
+            alert('Client Portal coming soon. Watch this space.');
+        });
+
+        document.querySelectorAll('.service-title').forEach(title => {
+            title.addEventListener('click', function() {
+                this.parentElement.classList.toggle('expanded');
             });
         });
 
-        document.querySelectorAll('.service-card').forEach(card => {
-            card.addEventListener('click', function() {
-                document.querySelectorAll('.service-card').forEach(c => c.classList.remove('active'));
-                document.querySelectorAll('.service-detail').forEach(d => d.classList.remove('active'));
-                this.classList.add('active');
-                const serviceId = this.getAttribute('data-service');
-                document.getElementById(`detail-${serviceId}`).classList.add('active');
-            });
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.getElementById('navMenu').classList.toggle('open');
         });
     </script>
 </body>
