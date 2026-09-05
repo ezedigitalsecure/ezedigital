@@ -24,6 +24,7 @@
             color: #fff;
         }
 
+        /* ===== HOME PAGE BACKGROUND — LOCKED, UNCHANGED ===== */
         .static-canvas {
             position: absolute;
             top: 0;
@@ -39,6 +40,7 @@
             background-attachment: scroll;
         }
 
+        /* ===== HEADER & HAMBURGER — UNCHANGED ===== */
         header {
             position: absolute;
             top: 0;
@@ -146,6 +148,7 @@
             border-bottom: none;
         }
 
+        /* ===== HOME BOX — LOCKED EXACTLY AS IT IS ===== */
         .home-box {
             position: absolute;
             top: 50%;
@@ -198,6 +201,7 @@
             box-shadow: 0 0 25px rgba(0, 184, 187, 0.5);
         }
 
+        /* ===== HOME TAGLINE — LOCKED ===== */
         .home-tagline {
             position: absolute;
             bottom: 0;
@@ -216,6 +220,7 @@
             pointer-events: none;
         }
 
+        /* ===== SCROLLABLE PAGES — NOW WITH SAME BACKGROUND IMAGE ===== */
         .scrollable-pages {
             position: absolute;
             top: 0;
@@ -225,7 +230,12 @@
             z-index: 50;
             overflow-y: auto;
             overflow-x: hidden;
-            background: linear-gradient(180deg, #001418 0%, #00222a 45%, #001115 100%);
+            /* SAME BACKGROUND IMAGE AS HOME PAGE + DARK OVERLAY FOR READABILITY */
+            background:
+                url('mockup-bg.png') no-repeat center center fixed,
+                linear-gradient(180deg, rgba(0,20,24,0.92) 0%, rgba(0,34,42,0.92) 45%, rgba(0,17,21,0.92) 100%);
+            background-size: cover;
+            background-blend-mode: multiply;
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.3s ease;
@@ -514,6 +524,7 @@
 </head>
 <body>
 
+    <!-- HOME BACKGROUND — LOCKED -->
     <div class="static-canvas"></div>
 
     <header>
@@ -536,16 +547,17 @@
         </div>
     </header>
 
+    <!-- HOME PAGE — 100% LOCKED, UNCHANGED -->
     <div id="home" class="tab-content active">
         <div class="home-box">
             <h2>Your Digital Presence,<br>Built Securely</h2>
             <p>Eze Digital supports growing businesses with web design, cybersecurity, booking systems, education, and business development. We bring together the right expertise to build clear, protected digital foundations that fit your goals.</p>
             <button class="btn" onclick="switchTab('contact')">Let's Talk</button>
         </div>
-
         <div class="home-tagline">Designed and Built by Eze Digital Ltd © All Rights Reserved 2026</div>
     </div>
 
+    <!-- SERVICES / ABOUT / CONTACT — NOW WITH BACKGROUND IMAGE -->
     <div class="scrollable-pages" id="scrollablePages">
 
         <div id="services" class="tab-content">
