@@ -38,6 +38,7 @@
             background-size: cover;
             z-index: 0;
             opacity: 0.95;
+            pointer-events: none;
         }
 
         header {
@@ -74,7 +75,7 @@
         .page-wrapper {
             width: 100%;
             min-height: 100vh;
-            padding: 6.5rem 4.5rem 3rem;
+            padding: 9rem 4.5rem 3rem;
             position: relative;
             z-index: 1;
         }
@@ -95,7 +96,7 @@
         .home-content {
             margin: 0 0 0 6%;
             max-width: 420px;
-            padding-top: 3rem;
+            padding-top: 1rem;
         }
 
         .home-content h2 {
@@ -325,12 +326,12 @@
         }
 
         .tagline-final {
-            margin-top: 1.2rem;
+            margin-top: 1rem;
             padding-top: 1rem;
             border-top: 1px solid rgba(0, 180, 187, 0.1);
             color: #00B8BB;
             font-weight: 500;
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             text-align: center;
         }
 
@@ -432,7 +433,7 @@
         @media (max-width: 900px) {
             header { justify-content: center; padding: 1rem 1.5rem; }
             nav a { margin-left: 1rem; font-size: 0.82rem; }
-            .page-wrapper { padding: 5.5rem 1.2rem 2.5rem; }
+            .page-wrapper { padding: 7.5rem 1.2rem 2.5rem; }
 
             .home-content {
                 margin: 0 auto;
@@ -641,14 +642,23 @@
                 <div class="founder-photo-wrapper">
                     <div class="founder-photo-container">
                         <div class="founder-photo">
-                            <img src="profile.png" alt="Nicki — Founder, Eze Digital">
+                            <img src="profile.png" alt="Nicki — Founder, Eze Digital" onerror="this.src='EDLOGO.png'">
                         </div>
                     </div>
                 </div>
 
                 <div class="about-block">
-                    <h2>Meet Nicki — Founder and Driving Force</h2>
+                    <h2>My Story</h2>
                     <p>My vision for Eze Digital is built on one simple belief. Great business is built on trust, clarity, and the right people working together. I do not claim to be a technical expert in every field. But I definitely know someone who is. That is what great business is about. Teamwork. Playing to our strengths. Bringing together the right people to deliver exactly what you need.</p>
+                </div>
+
+                <div class="about-block">
+                    <h2>What Drives Me</h2>
+                    <p>I want Eze Digital to be different. I want to build relationships, not just deliver projects. My intention is to listen first, understand your goals, and then bring together the right expertise to make them real. Technology should serve you, not confuse you. I bridge that gap so you can focus on what you do best.</p>
+                </div>
+
+                <div class="about-block">
+                    <h2>Where I Add Value</h2>
 
                     <h3>Business Strategy and Growth</h3>
                     <p>I understand what businesses actually need to succeed. I see the bigger picture. I spot opportunities. I connect the dots between what you want to achieve and what will get you there.</p>
@@ -664,13 +674,16 @@
 
                     <h3>Business Organisation and Development</h3>
                     <p>In every role I have ever held, I have found myself organising, structuring, and improving how things work. It is second nature. I bring that same instinct to every client engagement, helping you build systems and structures that support sustainable growth.</p>
+                </div>
 
-                    <h3>Bridging the Gap</h3>
+                <div class="about-block">
+                    <h2>How We Work Together</h2>
                     <p>I bridge the gap between technology and people because I understand what it is like to be a client trying to navigate complex systems. That perspective shapes every solution we create.</p>
+                </div>
 
-                    <div class="tagline-final">
-                        Your vision. Our expertise. Built together.
-                    </div>
+                <div class="about-block">
+                    <h2>Our Promise</h2>
+                    <p>Your vision. Our expertise. Built together.</p>
                 </div>
 
             </div>
