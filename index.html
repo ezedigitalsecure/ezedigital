@@ -2,8 +2,13 @@
 <html lang="en-GB">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Eze Digital — Secure & Evolve</title>
+    <!-- Immediate background to prevent "small" flash on load -->
+    <style>body{background:linear-gradient(180deg,#001418 0%,#00222a 45%,#001115 100%);margin:0;padding:0;min-height:100vh;color:white;}</style>
     <style>
         * {
             margin: 0;
@@ -38,7 +43,7 @@
         }
 
         header {
-            padding: 1.5rem 4.5rem;
+            padding: 1.2rem 4.5rem;
             width: 100%;
             position: fixed;
             top: 0;
@@ -71,7 +76,7 @@
         .page-wrapper {
             width: 100%;
             min-height: 100vh;
-            padding: 8rem 4.5rem 4rem;
+            padding: 6.5rem 4.5rem 3rem;
             position: relative;
             z-index: 1;
         }
@@ -85,98 +90,197 @@
             display: block;
         }
 
-        /* ========== HOME PAGE — NARROW TEXT OVER DARK AREA ========== */
+        /* Neon glow filter for SVG icons */
+        .neon-glow {
+            filter: drop-shadow(0 0 4px rgba(0, 184, 187, 0.6)) drop-shadow(0 0 8px rgba(0, 184, 187, 0.3));
+        }
+
+        /* ========== HOME PAGE — COMPACT, NO SCROLL ========== */
         .home-content {
-            margin: 0 0 0 8%;
-            max-width: 480px;
-            padding-top: 2rem;
+            margin: 0 0 0 6%;
+            max-width: 420px;
+            padding-top: 3rem;
         }
 
         .home-content h2 {
-            font-size: 2.8rem;
+            font-size: 2.4rem;
             line-height: 1.15;
-            margin-bottom: 1.4rem;
+            margin-bottom: 1.2rem;
         }
 
         .home-content p {
-            font-size: 1rem;
+            font-size: 0.95rem;
             line-height: 1.7;
-            opacity: 0.78;
-            margin-bottom: 2rem;
+            opacity: 0.82;
+            margin-bottom: 1.8rem;
         }
 
         .btn {
             display: inline-block;
             background: linear-gradient(90deg, #00777A, #00B8BB);
             color: white;
-            padding: 0.85rem 2rem;
+            padding: 0.8rem 1.8rem;
             border-radius: 24px;
             text-decoration: none;
             font-weight: 500;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             box-shadow: 0 0 18px rgba(0, 180, 180, 0.25);
             border: none;
             cursor: pointer;
             transition: transform 0.2s ease;
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
         }
         .btn:hover { transform: translateY(-2px); }
+        .btn::-moz-focus-inner {
+            border: 0;
+            padding: 0;
+        }
 
-        /* ========== SERVICES PAGE — CENTERED ========== */
+        /* ========== SERVICES PAGE — COMPACT, EXPANDABLE DETAILS ========== */
         .services-container {
             margin: 0 auto;
-            max-width: 900px;
-            max-width: 900px;
+            max-width: 1000px;
             padding: 0 1rem;
         }
 
-        .services-heading {
-            margin-bottom: 2.5rem;
+        .services-heading-box {
+            background: rgba(0, 40, 50, 0.6);
+            border: 1px solid rgba(0, 180, 187, 0.18);
+            border-radius: 14px;
+            padding: 1.2rem 1.5rem;
+            backdrop-filter: blur(12px);
+            margin-bottom: 1.5rem;
             text-align: center;
         }
 
-        .services-heading h2 {
-            font-size: 2.3rem;
-            margin-bottom: 0.6rem;
+        .services-heading-box h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.3rem;
         }
 
-        .services-heading p {
+        .services-heading-box p {
             opacity: 0.7;
-            font-size: 1.05rem;
+            font-size: 0.95rem;
         }
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.8rem;
+            margin-bottom: 1.5rem;
         }
 
         .service-card {
             background: rgba(0, 50, 65, 0.55);
-            border: 1px solid rgba(0, 180, 180, 0.18);
-            border-radius: 14px;
-            padding: 1.8rem;
+            border: 1px solid rgba(0, 180, 187, 0.18);
+            border-radius: 12px;
+            padding: 1.2rem 0.8rem;
             backdrop-filter: blur(12px);
             transition: all 0.3s ease;
+            cursor: pointer;
+            text-align: center;
         }
 
         .service-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(0, 180, 180, 0.4);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transform: translateY(-4px);
+            border-color: rgba(0, 180, 187, 0.4);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .service-card.active {
+            border-color: rgba(0, 180, 187, 0.6);
+            box-shadow: 0 0 16px rgba(0, 180, 187, 0.2);
+        }
+
+        .service-icon {
+            width: 36px;
+            height: 36px;
+            margin: 0 auto 0.6rem;
+            display: block;
+        }
+
+        .service-icon svg {
+            width: 100%;
+            height: 100%;
         }
 
         .service-card h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.8rem;
+            font-size: 0.88rem;
+            margin-bottom: 0.3rem;
+            font-weight: 600;
         }
 
         .service-card p {
-            font-size: 0.9rem;
-            line-height: 1.6;
-            opacity: 0.72;
+            font-size: 0.75rem;
+            line-height: 1.4;
+            opacity: 0.7;
         }
 
-        /* ========== ABOUT US — CENTERED ========== */
+        /* Service detail panel */
+        .service-detail {
+            background: rgba(0, 40, 50, 0.6);
+            border: 1px solid rgba(0, 180, 187, 0.18);
+            border-radius: 14px;
+            padding: 1.5rem 1.8rem;
+            backdrop-filter: blur(12px);
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .service-detail.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .service-detail h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.4rem;
+            color: #00B8BB;
+        }
+
+        .service-detail .service-tagline {
+            opacity: 0.7;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .service-detail ul {
+            margin-left: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .service-detail li {
+            margin-bottom: 0.35rem;
+            opacity: 0.85;
+            line-height: 1.5;
+            font-size: 0.92rem;
+        }
+
+        .service-detail .pricing-note {
+            margin-top: 0.8rem;
+            padding-top: 0.8rem;
+            border-top: 1px solid rgba(0, 180, 187, 0.15);
+            font-style: italic;
+            opacity: 0.7;
+            font-size: 0.88rem;
+        }
+
+        .service-detail .cta-row {
+            margin-top: 1rem;
+        }
+
+        .service-detail .btn {
+            padding: 0.7rem 1.5rem;
+            font-size: 0.85rem;
+        }
+
+        /* ========== ABOUT EZE PAGE ========== */
         .about-container {
             margin: 0 auto;
             max-width: 850px;
@@ -185,36 +289,36 @@
 
         .about-intro {
             background: rgba(0, 40, 50, 0.6);
-            border: 1px solid rgba(0, 180, 180, 0.18);
-            border-radius: 16px;
-            padding: 2rem;
+            border: 1px solid rgba(0, 180, 187, 0.18);
+            border-radius: 14px;
+            padding: 1.8rem;
             backdrop-filter: blur(12px);
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
         }
 
         .about-intro h2 {
-            font-size: 1.8rem;
-            margin-bottom: 1.2rem;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
         }
 
         .about-intro p {
-            font-size: 1rem;
+            font-size: 0.95rem;
             line-height: 1.7;
             opacity: 0.8;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.7rem;
         }
 
         .founder-photo-wrapper {
             text-align: center;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
         }
 
         .founder-photo {
-            width: 280px;
-            height: 360px;
-            border-radius: 16px;
+            width: 220px;
+            height: 285px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 0 30px rgba(0, 180, 180, 0.15);
+            box-shadow: 0 0 20px rgba(0, 180, 187, 0.12);
             display: inline-block;
             background: transparent;
             border: none;
@@ -227,53 +331,59 @@
             object-fit: cover;
             display: block;
             border: none;
+            outline: none;
         }
 
         .about-bio {
             background: rgba(0, 40, 50, 0.6);
-            border: 1px solid rgba(0, 180, 180, 0.18);
-            border-radius: 16px;
-            padding: 2rem;
+            border: 1px solid rgba(0, 180, 187, 0.18);
+            border-radius: 14px;
+            padding: 1.8rem;
             backdrop-filter: blur(12px);
         }
 
         .about-bio h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1.2rem;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
             color: #00B8BB;
         }
 
         .about-bio p {
-            font-size: 1rem;
+            font-size: 0.95rem;
             line-height: 1.7;
             opacity: 0.8;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.7rem;
         }
 
         .about-bio .tagline {
-            margin-top: 1.2rem;
+            margin-top: 1rem;
             color: #00B8BB;
             font-weight: 500;
-            font-size: 1.05rem;
-        }
-
-        /* ========== CONTACT PAGE — NARROW OVER DARK AREA ========== */
-        .contact-content {
-            margin: 0 0 0 8%;
-            max-width: 480px;
-            padding-top: 2rem;
-        }
-
-        .contact-content h2 {
-            font-size: 2.3rem;
-            margin-bottom: 1rem;
-        }
-
-        .contact-content p {
             font-size: 1rem;
-            line-height: 1.7;
-            opacity: 0.75;
+        }
+
+        /* ========== CONTACT PAGE — BOX BEHIND TEXT, NARROW ========== */
+        .contact-panel {
+            background: rgba(0, 40, 50, 0.6);
+            border: 1px solid rgba(0, 180, 187, 0.18);
+            border-radius: 14px;
+            padding: 2rem;
+            max-width: 460px;
+            margin: 3rem 0 0 6%;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 0 25px rgba(0, 180, 187, 0.08);
+        }
+
+        .contact-panel h2 {
+            font-size: 1.8rem;
             margin-bottom: 0.8rem;
+        }
+
+        .contact-panel p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            opacity: 0.78;
+            margin-bottom: 0.7rem;
         }
 
         /* ========== FOOTER ========== */
@@ -281,27 +391,50 @@
             position: relative;
             z-index: 1;
             text-align: center;
-            padding: 1.5rem;
+            padding: 1.5rem 1rem 1rem;
             margin-top: 2rem;
-            opacity: 0.5;
-            font-size: 0.85rem;
+            opacity: 0.55;
+            font-size: 0.82rem;
+            border-top: 1px solid rgba(0, 180, 187, 0.08);
+        }
+
+        .footer-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
 
         .footer-logo {
             height: 20px;
             vertical-align: middle;
-            margin-right: 8px;
             opacity: 0.8;
         }
 
-        /* ========== MOBILE ========== */
+        /* ========== MOBILE RESPONSIVE ========== */
         @media (max-width: 900px) {
-            header { justify-content: center; padding: 1.2rem 1.5rem; }
-            nav a { margin-left: 1.2rem; font-size: 0.85rem; }
-            .page-wrapper { padding: 6rem 1.5rem 3rem; }
-            .home-content, .contact-content { margin: 0; max-width: 100%; }
-            .home-content h2, .contact-content h2 { font-size: 1.8rem; }
-            .services-grid { grid-template-columns: 1fr; }
+            header { justify-content: center; padding: 1rem 1.5rem; }
+            nav a { margin-left: 1rem; font-size: 0.82rem; }
+            .page-wrapper { padding: 5.5rem 1.2rem 2.5rem; }
+
+            /* Home on mobile — subtle backdrop */
+            .home-content {
+                margin: 0 auto;
+                max-width: 100%;
+                background: rgba(0, 20, 24, 0.7);
+                backdrop-filter: blur(8px);
+                padding: 1.8rem;
+                border-radius: 14px;
+                border: 1px solid rgba(0, 180, 187, 0.15);
+            }
+            .home-content h2 { font-size: 1.8rem; }
+
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .service-card h3 { font-size: 0.85rem; }
+
+            .contact-panel { margin: 2rem auto 0; max-width: 100%; }
+
+            .founder-photo { width: 180px; height: 230px; }
         }
     </style>
 </head>
@@ -313,47 +446,179 @@
         <nav>
             <a class="tab-link active" data-page="home">Home</a>
             <a class="tab-link" data-page="services">Services</a>
-            <a class="tab-link" data-page="about">About Us</a>
+            <a class="tab-link" data-page="about">About Eze</a>
             <a class="tab-link" data-page="contact">Contact</a>
         </nav>
     </header>
 
     <div class="page-wrapper">
 
-        <!-- HOME -->
+        <!-- HOME — COMPACT, NO SCROLL -->
         <div id="home" class="tab-content active">
             <div class="home-content">
                 <h2>Your Digital Presence, Built Securely</h2>
                 <p>Eze Digital designs and builds professional websites, applications, and digital systems. Cybersecurity and compliance are built in from day one. We deliver the infrastructure your business needs, protected by the standards your clients deserve.</p>
-                <button class="btn" onclick="switchTab('contact')">Start the Conversation ✉️</button>
+                <button class="btn" onclick="switchTab('contact')">Start the Conversation</button>
             </div>
         </div>
 
-        <!-- SERVICES -->
+        <!-- SERVICES — COMPACT, NEON LINE ICONS, EXPANDABLE -->
         <div id="services" class="tab-content">
             <div class="services-container">
-                <div class="services-heading">
+                <div class="services-heading-box">
                     <h2>What We Do</h2>
                     <p>Professional digital solutions. Built securely. Delivered clearly.</p>
                 </div>
+
                 <div class="services-grid">
-                    <div class="service-card">
+                    <div class="service-card" onclick="showServiceDetail('web')">
+                        <span class="service-icon neon-glow">
+                            <svg viewBox="0 0 48 48" fill="none" stroke="#00B8BB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="6" y="10" width="36" height="24" rx="2"/>
+                                <path d="M6 18h36"/>
+                                <circle cx="24" cy="30" r="6"/>
+                                <path d="M24 24v12M18 30h12"/>
+                            </svg>
+                        </span>
                         <h3>Website & App Development</h3>
-                        <p>Professional websites and custom applications built to your exact needs. They are designed to grow with your business and protect your data.</p>
+                        <p>Digital platforms built to grow</p>
                     </div>
-                    <div class="service-card">
+                    <div class="service-card" onclick="showServiceDetail('compliance')">
+                        <span class="service-icon neon-glow">
+                            <svg viewBox="0 0 48 48" fill="none" stroke="#00B8BB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M24 6L8 12v12c0 10 7 18 16 20 9-2 16-10 16-20V12L24 6z"/>
+                                <path d="M18 24l4 4 8-8"/>
+                            </svg>
+                        </span>
                         <h3>GDPR & ICO Compliance</h3>
-                        <p>Complete United Kingdom compliant data protection frameworks, privacy policies, and documentation. You can trade with confidence.</p>
+                        <p>Frameworks for confident trading</p>
                     </div>
-                    <div class="service-card">
+                    <div class="service-card" onclick="showServiceDetail('security')">
+                        <span class="service-icon neon-glow">
+                            <svg viewBox="0 0 48 48" fill="none" stroke="#00B8BB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M24 4L10 10v10c0 11 8 20 14 22 6-2 14-11 14-22V10L24 4z"/>
+                                <path d="M18 24l4 4 8-10"/>
+                            </svg>
+                        </span>
                         <h3>Security & Training</h3>
-                        <p>Security assessments, staff guidance, and educational resources. The best protection comes from understanding what to protect.</p>
+                        <p>Protection through understanding</p>
+                    </div>
+                    <div class="service-card" onclick="showServiceDetail('design')">
+                        <span class="service-icon neon-glow">
+                            <svg viewBox="0 0 48 48" fill="none" stroke="#00B8BB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M36 36l-8-8"/>
+                                <circle cx="16" cy="16" r="3"/>
+                                <circle cx="28" cy="14" r="2"/>
+                                <circle cx="12" cy="28" r="2"/>
+                                <path d="M38 38L26 26 14 38 6 30 22 14l14 14-4 4z"/>
+                            </svg>
+                        </span>
+                        <h3>Graphic Design</h3>
+                        <p>Design that makes you stand out</p>
+                    </div>
+                    <div class="service-card" onclick="showServiceDetail('strategy')">
+                        <span class="service-icon neon-glow">
+                            <svg viewBox="0 0 48 48" fill="none" stroke="#00B8BB" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M8 38V10"/>
+                                <path d="M8 38h32"/>
+                                <path d="M14 32V22"/>
+                                <path d="M22 32V16"/>
+                                <path d="M30 32V26"/>
+                                <path d="M38 32V14"/>
+                                <path d="M14 22l8-6 8 10 8-8"/>
+                            </svg>
+                        </span>
+                        <h3>Business Strategy</h3>
+                        <p>Organisation, growth, direction</p>
                     </div>
                 </div>
+
+                <!-- Service detail panels -->
+                <div id="detail-web" class="service-detail">
+                    <h3>Website & App Development</h3>
+                    <p class="service-tagline">Professional digital platforms built securely from the ground up</p>
+                    <ul>
+                        <li>Bespoke website design and development tailored to your brand</li>
+                        <li>Custom applications built to your exact business requirements</li>
+                        <li>Mobile responsive design that works beautifully on every device</li>
+                        <li>Security and compliance considered at every stage of development</li>
+                        <li>Ongoing support and maintenance to keep your platform evolving</li>
+                    </ul>
+                    <p class="pricing-note">Every project is unique and priced individually following an initial consultation. We will always provide a clear, detailed quote before any work begins.</p>
+                    <div class="cta-row">
+                        <button class="btn" onclick="switchTab('contact')">Enquire about this service</button>
+                    </div>
+                </div>
+
+                <div id="detail-compliance" class="service-detail">
+                    <h3>GDPR & ICO Compliance</h3>
+                    <p class="service-tagline">Complete United Kingdom compliant data protection frameworks</p>
+                    <ul>
+                        <li>Privacy policies and data protection documentation</li>
+                        <li>ICO registration guidance and support</li>
+                        <li>Data processing records and breach procedures</li>
+                        <li>Staff awareness training and guidance materials</li>
+                        <li>Ongoing support to maintain compliance as regulations evolve</li>
+                    </ul>
+                    <p class="pricing-note">Compliance packages are tailored to the size and nature of your business. Contact us for a free initial assessment.</p>
+                    <div class="cta-row">
+                        <button class="btn" onclick="switchTab('contact')">Enquire about this service</button>
+                    </div>
+                </div>
+
+                <div id="detail-security" class="service-detail">
+                    <h3>Security & Training</h3>
+                    <p class="service-tagline">The best protection comes from understanding what to protect</p>
+                    <ul>
+                        <li>Security assessments and vulnerability reviews</li>
+                        <li>Staff cybersecurity training and awareness programmes</li>
+                        <li>Practical guidance for secure working practices</li>
+                        <li>Educational resources designed for non-technical teams</li>
+                        <li>Ongoing support to keep security front of mind</li>
+                    </ul>
+                    <p class="pricing-note">Security assessments and training programmes are priced based on your organisation size and requirements.</p>
+                    <div class="cta-row">
+                        <button class="btn" onclick="switchTab('contact')">Enquire about this service</button>
+                    </div>
+                </div>
+
+                <div id="detail-design" class="service-detail">
+                    <h3>Graphic Design</h3>
+                    <p class="service-tagline">Visual identity that makes your business memorable</p>
+                    <ul>
+                        <li>Logo design and complete brand identity creation</li>
+                        <li>Business cards, flyers, brochures, and print materials</li>
+                        <li>Social media graphics and digital marketing assets</li>
+                        <li>Website visuals and user interface design</li>
+                        <li>Consistent, professional design language across every touchpoint</li>
+                    </ul>
+                    <p class="pricing-note">From single design projects to complete brand identity packages. All work is quoted following a brief discussion about your vision.</p>
+                    <div class="cta-row">
+                        <button class="btn" onclick="switchTab('contact')">Enquire about this service</button>
+                    </div>
+                </div>
+
+                <div id="detail-strategy" class="service-detail">
+                    <h3>Business Strategy & Development</h3>
+                    <p class="service-tagline">Organisation, clarity, and growth built on real world experience</p>
+                    <ul>
+                        <li>Business organisation and process improvement</li>
+                        <li>Strategic planning and goal setting</li>
+                        <li>Business development and growth strategies</li>
+                        <li>Social media presence and digital marketing guidance</li>
+                        <li>Operational structure to support scaling</li>
+                        <li>Connecting you with the right specialists at the right time</li>
+                    </ul>
+                    <p class="pricing-note">Strategy work can be engaged as a one off project or as ongoing support. Bespoke to your business stage and ambitions.</p>
+                    <div class="cta-row">
+                        <button class="btn" onclick="switchTab('contact')">Enquire about this service</button>
+                    </div>
+                </div>
+
             </div>
         </div>
 
-        <!-- ABOUT US -->
+        <!-- ABOUT EZE — PHOTO CLEAN, BIO UPDATED -->
         <div id="about" class="tab-content">
             <div class="about-container">
                 <div class="about-intro">
@@ -361,6 +626,7 @@
                     <p>Eze Digital exists because every growing business deserves professional digital infrastructure. It should come without the complexity, jargon, or inflated price tags that usually apply.</p>
                     <p>We build websites, applications, and digital systems that work for you. Security should never be an afterthought. Every solution we deliver includes the compliance and protective standards your business needs. We bring together the right technical expertise, the right people, and the right approach. You get a solution that fits your business perfectly.</p>
                     <p>We do not just hand you something technical and walk away. We build relationships. We explain things clearly. We ensure you understand exactly what you have and how to use it.</p>
+                    <p>Our capabilities extend beyond technology. From graphic design that gets you noticed, to business strategy that keeps you organised and growing, we support the whole picture of your business.</p>
                 </div>
 
                 <div class="founder-photo-wrapper">
@@ -371,20 +637,21 @@
 
                 <div class="about-bio">
                     <h3>Meet the Founder — Nicola King</h3>
-                    <p>I built Eze Digital on one simple belief. Great business is built on trust, clarity, and the right people working together. I do not claim to be a technical expert in every field. My expertise is far more valuable.</p>
-                    <p>Business Strategy and Growth. I understand what businesses actually need to succeed. I see the bigger picture. I spot opportunities. I connect the dots between what you want to achieve and what will get you there.</p>
-                    <p>Sales and Relationships. Business is about people. I build genuine connections. I listen. I communicate clearly. I know how to translate technical possibilities into real business value. You will always understand what you are getting and why it matters.</p>
-                    <p>Education and Empowerment. I hold formal qualifications in education and years of experience designing and delivering professional training. I do not just deliver a product. I ensure you understand it too. Knowledge is the most powerful tool any business can have.</p>
-                    <p>Bridging the Gap. I bridge the gap between technology and people because I understand what it is like to be a client trying to navigate complex systems. That perspective shapes every solution we create.</p>
-                    <p>Building the Right Team. I know exactly what I do not know. That is my greatest strength. I find, select, and work with the very best technical people to deliver the infrastructure and security your business needs. I vet them. I manage them. I ensure they deliver exactly what you need. You get the expertise without the headache.</p>
+                    <p>I built Eze Digital on one simple belief. Great business is built on trust, clarity, and the right people working together. I do not claim to be a technical expert in every field. But I definitely know someone who is. That is what great business is about. Teamwork. Playing to our strengths. Bringing together the right people to deliver exactly what you need.</p>
+                    <p><strong>Business Strategy and Growth.</strong> I understand what businesses actually need to succeed. I see the bigger picture. I spot opportunities. I connect the dots between what you want to achieve and what will get you there.</p>
+                    <p><strong>Sales and Relationships.</strong> Business is about people. I build genuine connections. I listen. I communicate clearly. I know how to translate technical possibilities into real business value. You will always understand what you are getting and why it matters.</p>
+                    <p><strong>Education and Empowerment.</strong> I hold formal qualifications in education and years of experience designing and delivering professional training. I do not just deliver a product. I ensure you understand it too. Knowledge is the most powerful tool any business can have.</p>
+                    <p><strong>Graphic Design and Creative Direction.</strong> Great design is good business. Clients consistently compliment the quality of our visual work, from flyers and business cards to complete brand identities. Good design helps you stand out, be remembered, and be taken seriously.</p>
+                    <p><strong>Business Organisation and Development.</strong> In every role I have ever held, I have found myself organising, structuring, and improving how things work. It is second nature. I bring that same instinct to every client engagement, helping you build systems and structures that support sustainable growth.</p>
+                    <p><strong>Bridging the Gap.</strong> I bridge the gap between technology and people because I understand what it is like to be a client trying to navigate complex systems. That perspective shapes every solution we create.</p>
                     <p class="tagline">Your vision. Our expertise. Built together.</p>
                 </div>
             </div>
         </div>
 
-        <!-- CONTACT -->
+        <!-- CONTACT — BOX BEHIND TEXT, NARROW OVER DARK AREA -->
         <div id="contact" class="tab-content">
-            <div class="contact-content">
+            <div class="contact-panel">
                 <h2>Get in Touch</h2>
                 <p>Thank you for your interest. We are currently updating our contact facilities. Please check back shortly.</p>
                 <p>In the meantime, we look forward to connecting with you.</p>
@@ -393,10 +660,12 @@
 
     </div>
 
-    <!-- FOOTER -->
+    <!-- FOOTER — LOGO + BETTER TAGLINE -->
     <footer>
-        <img src="eze-logo.png" alt="Eze Digital" class="footer-logo">
-        Powered and Designed by Eze Digital Ltd
+        <div class="footer-content">
+            <img src="eze-logo.png" alt="Eze Digital" class="footer-logo">
+            <span>Designed &amp; Built by Eze Digital Ltd</span>
+        </div>
     </footer>
 
     <script>
@@ -414,12 +683,26 @@
             window.scrollTo(0, 0);
         }
 
-        document.querySelectorAll('.tab-link').forEach(function(tab) {
-            tab.addEventListener('click', function(e) {
+        function showServiceDetail(serviceName) {
+            var panels = document.querySelectorAll('.service-detail');
+            for (var i = 0; i < panels.length; i++) {
+                panels[i].classList.remove('active');
+            }
+            var cards = document.querySelectorAll('.service-card');
+            for (var i = 0; i < cards.length; i++) {
+                cards[i].classList.remove('active');
+            }
+            document.getElementById('detail-' + serviceName).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        var tabLinks = document.querySelectorAll('.tab-link');
+        for (var i = 0; i < tabLinks.length; i++) {
+            tabLinks[i].addEventListener('click', function(e) {
                 e.preventDefault();
                 switchTab(this.getAttribute('data-page'));
             });
-        });
+        }
     </script>
 
 </body>
