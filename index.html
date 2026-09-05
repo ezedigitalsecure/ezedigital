@@ -177,23 +177,24 @@
     position: relative;
 }
 
-.services-heading-box::after,
-.service-block::after,
-.about-block::after,
-.contact-panel::after {
+.services-heading-box::before,
+.service-block::before,
+.about-block::before,
+.contact-panel::before {
     content: "";
     position: absolute;
     top: 10px;
-    right: 10px;
+    left: 10px;
     width: 32px;
     height: 32px;
     pointer-events: none;
-    background-image: url('message_1412283707831313_user_upload_img_1');
+    background-image: url('/images/message_1412283707831313_user_upload_img_1.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     filter: drop-shadow(0 0 6px #00E6E9);
     opacity: 0.9;
+    z-index: 10;
 }
 
         /* ===== TEXT COLOURS — LOCKED FOREVER ===== */
