@@ -13,23 +13,24 @@
         }
 
         html {
-            scroll-behavior: smooth;
+            height: 100%;
         }
 
         body {
             margin: 0;
             padding: 0;
             min-height: 100vh;
-            /* Background stays perfectly fixed — no movement at all */
+            /* BACKGROUND — PERMANENTLY FIXED */
             background:
                 url('mockup-bg.png') no-repeat center center fixed,
                 linear-gradient(180deg, #001418 0%, #00222a 45%, #001115 100%);
             background-size: cover, 100% 100%;
             background-attachment: fixed;
+            background-position: center center;
             color: #fff;
         }
 
-        /* === HEADER — Hamburger only top-right === */
+        /* === HEADER — Hamburger top-right === */
         header {
             position: fixed;
             top: 0;
@@ -41,7 +42,6 @@
             background: transparent;
         }
 
-        /* === HAMBURGER with dark circle === */
         .menu-wrapper {
             position: relative;
         }
@@ -137,37 +137,35 @@
             border-bottom: none;
         }
 
-        /* === HOME — PERFECTLY CENTERED, STATIC, NO SCROLL === */
-        .home-wrapper {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 2rem;
-            position: relative;
-            z-index: 10;
+        /* ==================================================
+           HOME BOX — LOCKED ABSOLUTELY CENTER. CANNOT MOVE.
+           ================================================== */
+        .home-box {
+            position: fixed !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
+            margin: 0 !important;
+            padding: 2.8rem !important;
+            max-width: 640px !important;
+            width: 90% !important;
+            text-align: center !important;
+            background: rgba(0, 8, 10, 0.78) !important;
+            border-radius: 16px !important;
+            border: 1px solid rgba(0, 184, 187, 0.18) !important;
+            box-shadow: 0 0 35px rgba(0, 184, 187, 0.08) !important;
+            backdrop-filter: blur(6px) !important;
+            z-index: 10 !important;
         }
 
-        .home-content {
-            max-width: 640px;
-            width: 100%;
-            text-align: center;
-            background: rgba(0, 8, 10, 0.78);
-            padding: 2.8rem;
-            border-radius: 16px;
-            border: 1px solid rgba(0, 184, 187, 0.18);
-            box-shadow: 0 0 35px rgba(0, 184, 187, 0.08);
-            backdrop-filter: blur(6px);
-        }
-
-        .home-content h2 {
+        .home-box h2 {
             font-size: 2.6rem;
             color: #ffffff;
             margin-bottom: 1.5rem;
             line-height: 1.25;
         }
 
-        .home-content p {
+        .home-box p {
             font-size: 1.05rem;
             line-height: 1.7;
             color: #d4ecec;
@@ -194,11 +192,11 @@
             box-shadow: 0 0 25px rgba(0, 184, 187, 0.5);
         }
 
-        /* === OTHER PAGES — Scrollable content area === */
+        /* === OTHER PAGES — SCROLLABLE CONTENT === */
         .page-wrapper {
             padding: 6rem 2rem 3rem;
             position: relative;
-            z-index: 10;
+            z-index: 50;
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -445,12 +443,11 @@
                 padding: 1rem 1.2rem;
             }
 
-            .home-content {
-                padding: 1.8rem;
-                margin: 0.5rem;
+            .home-box {
+                padding: 1.8rem !important;
             }
 
-            .home-content h2 {
+            .home-box h2 {
                 font-size: 1.9rem;
             }
 
@@ -489,14 +486,12 @@
         </div>
     </header>
 
-    <!-- HOME — STATIC, CENTERED, BACKGROUND LOGO ALWAYS VISIBLE -->
+    <!-- HOME — BOX BOLTED TO CENTER. WILL NOT MOVE. -->
     <div id="home" class="tab-content active">
-        <div class="home-wrapper">
-            <div class="home-content">
-                <h2>Your Digital Presence,<br>Built Securely</h2>
-                <p>Eze Digital designs and builds professional websites, bespoke booking systems, and digital infrastructure. Cybersecurity and ICO/GDPR compliance are built in from day one. We deliver the foundation your business needs. Protected, clear, and built around you.</p>
-                <button class="btn" onclick="switchTab('contact')">Let's Talk</button>
-            </div>
+        <div class="home-box">
+            <h2>Your Digital Presence,<br>Built Securely</h2>
+            <p>Eze Digital designs and builds professional websites, bespoke booking systems, and digital infrastructure. Cybersecurity and ICO/GDPR compliance are built in from day one. We deliver the foundation your business needs. Protected, clear, and built around you.</p>
+            <button class="btn" onclick="switchTab('contact')">Let's Talk</button>
         </div>
     </div>
 
