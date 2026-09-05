@@ -24,7 +24,6 @@
             color: #fff;
         }
 
-        /* === FULL STATIC CANVAS — NO BOUNCE, NO SCROLL === */
         .static-canvas {
             position: absolute;
             top: 0;
@@ -33,7 +32,6 @@
             height: 100vh;
             z-index: 1;
             overflow: hidden;
-
             background:
                 url('mockup-bg.png') no-repeat center center,
                 linear-gradient(180deg, #001418 0%, #00222a 45%, #001115 100%);
@@ -41,7 +39,6 @@
             background-attachment: scroll;
         }
 
-        /* === HEADER === */
         header {
             position: absolute;
             top: 0;
@@ -104,7 +101,6 @@
             transform: rotate(-45deg) translate(6px, -6px);
         }
 
-        /* === DROPDOWN MENU === */
         .dropdown-menu {
             position: absolute;
             top: 62px;
@@ -150,23 +146,22 @@
             border-bottom: none;
         }
 
-        /* === HOME BOX — LOCKED CENTER, DO NOT ALTER === */
         .home-box {
-            position: absolute !important;
-            top: 50% !important;
-            left: 50% !important;
-            transform: translate(-50%, -50%) !important;
-            margin: 0 !important;
-            padding: 2.8rem !important;
-            max-width: 640px !important;
-            width: 90% !important;
-            text-align: center !important;
-            background: rgba(0, 8, 10, 0.78) !important;
-            border-radius: 16px !important;
-            border: 1px solid rgba(0, 184, 187, 0.18) !important;
-            box-shadow: 0 0 35px rgba(0, 184, 187, 0.08) !important;
-            backdrop-filter: blur(6px) !important;
-            z-index: 30 !important;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            margin: 0;
+            padding: 2.8rem;
+            max-width: 640px;
+            width: 90%;
+            text-align: center;
+            background: rgba(0, 8, 10, 0.78);
+            border-radius: 16px;
+            border: 1px solid rgba(0, 184, 187, 0.18);
+            box-shadow: 0 0 35px rgba(0, 184, 187, 0.08);
+            backdrop-filter: blur(6px);
+            z-index: 30;
         }
 
         .home-box h2 {
@@ -203,7 +198,6 @@
             box-shadow: 0 0 25px rgba(0, 184, 187, 0.5);
         }
 
-        /* === STATIC TAGLINE AT BOTTOM — NO BORDER === */
         .home-tagline {
             position: absolute;
             bottom: 0;
@@ -211,20 +205,17 @@
             width: 100%;
             z-index: 30;
             color: #00B8BB;
-            font-weight: 500;
-            font-size: 1.1rem;
+            font-size: 0.85rem;
             text-align: center;
+            padding: 0 0 1.5rem 0;
+            margin: 0;
+            border: none;
+            border-top: none;
+            box-shadow: none;
+            background: transparent;
             pointer-events: none;
-
-            border: none !important;
-            border-top: none !important;
-            box-shadow: none !important;
-            margin: 0 !important;
-            padding: 0 0 1.5rem 0 !important;
-            background: transparent !important;
         }
 
-        /* === SCROLLABLE PAGES WRAPPER === */
         .scrollable-pages {
             position: absolute;
             top: 0;
@@ -413,10 +404,9 @@
         .about-block .tagline-final {
             margin-top: 1rem;
             padding-top: 1rem;
-            border-top: 1px solid rgba(0, 184, 187, 0.2);
+            border-top: none;
             color: #00B8BB;
-            font-weight: 500;
-            font-size: 1.1rem;
+            font-size: 0.85rem;
             text-align: center;
         }
 
@@ -490,14 +480,13 @@
             z-index: 60;
         }
 
-        /* === MOBILE === */
         @media (max-width: 768px) {
             header {
                 padding: 1rem 1.2rem;
             }
 
             .home-box {
-                padding: 1.8rem !important;
+                padding: 1.8rem;
             }
 
             .home-box h2 {
@@ -506,8 +495,8 @@
 
             .home-tagline {
                 bottom: 0;
-                padding-bottom: 1.2rem !important;
-                font-size: 1rem;
+                padding-bottom: 1.2rem;
+                font-size: 0.75rem;
             }
 
             .page-wrapper {
@@ -525,7 +514,6 @@
 </head>
 <body>
 
-    <!-- FULL STATIC CANVAS — NO BOUNCE -->
     <div class="static-canvas"></div>
 
     <header>
@@ -548,7 +536,6 @@
         </div>
     </header>
 
-    <!-- HOME PAGE — UNCHANGED EXCEPT TAGLINE -->
     <div id="home" class="tab-content active">
         <div class="home-box">
             <h2>Your Digital Presence,<br>Built Securely</h2>
@@ -556,14 +543,11 @@
             <button class="btn" onclick="switchTab('contact')">Let's Talk</button>
         </div>
 
-        <!-- TAGLINE MOVED HERE — STATIC AT BOTTOM, NO BORDER -->
-        <div class="home-tagline">Your vision. Our expertise. Built together.</div>
+        <div class="home-tagline">Designed and Built by Eze Digital Ltd © All Rights Reserved 2026</div>
     </div>
 
-    <!-- SCROLLABLE PAGES WRAPPER -->
     <div class="scrollable-pages" id="scrollablePages">
 
-        <!-- SERVICES PAGE -->
         <div id="services" class="tab-content">
             <div class="page-wrapper">
                 <div class="services-container">
@@ -604,7 +588,7 @@
                         </div>
                         <div class="service-content">
                             <p>Never risk a fine or uncertainty again. We guide you step by step through ICO registration and build your full GDPR compliance framework including privacy policies, consent records, data processing documentation, and staff guidance.</p>
-                            <p>Built specifically forGrowing businesses. Plain English. No legal jargon. Complete peace of mind.</p>
+                            <p>Built specifically for growing businesses. Plain English. No legal jargon. Complete peace of mind.</p>
                         </div>
                     </div>
 
@@ -647,7 +631,6 @@
             </div>
         </div>
 
-        <!-- ABOUT PAGE -->
         <div id="about" class="tab-content">
             <div class="page-wrapper">
                 <div class="about-container">
@@ -660,5 +643,124 @@
 
                     <div class="founder-photo-wrapper">
                         <div class="founder-photo-container">
-                            <img src="profile.png<[SILENT_never_used_51bce0c785ca2f68081bfa7d91973934]>
-[truncated by convert_rollouts_to_sft: original content length=17039 chars for checker-safe SFT export]
+                            <img src="profile.png" alt="Nicki — Founder, Eze Digital" onerror="this.style.display='none'">
+                        </div>
+                    </div>
+
+                    <div class="about-block">
+                        <h2>My Story</h2>
+                        <p>My vision for Eze Digital is built on one simple belief. Great business is built on trust, clarity, and the right people working together. I do not claim to be a technical expert in every field but I definitely know how to find the right people who are. That is what great business is about. Teamwork. Playing to our strengths. Bringing together the right expertise to deliver exactly what you need.</p>
+                    </div>
+
+                    <div class="about-block">
+                        <h2>What Drives Me</h2>
+                        <p>I want Eze Digital to be different. I want to build relationships not just deliver projects. My intention is to listen first, understand your goals, and then bring together the right expertise to make them real. Technology should serve you not confuse you. I bridge that gap so you can focus on what you do best.</p>
+                    </div>
+
+                    <div class="about-block">
+                        <h2>Where I Add Value</h2>
+                        <h3>Understanding Your Business</h3>
+                        <p>I speak your language. I know what it feels like to build a business. I understand the pain points including platform fees, compliance worry, and that feeling that you need a whole team just to stay visible. I do not just build websites. I build solutions that actually save you money and give you back control.</p>
+                        <h3>Education and Empowerment</h3>
+                        <p>With a background in teaching and training, I do not just hand you a finished product. I help you understand it so you feel confident and in control of your own digital presence.</p>
+                        <h3>A Full Team Behind You</h3>
+                        <p>You should not need to hire a web developer, a booking system expert, a compliance consultant, and a marketing agency separately. We become that team. One place for your website, your bookings, your compliance, your brand, and your growth.</p>
+                    </div>
+
+                    <div class="about-block">
+                        <h2>Our Promise</h2>
+                        <p class="tagline-final">Designed and Built by Eze Digital Ltd © All Rights Reserved 2026</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="contact" class="tab-content">
+            <div class="page-wrapper">
+                <div class="contact-container">
+                    <div class="contact-panel">
+                        <h2>Get In Touch</h2>
+                        <p class="intro">Tell me about your project. Let's build something great.</p>
+                        <form action="https://formspree.io/f/mvkoqvnp" method="POST">
+                            <div class="form-group">
+                                <label for="name">Your Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Your Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Your Message</label>
+                                <textarea id="message" name="message" required placeholder="Tell me about your business and what you need."></textarea>
+                            </div>
+                            <button type="submit" class="btn">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            Designed and Built by Eze Digital Ltd © All Rights Reserved 2026
+        </footer>
+    </div>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+
+        function switchTab(pageId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.dropdown-link').forEach(link => link.classList.remove('active'));
+
+            const scrollablePages = document.getElementById('scrollablePages');
+
+            if (pageId === 'home') {
+                scrollablePages.classList.remove('active');
+                document.getElementById('home').classList.add('active');
+            } else {
+                document.getElementById('home').classList.remove('active');
+                scrollablePages.classList.add('active');
+                document.getElementById(pageId).classList.add('active');
+            }
+
+            document.querySelector(`.dropdown-link[data-page="${pageId}"]`).classList.add('active');
+            dropdownMenu.classList.remove('open');
+            hamburger.classList.remove('open');
+            window.scrollTo(0, 0);
+        }
+
+        hamburger.addEventListener('click', function(e) {
+            e.stopPropagation();
+            this.classList.toggle('open');
+            dropdownMenu.classList.toggle('open');
+        });
+
+        document.querySelectorAll('.dropdown-link[data-page]').forEach(link => {
+            link.addEventListener('click', function() {
+                switchTab(this.getAttribute('data-page'));
+            });
+        });
+
+        document.getElementById('portalLink').addEventListener('click', function() {
+            alert('Client Portal coming soon. Watch this space.');
+            dropdownMenu.classList.remove('open');
+            hamburger.classList.remove('open');
+        });
+
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.menu-wrapper')) {
+                dropdownMenu.classList.remove('open');
+                hamburger.classList.remove('open');
+            }
+        });
+
+        document.querySelectorAll('.service-title').forEach(title => {
+            title.addEventListener('click', function() {
+                this.parentElement.classList.toggle('expanded');
+            });
+        });
+    </script>
+</body>
+</html>
