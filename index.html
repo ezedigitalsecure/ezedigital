@@ -28,9 +28,9 @@
             color: #fff;
         }
 
-        /* === HEADER — Slim, Logo-Friendly === */
+        /* === HEADER — NO BLACK STRIP, Floating Logo + Menu === */
         header {
-            padding: 0.6rem 2rem;
+            padding: 1.2rem 2.5rem;
             position: fixed;
             top: 0;
             left: 0;
@@ -38,25 +38,56 @@
             z-index: 100;
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            background: rgba(0, 12, 14, 0.85);
-            border-bottom: 1px solid rgba(0, 184, 187, 0.2);
-            backdrop-filter: blur(8px);
-            height: 64px;
+            align-items: flex-start;
+            background: transparent; /* ✅ No top bar */
         }
 
-        /* === NEON HAMBURGER MENU — Top Left === */
+        /* Logo area — sits naturally top-left */
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .logo-area img {
+            height: 48px;
+            width: auto;
+        }
+
+        /* === HAMBURGER — Top Right, Dark Circle Background === */
+        .menu-wrapper {
+            position: relative;
+        }
+
+        .hamburger-circle {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: rgba(0, 12, 14, 0.75);
+            border: 1px solid rgba(0, 184, 187, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 12px rgba(0, 184, 187, 0.1);
+        }
+
+        .hamburger-circle:hover {
+            background: rgba(0, 24, 28, 0.9);
+            box-shadow: 0 0 20px rgba(0, 184, 187, 0.3);
+        }
+
         .hamburger {
             display: flex;
             flex-direction: column;
             gap: 5px;
             cursor: pointer;
-            padding: 0.5rem;
-            z-index: 110;
+            padding: 0.3rem;
         }
 
         .hamburger span {
-            width: 28px;
+            width: 26px;
             height: 3px;
             background: linear-gradient(90deg, #00B8BB, #00E6E9);
             border-radius: 2px;
@@ -64,6 +95,7 @@
             transition: all 0.3s ease;
         }
 
+        /* Hamburger → X animation */
         .hamburger.open span:nth-child(1) {
             transform: rotate(45deg) translate(6px, 6px);
         }
@@ -77,11 +109,11 @@
         /* === DROPDOWN MENU === */
         .dropdown-menu {
             position: absolute;
-            top: 64px;
-            left: 0;
-            background: rgba(0, 24, 28, 0.98);
+            top: 62px;
+            right: 0;
+            background: rgba(0, 24, 28, 0.96);
             border: 1px solid rgba(0, 184, 187, 0.35);
-            border-radius: 0 0 12px 0;
+            border-radius: 0 0 12px 12px;
             box-shadow: 0 0 25px rgba(0, 184, 187, 0.25);
             min-width: 220px;
             display: none;
@@ -120,25 +152,26 @@
             border-bottom: none;
         }
 
-        /* === PAGE CONTENT WRAPPER === */
+        /* === PAGE CONTENT === */
         .page-wrapper {
-            padding: 8rem 2rem 3rem;
+            padding: 10rem 2rem 3rem;
             position: relative;
             z-index: 10;
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        /* === HOME — Centered & Balanced Text === */
+        /* === HOME — DARKER BUT SEE-THROUGH BOX === */
         .home-content {
-            max-width: 620px;
-            margin: 2rem auto 0;
+            max-width: 640px;
+            margin: 0 auto;
             text-align: center;
-            background: rgba(0, 20, 24, 0.6);
-            padding: 2.5rem;
+            background: rgba(0, 8, 10, 0.78); /* ✅ Darker but still transparent */
+            padding: 2.8rem;
             border-radius: 16px;
-            border: 1px solid rgba(0, 184, 187, 0.2);
-            box-shadow: 0 0 30px rgba(0, 184, 187, 0.1);
+            border: 1px solid rgba(0, 184, 187, 0.18);
+            box-shadow: 0 0 35px rgba(0, 184, 187, 0.08);
+            backdrop-filter: blur(6px);
         }
 
         .home-content h2 {
@@ -151,7 +184,7 @@
         .home-content p {
             font-size: 1.05rem;
             line-height: 1.7;
-            color: #e6f7f8;
+            color: #d4ecec;
             margin-bottom: 2rem;
         }
 
@@ -196,7 +229,7 @@
         }
 
         .services-heading-box {
-            background: rgba(0, 24, 28, 0.95);
+            background: rgba(0, 12, 14, 0.85);
             border: 1px solid rgba(0, 184, 187, 0.25);
             border-radius: 14px;
             padding: 1.8rem;
@@ -216,7 +249,7 @@
         }
 
         .service-block {
-            background: rgba(0, 24, 28, 0.95);
+            background: rgba(0, 12, 14, 0.85);
             border: 1px solid rgba(0, 184, 187, 0.25);
             border-radius: 14px;
             padding: 0;
@@ -288,7 +321,7 @@
         }
 
         .about-block {
-            background: rgba(0, 24, 28, 0.95);
+            background: rgba(0, 12, 14, 0.85);
             border: 1px solid rgba(0, 184, 187, 0.25);
             border-radius: 14px;
             padding: 1.8rem;
@@ -321,7 +354,7 @@
 
         .founder-photo-container {
             display: inline-block;
-            background: rgba(0, 20, 24, 0.95);
+            background: rgba(0, 12, 14, 0.85);
             border: 1px solid rgba(0, 184, 187, 0.25);
             padding: 10px;
             border-radius: 12px;
@@ -353,7 +386,7 @@
         }
 
         .contact-panel {
-            background: rgba(0, 24, 28, 0.95);
+            background: rgba(0, 12, 14, 0.85);
             border: 1px solid rgba(0, 184, 187, 0.25);
             border-radius: 14px;
             padding: 2.2rem;
@@ -387,7 +420,7 @@
         .form-group textarea {
             width: 100%;
             padding: 0.85rem 1rem;
-            background: rgba(0, 36, 42, 0.9);
+            background: rgba(0, 24, 28, 0.9);
             border: 1px solid rgba(0, 184, 187, 0.3);
             border-radius: 8px;
             color: #fff;
@@ -412,30 +445,30 @@
             border-top: 1px solid rgba(0, 184, 187, 0.1);
         }
 
-        /* === MOBILE RESPONSIVE === */
+        /* === MOBILE === */
         @media (max-width: 768px) {
             header {
-                padding: 0.5rem 1.2rem;
-                height: 56px;
-            }
-
-            .dropdown-menu {
-                top: 56px;
-                min-width: 100%;
-                border-radius: 0 0 12px 12px;
+                padding: 1rem 1.2rem;
             }
 
             .page-wrapper {
-                padding: 6rem 1.2rem 3rem;
+                padding: 7rem 1.2rem 3rem;
             }
 
             .home-content {
                 padding: 1.8rem;
-                margin: 1rem;
+                margin: 0.5rem;
             }
 
             .home-content h2 {
                 font-size: 1.9rem;
+            }
+
+            .dropdown-menu {
+                top: 62px;
+                right: 0.5rem;
+                min-width: 100%;
+                border-radius: 0 0 12px 12px;
             }
         }
     </style>
@@ -443,24 +476,30 @@
 <body>
 
     <header>
-        <!-- NEON HAMBURGER MENU -->
-        <div class="hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
+        <!-- LOGO — Top Left -->
+        <div class="logo-area">
+            <img src="EDLOGO.png" alt="Eze Digital Logo">
         </div>
 
-        <!-- DROPDOWN MENU -->
-        <nav class="dropdown-menu" id="dropdownMenu">
-            <a class="dropdown-link active" data-page="home">Home</a>
-            <a class="dropdown-link" data-page="services">Services</a>
-            <a class="dropdown-link" data-page="about">About Eze</a>
-            <a class="dropdown-link" data-page="contact">Contact</a>
-            <a class="dropdown-link" id="portalLink">Client Portal</a>
-        </nav>
+        <!-- HAMBURGER — Top Right with Dark Circle Background -->
+        <div class="menu-wrapper">
+            <div class="hamburger-circle" id="hamburgerCircle">
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
 
-        <!-- EMPTY RIGHT SIDE — keeps hamburger left and clean -->
-        <div style="width:40px;"></div>
+            <!-- DROPDOWN — All Navigation Inside -->
+            <nav class="dropdown-menu" id="dropdownMenu">
+                <a class="dropdown-link active" data-page="home">Home</a>
+                <a class="dropdown-link" data-page="services">Services</a>
+                <a class="dropdown-link" data-page="about">About Eze</a>
+                <a class="dropdown-link" data-page="contact">Contact</a>
+                <a class="dropdown-link" id="portalLink">Client Portal</a>
+            </nav>
+        </div>
     </header>
 
     <div class="page-wrapper">
@@ -642,10 +681,14 @@
             window.scrollTo(0, 0);
         }
 
-        // === HAMBURGER MENU TOGGLE ===
-        document.getElementById('hamburger').addEventListener('click', function() {
+        // === HAMBURGER TOGGLE ===
+        const hamburger = document.getElementById('hamburger');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+
+        hamburger.addEventListener('click', function(e) {
+            e.stopPropagation();
             this.classList.toggle('open');
-            document.getElementById('dropdownMenu').classList.toggle('open');
+            dropdownMenu.classList.toggle('open');
         });
 
         // === NAV LINKS ===
@@ -658,8 +701,16 @@
         // === CLIENT PORTAL ===
         document.getElementById('portalLink').addEventListener('click', function() {
             alert('Client Portal coming soon. Watch this space.');
-            document.getElementById('dropdownMenu').classList.remove('open');
-            document.getElementById('hamburger').classList.remove('open');
+            dropdownMenu.classList.remove('open');
+            hamburger.classList.remove('open');
+        });
+
+        // === CLICK OUTSIDE TO CLOSE ===
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.menu-wrapper')) {
+                dropdownMenu.classList.remove('open');
+                hamburger.classList.remove('open');
+            }
         });
 
         // === SERVICE ACCORDIONS ===
