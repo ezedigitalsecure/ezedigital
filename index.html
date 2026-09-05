@@ -12,27 +12,38 @@
             font-family: 'Segoe UI', sans-serif;
         }
 
-        html {
+        html,
+        body {
             height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
         }
 
         body {
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-
-            /*
-              IMPORTANT: We removed the fixed background image from here.
-              The static graphic is already in the page content, so the body
-              background only provides the base colour layer.
-            */
-            background: linear-gradient(180deg, #001418 0%, #00222a 45%, #001115 100%);
             color: #fff;
+        }
+
+        /* === FULL STATIC CANVAS — NO BOUNCE, NO SCROLL === */
+        .static-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+            overflow: hidden;
+
+            background:
+                url('mockup-bg.png') no-repeat center center,
+                linear-gradient(180deg, #001418 0%, #00222a 45%, #001115 100%);
+            background-size: cover;
+            background-attachment: scroll;
         }
 
         /* === HEADER === */
         header {
-            position: fixed;
+            position: absolute;
             top: 0;
             right: 0;
             padding: 1.5rem 2.5rem;
@@ -139,28 +150,9 @@
             border-bottom: none;
         }
 
-        /* === STATIC BACKGROUND GRAPHIC === */
-        .static-bg-graphic {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            z-index: 1;
-            pointer-events: none;
-
-            /*
-              If your static graphic already contains the logo and background,
-              keep background-size: cover. If you only want it as a texture
-              behind the logo, you can change this to contain.
-            */
-            background: url('mockup-bg.png') no-repeat center center;
-            background-size: cover;
-        }
-
-        /* === HOME BOX — LOCKED CENTER, NO MOVEMENT === */
+        /* === HOME BOX — LOCKED CENTER, DO NOT ALTER === */
         .home-box {
-            position: fixed !important;
+            position: absolute !important;
             top: 50% !important;
             left: 50% !important;
             transform: translate(-50%, -50%) !important;
@@ -174,7 +166,7 @@
             border: 1px solid rgba(0, 184, 187, 0.18) !important;
             box-shadow: 0 0 35px rgba(0, 184, 187, 0.08) !important;
             backdrop-filter: blur(6px) !important;
-            z-index: 10 !important;
+            z-index: 30 !important;
         }
 
         .home-box h2 {
@@ -211,24 +203,51 @@
             box-shadow: 0 0 25px rgba(0, 184, 187, 0.5);
         }
 
-        /* === TAGLINE — BOTTOM RIGHT, FIXED === */
-        .tagline-final {
-            position: fixed;
-            bottom: 1.5rem;
-            right: 2.5rem;
-            z-index: 10;
+        /* === STATIC TAGLINE AT BOTTOM — NO BORDER === */
+        .home-tagline {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 30;
             color: #00B8BB;
             font-weight: 500;
             font-size: 1.1rem;
-            text-align: right;
+            text-align: center;
             pointer-events: none;
+
+            border: none !important;
+            border-top: none !important;
+            box-shadow: none !important;
+            margin: 0 !important;
+            padding: 0 0 1.5rem 0 !important;
+            background: transparent !important;
         }
 
-        /* === OTHER PAGES === */
+        /* === SCROLLABLE PAGES WRAPPER === */
+        .scrollable-pages {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 50;
+            overflow-y: auto;
+            overflow-x: hidden;
+            background: linear-gradient(180deg, #001418 0%, #00222a 45%, #001115 100%);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .scrollable-pages.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
         .page-wrapper {
             padding: 6rem 2rem 3rem;
             position: relative;
-            z-index: 50;
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -392,14 +411,13 @@
         }
 
         .about-block .tagline-final {
-            position: static;
-            bottom: auto;
-            right: auto;
             margin-top: 1rem;
             padding-top: 1rem;
             border-top: 1px solid rgba(0, 184, 187, 0.2);
+            color: #00B8BB;
+            font-weight: 500;
+            font-size: 1.1rem;
             text-align: center;
-            pointer-events: auto;
         }
 
         .contact-container {
@@ -486,11 +504,10 @@
                 font-size: 1.9rem;
             }
 
-            .tagline-final {
-                bottom: 1rem;
-                right: 1.2rem;
-                left: 1.2rem;
-                text-align: center;
+            .home-tagline {
+                bottom: 0;
+                padding-bottom: 1.2rem !important;
+                font-size: 1rem;
             }
 
             .page-wrapper {
@@ -508,8 +525,8 @@
 </head>
 <body>
 
-    <!-- STATIC BACKGROUND GRAPHIC — NO MORE BOUNCING -->
-    <div class="static-bg-graphic"></div>
+    <!-- FULL STATIC CANVAS — NO BOUNCE -->
+    <div class="static-canvas"></div>
 
     <header>
         <div class="menu-wrapper">
@@ -531,7 +548,7 @@
         </div>
     </header>
 
-    <!-- HOME PAGE -->
+    <!-- HOME PAGE — UNCHANGED EXCEPT TAGLINE -->
     <div id="home" class="tab-content active">
         <div class="home-box">
             <h2>Your Digital Presence,<br>Built Securely</h2>
@@ -539,214 +556,109 @@
             <button class="btn" onclick="switchTab('contact')">Let's Talk</button>
         </div>
 
-        <!-- TAGLINE NOW FIXED AT BOTTOM RIGHT -->
-        <div class="tagline-final">Your vision. Our expertise. Built together.</div>
+        <!-- TAGLINE MOVED HERE — STATIC AT BOTTOM, NO BORDER -->
+        <div class="home-tagline">Your vision. Our expertise. Built together.</div>
     </div>
 
-    <!-- SERVICES PAGE -->
-    <div id="services" class="tab-content">
-        <div class="page-wrapper">
-            <div class="services-container">
-                <div class="services-heading-box">
-                    <h2>What We Do</h2>
-                    <p>Professional digital solutions. Built securely. Delivered clearly.</p>
-                </div>
+    <!-- SCROLLABLE PAGES WRAPPER -->
+    <div class="scrollable-pages" id="scrollablePages">
 
-                <div class="service-block">
-                    <div class="service-corner"></div>
-                    <div class="service-title">
-                        Web Development and Brand Design
-                        <span class="toggle-icon">+</span>
+        <!-- SERVICES PAGE -->
+        <div id="services" class="tab-content">
+            <div class="page-wrapper">
+                <div class="services-container">
+                    <div class="services-heading-box">
+                        <h2>What We Do</h2>
+                        <p>Professional digital solutions. Built securely. Delivered clearly.</p>
                     </div>
-                    <div class="service-content">
-                        <p>Custom websites built from the ground up, designed around your brand and your clients. No generic templates, no hidden code. Clean, fast, and fully yours. We build your visual identity alongside your site so your brand feels consistent, professional, and instantly recognisable.</p>
-                    </div>
-                </div>
 
-                <div class="service-block">
-                    <div class="service-corner"></div>
-                    <div class="service-title">
-                        Bespoke Booking Systems
-                        <span class="toggle-icon">+</span>
+                    <div class="service-block">
+                        <div class="service-corner"></div>
+                        <div class="service-title">
+                            Web Development and Brand Design
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="service-content">
+                            <p>Custom websites built from the ground up, designed around your brand and your clients. No generic templates, no hidden code. Clean, fast, and fully yours. We build your visual identity alongside your site so your brand feels consistent, professional, and instantly recognisable.</p>
+                        </div>
                     </div>
-                    <div class="service-content">
-                        <p>We specialise in building bespoke booking systems designed around your business, not the other way around.</p>
-                        <p>If you are currently paying monthly subscriptions, commission fees, or being locked into platforms that take a cut on every single booking, we build you a system that lives on your website on your terms with zero ongoing commission. You own your data. You own your client relationships. You regain full control.</p>
-                        <p>Perfect for aesthetics clinics and salons which is our speciality. Equally powerful for dance schools, fitness studios, yoga and pilates, restaurants, photographers, tutors, coaches, and any service business that takes appointments or reservations.</p>
-                    </div>
-                </div>
 
-                <div class="service-block">
-                    <div class="service-corner"></div>
-                    <div class="service-title">
-                        ICO Registration and GDPR Compliance
-                        <span class="toggle-icon">+</span>
+                    <div class="service-block">
+                        <div class="service-corner"></div>
+                        <div class="service-title">
+                            Bespoke Booking Systems
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="service-content">
+                            <p>We specialise in building bespoke booking systems designed around your business, not the other way around.</p>
+                            <p>If you are currently paying monthly subscriptions, commission fees, or being locked into platforms that take a cut on every single booking, we build you a system that lives on your website on your terms with zero ongoing commission. You own your data. You own your client relationships. You regain full control.</p>
+                            <p>Perfect for aesthetics clinics and salons which is our speciality. Equally powerful for dance schools, fitness studios, yoga and pilates, restaurants, photographers, tutors, coaches, and any service business that takes appointments or reservations.</p>
+                        </div>
                     </div>
-                    <div class="service-content">
-                        <p>Never risk a fine or uncertainty again. We guide you step by step through ICO registration and build your full GDPR compliance framework including privacy policies, consent records, data processing documentation, and staff guidance.</p>
-                        <p>Built specifically for small and growing businesses. Plain English. No legal jargon. Complete peace of mind.</p>
-                    </div>
-                </div>
 
-                <div class="service-block">
-                    <div class="service-corner"></div>
-                    <div class="service-title">
-                        Cybersecurity and Digital Protection
-                        <span class="toggle-icon">+</span>
+                    <div class="service-block">
+                        <div class="service-corner"></div>
+                        <div class="service-title">
+                            ICO Registration and GDPR Compliance
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="service-content">
+                            <p>Never risk a fine or uncertainty again. We guide you step by step through ICO registration and build your full GDPR compliance framework including privacy policies, consent records, data processing documentation, and staff guidance.</p>
+                            <p>Built specifically forGrowing businesses. Plain English. No legal jargon. Complete peace of mind.</p>
+                        </div>
                     </div>
-                    <div class="service-content">
-                        <p>Delivered by our in-house cybersecurity specialists. We provide security monitoring and threat detection across your systems, SIEM deployment for clear visibility, and practical cybersecurity consulting to help you understand your exposure. We also design and strengthen secure cloud infrastructure alongside full compliance guidance including GDPR standards. Built on recognised academic and industry expertise.</p>
-                        <p>And if you do not know what you do not know. Relax. Because we have experts to take all of this over. Consider us your fully outsourced IT department.</p>
-                    </div>
-                </div>
 
-                <div class="service-block">
-                    <div class="service-corner"></div>
-                    <div class="service-title">
-                        CPD Accredited Cybersecurity Training
-                        <span class="toggle-icon">+</span>
+                    <div class="service-block">
+                        <div class="service-corner"></div>
+                        <div class="service-title">
+                            Cybersecurity and Digital Protection
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="service-content">
+                            <p>Delivered by our in-house cybersecurity specialists. We provide security monitoring and threat detection across your systems, SIEM deployment for clear visibility, and practical cybersecurity consulting to help you understand your exposure. We also design and strengthen secure cloud infrastructure alongside full compliance guidance including GDPR standards. Built on recognised academic and industry expertise.</p>
+                            <p>And if you do not know what you do not know. Relax. Because we have experts to take all of this over. Consider us your fully outsourced IT department.</p>
+                        </div>
                     </div>
-                    <div class="service-content">
-                        <p>We are developing CPD accredited cybersecurity training delivered by our in-house specialists. Accreditation is currently in progress and will be available through Eze Digital once finalised.</p>
-                        <p>We offer structured entry level courses designed for those starting out on the path to becoming cybersecurity analysts. We also provide in-house staff training to help your team understand threats, best practice, and how to protect your business day to day. And we build fully bespoke training packages developed around your unique needs and the specific systems you use.</p>
-                        <p>All courses will carry formal CPD accreditation upon completion so your learning counts towards your professional development record.</p>
-                    </div>
-                </div>
 
-                <div class="service-block">
-                    <div class="service-corner"></div>
-                    <div class="service-title">
-                        Business Strategy and Growth Support
-                        <span class="toggle-icon">+</span>
+                    <div class="service-block">
+                        <div class="service-corner"></div>
+                        <div class="service-title">
+                            CPD Accredited Cybersecurity Training
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="service-content">
+                            <p>We are developing CPD accredited cybersecurity training delivered by our in-house specialists. Accreditation is currently in progress and will be available through Eze Digital once finalised.</p>
+                            <p>We offer structured entry level courses, designed for those starting out on the path to becoming cybersecurity analysts. We also provide in-house staff training to help your team understand threats, best practice, and how to protect your business day to day. And we build fully bespoke training packages developed around your unique needs and the specific systems you use.</p>
+                            <p>All courses will carry formal CPD accreditation upon completion so your learning counts towards your professional development record.</p>
+                        </div>
                     </div>
-                    <div class="service-content">
-                        <p>Because I know exactly what it feels like to be building a business from the ground up and wishing you had a full team behind you. That is exactly what we become. From your website to your booking system, your brand, your social media presence, and your compliance. We build the whole digital foundation you need to grow with confidence.</p>
+
+                    <div class="service-block">
+                        <div class="service-corner"></div>
+                        <div class="service-title">
+                            Business Strategy and Growth Support
+                            <span class="toggle-icon">+</span>
+                        </div>
+                        <div class="service-content">
+                            <p>Because I know exactly what it feels like to be building a business from the ground up and wishing you had a full team behind you. That is exactly what we become. From your website to your booking system, your brand, your social media presence, and your compliance. We build the whole digital foundation you need to grow with confidence.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- ABOUT PAGE -->
-    <div id="about" class="tab-content">
-        <div class="page-wrapper">
-            <div class="about-container">
-                <div class="about-block">
-                    <h2>Our Vision</h2>
-                    <p>Eze Digital exists because every growing business deserves professional digital infrastructure. It should come without the complexity, jargon, or inflated price tags that usually apply.</p>
-                    <p>We build websites, booking systems, and digital solutions that work for you. Security and compliance should never be an afterthought. Every solution we deliver includes the protective standards your business needs. We bring together the right expertise, the right approach, and the right care so you get something that truly fits.</p>
-                    <p>We do not just hand you something technical and walk away. We build relationships. We explain things clearly. We ensure you understand exactly what you have and how to use it.</p>
-                </div>
-
-                <div class="founder-photo-wrapper">
-                    <div class="founder-photo-container">
-                        <img src="profile.png" alt="Nicki — Founder, Eze Digital" onerror="this.style.display='none'">
+        <!-- ABOUT PAGE -->
+        <div id="about" class="tab-content">
+            <div class="page-wrapper">
+                <div class="about-container">
+                    <div class="about-block">
+                        <h2>Our Vision</h2>
+                        <p>Eze Digital exists because every growing business deserves professional digital infrastructure. It should come without the complexity, jargon, or inflated price tags that usually apply.</p>
+                        <p>We build websites, booking systems, and digital solutions that work for you. Security and compliance should never be an afterthought. Every solution we deliver includes the protective standards your business needs. We bring together the right expertise, the right approach, and the right care so you get something that truly fits.</p>
+                        <p>We do not just hand you something technical and walk away. We build relationships. We explain things clearly. We ensure you understand exactly what you have and how to use it.</p>
                     </div>
-                </div>
 
-                <div class="about-block">
-                    <h2>My Story</h2>
-                    <p>My vision for Eze Digital is built on one simple belief. Great business is built on trust, clarity, and the right people working together. I do not claim to be a technical expert in every field but I definitely know how to find the right people who are. That is what great business is about. Teamwork. Playing to our strengths. Bringing together the right expertise to deliver exactly what you need.</p>
-                </div>
-
-                <div class="about-block">
-                    <h2>What Drives Me</h2>
-                    <p>I want Eze Digital to be different. I want to build relationships not just deliver projects. My intention is to listen first, understand your goals, and then bring together the right expertise to make them real. Technology should serve you not confuse you. I bridge that gap so you can focus on what you do best.</p>
-                </div>
-
-                <div class="about-block">
-                    <h2>Where I Add Value</h2>
-                    <h3>Understanding Your Business</h3>
-                    <p>I speak your language. I know what it feels like to build a business. I understand the pain points including platform fees, compliance worry, and that feeling that you need a whole team just to stay visible. I do not just build websites. I build solutions that actually save you money and give you back control.</p>
-                    <h3>Education and Empowerment</h3>
-                    <p>With a background in teaching and training, I do not just hand you a finished product. I help you understand it so you feel confident and in control of your own digital presence.</p>
-                    <h3>A Full Team Behind You</h3>
-                    <p>You should not need to hire a web developer, a booking system expert, a compliance consultant, and a marketing agency separately. We become that team. One place for your website, your bookings, your compliance, your brand, and your growth.</p>
-                </div>
-
-                <div class="about-block">
-                    <h2>Our Promise</h2>
-                    <p class="tagline-final">Your vision. Our expertise. Built together.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- CONTACT PAGE -->
-    <div id="contact" class="tab-content">
-        <div class="page-wrapper">
-            <div class="contact-container">
-                <div class="contact-panel">
-                    <h2>Get In Touch</h2>
-                    <p class="intro">Tell me about your project. Let's build something great.</p>
-                    <form action="https://formspree.io/f/mvkoqvnp" method="POST">
-                        <div class="form-group">
-                            <label for="name">Your Name</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Your Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Your Message</label>
-                            <textarea id="message" name="message" required placeholder="Tell me about your business and what you need."></textarea>
-                        </div>
-                        <button type="submit" class="btn">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <footer>
-        Designed and Built by Eze Digital Ltd © All Rights Reserved 2026
-    </footer>
-
-    <script>
-        function switchTab(pageId) {
-            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-            document.querySelectorAll('.dropdown-link').forEach(link => link.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
-            document.querySelector(`.dropdown-link[data-page="${pageId}"]`).classList.add('active');
-            document.getElementById('dropdownMenu').classList.remove('open');
-            document.getElementById('hamburger').classList.remove('open');
-            window.scrollTo(0, 0);
-        }
-
-        const hamburger = document.getElementById('hamburger');
-        const dropdownMenu = document.getElementById('dropdownMenu');
-
-        hamburger.addEventListener('click', function(e) {
-            e.stopPropagation();
-            this.classList.toggle('open');
-            dropdownMenu.classList.toggle('open');
-        });
-
-        document.querySelectorAll('.dropdown-link[data-page]').forEach(link => {
-            link.addEventListener('click', function() {
-                switchTab(this.getAttribute('data-page'));
-            });
-        });
-
-        document.getElementById('portalLink').addEventListener('click', function() {
-            alert('Client Portal coming soon. Watch this space.');
-            dropdownMenu.classList.remove('open');
-            hamburger.classList.remove('open');
-        });
-
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('.menu-wrapper')) {
-                dropdownMenu.classList.remove('open');
-                hamburger.classList.remove('open');
-            }
-        });
-
-        document.querySelectorAll('.service-title').forEach(title => {
-            title.addEventListener('click', function() {
-                this.parentElement.classList.toggle('expanded');
-            });
-        });
-    </script>
-</body>
-</html>
+                    <div class="founder-photo-wrapper">
+                        <div class="founder-photo-container">
+                            <img src="profile.png<[SILENT_never_used_51bce0c785ca2f68081bfa7d91973934]>
+[truncated by convert_rollouts_to_sft: original content length=17039 chars for checker-safe SFT export]
