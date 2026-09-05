@@ -20,17 +20,17 @@
             margin: 0;
             padding: 0;
             min-height: 100vh;
-            /* BACKGROUND — PERMANENTLY FIXED */
-            background:
-                url('mockup-bg.png') no-repeat center center fixed,
-                linear-gradient(180deg, #001418 0%, #00222a 45%, #001115 100%);
-            background-size: cover, 100% 100%;
-            background-attachment: fixed;
-            background-position: center center;
+
+            /*
+              IMPORTANT: We removed the fixed background image from here.
+              The static graphic is already in the page content, so the body
+              background only provides the base colour layer.
+            */
+            background: linear-gradient(180deg, #001418 0%, #00222a 45%, #001115 100%);
             color: #fff;
         }
 
-        /* === HEADER — Hamburger top-right === */
+        /* === HEADER === */
         header {
             position: fixed;
             top: 0;
@@ -84,9 +84,11 @@
         .hamburger.open span:nth-child(1) {
             transform: rotate(45deg) translate(6px, 6px);
         }
+
         .hamburger.open span:nth-child(2) {
             opacity: 0;
         }
+
         .hamburger.open span:nth-child(3) {
             transform: rotate(-45deg) translate(6px, -6px);
         }
@@ -137,9 +139,26 @@
             border-bottom: none;
         }
 
-        /* ==================================================
-           HOME BOX — LOCKED ABSOLUTELY CENTER. CANNOT MOVE.
-           ================================================== */
+        /* === STATIC BACKGROUND GRAPHIC === */
+        .static-bg-graphic {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 1;
+            pointer-events: none;
+
+            /*
+              If your static graphic already contains the logo and background,
+              keep background-size: cover. If you only want it as a texture
+              behind the logo, you can change this to contain.
+            */
+            background: url('mockup-bg.png') no-repeat center center;
+            background-size: cover;
+        }
+
+        /* === HOME BOX — LOCKED CENTER, NO MOVEMENT === */
         .home-box {
             position: fixed !important;
             top: 50% !important;
@@ -192,7 +211,20 @@
             box-shadow: 0 0 25px rgba(0, 184, 187, 0.5);
         }
 
-        /* === OTHER PAGES — SCROLLABLE CONTENT === */
+        /* === TAGLINE — BOTTOM RIGHT, FIXED === */
+        .tagline-final {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 2.5rem;
+            z-index: 10;
+            color: #00B8BB;
+            font-weight: 500;
+            font-size: 1.1rem;
+            text-align: right;
+            pointer-events: none;
+        }
+
+        /* === OTHER PAGES === */
         .page-wrapper {
             padding: 6rem 2rem 3rem;
             position: relative;
@@ -359,14 +391,15 @@
             border-radius: 6px;
         }
 
-        .tagline-final {
+        .about-block .tagline-final {
+            position: static;
+            bottom: auto;
+            right: auto;
             margin-top: 1rem;
             padding-top: 1rem;
             border-top: 1px solid rgba(0, 184, 187, 0.2);
-            color: #00B8BB;
-            font-weight: 500;
-            font-size: 1.1rem;
             text-align: center;
+            pointer-events: auto;
         }
 
         .contact-container {
@@ -435,6 +468,8 @@
             color: #88b8b9;
             font-size: 0.82rem;
             border-top: 1px solid rgba(0, 184, 187, 0.1);
+            position: relative;
+            z-index: 60;
         }
 
         /* === MOBILE === */
@@ -451,6 +486,13 @@
                 font-size: 1.9rem;
             }
 
+            .tagline-final {
+                bottom: 1rem;
+                right: 1.2rem;
+                left: 1.2rem;
+                text-align: center;
+            }
+
             .page-wrapper {
                 padding: 5rem 1.2rem 3rem;
             }
@@ -465,6 +507,9 @@
     </style>
 </head>
 <body>
+
+    <!-- STATIC BACKGROUND GRAPHIC — NO MORE BOUNCING -->
+    <div class="static-bg-graphic"></div>
 
     <header>
         <div class="menu-wrapper">
@@ -486,13 +531,16 @@
         </div>
     </header>
 
-    <!-- HOME — BOX BOLTED TO CENTER. WILL NOT MOVE. -->
+    <!-- HOME PAGE -->
     <div id="home" class="tab-content active">
         <div class="home-box">
             <h2>Your Digital Presence,<br>Built Securely</h2>
-            <p>Eze Digital designs and builds professional websites, bespoke booking systems, and digital infrastructure. Cybersecurity and ICO/GDPR compliance are built in from day one. We deliver the foundation your business needs. Protected, clear, and built around you.</p>
+            <p>Eze Digital supports growing businesses with web design, cybersecurity, booking systems, education, and business development. We bring together the right expertise to build clear, protected digital foundations that fit your goals.</p>
             <button class="btn" onclick="switchTab('contact')">Let's Talk</button>
         </div>
+
+        <!-- TAGLINE NOW FIXED AT BOTTOM RIGHT -->
+        <div class="tagline-final">Your vision. Our expertise. Built together.</div>
     </div>
 
     <!-- SERVICES PAGE -->
@@ -652,7 +700,7 @@
     </div>
 
     <footer>
-        Designed and Built by Eze Digital Ltd
+        Designed and Built by Eze Digital Ltd © All Rights Reserved 2026
     </footer>
 
     <script>
