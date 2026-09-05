@@ -176,15 +176,43 @@
 .contact-panel::before {
     content: "";
     position: absolute;
-    top: 16px;
-    left: 16px;
-    width: 30px;
-    height: 30px;
+    top: 12px;
+    left: 12px;
+    width: 36px;
+    height: 36px;
     border-top: 2px solid #00E6E9;
     border-left: 2px solid #00E6E9;
-    box-shadow: 0 0 6px #00E6E9, -4px -4px 12px rgba(0, 230, 233, 0.4);
+    box-shadow: 
+        0 0 8px #00E6E9,
+        inset 4px 4px 0 rgba(0, 230, 233, 0.08);
     pointer-events: none;
-        }
+}
+
+.services-heading-box::after,
+.service-block::after,
+.about-block::after,
+.contact-panel::after {
+    content: "";
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
+    border-bottom: 2px solid #00E6E9;
+    border-right: 2px solid #00E6E9;
+    box-shadow: 
+        0 0 8px #00E6E9,
+        inset -4px -4px 0 rgba(0, 230, 233, 0.08);
+    pointer-events: none;
+}
+
+/* Make sure the boxes can hold the corners */
+.service-block,
+.services-heading-box,
+.about-block,
+.contact-panel {
+    position: relative;
+}
         /* ===== TEXT COLOURS — LOCKED FOREVER ===== */
         .services-heading-box h2 { color: #00B8BB !important; text-align: center; margin-bottom: 0.5rem; }
         /* FIX 2: Subheading NOT white */
