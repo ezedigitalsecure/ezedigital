@@ -170,48 +170,29 @@
             position: relative;
         }
         /* === THE ORIGINAL SINGLE-LINE CORNER GRAPHICS === */
-        .services-heading-box::before,
+        .services-heading-box,
+.service-block,
+.about-block,
+.contact-panel {
+    position: relative;
+}
+
+.services-heading-box::before,
 .service-block::before,
 .about-block::before,
 .contact-panel::before {
     content: "";
     position: absolute;
-    top: 12px;
-    left: 12px;
-    width: 36px;
-    height: 36px;
-    border-top: 2px solid #00E6E9;
-    border-left: 2px solid #00E6E9;
-    box-shadow: 
-        0 0 8px #00E6E9,
-        inset 4px 4px 0 rgba(0, 230, 233, 0.08);
+    top: 10px;
+    left: 10px;
+    width: 34px;
+    height: 40px;
     pointer-events: none;
-}
-
-.services-heading-box::after,
-.service-block::after,
-.about-block::after,
-.contact-panel::after {
-    content: "";
-    position: absolute;
-    bottom: 12px;
-    right: 12px;
-    width: 36px;
-    height: 36px;
-    border-bottom: 2px solid #00E6E9;
-    border-right: 2px solid #00E6E9;
-    box-shadow: 
-        0 0 8px #00E6E9,
-        inset -4px -4px 0 rgba(0, 230, 233, 0.08);
-    pointer-events: none;
-}
-
-/* Make sure the boxes can hold the corners */
-.service-block,
-.services-heading-box,
-.about-block,
-.contact-panel {
-    position: relative;
+    background-image: url("data:image/svg+xml,%3Csvg width='34' height='40' viewBox='0 0 34 40' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M17 2L2 9v7c0 10 15 22 15 22s15-12 15-22V9L17 2z' stroke='%2300E6E9' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    filter: drop-shadow(0 0 6px #00E6E9);
+    opacity: 0.9;
 }
         /* ===== TEXT COLOURS — LOCKED FOREVER ===== */
         .services-heading-box h2 { color: #00B8BB !important; text-align: center; margin-bottom: 0.5rem; }
