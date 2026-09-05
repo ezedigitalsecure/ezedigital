@@ -20,15 +20,16 @@
             margin: 0;
             padding: 0;
             min-height: 100vh;
+            /* Background stays perfectly fixed — no movement at all */
             background:
-                url('mockup-bg.png') no-repeat top center fixed,
+                url('mockup-bg.png') no-repeat center center fixed,
                 linear-gradient(180deg, #001418 0%, #00222a 45%, #001115 100%);
             background-size: cover, 100% 100%;
             background-attachment: fixed;
             color: #fff;
         }
 
-        /* === HEADER — Transparent, hamburger only top-right === */
+        /* === HEADER — Hamburger only top-right === */
         header {
             position: fixed;
             top: 0;
@@ -136,19 +137,20 @@
             border-bottom: none;
         }
 
-        /* === PAGE CONTENT === */
-        .page-wrapper {
-            padding: 10rem 2rem 3rem;
+        /* === HOME — PERFECTLY CENTERED, STATIC, NO SCROLL === */
+        .home-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem;
             position: relative;
             z-index: 10;
-            max-width: 1200px;
-            margin: 0 auto;
         }
 
-        /* === HOME — Darker semi-transparent box, centered === */
         .home-content {
             max-width: 640px;
-            margin: 0 auto;
+            width: 100%;
             text-align: center;
             background: rgba(0, 8, 10, 0.78);
             padding: 2.8rem;
@@ -192,7 +194,15 @@
             box-shadow: 0 0 25px rgba(0, 184, 187, 0.5);
         }
 
-        /* === ALL OTHER PAGES === */
+        /* === OTHER PAGES — Scrollable content area === */
+        .page-wrapper {
+            padding: 6rem 2rem 3rem;
+            position: relative;
+            z-index: 10;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
         .tab-content {
             display: none;
         }
@@ -435,10 +445,6 @@
                 padding: 1rem 1.2rem;
             }
 
-            .page-wrapper {
-                padding: 7rem 1.2rem 3rem;
-            }
-
             .home-content {
                 padding: 1.8rem;
                 margin: 0.5rem;
@@ -446,6 +452,10 @@
 
             .home-content h2 {
                 font-size: 1.9rem;
+            }
+
+            .page-wrapper {
+                padding: 5rem 1.2rem 3rem;
             }
 
             .dropdown-menu {
@@ -460,7 +470,6 @@
 <body>
 
     <header>
-        <!-- ONLY Hamburger Top-Right — NO logo, NO top bar -->
         <div class="menu-wrapper">
             <div class="hamburger-circle" id="hamburgerCircle">
                 <div class="hamburger" id="hamburger">
@@ -480,19 +489,20 @@
         </div>
     </header>
 
-    <div class="page-wrapper">
-
-        <!-- HOME PAGE -->
-        <div id="home" class="tab-content active">
+    <!-- HOME — STATIC, CENTERED, BACKGROUND LOGO ALWAYS VISIBLE -->
+    <div id="home" class="tab-content active">
+        <div class="home-wrapper">
             <div class="home-content">
                 <h2>Your Digital Presence,<br>Built Securely</h2>
                 <p>Eze Digital designs and builds professional websites, bespoke booking systems, and digital infrastructure. Cybersecurity and ICO/GDPR compliance are built in from day one. We deliver the foundation your business needs. Protected, clear, and built around you.</p>
                 <button class="btn" onclick="switchTab('contact')">Let's Talk</button>
             </div>
         </div>
+    </div>
 
-        <!-- SERVICES PAGE -->
-        <div id="services" class="tab-content">
+    <!-- SERVICES PAGE -->
+    <div id="services" class="tab-content">
+        <div class="page-wrapper">
             <div class="services-container">
                 <div class="services-heading-box">
                     <h2>What We Do</h2>
@@ -572,9 +582,11 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- ABOUT PAGE -->
-        <div id="about" class="tab-content">
+    <!-- ABOUT PAGE -->
+    <div id="about" class="tab-content">
+        <div class="page-wrapper">
             <div class="about-container">
                 <div class="about-block">
                     <h2>Our Vision</h2>
@@ -615,9 +627,11 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- CONTACT PAGE -->
-        <div id="contact" class="tab-content">
+    <!-- CONTACT PAGE -->
+    <div id="contact" class="tab-content">
+        <div class="page-wrapper">
             <div class="contact-container">
                 <div class="contact-panel">
                     <h2>Get In Touch</h2>
@@ -640,7 +654,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 
     <footer>
