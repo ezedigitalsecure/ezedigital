@@ -177,23 +177,30 @@
     position: relative;
 }
 
+.services-heading-box,
+.service-block,
+.about-block,
+.contact-panel {
+    position: relative;
+    padding-left: 48px;
+}
+
 .services-heading-box::before,
 .service-block::before,
 .about-block::before,
 .contact-panel::before {
     content: "";
     position: absolute;
-    top: 10px;
-    left: 10px;
-    width: 32px;
-    height: 32px;
+    top: 12px;
+    left: 12px;
+    width: 28px;
+    height: 28px;
     pointer-events: none;
-    background-image: url('/images/message_1412283707831313_user_upload_img_1.png');
+    background-image: url("data:image/svg+xml,%3Csvg width='28' height='28' viewBox='0 0 28 28' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M14 2L2 9v7c0 8 12 17 12 17s12-9 12-17V9L14 2z' stroke='%2300E6E9' stroke-width='1.5'/%3E%3Crect x='9' y='9' width='10' height='10' rx='2' stroke='%2300E6E9' stroke-width='1.5'/%3E%3Ctext x='14' y='18' text-anchor='middle' fill='%2300E6E9' font-size='10' font-weight='700' font-family='Arial,sans-serif'%3EE%3C/text%3E%3C/svg%3E");
     background-size: contain;
     background-repeat: no-repeat;
-    background-position: center;
-    filter: drop-shadow(0 0 6px #00E6E9);
-    opacity: 0.9;
+    filter: drop-shadow(0 0 5px #00E6E9);
+    opacity: 0.95;
     z-index: 10;
 }
 
