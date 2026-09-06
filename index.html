@@ -477,8 +477,18 @@
     </div>
     <script>
 document.getElementById('hamburger').onclick=function(){this.classList.toggle('open');document.getElementById('dropdownMenu').classList.toggle('open');};
-function switchTab(p){document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.dropdown-link').forEach(l=>l.classList.remove('active'));const s=document.getElementById('scrollablePages');p==='home'?(s.classList.remove('active'),document.getElementById('home').classList.add('active')):(document.getElementById('home').classList.remove('active'),s.classList.add('active'));document.querySelector(`[data-page="${p}"]`).classList.add('active');document.getElementById('dropdownMenu').classList.remove('open');document.getElementById('hamburger').classList.remove('open')}
-    </script>
+
+function switchTab(pageId){
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.dropdown-link').forEach(l=>l.classList.remove('active'));
+  const scrollablePages=document.getElementById('scrollablePages');
+  if(pageId==='home'){scrollablePages.classList.remove('active');document.getElementById('home').classList.add('active');}
+  else{document.getElementById('home').classList.remove('active');scrollablePages.classList.add('active');document.getElementById(pageId).classList.add('active');}
+  document.querySelector(`[data-page="${pageId}"]`).classList.add('active');
+  document.getElementById('dropdownMenu').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+}
+        </script>
 </body>
 </html>
 .services-heading-box { border-top: none !important; }
