@@ -377,6 +377,28 @@
 .nav-menu.active {
   display: block;
 }
+        .nav-menu {
+  display: none;
+  position: fixed;
+  top: 70px;
+  right: 1rem;
+  background: #0a1929;
+  padding: 1.5rem;
+  border-radius: 8px;
+  z-index: 99998;
+}
+
+.nav-menu.active {
+  display: block;
+}
+
+#hamburger {
+  cursor: pointer;
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 99999;
+}
     </style>
 </head>
 <body>
@@ -535,25 +557,19 @@
     </div>
     <script>
 document.addEventListener('DOMContentLoaded', function() {
-
-  // Service block toggle
+  // Service toggles
   document.querySelectorAll('.service-title').forEach(title => {
     title.addEventListener('click', function () {
       this.closest('.service-block').classList.toggle('expanded');
     });
   });
 
-  // Hamburger menu toggle
+  // Hamburger menu
   const hamburger = document.getElementById('hamburger');
   const navMenu = document.querySelector('.nav-menu');
 
-  console.log('Hamburger found:', hamburger);
-  console.log('Menu found:', navMenu);
-
   if (hamburger && navMenu) {
-    hamburger.style.cursor = 'pointer';
     hamburger.addEventListener('click', function () {
-      console.log('✅ HAMBURGER CLICKED!');
       navMenu.classList.toggle('active');
     });
   }
