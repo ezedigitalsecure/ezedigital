@@ -504,10 +504,9 @@
                     <h2>Let's Talk</h2>
                     <p>Tell me how you want to evolve and let's build something great together.</p>
                     <form action="https://formspree.io/f/mvkoqvnp" method="POST">
-  <!-- ✅ THE MAGIC REDIRECT LINE -->
-  <input type="hidden" name="_next" value="https://ezedigital.co.uk/#contact">
+  <!-- ✅ REDIRECT — KEEP WHAT WORKED: _redirect NOT _next -->
+  <input type="hidden" name="_redirect" value="https://ezedigital.co.uk/#contact">
 
-  <!-- ✅ ALL YOUR FIELDS INTACT -->
   <div class="form-group">
     <label>Your Name</label>
     <input type="text" name="name" required>
@@ -520,13 +519,13 @@
     <label>Your Message</label>
     <textarea name="message" rows="5" required></textarea>
   </div>
-
-  <!-- ✅ SUBMIT BUTTON -->
   <button type="submit" class="btn">Connect With Me</button>
 
-  <!-- ✅ YOUR THANK YOU MESSAGE -->
-  <div id="thankYouMsg" style="display: none; margin-top: 1.5rem; padding: 1.5rem; background: rgba(0,24,28,0.9); border: 1px solid rgba(0,184,187,0.35); border-radius: 8px; color: #00E6E9; text-align: center; font-weight: bold;">
-    ✅ Thank you! I will contact you soon.
+  <!-- ✅ YOUR ORIGINAL THANK-YOU MESSAGE — RESTORED! -->
+  <div id="thankYouMsg" style="display: none; margin-top: 1.5rem; padding: 1.5rem; background: rgba(0,24,28,0.9); border: 1px solid rgba(0,184,187,0.35); border-radius: 8px; color: #00E6E9; text-align: center; line-height: 1.7;">
+    ✅ Thank you for reaching out.<br><br>
+    I personally answer every message and I look forward to working together soon.<br><br>
+    — Nicki
   </div>
 </form>
                 </div>
