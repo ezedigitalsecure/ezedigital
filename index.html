@@ -324,6 +324,48 @@
   justify-content: center !important;
   line-height: 1 !important;
 }
+   /* ✅ FIX 1: Remove conflicting positioning that pushes burger off-center */
+.hamburger {
+  position: relative !important;
+  top: auto !important;
+  right: auto !important;
+  margin: 0 !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
+/* ✅ FIX 2: Perfect center inside circle */
+.hamburger-circle {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  pointer-events: none !important;
+  width: 52px !important;
+  height: 52px !important;
+}
+
+/* ✅ FIX 3: Make menu links clickable — remove blockers */
+.dropdown-link {
+  pointer-events: auto !important;
+  position: relative !important;
+  z-index: 99999 !important;
+}
+
+/* ✅ FIX 4: Let's Talk button clickable */
+.btn {
+  pointer-events: auto !important;
+  position: relative !important;
+  z-index: 99999 !important;
+}
+
+/* ✅ FIX 5: Menu displays correctly when toggled */
+.dropdown-menu {
+  display: none;
+  flex-direction: column;
+}
+.dropdown-menu.open {
+  display: flex !important;
+}     
 </style>
       
 </head>
@@ -485,32 +527,36 @@
 document.addEventListener('DOMContentLoaded', function () {
   console.log('✅ Scripts running!');
 
-  // ✅ FIX: Make tabs ACTUALLY switch
+  // ✅ Make switchTab GLOBALLY available and bulletproof
   window.switchTab = function(tabName) {
-    console.log('Switching to:', tabName);
-    
+    console.log('🔄 switchTab called with:', tabName);
+
     // Hide ALL tabs
     document.querySelectorAll('.tab-content').forEach(tab => {
       tab.classList.remove('active');
     });
-    
+
     // Show selected tab
     const targetTab = document.getElementById(tabName);
     if (targetTab) {
       targetTab.classList.add('active');
+      console.log('✅ Showing tab:', tabName);
+    } else {
+      console.log('❌ Tab NOT FOUND:', tabName);
     }
 
-    // Highlight selected link in menu
+    // Update menu highlights
     document.querySelectorAll('.dropdown-link').forEach(link => {
       link.classList.remove('active');
     });
-    document.querySelector(`.dropdown-link[data-page="${tabName}"]`)?.classList.add('active');
+    const activeLink = document.querySelector(`.dropdown-link[data-page="${tabName}"]`);
+    if (activeLink) activeLink.classList.add('active');
 
-    // Close menu after clicking a link
+    // Close menu
     document.getElementById('dropdownMenu').classList.remove('open');
     document.getElementById('hamburger').classList.remove('open');
 
-    // Show scrollable pages if NOT home
+    // Show/hide scrollable container
     const scrollablePages = document.getElementById('scrollablePages');
     if (tabName === 'home') {
       scrollablePages.classList.remove('active');
@@ -526,24 +572,19 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // ✅ FIX: Hamburger — toggles BOTH menu AND icon animation
+  // ✅ HAMBURGER — perfectly centered click handler
   const hamburger = document.getElementById('hamburger');
   const navMenu = document.getElementById('dropdownMenu');
 
   if (hamburger && navMenu) {
     hamburger.addEventListener('click', function (e) {
-      e.stopPropagation(); // Prevent click from falling through
-      console.log('✅ HAMBURGER CLICKED!');
-      hamburger.classList.toggle('open');      // ✅ Rotates the hamburger lines
-      navMenu.classList.toggle('open');         // ✅ Shows/hides menu
+      e.preventDefault();
+      e.stopPropagation();
+      console.log('🍔 HAMBURGER CLICKED!');
+      hamburger.classList.toggle('open');
+      navMenu.classList.toggle('open');
     });
   }
-
-  // ✅ Close menu when clicking anywhere else
-  document.addEventListener('click', function () {
-    hamburger.classList.remove('open');
-    navMenu.classList.remove('open');
-  });
 });
         </script>
 </body>
