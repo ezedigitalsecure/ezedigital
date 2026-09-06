@@ -455,7 +455,7 @@
                 <div class="contact-panel">
                     <h2>Lets Talk</h2>
                     <p>Tell me how you want to evolve and let's build something great together.</p>
-                    <form action="https://formspree.io/f/mvkoqvnp" method="POST">
+                    <form action="https://formspree.io/f/mvkoqvnp" method="POST" onsubmit="handleSubmit(event)">
                         <div class="form-group">
                             <label>Your Name</label>
                             <input type="text" name="name" required>
@@ -487,6 +487,25 @@ function switchTab(pageId){
   document.querySelector(`[data-page="${pageId}"]`).classList.add('active');
   document.getElementById('dropdownMenu').classList.remove('open');
   document.getElementById('hamburger').classList.remove('open');
+}
+        function handleSubmit(event) {
+  event.preventDefault();
+  const form = event.target;
+  fetch(form.action, {
+    method: 'POST',
+    body: new FormData(form),
+    headers: { 'Accept': 'application/json' }
+  })
+  .then(response => {
+    if (response.ok) {
+      form.innerHTML = '<div style="padding:40px;text-align:center;color:#00E6E9;"><h2>Thank You!</h2><p>I look forward to connecting soon.</p><p>— Nicki</p></div>';
+    } else {
+      alert('Oops! Please try again or email me directly at secure@ezedigital.co.uk');
+    }
+  })
+  .catch(() => {
+    alert('Oops! Please try again or email me directly at secure@ezedigital.co.uk');
+  });
 }
         </script>
 </body>
