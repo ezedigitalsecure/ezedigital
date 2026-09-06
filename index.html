@@ -503,7 +503,7 @@
                 <div class="contact-panel">
                     <h2>Let's Talk</h2>
                     <p>Tell me how you want to evolve and let's build something great together.</p>
-                    <form action="https://formspree.io/f/mvkoqvnp" method="POST" onsubmit="handleSubmit(event)">
+                    <form action="https://formspree.io/f/mvkoqvnp" method="POST" id="contactForm">
                         <div class="form-group">
                             <label>Your Name</label>
                             <input type="text" name="name" required>
@@ -585,7 +585,34 @@ document.addEventListener('DOMContentLoaded', function () {
       navMenu.classList.toggle('open');
     });
   }
-});
+  // ✅ Form submit handler — shows YOUR thank you message
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', async function (e) {
+      e.preventDefault(); // Stop Formspree from redirecting
+
+      const formData = new FormData(contactForm);
+      
+      try {
+        const response = await fetch(contactForm.action, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          // ✅ SUCCESS: Fade form, show YOUR message
+          contactForm.style.opacity = '0.4';
+          contactForm.style.pointerEvents = 'none';
+          document.getElementById('thankYouMsg').style.display = 'block';
+        } else {
+          alert('Oops! Something went wrong. Please try again.');
+        }
+      } catch {
+        alert('Oops! Could not send. Please try again.');
+      }
+    });
+  }});
         </script>
 </body>
 </html>
