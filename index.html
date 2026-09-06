@@ -399,22 +399,7 @@
   right: 1.5rem;
   z-index: 99999;
 }
-       /* Menu visibility — toggle with 'open' or 'active' class */
-#dropdownMenu {
-  display: none;
-  position: absolute;
-  top: 60px;
-  right: 1rem;
-  background: #0a1929;
-  padding: 1.5rem;
-  border-radius: 8px;
-  z-index: 99997;
-}
-
-#dropdownMenu.open,
-#dropdownMenu.active {
-  display: block;
-} 
+      
     </style>
 </head>
 <body>
@@ -599,7 +584,6 @@ document.addEventListener('DOMContentLoaded', function () {
     hamburger.addEventListener('click', function () {
       console.log('✅ HAMBURGER CLICKED! — TOGGLING MENU');
       navMenu.classList.toggle('open'); // or 'active' — try both
-      navMenu.classList.toggle('active');
     });
   }
 });
