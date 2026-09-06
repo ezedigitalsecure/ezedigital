@@ -531,7 +531,7 @@
                     <p>Tell me how you want to evolve and let's build something great together.</p>
                     <form action="https://formspree.io/f/mvkoqvnp" method="POST">
   <!-- ✅ REDIRECT — KEEP WHAT WORKED: _redirect NOT _next -->
-  <input type="hidden" name="_redirect" value="https://ezedigital.co.uk/#contact">
+ <input type="hidden" name="_next" value="https://ezedigital.co.uk/#contact">
 
   <div class="form-group">
     <label>Your Name</label>
@@ -624,9 +624,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // ✅ Show thank-you message when returning from Formspree
   if (window.location.hash === '#contact') {
-    const msg = document.getElementById('thankYouMsg');
-    if (msg) msg.style.display = 'block';
-  }
+  switchTab('contact'); // ← THIS LINE SWITCHES TAB
+  const msg = document.getElementById('thankYouMsg');
+  if (msg) msg.style.display = 'block';
+}
 });
        
         </script>
