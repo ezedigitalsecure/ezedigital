@@ -524,9 +524,9 @@
 document.addEventListener('DOMContentLoaded', function () {
   console.log('✅ Scripts running!');
 
-  // ✅ Make switchTab GLOBALLY available and bulletproof
+  // ✅ Make switchTab GLOBALLY available — bulletproof
   window.switchTab = function(tabName) {
-    console.log('🔄 switchTab called with:', tabName);
+    console.log('🔄 switchTab called:', tabName);
 
     // Hide ALL tabs
     document.querySelectorAll('.tab-content').forEach(tab => {
@@ -539,7 +539,7 @@ document.addEventListener('DOMContentLoaded', function () {
       targetTab.classList.add('active');
       console.log('✅ Showing tab:', tabName);
     } else {
-      console.log('❌ Tab NOT FOUND:', tabName);
+      console.log('❌ Tab not found:', tabName);
     }
 
     // Update menu highlights
@@ -549,7 +549,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const activeLink = document.querySelector(`.dropdown-link[data-page="${tabName}"]`);
     if (activeLink) activeLink.classList.add('active');
 
-    // Close menu
+    // Close menu & hamburger
     document.getElementById('dropdownMenu').classList.remove('open');
     document.getElementById('hamburger').classList.remove('open');
 
@@ -569,7 +569,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // ✅ HAMBURGER — perfectly centered click handler
+  // ✅ HAMBURGER CLICK — perfectly working
   const hamburger = document.getElementById('hamburger');
   const navMenu = document.getElementById('dropdownMenu');
 
@@ -577,21 +577,18 @@ document.addEventListener('DOMContentLoaded', function () {
     hamburger.addEventListener('click', function (e) {
       e.preventDefault();
       e.stopPropagation();
-      console.log('🍔 HAMBURGER CLICKED!');
+      console.log('🍔 Hamburger clicked!');
       hamburger.classList.toggle('open');
       navMenu.classList.toggle('open');
     });
   }
+
   // ✅ Show thank-you message when returning from Formspree
-if (window.location.hash === '#contact' || window.location.search.includes('submitted')) {
-  const thankYou = document.getElementById('thankYouMsg');
-  if (thankYou) thankYou.style.display = 'block';
-}
-      } catch {
-        alert('Oops! Could not send. Please try again.');
-      }
-    });
-  }});
+  if (window.location.hash === '#contact') {
+    const msg = document.getElementById('thankYouMsg');
+    if (msg) msg.style.display = 'block';
+  }
+});
         </script>
 </body>
 </html>
