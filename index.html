@@ -332,14 +332,13 @@
                     <span></span>
                 </div>
             </div>
-            <nav class="dropdown-menu" id="dropdownMenu">
-                <a class="dropdown-link active" data-page="home" style="cursor: pointer;">Home</a>
-<a class="dropdown-link" data-page="services" style="cursor: pointer;">Services</a>
-<a class="dropdown-link" data-page="about" style="cursor: pointer;">About Eze Digital</a>
-<a class="dropdown-link" data-page="contact" style="cursor: pointer;">Contact</a>
-<a class="dropdown-link" id="portalLink" style="cursor: pointer;">Client Portal</a>
-
-            </nav>
+         <nav class="dropdown-menu" id="dropdownMenu">
+  <a class="dropdown-link active" data-page="home" onclick="switchTab('home')" style="cursor: pointer;">Home</a>
+  <a class="dropdown-link" data-page="services" onclick="switchTab('services')" style="cursor: pointer;">Services</a>
+  <a class="dropdown-link" data-page="about" onclick="switchTab('about')" style="cursor: pointer;">About Eze Digital</a>
+  <a class="dropdown-link" data-page="contact" onclick="switchTab('contact')" style="cursor: pointer;">Contact</a>
+  <a class="dropdown-link" id="portalLink" onclick="alert('Client Portal coming soon. Watch this space.')" style="cursor: pointer;">Client Portal</a>
+</nav>
         </div>
     </header>
     <!-- HOME — LOCKED -->
