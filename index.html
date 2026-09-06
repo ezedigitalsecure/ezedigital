@@ -517,6 +517,11 @@ function switchTab(pageId){
     this.parentElement.classList.toggle('expanded');
   };
 });
+        document.querySelectorAll('.service-title').forEach(title => {
+  title.onclick = function() {
+    this.closest('.service-block').classList.toggle('expanded');
+  };
+});
         </script>
 </body>
 </html>
