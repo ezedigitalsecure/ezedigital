@@ -522,6 +522,24 @@ function switchTab(pageId){
     this.closest('.service-block').classList.toggle('expanded');
   };
 });
+        .service-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out;
+}
+
+.service-block.expanded .service-content {
+  max-height: 2000px;
+}
+
+.service-block.expanded .toggle-icon {
+  transform: rotate(45deg);
+}
+
+.toggle-icon {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
         </script>
 </body>
 </html>
