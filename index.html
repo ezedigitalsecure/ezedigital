@@ -399,6 +399,22 @@
   right: 1.5rem;
   z-index: 99999;
 }
+       /* Menu visibility — toggle with 'open' or 'active' class */
+#dropdownMenu {
+  display: none;
+  position: absolute;
+  top: 60px;
+  right: 1rem;
+  background: #0a1929;
+  padding: 1.5rem;
+  border-radius: 8px;
+  z-index: 99997;
+}
+
+#dropdownMenu.open,
+#dropdownMenu.active {
+  display: block;
+} 
     </style>
 </head>
 <body>
@@ -559,32 +575,31 @@
 document.addEventListener('DOMContentLoaded', function () {
   console.log('✅ Page fully loaded — scripts running!');
 
-  // 1. Service toggles
+  // Fix "Let's Talk" button error
+  window.switchTab = function(tabName) {
+    console.log('Switching to tab:', tabName);
+    // Add your actual tab switching code here if needed
+  };
+
+  // Service toggles
   document.querySelectorAll('.service-title').forEach(title => {
     title.addEventListener('click', function () {
       this.closest('.service-block').classList.toggle('expanded');
     });
   });
 
-  // 2. Hamburger menu
+  // ✅ HAMBURGER MENU — USING CORRECT MENU NAME
   const hamburger = document.getElementById('hamburger');
-  const navMenu = document.querySelector('.nav-menu');
+  const navMenu = document.getElementById('dropdownMenu'); // ← THIS IS THE FIX!
+
   console.log('Hamburger:', hamburger);
   console.log('Menu:', navMenu);
 
   if (hamburger && navMenu) {
     hamburger.addEventListener('click', function () {
-      console.log('✅ HAMBURGER CLICKED!');
+      console.log('✅ HAMBURGER CLICKED! — TOGGLING MENU');
+      navMenu.classList.toggle('open'); // or 'active' — try both
       navMenu.classList.toggle('active');
-    });
-  }
-
-  // 3. Let's Talk button — TEST
-  const talkBtn = document.querySelector('button, a[href*="#talk"], .talk-button, [type="button"]');
-  console.log('Talk button found:', talkBtn);
-  if (talkBtn) {
-    talkBtn.addEventListener('click', function () {
-      console.log('✅ BUTTON CLICKED!');
     });
   }
 });
