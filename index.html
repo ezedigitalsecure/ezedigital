@@ -504,13 +504,27 @@
                     <h2>Let's Talk</h2>
                     <p>Tell me how you want to evolve and let's build something great together.</p>
                     <form action="https://formspree.io/f/mvkoqvnp" method="POST">
-  <input type="hidden" name="_redirect" value="https://ezedigital.co.uk/#contact">
-  
-  <!-- your form fields here -->
-  
+  <!-- ✅ THE MAGIC REDIRECT LINE -->
+  <input type="hidden" name="_next" value="https://ezedigital.co.uk/#contact">
+
+  <!-- ✅ ALL YOUR FIELDS INTACT -->
+  <div class="form-group">
+    <label>Your Name</label>
+    <input type="text" name="name" required>
+  </div>
+  <div class="form-group">
+    <label>Your Email</label>
+    <input type="email" name="email" required>
+  </div>
+  <div class="form-group">
+    <label>Your Message</label>
+    <textarea name="message" rows="5" required></textarea>
+  </div>
+
+  <!-- ✅ SUBMIT BUTTON -->
   <button type="submit" class="btn">Connect With Me</button>
 
-  <!-- ✅ Thank-you message appears on return -->
+  <!-- ✅ YOUR THANK YOU MESSAGE -->
   <div id="thankYouMsg" style="display: none; margin-top: 1.5rem; padding: 1.5rem; background: rgba(0,24,28,0.9); border: 1px solid rgba(0,184,187,0.35); border-radius: 8px; color: #00E6E9; text-align: center; font-weight: bold;">
     ✅ Thank you! I will contact you soon.
   </div>
@@ -584,6 +598,12 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // ✅ Show thank-you message when returning from Formspree
+  if (window.location.hash === '#contact') {
+    const msg = document.getElementById('thankYouMsg');
+    if (msg) msg.style.display = 'block';
+  }
+});
+        // ✅ Show thank-you message when returning from Formspree
   if (window.location.hash === '#contact') {
     const msg = document.getElementById('thankYouMsg');
     if (msg) msg.style.display = 'block';
