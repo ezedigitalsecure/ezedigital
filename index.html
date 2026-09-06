@@ -319,6 +319,64 @@
      [class*="border"], div, section, .tab-content {
   border-top: none !important;
 }   
+        .service-content {
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.4s ease-out;
+        }
+
+        .service-block.expanded .service-content {
+          max-height: 2000px;
+        }
+        .service-block.expanded .toggle-icon {
+  transform: rotate(45deg);
+}
+        .toggle-icon {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.service-block.expanded .toggle-icon {
+  transform: rotate(45deg);
+}
+
+.service-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out;
+}
+
+.service-block.expanded .service-content {
+  max-height: 2000px;
+}
+
+/* Hamburger menu styles */
+.hamburger {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: #00e5ff;
+  cursor: pointer;
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 10000;
+}
+
+.nav-menu {
+  position: fixed;
+  top: 70px;
+  right: 1rem;
+  background: #0a1929;
+  padding: 1.5rem;
+  border-radius: 8px;
+  display: none;
+  z-index: 9999;
+}
+
+.nav-menu.active {
+  display: block;
+}
     </style>
 </head>
 <body>
@@ -476,88 +534,23 @@
         <footer>Designed and Built by Eze Digital Ltd © All Rights Reserved 2026</footer>
     </div>
     <script>
-document.getElementById('hamburger').onclick=function(){this.classList.toggle('open');document.getElementById('dropdownMenu').classList.toggle('open');};
-
-function switchTab(pageId){
-  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('.dropdown-link').forEach(l=>l.classList.remove('active'));
-  const scrollablePages=document.getElementById('scrollablePages');
-  if(pageId==='home'){scrollablePages.classList.remove('active');document.getElementById('home').classList.add('active');}
-  else{document.getElementById('home').classList.remove('active');scrollablePages.classList.add('active');document.getElementById(pageId).classList.add('active');}
-  document.querySelector(`[data-page="${pageId}"]`).classList.add('active');
-  document.getElementById('dropdownMenu').classList.remove('open');
-  document.getElementById('hamburger').classList.remove('open');
-}
-        function handleSubmit(event) {
-  event.preventDefault();
-  const form = event.target;
-  fetch(form.action, {
-    method: 'POST',
-    body: new FormData(form),
-    headers: { 'Accept': 'application/json' }
-  })
-  .then(response => {
-    if (response.ok) {
-      form.innerHTML = '<div style="padding:40px;text-align:center;color:#00E6E9;"><h2>Thank You!</h2><p>I look forward to connecting soon!</p><p>All the Best, Nicki</p></div>';
-    } else {
-      alert('Oops! Please try again or email me directly at secure@ezedigital.co.uk');
-    }
-  })
-  .catch(() => {
-    alert('Oops! Please try again or email me directly at secure@ezedigital.co.uk');
-  });
-}
-        document.querySelectorAll('.service-title').forEach(title => {
-  title.addEventListener('click', function() {
-    this.parentElement.classList.toggle('expanded');
-  });
-});
-        document.querySelectorAll('.service-title').forEach(title => {
-  title.onclick = function() {
-    this.parentElement.classList.toggle('expanded');
-  };
-});
-        document.querySelectorAll('.service-title').forEach(title => {
-  title.onclick = function() {
+// Service block toggle
+document.querySelectorAll('.service-title').forEach(title => {
+  title.addEventListener('click', function () {
     this.closest('.service-block').classList.toggle('expanded');
-  };
+  });
 });
-        .service-content {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease-out;
+
+// Hamburger menu toggle
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('.nav-menu');
+
+if (hamburger && navMenu) {
+  hamburger.addEventListener('click', function () {
+    navMenu.classList.toggle('active');
+  });
 }
-
-.service-block.expanded .service-content {
-  max-height: 2000px;
-}
-
-.service-block.expanded .toggle-icon {
-  transform: rotate(45deg);
-}
-
-.toggle-icon {
-  display: inline-block;
-  transition: transform 0.3s ease;
-}
-        document.getElementById('hamburger').onclick=function(){this.classList.toggle('open');document.getElementById('dropdownMenu').classList.toggle('open');};
-
-function switchTab(pageId){
-  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('.dropdown-link').forEach(l=>l.classList.remove('active'));
-  const scrollablePages=document.getElementById('scrollablePages');
-  if(pageId==='home'){scrollablePages.classList.remove('active');document.getElementById('home').classList.add('active');}
-  else{document.getElementById('home').classList.remove('active');scrollablePages.classList.add('active');document.getElementById(pageId).classList.add('active');}
-  document.querySelector(`[data-page="${pageId}"]`).classList.add('active');
-  document.getElementById('dropdownMenu').classList.remove('open');
-  document.getElementById('hamburger').classList.remove('open');
-}
-
-document.querySelectorAll('.service-title').forEach(title=>{title.onclick=function(){this.closest('.service-block').classList.toggle('expanded');};});
-
-document.addEventListener('click',e=>{if(!e.target.closest('.menu-wrapper')){document.getElementById('dropdownMenu').classList.remove('open');document.getElementById('hamburger').classList.remove('open');}});
-
-const portal=document.getElementById('portallink');if(portal){portal.onclick=function(){alert('Client Portal coming soon. Watch this space.');document.getElementById('dropdownMenu').classList.remove('open');document.getElementById('hamburger').classList.remove('open');};}
+d('portallink');if(portal){portal.onclick=function(){alert('Client Portal coming soon. Watch this space.');document.getElementById('dropdownMenu').classList.remove('open');document.getElementById('hamburger').classList.remove('open');};}
         </script>
 </body>
 </html>
