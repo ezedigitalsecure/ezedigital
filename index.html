@@ -507,6 +507,16 @@ function switchTab(pageId){
     alert('Oops! Please try again or email me directly at secure@ezedigital.co.uk');
   });
 }
+        document.querySelectorAll('.service-title').forEach(title => {
+  title.addEventListener('click', function() {
+    this.parentElement.classList.toggle('expanded');
+  });
+});
+        document.querySelectorAll('.service-title').forEach(title => {
+  title.onclick = function() {
+    this.parentElement.classList.toggle('expanded');
+  };
+});
         </script>
 </body>
 </html>
