@@ -556,21 +556,35 @@
         <footer>Designed and Built by Eze Digital Ltd © All Rights Reserved 2026</footer>
     </div>
     <script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Service toggles
+document.addEventListener('DOMContentLoaded', function () {
+  console.log('✅ Page fully loaded — scripts running!');
+
+  // 1. Service toggles
   document.querySelectorAll('.service-title').forEach(title => {
     title.addEventListener('click', function () {
       this.closest('.service-block').classList.toggle('expanded');
     });
   });
 
-  // Hamburger menu
+  // 2. Hamburger menu
   const hamburger = document.getElementById('hamburger');
   const navMenu = document.querySelector('.nav-menu');
+  console.log('Hamburger:', hamburger);
+  console.log('Menu:', navMenu);
 
   if (hamburger && navMenu) {
     hamburger.addEventListener('click', function () {
+      console.log('✅ HAMBURGER CLICKED!');
       navMenu.classList.toggle('active');
+    });
+  }
+
+  // 3. Let's Talk button — TEST
+  const talkBtn = document.querySelector('button, a[href*="#talk"], .talk-button, [type="button"]');
+  console.log('Talk button found:', talkBtn);
+  if (talkBtn) {
+    talkBtn.addEventListener('click', function () {
+      console.log('✅ BUTTON CLICKED!');
     });
   }
 });
