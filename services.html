@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | Eze Digital</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; form-action 'self' https://formspree.io;">
+
+    <!-- Footer styles — clean, no icon -->
+    <link rel="stylesheet" href="footerstyles.css?v=5">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        html, body { min-height: 100%; }
+
+        /* BACKGROUND */
+        .static-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: 1;
+            background:
+                url('mockup-bg.png') no-repeat center center,
+                linear-gradient(180deg, #001418 0%, #00222a 45%, #001115 100%);
+            background-size: cover;
+        }
+
+        /* HEADER & MENU */
+        header {
+            position: absolute;
+            top: 0; right: 0;
+            padding: 1.5rem 2.5rem;
+            z-index: 100;
+        }
+        .menu-wrapper { position: relative; }
+        .hamburger-circle {
+            width: 52px; height: 52px; border-radius: 50%;
+            background: rgba(0, 12, 14, 0.75);
+            border: 1px solid rgba(0, 184, 187, 0.25);
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+        }
+        .hamburger { display: flex; flex-direction: column; gap: 5px; }
+        .hamburger span {
+            width: 26px; height: 3px;
+            background: linear-gradient(90deg, #00B8BB, #00E6E9);
+            border-radius: 2px;
+            box-shadow: 0 0 6px rgba(0, 184, 187, 0.4);
+        }
+        .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+        .dropdown-menu {
+            position: absolute; top: 62px; right: 0;
+            background: rgba(0, 24, 28, 0.96);
+            border: 1px solid rgba(0, 184, 187, 0.35);
+            border-radius: 0 0 12px 12px;
+            min-width: 220px;
+            display: none;
+        }
+        .dropdown-menu.open { display: flex; flex-direction: column; }
+        .dropdown-link {
+            color: #00E6E9; font-weight: bold;
+            padding: 1rem 1.5rem; text-decoration: none;
+            border-bottom: 1px solid rgba(0, 184, 187, 0.1);
+        }
+        .dropdown-link:hover, .dropdown-link.active { color: #66F0F3; }
+
+        /* MAIN CONTENT */
+        .page-content {
+            position: relative; z-index: 10;
+            min-height: 100vh;
+            padding: 8rem 2rem 4rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .page-content h1 {
+            color: #00E6E9;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        /* SERVICE CARDS */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .service-card {
+            background: rgba(0, 8, 10, 0.85);
+            border: 1px solid rgba(0, 184, 187, 0.2);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        .service-card:hover {
+            border-color: rgba(0, 230, 233, 0.4);
+            box-shadow: 0 0 15px rgba(0, 230, 233, 0.15);
+            transform: translateY(-4px);
+        }
+        .service-card h2 {
+            color: #00E6E9;
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+        .service-card p {
+            color: #99E6E8;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        .service-card .btn {
+            background: linear-gradient(90deg, #00E6E9, #00B8BB);
+            color: #001418; font-weight: bold;
+            padding: 0.75rem 1.5rem;
+            border-radius: 28px;
+            border: none;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .service-card .btn:hover {
+            box-shadow: 0 0 12px rgba(0, 230, 233, 0.4);
+            transform: scale(1.05);
+        }
+
+        #footer-placeholder {
+            position: relative;
+            z-index: 50;
+        }
+
+        /* MOBILE */
+        @media (max-width: 768px) {
+            header { padding: 1rem 1.2rem; }
+            .page-content h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="static-canvas"></div>
+
+    <header>
+        <div class="menu-wrapper">
+            <div class="hamburger-circle" onclick="toggleMenu()">
+                <div class="hamburger" id="hamburger">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+            <nav class="dropdown-menu" id="dropdownMenu">
+                <a class="dropdown-link" href="index.html">Home</a>
+                <a class="dropdown-link active" href="services.html">Services</a>
+                <a class="dropdown-link" href="about.html">About Eze Digital</a>
+                <a class="dropdown-link" href="contact.html">Contact</a>
+                <a class="dropdown-link" href="academy.html">Academy</a>
+                <a class="dropdown-link" href="#" onclick="alert('Client Portal coming soon.'); return false;">Client Portal</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="page-content">
+        <h1>Our Services</h1>
+        <div class="services-grid">
+            <div class="service-card">
+                <h2>Website Design & Build</h2>
+                <p>Beautiful, fast, secure websites built around your brand. From concept to launch — fully responsive, optimised, and ready to grow with you.</p>
+                <a href="contact.html" class="btn">Get Started</a>
+            </div>
+            <div class="service-card">
+                <h2>Cybersecurity & Monitoring</h2>
+                <p>Proactive protection for your peace of mind. Security audits, ongoing monitoring, backups, and compliance guidance — keep your site and visitors safe.</p>
+                <a href="contact.html" class="btn">Secure My Site</a>
+            </div>
+            <div class="service-card">
+                <h2>Compliance & Guidance</h2>
+                <p>Data protection, privacy policies, and regulatory best practice made simple. Know exactly what you need and how to implement it without the jargon.</p>
+                <a href="contact.html" class="btn">Stay Compliant</a>
+            </div>
+            <div class="service-card">
+                <h2>Training & Academy</h2>
+                <p>Build your own skills with confidence. Practical, jargon-free training in website management, digital safety, and growing your online presence.</p>
+                <a href="academy.html" class="btn">Learn More</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Load shared footer -->
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch('footer.html')
+            .then(res => {
+                if (!res.ok) throw new Error('Not found');
+                return res.text();
+            })
+            .then(html => {
+                document.getElementById('footer-placeholder').innerHTML = html;
+                console.log('✅ Footer loaded');
+            })
+            .catch(err => {
+                console.error('❌ Footer error:', err);
+                document.getElementById('footer-placeholder').innerHTML = 
+                    '<p style="color:#00E6E9;padding:2rem;text-align:center;">footer.html not found — check file name</p>';
+            });
+    </script>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('hamburger').classList.toggle('open');
+            document.getElementById('dropdownMenu').classList.toggle('open');
+        }
+    </script>
+</body>
+</html>
