@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eze Digital — Secure & Evolve</title>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self' https://www.youtube.com https://player.vimeo.com; form-action 'self' https://formspree.io;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; form-action 'self' https://formspree.io;">
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
@@ -70,21 +70,23 @@
         }
         .dropdown-link:hover, .dropdown-link.active { color: #00E6E9; }
 
-        /* HERO — WIDER, CLEANER, MORE OPEN */
+        /* HERO — WIDER · CLEAN · NO DASHES */
         .page-content {
             position: relative; z-index: 10;
             min-height: 100vh;
-            padding: 6rem 2rem 4rem;
+            display: flex;
+            align-items: center;
+            padding: 6rem 2rem;
         }
         .hero-box {
-            padding: 3rem 4rem; /* ✅ Wider horizontal padding */
-            max-width: 900px; /* ✅ Much wider */
+            padding: 3rem 4rem;
+            max-width: 900px;
             width: 92%;
+            margin: 0 auto;
             text-align: center;
-            background: rgba(0, 8, 10, 0.65); /* ✅ More transparent — lets background show through */
-            border-radius: 12px; /* ✅ Softer corners */
-            border: 1px solid rgba(0, 184, 187, 0.12); /* ✅ Lighter border — less prominent */
-            margin: 0 auto 3rem;
+            background: rgba(0, 8, 10, 0.65);
+            border-radius: 12px;
+            border: 1px solid rgba(0, 184, 187, 0.12);
         }
         .hero-box h1 {
             color: #00E6E9;
@@ -95,7 +97,7 @@
         .hero-tagline {
             color: #ffffff;
             font-size: 1.25rem;
-            margin-bottom: 1.5rem; /* ✅ Tighter spacing */
+            margin-bottom: 1.5rem;
             font-style: italic;
         }
         .hero-desc {
@@ -110,48 +112,18 @@
         .btn {
             background: linear-gradient(90deg, #00E6E9, #00B8BB);
             color: #001418; font-weight: bold;
-            padding: 0.85rem 2.4rem; border-radius: 28px;
-            border: none; font-size: 1rem; cursor: pointer;
+            padding: 0.85rem 2.4rem;
+            border-radius: 28px;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
             transition: all 0.3s ease;
-            text-decoration: none; display: inline-block;
+            text-decoration: none;
+            display: inline-block;
         }
         .btn:hover {
             box-shadow: 0 0 20px rgba(0, 230, 233, 0.6);
             transform: scale(1.05);
-        }
-
-        /* VIDEO SECTION */
-        .video-section {
-            max-width: 720px;
-            margin: 0 auto 4rem;
-            text-align: center;
-        }
-        .video-section h2 {
-            color: #00E6E9;
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-        }
-        .video-container {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%;
-            border-radius: 12px; /* ✅ Matched softer corners */
-            overflow: hidden;
-            border: 1px solid rgba(0, 184, 187, 0.15);
-            box-shadow: 0 0 15px rgba(0, 184, 187, 0.1); /* ✅ Softer glow */
-            background: #000;
-        }
-        .video-container video,
-        .video-container iframe {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            border: none;
-        }
-        .video-note {
-            color: #94A3B8;
-            font-size: 0.85rem;
-            margin-top: 1rem;
         }
 
         /* FOOTER */
@@ -239,47 +211,30 @@
     </header>
 
     <div class="page-content">
-        <!-- HERO — WIDER, CLEANER, BACKGROUND SHOWS THROUGH -->
         <div class="hero-box">
             <h1>Welcome to Eze Digital</h1>
-            <p class="hero-tagline">Where heart meets HTML — your partner in creating your secure online home</p>
-            <p class="hero-desc">We build beautiful, protected digital foundations that feel like you and grow with you. From website design to cybersecurity and training — everything crafted with care.</p>
+            <p class="hero-tagline">Where heart meets HTML your partner in creating your secure online home</p>
+            <p class="hero-desc">We build beautiful protected digital foundations that feel like you and grow with you. From website design to cybersecurity and training everything crafted with care.</p>
             <a href="contact.html" class="btn">Let's Talk</a>
         </div>
-
-        <!-- VIDEO SECTION -->
-        <section class="video-section">
-            <h2>Hi, I'm Nicki</h2>
-            <div class="video-container">
-                <!-- Option A: Self-hosted video -->
-                <video controls preload="metadata" poster="video-poster.jpg">
-                    <source src="intro.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-                <!-- Option B: YouTube — replace above & uncomment below
-                <iframe src="https://www.youtube.com/embed/REPLACE_WITH_ID" title="Meet Nicki" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-            </div>
-            <p class="video-note">Just a quick hello — I'd love to hear what you're building 💛</p>
-        </section>
     </div>
 
-    <!-- FOOTER -->
     <footer class="site-footer">
         <div class="footer-inner">
             <div class="footer-grid">
                 <div class="footer-col">
                     <h4>EZE DIGITAL</h4>
-                    <p>Integrated digital protection, education & design.</p>
+                    <p>Integrated digital protection education and design.</p>
                     <p style="margin-top: 1rem;">secure@ezedigital.co.uk</p>
                     <p>United Kingdom</p>
                 </div>
                 <div class="footer-col">
                     <h4>SERVICES</h4>
-                    <a href="services.html">Website & Digital Build</a>
-                    <a href="services.html">Cybersecurity & Monitoring</a>
+                    <a href="services.html">Website and Digital Build</a>
+                    <a href="services.html">Cybersecurity and Monitoring</a>
                     <a href="services.html">Compliance Guidance</a>
                     <a href="academy.html">CPD Accredited Training</a>
-                    <a href="services.html">Brand & Identity</a>
+                    <a href="services.html">Brand and Identity</a>
                 </div>
                 <div class="footer-col">
                     <h4>QUICK LINKS</h4>
