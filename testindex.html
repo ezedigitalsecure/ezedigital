@@ -49,7 +49,7 @@
             width: 26px; height: 3px;
             background: linear-gradient(90deg, #00B8BB, #00E6E9);
             border-radius: 2px;
-            box-shadow: 0 0 8px rgba(0, 184, 187, 0.6);
+            box-shadow: 0 0 6px rgba(0, 184, 187, 0.4);
         }
         .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
         .hamburger.open span:nth-child(2) { opacity: 0; }
@@ -64,11 +64,11 @@
         }
         .dropdown-menu.open { display: flex; }
         .dropdown-link {
-            color: #00B8BB; font-weight: bold;
+            color: #00E6E9; font-weight: bold;
             padding: 1rem 1.5rem; text-decoration: none;
             border-bottom: 1px solid rgba(0, 184, 187, 0.1);
         }
-        .dropdown-link:hover, .dropdown-link.active { color: #00E6E9; }
+        .dropdown-link:hover, .dropdown-link.active { color: #66F0F3; }
 
         /* HERO */
         .page-content {
@@ -84,25 +84,25 @@
             width: 92%;
             margin: 0 auto;
             text-align: center;
-            background: rgba(0, 8, 10, 0.65);
+            background: rgba(0, 8, 10, 0.85); /* ✅ Less see-through */
             border-radius: 12px;
-            border: 1px solid rgba(0, 184, 187, 0.12);
+            border: 1px solid rgba(0, 184, 187, 0.2);
         }
         .hero-box h1 {
-            color: #00E6E9;
+            color: #00E6E9; /* ✅ Cyan heading */
             font-size: 2.6rem;
             margin-bottom: 0.8rem;
             font-weight: 600;
         }
         .hero-tagline {
-            color: #ffffff;
+            color: #66F0F3; /* ✅ Lighter cyan — no white */
             font-size: 1.25rem;
             line-height: 1.5;
             margin-bottom: 1.5rem;
             font-style: italic;
         }
         .hero-desc {
-            color: #B2C8CC;
+            color: #99E6E8; /* ✅ Soft cyan — no white */
             font-size: 1rem;
             line-height: 1.7;
             margin-bottom: 2rem;
@@ -123,7 +123,7 @@
             display: inline-block;
         }
         .btn:hover {
-            box-shadow: 0 0 20px rgba(0, 230, 233, 0.6);
+            box-shadow: 0 0 15px rgba(0, 230, 233, 0.5); /* ✅ Softer glow */
             transform: scale(1.05);
         }
 
@@ -145,7 +145,7 @@
             margin-bottom: 2rem;
         }
         .footer-col h4 {
-            color: #ffffff;
+            color: #00E6E9; /* ✅ Cyan headings */
             font-size: 0.9rem;
             font-weight: 600;
             margin-bottom: 1rem;
@@ -153,27 +153,55 @@
             letter-spacing: 0.05em;
         }
         .footer-col p {
-            color: #94A3B8;
+            color: #99E6E8; /* ✅ Soft cyan */
             font-size: 0.85rem;
             line-height: 1.6;
             margin-bottom: 0.5rem;
         }
         .footer-col a {
             display: block;
-            color: #94A3B8;
+            color: #66F0F3; /* ✅ Cyan links */
             font-size: 0.85rem;
             text-decoration: none;
             margin-bottom: 0.5rem;
             transition: color 0.2s ease;
         }
         .footer-col a:hover { color: #00E6E9; }
+
+        /* BRANDED e MARK */
+        .footer-e-mark {
+            width: 42px;
+            height: 42px;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .footer-e-mark .hexagon {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0,230,233,0.14), rgba(0,184,187,0.08));
+            border: 1px solid rgba(0,230,233,0.35);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .footer-e-mark span {
+            position: relative;
+            color: #00E6E9;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
         .footer-bottom-bar {
             border-top: 1px solid rgba(0, 184, 187, 0.1);
             padding-top: 1.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            color: #64748B;
+            color: #66B8BB; /* ✅ Muted cyan */
             font-size: 0.8rem;
         }
 
@@ -186,7 +214,11 @@
         }
         @media (max-width: 480px) {
             .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-            .footer-bottom-bar { flex-direction: column; text-align: center; gap: 0.5rem; }
+            .footer-bottom-bar {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
         }
     </style>
 </head>
@@ -253,6 +285,10 @@
             </div>
             <div class="footer-bottom-bar">
                 <p>© 2026 Eze Digital Ltd. All rights reserved.</p>
+                <div class="footer-e-mark">
+                    <div class="hexagon"></div>
+                    <span>e</span>
+                </div>
             </div>
         </div>
     </footer>
