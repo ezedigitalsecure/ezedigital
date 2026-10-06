@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eze Digital — About Preview</title>
+    <title>Eze Digital — Meet Our Co-Founders Preview</title>
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; font-src 'self';">
     
     <style>
@@ -15,8 +15,7 @@
         }
         html, body {
             min-height: 100%;
-            background:
-                linear-gradient(180deg, #001418 0%, #00222a 45%, #001115 100%);
+            background: linear-gradient(180deg, #001418 0%, #00222a 45%, #001115 100%);
             color: #fff;
             line-height: 1.7;
         }
@@ -24,6 +23,18 @@
             padding: 4rem 2rem 3rem;
             max-width: 850px;
             margin: 0 auto;
+        }
+        .preview-note {
+            background: rgba(189, 134, 22, 0.15);
+            border-left: 3px solid #bd8616;
+            padding: 1rem 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 0 8px 8px 0;
+        }
+        .preview-note p {
+            margin: 0;
+            color: #f3eee7;
+            font-size: 0.9rem;
         }
         .services-heading-box {
             color: #00E6E9;
@@ -42,6 +53,37 @@
         .services-heading-box p {
             color: #00B8BB;
             font-size: 1.1rem;
+        }
+        .founders-top {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .founder-portrait {
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+            max-width: 280px;
+        }
+        .founder-portrait img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(0, 230, 233, 0.3);
+            box-shadow: 0 0 15px rgba(0, 230, 233, 0.15);
+            margin-bottom: 0.75rem;
+        }
+        .founder-portrait h3 {
+            color: #00E6E9;
+            font-size: 1.2rem;
+            margin-bottom: 0.25rem;
+        }
+        .founder-portrait .title {
+            color: #00B8BB;
+            font-size: 0.9rem;
         }
         .about-block {
             background: rgba(0, 12, 14, 0.85);
@@ -81,43 +123,10 @@
             line-height: 1.7;
             margin-bottom: 0.75rem;
         }
-        .profile-row {
-            display: flex;
-            align-items: center;
-            gap: 24px;
-            margin: 16px 0;
-            flex-wrap: wrap;
-        }
-        .profile-img {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid rgba(0, 230, 233, 0.3);
-            box-shadow: 0 0 15px rgba(0, 230, 233, 0.15);
-            flex-shrink: 0;
-            background: rgba(0, 184, 187, 0.2);
-        }
-        .profile-text {
-            flex: 1;
-            min-width: 250px;
-        }
         .tech-note {
             font-style: italic;
             opacity: 0.8;
             margin: 1rem 0;
-        }
-        .preview-note {
-            background: rgba(189, 134, 22, 0.15);
-            border-left: 3px solid #bd8616;
-            padding: 1rem 1.5rem;
-            margin-bottom: 2rem;
-            border-radius: 0 8px 8px 0;
-        }
-        .preview-note p {
-            margin: 0;
-            color: #f3eee7;
-            font-size: 0.9rem;
         }
         footer {
             text-align: center;
@@ -127,68 +136,60 @@
             border-top: 1px solid rgba(0, 184, 187, 0.1);
             margin-top: 2rem;
         }
-        @media (max-width: 640px) {
-            .page-wrapper {
-                padding: 2rem 1rem;
-            }
-            .profile-row {
-                justify-content: center;
-                text-align: center;
-            }
-        }
     </style>
 </head>
 <body>
     <div class="page-wrapper">
         
-        <!-- ⚠️ PREVIEW NOTICE -->
         <div class="preview-note">
-            <p><strong>🔒 Private Preview — Not Live</strong><br>This is a draft version for your review only. Replace your live "About" section when you're 100% happy with it.</p>
+            <p>🔒 Private Preview — Not Live. This is a draft for your review only. Remove this notice before publishing.</p>
         </div>
 
         <div class="services-heading-box">
-            <h2>Meet The Team</h2>
-            <p>We saw the gap. We decided to fix it.</p>
+            <h2>Meet Our Co-Founders</h2>
+            <p>Two perspectives. One shared vision.</p>
+        </div>
+
+        <!-- Side-by-Side Photos & Names -->
+        <div class="founders-top">
+            <div class="founder-portrait">
+                <img src="38056BA2-7397-4F60-AD7D-ECE7038AD774.jpg" alt="Nicki — Co-Founder & Business Director">
+                <h3>Nicki</h3>
+                <p class="title">Co-Founder & Business Director</p>
+            </div>
+            <div class="founder-portrait">
+                <img src="praisegod-eze-co-founder.jpg" alt="Praisegod — Co-Founder & Technical Director">
+                <h3>Praisegod</h3>
+                <p class="title">Co-Founder & Technical Director</p>
+            </div>
         </div>
 
         <div class="about-block">
             <h2>How We See the World</h2>
-            <p>Eze Digital exists because we noticed something no one else was talking about: almost every website agency builds beautiful sites — and completely leaves out the security. We saw it firsthand. Even sites built by technical hands were going live without proper protection. That's not right. Every business deserves a digital presence that's safe as well as seen.</p>
+            <p>Eze Digital exists because every growing business deserves professional digital infrastructure. It should come without the complexity, jargon, or inflated price tags that usually apply. We noticed something that no one else seemed to be talking about. Almost every agency builds beautiful websites and completely leaves out the security. That is not right. Every business deserves a digital presence that is safe as well as seen.</p>
         </div>
 
-        <!-- NICKI -->
         <div class="about-block">
-            <h2>I'm Nicki — Co-Founder & Business Director</h2>
-            <div class="profile-row">
-                <img src="38056BA2-7397-4F60-AD7D-ECE7038AD774.jpg" alt="Nicki — Co-Founder of Eze Digital" class="profile-img">
-                <div class="profile-text">
-                    <p>My vision for Eze Digital is built on one simple belief: great business is built on trust, clarity, and the right people working together. I don't claim to be a technical expert in every field — but I know how to find the right ones, and I know how to make technology serve you, not confuse you.</p>
-                </div>
-            </div>
-            <h3>What I Bring</h3>
-            <p>I speak your language. I know what it feels like to build a business — the platform fees, the compliance worry, that feeling you need a whole team just to stay visible. I bridge that gap. With a background in teaching and training, I don't just hand you a finished product — I help you understand it so you feel confident and in control.</p>
+            <h2>Nicki — What Drives Me</h2>
+            <p>My vision for Eze Digital is built on one simple belief. Great business is built on trust, clarity, and the right people working together. I do not claim to be a technical expert in every field but I definitely know how to find the right people who are.</p>
+            <h3>Where I Add Value</h3>
+            <p>I speak your language. I know what it feels like to build a business. I understand the pain points including platform fees, compliance worry, and that feeling that you need a whole team just to stay visible.</p>
+            <p>With a background in teaching and training, I do not just hand you a finished product. I help you understand it so you feel confident and in control of your own digital presence. Technology should serve you, not confuse you. I bridge that gap so you can focus on what you do best.</p>
         </div>
 
-        <!-- PRAISEGOD -->
         <div class="about-block">
-            <h2>I'm Praisegod — Co-Founder & Technical Director</h2>
-            <div class="profile-row">
-                <img src="praisegod.jpg" alt="Praisegod — Co-Founder & Technical Director of Eze Digital" class="profile-img">
-                <div class="profile-text">
-                    <p>I'm the technical brain behind Eze Digital. I'm a cybersecurity specialist and secure software developer, and I lead everything technical — from custom websites and booking systems to enterprise-grade threat detection. Certified in Cisco CCNA and CyberOps, I spent years in Security Operations stopping threats before they become problems.</p>
-                </div>
-            </div>
-            <p class="tech-note">(Quick techy bit — if you think Splunk is an arcade game, feel free to skip: I deploy SIEM tools like Splunk and Wazuh for 24/7 monitoring, build secure cloud infrastructure on AWS, and lead our CPD-accredited cybersecurity training.)</p>
-            <h3>What I Realised</h3>
-            <p>I saw the gap from the inside. I've built sites — and I've seen that even technically built sites often go live without proper security. That realisation is exactly why we're here. Every website, booking system, and solution we deliver comes with proper security built in from day one. Not bolted on later. Not sold as an expensive extra. Just there — as standard.</p>
-            <p style="margin-top: 0.75rem;">When I'm not protecting clients, I'm in ethical hacking labs staying one step ahead — so you don't have to.</p>
+            <h2>Praisegod — What Drives Me</h2>
+            <p>I am the technical brain behind Eze Digital. I am a cybersecurity specialist and secure software developer, and I lead everything technical from custom websites and booking systems to enterprise-grade threat detection. Certified in Cisco CCNA and CyberOps, I spent years in Security Operations stopping threats before they become problems.</p>
+            <p class="tech-note">Quick techy bit — if you think Splunk is an arcade game, feel free to skip this part. I deploy SIEM tools like Splunk and Wazuh for round the clock monitoring, build secure cloud infrastructure on AWS, and lead our CPD accredited cybersecurity training.</p>
+            <h3>Where I Add Value</h3>
+            <p>I saw the gap from the inside. I have built systems and I have seen that even technically built sites often go live without proper security. That realisation is exactly why we are here. Every website, booking system, and solution we deliver comes with proper security built in from day one. Not bolted on later. Not sold as an expensive extra. Just there as standard.</p>
+            <p>When I am not protecting clients, I am in ethical hacking labs staying one step ahead so you do not have to.</p>
         </div>
 
-        <!-- TOGETHER -->
         <div class="about-block">
-            <h2>Together, We're Different</h2>
-            <p>I bring the relationship, the clarity, and the big-picture vision. Praisegod brings the security expertise that most agencies simply don't have.</p>
-            <p style="margin-top: 0.75rem;">Together, we don't just build websites — we build digital foundations that work and stay safe. Beautiful, secure, explained in plain English. That's the Eze Digital difference.</p>
+            <h2>Together We Are Different</h2>
+            <p>Nicki brings the relationship building, the clear communication, and the big picture vision. She makes technology feel approachable and human. Praisegod brings the deep technical expertise and cybersecurity focus that most agencies simply do not have. He builds the protection that keeps what you have built safe.</p>
+            <p>We are equals in this. We bring different strengths and we lean on each other where the other is not expert. Together we do not just build websites. We build digital foundations that work and stay safe. Beautiful, secure, and explained in plain English. That is the Eze Digital difference.</p>
         </div>
 
     </div>
