@@ -108,20 +108,59 @@
             opacity: 0.95;
             z-index: 10;
         }
-        .about-block h2 {
-            color: #00E6E9;
+        /* DROPDOWN STYLES */
+        .dropdown-block {
+            background: rgba(0, 12, 14, 0.85);
+            border: 1px solid rgba(0, 184, 187, 0.25);
+            border-radius: 14px;
             margin-bottom: 1rem;
-            font-size: 1.4rem;
+            overflow: hidden;
         }
-        .about-block h3 {
+        .dropdown-toggle {
+            width: 100%;
+            background: transparent;
+            border: none;
             color: #00E6E9;
-            margin: 1.4rem 0 0.5rem;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
+            font-weight: 600;
+            text-align: left;
+            padding: 1.25rem 2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.2s ease;
         }
-        .about-block p {
+        .dropdown-toggle:hover {
+            color: #fff;
+        }
+        .dropdown-icon {
+            transition: transform 0.3s ease;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        .dropdown-toggle[aria-expanded="true"] .dropdown-icon {
+            transform: rotate(180deg);
+        }
+        .dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+            padding: 0 2rem;
+        }
+        .dropdown-content.open {
+            max-height: 2000px;
+            padding: 0 2rem 1.75rem;
+        }
+        .dropdown-content p {
             color: #00E6E9;
             line-height: 1.7;
             margin-bottom: 0.75rem;
+        }
+        .dropdown-content h3 {
+            color: #00E6E9;
+            margin: 1.4rem 0 0.5rem;
+            font-size: 1.1rem;
         }
         .tech-note {
             font-style: italic;
@@ -147,10 +186,9 @@
 
         <div class="services-heading-box">
             <h2>Meet Our Co-Founders</h2>
-            <p>Two perspectives. One shared vision.</p>
+            <p>Two perspectives. One integrated approach.</p>
         </div>
 
-        <!-- Side-by-Side Photos & Names -->
         <div class="founders-top">
             <div class="founder-portrait">
                 <img src="38056BA2-7397-4F60-AD7D-ECE7038AD774.jpg" alt="Nicki — Co-Founder & Business Director">
@@ -158,38 +196,56 @@
                 <p class="title">Co-Founder & Business Director</p>
             </div>
             <div class="founder-portrait">
-                <img src="FF05173F-1D69-499E-9FDB-FCAB7EB3BC78.png" alt="Praisegod — Co-Founder & Technical Director">
+                <img src="praisegod-eze-co-founder.jpg" alt="Praisegod — Co-Founder & Technical Director">
                 <h3>Praisegod</h3>
                 <p class="title">Co-Founder & Technical Director</p>
             </div>
         </div>
 
         <div class="about-block">
-            <h2>How We See the World</h2>
-            <p>Eze Digital exists because every growing business deserves professional digital infrastructure. It should come without the complexity, jargon, or inflated price tags that usually apply. We noticed something that no one else seemed to be talking about. Almost every agency builds beautiful websites and completely leaves out the security. That is not right. Every business deserves a digital presence that is safe as well as seen.</p>
+            <h2>Who We Are</h2>
+            <p>Eze Digital exists because every growing business and organisation deserves professional digital infrastructure. It should come without the complexity, jargon, or inflated price tags that usually apply. We noticed something that no one else seemed to be talking about. Almost every agency builds beautiful digital presences and completely leaves out the security. Even fewer offer the full package that actually keeps you safe, compliant, and confident. That is not right. Every organisation deserves to be protected, educated, and supported across everything they do.</p>
         </div>
 
-        <div class="about-block">
-            <h2>Nicki — What Drives Me</h2>
-            <p>My vision for Eze Digital is built on one simple belief. Great business is built on trust, clarity, and the right people working together. I do not claim to be a technical expert in every field but I definitely know how to find the right people who are.</p>
-            <h3>Where I Add Value</h3>
-            <p>I speak your language. I know what it feels like to build a business. I understand the pain points including platform fees, compliance worry, and that feeling that you need a whole team just to stay visible.</p>
-            <p>With a background in teaching and training, I do not just hand you a finished product. I help you understand it so you feel confident and in control of your own digital presence. Technology should serve you, not confuse you. I bridge that gap so you can focus on what you do best.</p>
+        <!-- NICKI DROPDOWN -->
+        <div class="dropdown-block">
+            <button class="dropdown-toggle" aria-expanded="false" id="nickiToggle">
+                Nicki — Co-Founder & Business Director
+                <span class="dropdown-icon">▼</span>
+            </button>
+            <div class="dropdown-content" id="nickiContent">
+                <p>My vision for Eze Digital is built on one simple belief. Great business is built on trust, clarity, and the right people working together. I do not claim to be a technical expert in every field but I definitely know how to find the right people who are.</p>
+                <h3>Where I Add Value</h3>
+                <p>I speak your language. I know what it feels like to build something from the ground up. I understand the full picture from branding and design to compliance and training. I know the pressure to get it right and the confusion that comes with keeping up with changing rules and standards.</p>
+                <p>With a background in teaching and training, I do not just hand you something finished. I help you understand it so you feel confident and in control. We deliver CPD accredited education that comes to you whether you are a school, a business, or a team that needs to upskill. We build your brand identity, guide you through compliance, and create systems that fit how you work. Technology should serve you, not confuse you. I bridge that gap so you can focus on what you do best.</p>
+            </div>
         </div>
 
-        <div class="about-block">
-            <h2>Praisegod — What Drives Me</h2>
-            <p>I am the technical brain behind Eze Digital. I am a cybersecurity specialist and secure software developer, and I lead everything technical from custom websites and booking systems to enterprise-grade threat detection. Certified in Cisco CCNA and CyberOps, I spent years in Security Operations stopping threats before they become problems.</p>
-            <p class="tech-note">Quick techy bit — if you think Splunk is an arcade game, feel free to skip this part. I deploy SIEM tools like Splunk and Wazuh for round the clock monitoring, build secure cloud infrastructure on AWS, and lead our CPD accredited cybersecurity training.</p>
-            <h3>Where I Add Value</h3>
-            <p>I saw the gap from the inside. I have built systems and I have seen that even technically built sites often go live without proper security. That realisation is exactly why we are here. Every website, booking system, and solution we deliver comes with proper security built in from day one. Not bolted on later. Not sold as an expensive extra. Just there as standard.</p>
-            <p>When I am not protecting clients, I am in ethical hacking labs staying one step ahead so you do not have to.</p>
+        <!-- PRAISEGOD DROPDOWN -->
+        <div class="dropdown-block">
+            <button class="dropdown-toggle" aria-expanded="false" id="praiseToggle">
+                Praisegod — Co-Founder & Technical Director
+                <span class="dropdown-icon">▼</span>
+            </button>
+            <div class="dropdown-content" id="praiseContent">
+                <p>I am the technical brain behind Eze Digital. I lead everything technical from custom websites and booking systems to enterprise-grade threat detection, network security, and infrastructure protection. Certified in Cisco CCNA and CyberOps, I spent years in Security Operations stopping threats before they become problems.</p>
+                <p class="tech-note">Quick techy bit — if you think Splunk is an arcade game, feel free to skip this part. I deploy SIEM tools like Splunk and Wazuh for round the clock monitoring, build secure cloud infrastructure on AWS, and design end-to-end security for systems of all kinds.</p>
+                <h3>Where I Add Value</h3>
+                <p>I saw the gap from the inside. I have built systems and I have seen that even technically built work often goes live without proper security. That realisation is exactly why we are here. Everything we deliver carries proper security built in from day one. Not bolted on later. Not sold as an expensive extra. Just there as standard.</p>
+                <p>Beyond building secure systems, I design and deliver the cybersecurity education that empowers people and teams to stay safe long after we leave. I create practical, accessible training that meets CPD standards and real world needs. When I am not protecting systems, I am in ethical hacking labs staying one step ahead so you do not have to.</p>
+            </div>
         </div>
 
-        <div class="about-block">
-            <h2>Together We Are Different</h2>
-            <p>Nicki brings the relationship building, the clear communication, and the big picture vision. She makes technology feel approachable and human. Praisegod brings the deep technical expertise and cybersecurity focus that most agencies simply do not have. He builds the protection that keeps what you have built safe.</p>
-            <p>We are equals in this. We bring different strengths and we lean on each other where the other is not expert. Together we do not just build websites. We build digital foundations that work and stay safe. Beautiful, secure, and explained in plain English. That is the Eze Digital difference.</p>
+        <!-- TOGETHER DROPDOWN -->
+        <div class="dropdown-block">
+            <button class="dropdown-toggle" aria-expanded="false" id="togetherToggle">
+                Together — The Eze Digital Difference
+                <span class="dropdown-icon">▼</span>
+            </button>
+            <div class="dropdown-content" id="togetherContent">
+                <p>Nicki brings the relationship building, the clear communication, educational expertise, brand care, and compliance guidance. She makes technology feel approachable and human. Praisegod brings the deep technical expertise and cybersecurity focus that most agencies simply do not have. He builds the protection that keeps what you have built safe.</p>
+                <p>We are equals in this. We bring different strengths and we lean on each other where the other is not expert. Together we offer something truly integrated. We can build your online presence, design your brand, guide you through compliance, train your team or your students in cybersecurity, and monitor your systems round the clock. One team. One joined up approach. Everything explained in plain English. That is the Eze Digital difference.</p>
+            </div>
         </div>
 
     </div>
@@ -197,5 +253,18 @@
     <footer>
         Preview · Eze Digital Ltd © 2026
     </footer>
+
+    <script>
+        // Dropdown functionality
+        const toggles = document.querySelectorAll('.dropdown-toggle');
+        toggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const expanded = toggle.getAttribute('aria-expanded') === 'true';
+                toggle.setAttribute('aria-expanded', !expanded);
+                const content = toggle.nextElementSibling;
+                content.classList.toggle('open');
+            });
+        });
+    </script>
 </body>
 </html>
