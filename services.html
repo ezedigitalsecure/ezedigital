@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eze Digital — Secure and Evolve</title>
+    <title>Eze Digital — Services</title>
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://formspree.io; font-src 'self'; base-uri 'self'; frame-src 'none'; object-src 'none'; form-action 'self' https://formspree.io;">
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
     <meta name="referrer" content="strict-origin-when-cross-origin">
 
-    <!-- ✅ Shared footer styles -->
+    <!-- Shared footer styles -->
     <link rel="stylesheet" href="footerstyles.css?v=5">
     
     <style>
@@ -324,17 +324,17 @@
                 </div>
             </div>
             <nav class="dropdown-menu" id="dropdownMenu">
-                <a class="dropdown-link active" data-page="home" onclick="switchTab('home')" style="cursor: pointer;">Home</a>
-                <a class="dropdown-link" data-page="services" onclick="switchTab('services')" style="cursor: pointer;">Services</a>
-                <a class="dropdown-link" data-page="about" onclick="switchTab('about')" style="cursor: pointer;">About Eze Digital</a>
-                <a class="dropdown-link" data-page="contact" onclick="switchTab('contact')" style="cursor: pointer;">Contact</a>
-                <a class="dropdown-link" id="portalLink" onclick="alert('Client Portal coming soon. Watch this space.')" style="cursor: pointer;">Client Portal</a>
+                <a class="dropdown-link" data-page="home" onclick="switchTab('home')">Home</a>
+                <a class="dropdown-link active" data-page="services" onclick="switchTab('services')">Services</a>
+                <a class="dropdown-link" data-page="about" onclick="switchTab('about')">About Eze Digital</a>
+                <a class="dropdown-link" data-page="contact" onclick="switchTab('contact')">Contact</a>
+                <a class="dropdown-link" onclick="alert('Client Portal coming soon. Watch this space.')">Client Portal</a>
             </nav>
         </div>
     </header>
 
     <!-- HOME TAB -->
-    <div id="home" class="tab-content active">
+    <div id="home" class="tab-content">
         <div class="home-box">
             <h2>Your Digital Presence,<br>Built Securely</h2>
             <p>Eze Digital supports growing businesses with web design, cybersecurity, booking systems, education, and business development. We bring together the right expertise to build clear, protected digital foundations that fit your goals.</p>
@@ -345,8 +345,8 @@
 
     <!-- SCROLLABLE PAGES -->
     <div class="scrollable-pages" id="scrollablePages">
-        <!-- SERVICES TAB -->
-        <div id="services" class="tab-content">
+        <!-- SERVICES TAB — ACTIVE BY DEFAULT -->
+        <div id="services" class="tab-content active">
             <div class="page-wrapper">
                 <div class="services-heading-box">
                     <h2>What We Do</h2>
@@ -407,8 +407,6 @@
                         <p>From your website to your booking system, your brand, your social media presence, and your compliance. We build the whole digital foundation you need to grow with confidence.</p>
                     </div>
                 </div>
-
-                <!-- ✅ SHARED FOOTER — Loaded from footer.html -->
                 <div id="footer-placeholder"></div>
             </div>
         </div>
@@ -444,8 +442,6 @@
                     <h3>Education and Empowerment</h3>
                     <p>With a background in teaching and training, I do not just hand you a finished product. I help you understand it so you feel confident and in control of your own digital presence.</p>
                 </div>
-
-                <!-- ✅ SHARED FOOTER — Loaded from footer.html -->
                 <div id="footer-placeholder"></div>
             </div>
         </div>
@@ -478,8 +474,6 @@
                         </div>
                     </form>
                 </div>
-
-                <!-- ✅ SHARED FOOTER — Loaded from footer.html -->
                 <div id="footer-placeholder"></div>
             </div>
         </div>
@@ -504,7 +498,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   loadFooter();
 
-  // Tab switching
+  // ✅ Auto-activate Services tab on page load
   window.switchTab = function(tabName) {
     document.querySelectorAll('.tab-content').forEach(tab => {
       tab.classList.remove('active');
@@ -527,6 +521,9 @@ document.addEventListener('DOMContentLoaded', function () {
       scrollablePages.classList.add('active');
     }
   };
+
+  // Auto-show Services on load
+  switchTab('services');
 
   // Service accordion toggles
   document.querySelectorAll('.service-title').forEach(title => {
