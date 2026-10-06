@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eze Digital — About Preview</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; font-src 'self';">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        html, body {
+            min-height: 100%;
+            background:
+                linear-gradient(180deg, #001418 0%, #00222a 45%, #001115 100%);
+            color: #fff;
+            line-height: 1.7;
+        }
+        .page-wrapper {
+            padding: 4rem 2rem 3rem;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+        .services-heading-box {
+            color: #00E6E9;
+            font-weight: bold;
+            text-align: center;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            background: rgba(0, 12, 14, 0.85);
+            border: 1px solid rgba(0, 184, 187, 0.25);
+            border-radius: 14px;
+        }
+        .services-heading-box h2 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+        .services-heading-box p {
+            color: #00B8BB;
+            font-size: 1.1rem;
+        }
+        .about-block {
+            background: rgba(0, 12, 14, 0.85);
+            border: 1px solid rgba(0, 184, 187, 0.25);
+            border-radius: 14px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-left: 48px;
+        }
+        .about-block::before {
+            content: "";
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            width: 28px;
+            height: 28px;
+            background-image: url("data:image/svg+xml,%3Csvg width='28' height='28' viewBox='0 0 28 28' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M14 3l9 5v10l-9 5-9-5V8l9-5z' stroke='%2300E6E9' stroke-width='1.5'/%3E%3Ctext x='14' y='17.5' text-anchor='middle' fill='%2300E6E9' font-size='12' font-weight='700' font-family='Arial,sans-serif'%3EE%3C/text%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            filter: drop-shadow(0 0 5px #00E6E9);
+            opacity: 0.95;
+            z-index: 10;
+        }
+        .about-block h2 {
+            color: #00E6E9;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+        .about-block h3 {
+            color: #00E6E9;
+            margin: 1.4rem 0 0.5rem;
+            font-size: 1.1rem;
+        }
+        .about-block p {
+            color: #00E6E9;
+            line-height: 1.7;
+            margin-bottom: 0.75rem;
+        }
+        .profile-row {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin: 16px 0;
+            flex-wrap: wrap;
+        }
+        .profile-img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(0, 230, 233, 0.3);
+            box-shadow: 0 0 15px rgba(0, 230, 233, 0.15);
+            flex-shrink: 0;
+            background: rgba(0, 184, 187, 0.2);
+        }
+        .profile-text {
+            flex: 1;
+            min-width: 250px;
+        }
+        .tech-note {
+            font-style: italic;
+            opacity: 0.8;
+            margin: 1rem 0;
+        }
+        .preview-note {
+            background: rgba(189, 134, 22, 0.15);
+            border-left: 3px solid #bd8616;
+            padding: 1rem 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 0 8px 8px 0;
+        }
+        .preview-note p {
+            margin: 0;
+            color: #f3eee7;
+            font-size: 0.9rem;
+        }
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #00B8BB;
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(0, 184, 187, 0.1);
+            margin-top: 2rem;
+        }
+        @media (max-width: 640px) {
+            .page-wrapper {
+                padding: 2rem 1rem;
+            }
+            .profile-row {
+                justify-content: center;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        
+        <!-- ⚠️ PREVIEW NOTICE -->
+        <div class="preview-note">
+            <p><strong>🔒 Private Preview — Not Live</strong><br>This is a draft version for your review only. Replace your live "About" section when you're 100% happy with it.</p>
+        </div>
+
+        <div class="services-heading-box">
+            <h2>Meet The Team</h2>
+            <p>We saw the gap. We decided to fix it.</p>
+        </div>
+
+        <div class="about-block">
+            <h2>How We See the World</h2>
+            <p>Eze Digital exists because we noticed something no one else was talking about: almost every website agency builds beautiful sites — and completely leaves out the security. We saw it firsthand. Even sites built by technical hands were going live without proper protection. That's not right. Every business deserves a digital presence that's safe as well as seen.</p>
+        </div>
+
+        <!-- NICKI -->
+        <div class="about-block">
+            <h2>I'm Nicki — Co-Founder & Business Director</h2>
+            <div class="profile-row">
+                <img src="38056BA2-7397-4F60-AD7D-ECE7038AD774.jpg" alt="Nicki — Co-Founder of Eze Digital" class="profile-img">
+                <div class="profile-text">
+                    <p>My vision for Eze Digital is built on one simple belief: great business is built on trust, clarity, and the right people working together. I don't claim to be a technical expert in every field — but I know how to find the right ones, and I know how to make technology serve you, not confuse you.</p>
+                </div>
+            </div>
+            <h3>What I Bring</h3>
+            <p>I speak your language. I know what it feels like to build a business — the platform fees, the compliance worry, that feeling you need a whole team just to stay visible. I bridge that gap. With a background in teaching and training, I don't just hand you a finished product — I help you understand it so you feel confident and in control.</p>
+        </div>
+
+        <!-- PRAISEGOD -->
+        <div class="about-block">
+            <h2>I'm Praisegod — Co-Founder & Technical Director</h2>
+            <div class="profile-row">
+                <img src="praisegod.jpg" alt="Praisegod — Co-Founder & Technical Director of Eze Digital" class="profile-img">
+                <div class="profile-text">
+                    <p>I'm the technical brain behind Eze Digital. I'm a cybersecurity specialist and secure software developer, and I lead everything technical — from custom websites and booking systems to enterprise-grade threat detection. Certified in Cisco CCNA and CyberOps, I spent years in Security Operations stopping threats before they become problems.</p>
+                </div>
+            </div>
+            <p class="tech-note">(Quick techy bit — if you think Splunk is an arcade game, feel free to skip: I deploy SIEM tools like Splunk and Wazuh for 24/7 monitoring, build secure cloud infrastructure on AWS, and lead our CPD-accredited cybersecurity training.)</p>
+            <h3>What I Realised</h3>
+            <p>I saw the gap from the inside. I've built sites — and I've seen that even technically built sites often go live without proper security. That realisation is exactly why we're here. Every website, booking system, and solution we deliver comes with proper security built in from day one. Not bolted on later. Not sold as an expensive extra. Just there — as standard.</p>
+            <p style="margin-top: 0.75rem;">When I'm not protecting clients, I'm in ethical hacking labs staying one step ahead — so you don't have to.</p>
+        </div>
+
+        <!-- TOGETHER -->
+        <div class="about-block">
+            <h2>Together, We're Different</h2>
+            <p>I bring the relationship, the clarity, and the big-picture vision. Praisegod brings the security expertise that most agencies simply don't have.</p>
+            <p style="margin-top: 0.75rem;">Together, we don't just build websites — we build digital foundations that work and stay safe. Beautiful, secure, explained in plain English. That's the Eze Digital difference.</p>
+        </div>
+
+    </div>
+
+    <footer>
+        Preview · Eze Digital Ltd © 2026
+    </footer>
+</body>
+</html>
