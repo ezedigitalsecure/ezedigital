@@ -20,7 +20,7 @@
             line-height: 1.7;
         }
         .page-wrapper {
-            padding: 4rem 2rem 3rem;
+            padding: 4rem 2rem 0;
             max-width: 850px;
             margin: 0 auto;
         }
@@ -90,7 +90,7 @@
             border: 1px solid rgba(0, 184, 187, 0.25);
             border-radius: 14px;
             padding: 2rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             position: relative;
             padding-left: 48px;
         }
@@ -108,7 +108,16 @@
             opacity: 0.95;
             z-index: 10;
         }
-        /* DROPDOWN STYLES */
+        .about-block h2 {
+            color: #00E6E9;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+        .about-block p {
+            color: #cce8e9;
+            line-height: 1.7;
+            margin-bottom: 0.75rem;
+        }
         .dropdown-block {
             background: rgba(0, 12, 14, 0.85);
             border: 1px solid rgba(0, 184, 187, 0.25);
@@ -153,7 +162,7 @@
             padding: 0 2rem 1.75rem;
         }
         .dropdown-content p {
-            color: #00E6E9;
+            color: #cce8e9;
             line-height: 1.7;
             margin-bottom: 0.75rem;
         }
@@ -166,14 +175,73 @@
             font-style: italic;
             opacity: 0.8;
             margin: 1rem 0;
+            color: #99d2d4;
         }
-        footer {
+        /* ——— SITE FOOTER ——— */
+        .site-footer {
+            border-top: 1px solid rgba(0, 184, 187, 0.15);
+            padding: 3rem 2rem 2rem;
+            margin-top: 4rem;
+            background: linear-gradient(180deg, rgba(0,20,24,0) 0%, rgba(0,17,21,0.6) 100%);
+        }
+        .footer-inner {
+            max-width: 850px;
+            margin: 0 auto;
             text-align: center;
-            padding: 2rem;
+        }
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .footer-links a {
             color: #00B8BB;
-            font-size: 0.85rem;
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            transition: color 0.25s ease;
+        }
+        .footer-links a:hover {
+            color: #00E6E9;
+        }
+        .compliance-link {
+            position: relative;
+        }
+        .compliance-link::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: #00E6E9;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+        .compliance-link:hover::after {
+            transform: scaleX(1);
+        }
+        .footer-bottom {
+            padding-top: 1.5rem;
             border-top: 1px solid rgba(0, 184, 187, 0.1);
-            margin-top: 2rem;
+        }
+        .footer-tagline {
+            color: #fff;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            opacity: 0.8;
+        }
+        .footer-legal {
+            color: #008C8E;
+            font-size: 0.8rem;
+        }
+        @media (max-width: 640px) {
+            .page-wrapper { padding: 2.5rem 1rem 0; }
+            .footer-links { gap: 1.2rem; }
+            .site-footer { padding: 2rem 1rem 1.5rem; }
         }
     </style>
 </head>
@@ -207,7 +275,6 @@
             <p>Eze Digital exists because every growing business and organisation deserves professional digital infrastructure. It should come without the complexity, jargon, or inflated price tags that usually apply. We noticed something that no one else seemed to be talking about. Almost every agency builds beautiful digital presences and completely leaves out the security. Even fewer offer the full package that actually keeps you safe, compliant, and confident. That is not right. Every organisation deserves to be protected, educated, and supported across everything they do.</p>
         </div>
 
-        <!-- NICKI DROPDOWN -->
         <div class="dropdown-block">
             <button class="dropdown-toggle" aria-expanded="false" id="nickiToggle">
                 Nicki — Co-Founder & Business Director
@@ -221,7 +288,6 @@
             </div>
         </div>
 
-        <!-- PRAISEGOD DROPDOWN -->
         <div class="dropdown-block">
             <button class="dropdown-toggle" aria-expanded="false" id="praiseToggle">
                 Praisegod — Co-Founder & Technical Director
@@ -236,7 +302,6 @@
             </div>
         </div>
 
-        <!-- TOGETHER DROPDOWN -->
         <div class="dropdown-block">
             <button class="dropdown-toggle" aria-expanded="false" id="togetherToggle">
                 Together — The Eze Digital Difference
@@ -250,12 +315,23 @@
 
     </div>
 
-    <footer>
-        Preview · Eze Digital Ltd © 2026
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#services">Services</a>
+                <a href="about.html">About Us</a>
+                <a href="compliance-protocol.html" class="compliance-link">Compliance Protocol</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-tagline">Integrated digital protection, education & design</p>
+                <p class="footer-legal">© 2026 Eze Digital Ltd · All rights reserved</p>
+            </div>
+        </div>
     </footer>
 
     <script>
-        // Dropdown functionality
         const toggles = document.querySelectorAll('.dropdown-toggle');
         toggles.forEach(toggle => {
             toggle.addEventListener('click', () => {
