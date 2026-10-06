@@ -6,12 +6,11 @@
     <title>Eze Digital — Secure & Evolve</title>
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; form-action 'self' https://formspree.io;">
 
-    <!-- Separate footer styles -->
     <link rel="stylesheet" href="footerstyles.css">
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        html, body { min-height: 100%; }
+        html, body { height: 100%; }
 
         /* BACKGROUND */
         .static-canvas {
@@ -31,9 +30,6 @@
             top: 0; right: 0;
             padding: 1.5rem 2.5rem;
             z-index: 100;
-            display: flex;
-            justify-content: flex-end;
-            background: transparent;
         }
         .menu-wrapper { position: relative; }
         .hamburger-circle {
@@ -42,12 +38,8 @@
             border: 1px solid rgba(0, 184, 187, 0.25);
             display: flex; align-items: center; justify-content: center;
             cursor: pointer;
-            transition: all 0.3s ease;
         }
-        .hamburger {
-            display: flex; flex-direction: column; gap: 5px;
-            cursor: pointer; transition: all 0.3s ease;
-        }
+        .hamburger { display: flex; flex-direction: column; gap: 5px; }
         .hamburger span {
             width: 26px; height: 3px;
             background: linear-gradient(90deg, #00B8BB, #00E6E9);
@@ -63,9 +55,9 @@
             border: 1px solid rgba(0, 184, 187, 0.35);
             border-radius: 0 0 12px 12px;
             min-width: 220px;
-            display: none; flex-direction: column;
+            display: none;
         }
-        .dropdown-menu.open { display: flex; }
+        .dropdown-menu.open { display: flex; flex-direction: column; }
         .dropdown-link {
             color: #00E6E9; font-weight: bold;
             padding: 1rem 1.5rem; text-decoration: none;
@@ -73,18 +65,19 @@
         }
         .dropdown-link:hover, .dropdown-link.active { color: #66F0F3; }
 
-        /* HERO — All Cyan, Less Transparent */
+        /* HERO — FIXED POSITIONING, NO JITTER */
         .page-content {
             position: relative; z-index: 10;
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding: 6rem 2rem;
+            justify-content: center;
+            padding: 6rem 2rem 4rem;
         }
         .hero-box {
-            padding: 3rem 4rem;
-            max-width: 900px;
             width: 92%;
+            max-width: 900px;
+            padding: 3rem 4rem;
             margin: 0 auto;
             text-align: center;
             background: rgba(0, 8, 10, 0.85);
@@ -171,16 +164,47 @@
         </div>
     </div>
 
-    <!-- Footer loaded from separate file — edit footer.html only -->
-    <div id="footer-placeholder"></div>
-    <script>
-        fetch('footer.html')
-            .then(res => res.text())
-            .then(html => {
-                document.getElementById('footer-placeholder').innerHTML = html;
-            })
-            .catch(err => console.error('Footer load error:', err));
-    </script>
+    <!-- Footer direct — shows immediately without server -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>EZE DIGITAL</h4>
+                    <p>Integrated digital protection education and design.</p>
+                    <p style="margin-top: 1rem;">secure@ezedigital.co.uk</p>
+                    <p>United Kingdom</p>
+                </div>
+                <div class="footer-col">
+                    <h4>SERVICES</h4>
+                    <a href="services.html">Website and Digital Build</a>
+                    <a href="services.html">Cybersecurity and Monitoring</a>
+                    <a href="services.html">Compliance Guidance</a>
+                    <a href="academy.html">CPD Accredited Training</a>
+                    <a href="services.html">Brand and Identity</a>
+                </div>
+                <div class="footer-col">
+                    <h4>QUICK LINKS</h4>
+                    <a href="index.html">Home</a>
+                    <a href="services.html">Services</a>
+                    <a href="about.html">About Us</a>
+                    <a href="compliance-protocol.html">Compliance Protocol</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h4>LEGAL</h4>
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-of-service.html">Terms of Service</a>
+                </div>
+            </div>
+            <div class="footer-bottom-bar">
+                <p>© 2026 Eze Digital Ltd. All rights reserved.</p>
+                <div class="footer-e-mark">
+                    <div class="hexagon"></div>
+                    <span>e</span>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <script>
         function toggleMenu() {
