@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eze Digital — Secure and Evolve</title>
+    <title>Eze Digital — Secure & Evolve</title>
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; form-action 'self' https://formspree.io;">
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        html, body { height: 100%; overflow: auto; }
+        html, body { min-height: 100%; }
 
         /* BACKGROUND */
         .static-canvas {
@@ -50,7 +50,6 @@
             background: linear-gradient(90deg, #00B8BB, #00E6E9);
             border-radius: 2px;
             box-shadow: 0 0 8px rgba(0, 184, 187, 0.6);
-            transition: all 0.3s ease;
         }
         .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
         .hamburger.open span:nth-child(2) { opacity: 0; }
@@ -71,44 +70,57 @@
         }
         .dropdown-link:hover, .dropdown-link.active { color: #00E6E9; }
 
-        /* HOME HERO */
-        .home-box {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 2.8rem; max-width: 640px; width: 90%;
+        /* HERO — CLEAN & FOCUSED */
+        .page-content {
+            position: relative; z-index: 10;
+            min-height: 100vh; display: flex;
+            align-items: center; justify-content: center;
+            padding: 6rem 2rem 2rem;
+        }
+        .hero-box {
+            padding: 3rem; max-width: 640px; width: 100%;
             text-align: center;
             background: rgba(0, 8, 10, 0.78);
             border-radius: 16px;
             border: 1px solid rgba(0, 184, 187, 0.18);
-            z-index: 30;
         }
-        .home-box h2 { color: #00E6E9; font-size: 2.6rem; margin-bottom: 1.5rem; }
-        .home-box p { color: #00E6E9; font-size: 1.05rem; line-height: 1.7; margin-bottom: 2rem; }
+        .hero-box h1 {
+            color: #ffffff;
+            font-size: 2.4rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        .hero-tagline {
+            color: #00E6E9;
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+        .hero-desc {
+            color: #B2C8CC;
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 2.2rem;
+        }
         .btn {
             background: linear-gradient(90deg, #00E6E9, #00B8BB);
             color: #001418; font-weight: bold;
-            padding: 0.9rem 2.2rem; border-radius: 28px;
+            padding: 0.9rem 2.4rem; border-radius: 28px;
             border: none; font-size: 1rem; cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none; display: inline-block;
         }
         .btn:hover {
-            background: linear-gradient(90deg, #00E6E9, #00E6E9);
-            box-shadow: 0 0 20px rgba(0, 230, 233, 0.7);
+            box-shadow: 0 0 20px rgba(0, 230, 233, 0.6);
             transform: scale(1.05);
         }
-        .page-content {
-            position: relative; z-index: 10;
-            min-height: 100vh; padding-bottom: 2rem;
-        }
 
-        /* ========== FOOTER — EXACT MATCH TO YOUR DESIGN ========== */
+        /* ========== FOOTER — NOW VISIBLE & INCLUDED ========== */
         .site-footer {
             background: #0B1527;
             border-top: 1px solid rgba(0, 184, 187, 0.1);
             padding: 3rem 2rem 2rem;
-            margin-top: 3rem;
+            position: relative; z-index: 20;
         }
         .footer-inner {
             max-width: 1100px;
@@ -152,12 +164,16 @@
             color: #64748B;
             font-size: 0.8rem;
         }
+
+        /* MOBILE */
         @media (max-width: 768px) {
             header { padding: 1rem 1.2rem; }
-            .home-box h2 { font-size: 1.9rem; }
+            .hero-box h1 { font-size: 1.8rem; }
+            .hero-tagline { font-size: 1.05rem; }
             .footer-grid { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 480px) {
+            .hero-box { padding: 2rem 1.5rem; }
             .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; }
             .footer-bottom-bar { flex-direction: column; text-align: center; gap: 0.5rem; }
         }
@@ -185,14 +201,15 @@
     </header>
 
     <div class="page-content">
-        <div class="home-box">
-            <h2>Your Digital Presence,<br>Built Securely</h2>
-            <p>Eze Digital supports growing businesses with web design, cybersecurity, booking systems, education, and business development. We bring together the right expertise to build clear, protected digital foundations that fit your goals.</p>
+        <div class="hero-box">
+            <h1>Welcome to Eze Digital</h1>
+            <p class="hero-tagline">Where heart meets HTML — your partner in creating your secure online home</p>
+            <p class="hero-desc">We build beautiful, protected digital foundations that feel like you and grow with you. From website design to cybersecurity and training — everything crafted with care.</p>
             <a href="contact.html" class="btn">Let's Talk</a>
         </div>
     </div>
 
-    <!-- FOOTER CONTENT — you update footer.html once, all pages match -->
+    <!-- FOOTER — NOW INCLUDED & VISIBLE -->
     <footer class="site-footer">
         <div class="footer-inner">
             <div class="footer-grid">
