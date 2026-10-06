@@ -6,6 +6,9 @@
     <title>Eze Digital — Secure & Evolve</title>
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; form-action 'self' https://formspree.io;">
 
+    <!-- Separate footer styles -->
+    <link rel="stylesheet" href="footerstyles.css">
+
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
         html, body { min-height: 100%; }
@@ -70,7 +73,7 @@
         }
         .dropdown-link:hover, .dropdown-link.active { color: #66F0F3; }
 
-        /* HERO */
+        /* HERO — All Cyan, Less Transparent */
         .page-content {
             position: relative; z-index: 10;
             min-height: 100vh;
@@ -84,25 +87,25 @@
             width: 92%;
             margin: 0 auto;
             text-align: center;
-            background: rgba(0, 8, 10, 0.85); /* ✅ Less see-through */
+            background: rgba(0, 8, 10, 0.85);
             border-radius: 12px;
             border: 1px solid rgba(0, 184, 187, 0.2);
         }
         .hero-box h1 {
-            color: #00E6E9; /* ✅ Cyan heading */
+            color: #00E6E9;
             font-size: 2.6rem;
             margin-bottom: 0.8rem;
             font-weight: 600;
         }
         .hero-tagline {
-            color: #66F0F3; /* ✅ Lighter cyan — no white */
+            color: #66F0F3;
             font-size: 1.25rem;
             line-height: 1.5;
             margin-bottom: 1.5rem;
             font-style: italic;
         }
         .hero-desc {
-            color: #99E6E8; /* ✅ Soft cyan — no white */
+            color: #99E6E8;
             font-size: 1rem;
             line-height: 1.7;
             margin-bottom: 2rem;
@@ -123,86 +126,8 @@
             display: inline-block;
         }
         .btn:hover {
-            box-shadow: 0 0 15px rgba(0, 230, 233, 0.5); /* ✅ Softer glow */
+            box-shadow: 0 0 15px rgba(0, 230, 233, 0.5);
             transform: scale(1.05);
-        }
-
-        /* FOOTER */
-        .site-footer {
-            background: #0B1527;
-            border-top: 1px solid rgba(0, 184, 187, 0.1);
-            padding: 3rem 2rem 2rem;
-            position: relative; z-index: 20;
-        }
-        .footer-inner {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-        .footer-col h4 {
-            color: #00E6E9; /* ✅ Cyan headings */
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        .footer-col p {
-            color: #99E6E8; /* ✅ Soft cyan */
-            font-size: 0.85rem;
-            line-height: 1.6;
-            margin-bottom: 0.5rem;
-        }
-        .footer-col a {
-            display: block;
-            color: #66F0F3; /* ✅ Cyan links */
-            font-size: 0.85rem;
-            text-decoration: none;
-            margin-bottom: 0.5rem;
-            transition: color 0.2s ease;
-        }
-        .footer-col a:hover { color: #00E6E9; }
-
-        /* BRANDED e MARK */
-        .footer-e-mark {
-            width: 42px;
-            height: 42px;
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .footer-e-mark .hexagon {
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(0,230,233,0.14), rgba(0,184,187,0.08));
-            border: 1px solid rgba(0,230,233,0.35);
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-        .footer-e-mark span {
-            position: relative;
-            color: #00E6E9;
-            font-size: 20px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-
-        .footer-bottom-bar {
-            border-top: 1px solid rgba(0, 184, 187, 0.1);
-            padding-top: 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: #66B8BB; /* ✅ Muted cyan */
-            font-size: 0.8rem;
         }
 
         /* MOBILE */
@@ -210,15 +135,9 @@
             header { padding: 1rem 1.2rem; }
             .hero-box { padding: 2rem 1.8rem; }
             .hero-box h1 { font-size: 2rem; }
-            .footer-grid { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 480px) {
-            .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-            .footer-bottom-bar {
-                flex-direction: column;
-                text-align: center;
-                gap: 1rem;
-            }
+            .hero-box { padding: 1.5rem 1.2rem; }
         }
     </style>
 </head>
@@ -252,46 +171,16 @@
         </div>
     </div>
 
-    <footer class="site-footer">
-        <div class="footer-inner">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h4>EZE DIGITAL</h4>
-                    <p>Integrated digital protection education and design.</p>
-                    <p style="margin-top: 1rem;">secure@ezedigital.co.uk</p>
-                    <p>United Kingdom</p>
-                </div>
-                <div class="footer-col">
-                    <h4>SERVICES</h4>
-                    <a href="services.html">Website and Digital Build</a>
-                    <a href="services.html">Cybersecurity and Monitoring</a>
-                    <a href="services.html">Compliance Guidance</a>
-                    <a href="academy.html">CPD Accredited Training</a>
-                    <a href="services.html">Brand and Identity</a>
-                </div>
-                <div class="footer-col">
-                    <h4>QUICK LINKS</h4>
-                    <a href="index.html">Home</a>
-                    <a href="services.html">Services</a>
-                    <a href="about.html">About Us</a>
-                    <a href="compliance-protocol.html">Compliance Protocol</a>
-                    <a href="contact.html">Contact</a>
-                </div>
-                <div class="footer-col">
-                    <h4>LEGAL</h4>
-                    <a href="privacy-policy.html">Privacy Policy</a>
-                    <a href="terms-of-service.html">Terms of Service</a>
-                </div>
-            </div>
-            <div class="footer-bottom-bar">
-                <p>© 2026 Eze Digital Ltd. All rights reserved.</p>
-                <div class="footer-e-mark">
-                    <div class="hexagon"></div>
-                    <span>e</span>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <!-- Footer loaded from separate file — edit footer.html only -->
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch('footer.html')
+            .then(res => res.text())
+            .then(html => {
+                document.getElementById('footer-placeholder').innerHTML = html;
+            })
+            .catch(err => console.error('Footer load error:', err));
+    </script>
 
     <script>
         function toggleMenu() {
