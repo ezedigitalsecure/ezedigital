@@ -8,11 +8,10 @@
     <link rel="stylesheet" href="footerstyles.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        html, body { min-height: 100%; overflow: hidden; }
+        html, body { height: 100%; overflow: hidden; }
 
-        /* ——— CIRCUIT BACKGROUND ——— */
         .static-canvas {
-            position: fixed;
+            position: absolute;
             top: 0; left: 0;
             width: 100vw; height: 100vh;
             z-index: 1;
@@ -22,19 +21,14 @@
             background-size: cover;
         }
 
-        /* ——— HEADER — REMOVED DUPLICATE LOGO ——— */
-        .site-header {
+        header {
             position: absolute;
-            top: 0; left: 0;
-            width: 100%;
+            top: 0; right: 0;
             padding: 1.5rem 2.5rem;
             z-index: 100;
             display: flex;
-            justify-content: flex-end; /* Only hamburger on right */
-            align-items: center;
+            justify-content: flex-end;
         }
-
-        /* ——— MENU ——— */
         .menu-wrapper { position: relative; }
         .hamburger-circle {
             width: 52px; height: 52px; border-radius: 50%;
@@ -48,7 +42,6 @@
             width: 26px; height: 3px;
             background: linear-gradient(90deg, #00B8BB, #00E6E9);
             border-radius: 2px;
-            box-shadow: 0 0 6px rgba(0, 184, 187, 0.4);
         }
         .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
         .hamburger.open span:nth-child(2) { opacity: 0; }
@@ -69,7 +62,6 @@
         }
         .dropdown-link:hover, .dropdown-link.active { color: #66F0F3; }
 
-        /* ——— SCROLLABLE CONTENT ——— */
         .scrollable-pages {
             position: absolute;
             top: 0; left: 0;
@@ -79,32 +71,54 @@
             background: transparent;
         }
         .page-wrapper {
-            padding: 8rem 2rem 0;
+            padding: 6rem 2rem 0;
             max-width: 850px;
             margin: 0 auto;
         }
 
-        /* ——— PAGE HEADER ——— */
-        .page-heading-box {
-            background: rgba(0, 8, 10, 0.75);
-            border: 1px solid rgba(0, 184, 187, 0.2);
+        /* === EXACT SERVICES STYLES — SAME CLASSES === */
+        .services-heading-box,
+        .service-block,
+        .about-block {
+            background: rgba(0, 12, 14, 0.85);
+            border: 1px solid rgba(0, 184, 187, 0.25);
             border-radius: 14px;
-            padding: 1.5rem 2rem;
-            margin-bottom: 2rem;
-            text-align: center;
-            backdrop-filter: blur(4px);
+            padding: 1.8rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-left: 48px;
         }
-        .page-heading-box h1 {
-            color: #00E6E9;
-            font-size: 2.2rem;
-            margin-bottom: 0.3rem;
-        }
-        .page-heading-box p {
-            color: #99E6E8;
-            font-size: 1.05rem;
+        /* EXACT E-HEXAGON — SAME SVG */
+        .services-heading-box::before,
+        .about-block::before,
+        .team-dropdown::before {
+            content: "";
+            position: absolute;
+            top: 18px;
+            left: 12px;
+            width: 28px;
+            height: 28px;
+            background-image: url("data:image/svg+xml,%3Csvg width='28' height='28' viewBox='0 0 28 28' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M14 3l9 5v10l-9 5-9-5V8l9-5z' stroke='%2300E6E9' stroke-width='1.5'/%3E%3Ctext x='14' y='17.5' text-anchor='middle' fill='%2300E6E9' font-size='12' font-weight='700' font-family='Arial,sans-serif'%3EE%3C/text%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            filter: drop-shadow(0 0 5px #00E6E9);
+            opacity: 0.95;
         }
 
-        /* ——— PROFILES ROW ——— */
+        .services-heading-box {
+            color: #00E6E9;
+            font-weight: bold;
+            text-align: center;
+        }
+        .services-heading-box h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+        .services-heading-box p {
+            color: #00B8BB;
+            font-size: 1.1rem;
+        }
+
         .founders-top {
             display: flex;
             gap: 3rem;
@@ -117,114 +131,50 @@
             flex: 1;
             min-width: 200px;
             max-width: 280px;
-            background: rgba(0, 8, 10, 0.7);
-            border-radius: 16px;
+            background: rgba(0, 12, 14, 0.85);
+            border-radius: 14px;
             padding: 2rem 1.5rem;
-            border: 1px solid rgba(0, 184, 187, 0.15);
-            backdrop-filter: blur(4px);
+            border: 1px solid rgba(0, 184, 187, 0.25);
         }
         .founder-portrait img {
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            object-fit: cover;
+            width: 160px; height: 160px;
+            border-radius: 50%; object-fit: cover;
             border: 3px solid rgba(0, 230, 233, 0.35);
             box-shadow: 0 0 20px rgba(0, 230, 233, 0.15);
             margin-bottom: 1rem;
         }
-        .founder-portrait h3 {
-            color: #00E6E9;
-            font-size: 1.3rem;
-            margin-bottom: 0.3rem;
-        }
-        .founder-portrait .title {
-            color: #66D9DC;
-            font-size: 0.95rem;
-        }
+        .founder-portrait h3 { color: #00E6E9; font-size: 1.3rem; margin-bottom: 0.3rem; }
+        .founder-portrait .title { color: #00B8BB; font-size: 0.95rem; }
 
-        /* ——— WHO WE ARE BLOCK ——— */
-        .about-block {
-            background: rgba(0, 8, 10, 0.75);
-            border: 1px solid rgba(0, 184, 187, 0.2);
-            border-radius: 14px;
-            padding: 2rem;
-            margin-bottom: 1rem;
-            backdrop-filter: blur(4px);
-        }
-        .about-block h2 {
-            color: #00E6E9;
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-        }
-        .about-block p {
-            color: #B2F0F2;
-            line-height: 1.7;
-            margin-bottom: 0.7rem;
-        }
+        .about-block h2 { color: #00E6E9; font-size: 1.4rem; margin-bottom: 1rem; }
+        .about-block p { color: #B2F0F2; line-height: 1.7; margin-bottom: 0.7rem; }
 
-        /* ================================================= */
-        /* === EXACT E-HEXAGON STYLING — MATCHES SERVICES === */
-        /* ================================================= */
         .team-dropdown {
-            background: rgba(0, 8, 10, 0.75);
-            border: 1px solid rgba(0, 184, 187, 0.2);
+            background: rgba(0, 12, 14, 0.85);
+            border: 1px solid rgba(0, 184, 187, 0.25);
             border-radius: 14px;
             margin-bottom: 0.8rem;
             overflow: hidden;
-            backdrop-filter: blur(4px);
+            position: relative;
         }
         .team-toggle {
             width: 100%;
             background: transparent;
             border: none;
-            color: #00E6E9;
+            color: #00B8BB;
             font-size: 1.1rem;
             font-weight: 600;
             text-align: left;
-            padding: 1.2rem 1.8rem;
+            padding: 1.2rem 1.8rem 1.2rem 48px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
-        /* EXACT match from services.html */
-        .dd-e-wrap {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 38px;
-            height: 38px;
-            flex-shrink: 0;
-            margin-right: 1rem;
-        }
-        .dd-e-hex {
-            width: 32px;
-            height: 37px;
-            background: linear-gradient(180deg, rgba(0,230,233,0.25), rgba(0,184,187,0.08));
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid rgba(0, 230, 233, 0.35);
-            box-shadow: 0 0 12px rgba(0, 230, 233, 0.15);
-        }
-        .dd-e-text {
-            color: #00E6E9;
-            font-weight: 900;
-            font-size: 1rem;
-            line-height: 1;
-            padding-top: 2px;
-        }
-        .toggle-label {
-            flex: 1;
-            color: #00E6E9;
-        }
         .plus-icon {
-            font-size: 1.3rem;
-            line-height: 1;
-            color: #00E6E9;
+            font-size: 1.6rem;
+            color: #00B8BB;
             transition: transform 0.3s ease;
-            opacity: 0.85;
         }
         .team-toggle[aria-expanded="true"] .plus-icon {
             transform: rotate(45deg);
@@ -233,28 +183,19 @@
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.4s ease, padding 0.3s ease;
-            padding: 0 1.8rem;
+            padding: 0 1.8rem 0 48px;
         }
         .team-content.open {
             max-height: 2000px;
-            padding: 0 1.8rem 1.5rem;
+            padding: 0 1.8rem 1.5rem 48px;
         }
-        .team-content p {
-            color: #B2F0F2;
-            line-height: 1.7;
-            margin-bottom: 0.7rem;
-        }
+        .team-content p { color: #B2F0F2; line-height: 1.7; margin-bottom: 0.7rem; }
 
-        /* ——— FOOTER ——— */
-        #footer-placeholder {
-            width: 100%;
-            margin-top: 3rem;
-        }
+        #footer-placeholder { width: 100%; margin-top: 3rem; }
 
-        /* ——— RESPONSIVE ——— */
         @media (max-width: 768px) {
-            .site-header { padding: 1rem 1.2rem; }
-            .page-wrapper { padding: 7rem 1.2rem 0; }
+            header { padding: 1rem 1.2rem; }
+            .page-wrapper { padding: 5rem 1.2rem 0; }
             .founders-top { gap: 2rem; }
         }
     </style>
@@ -262,30 +203,29 @@
 <body>
     <div class="static-canvas"></div>
 
-    <div class="scrollable-pages">
-        <!-- Header — ONLY hamburger, NO duplicate logo -->
-        <div class="site-header">
-            <div class="menu-wrapper">
-                <div class="hamburger-circle" onclick="toggleMenu()">
-                    <div class="hamburger" id="hamburger">
-                        <span></span><span></span><span></span>
-                    </div>
+    <header>
+        <div class="menu-wrapper">
+            <div class="hamburger-circle" onclick="toggleMenu()">
+                <div class="hamburger" id="hamburger">
+                    <span></span><span></span><span></span>
                 </div>
-                <nav class="dropdown-menu" id="dropdownMenu">
-                    <a class="dropdown-link" href="index.html">Home</a>
-                    <a class="dropdown-link" href="services.html">Services</a>
-                    <a class="dropdown-link active" href="about.html">About Eze Digital</a>
-                    <a class="dropdown-link" href="contact.html">Contact</a>
-                    <a class="dropdown-link" href="academy.html">Academy</a>
-                    <a class="dropdown-link" href="#" onclick="alert('Client Portal coming soon. Watch this space.'); return false;">Client Portal</a>
-                </nav>
             </div>
+            <nav class="dropdown-menu" id="dropdownMenu">
+                <a class="dropdown-link" href="index.html">Home</a>
+                <a class="dropdown-link" href="services.html">Services</a>
+                <a class="dropdown-link active" href="about.html">About Eze Digital</a>
+                <a class="dropdown-link" href="contact.html">Contact</a>
+                <a class="dropdown-link" href="academy.html">Academy</a>
+                <a class="dropdown-link" href="#" onclick="alert('Client Portal coming soon. Watch this space.'); return false;">Client Portal</a>
+            </nav>
         </div>
+    </header>
 
+    <div class="scrollable-pages">
         <div class="page-wrapper">
 
             <!-- PAGE HEADER -->
-            <div class="page-heading-box">
+            <div class="services-heading-box">
                 <h1>Meet the Team</h1>
                 <p>Two different strengths, one shared vision</p>
             </div>
@@ -310,17 +250,10 @@
                 <p>Eze Digital exists because every growing business and organisation deserves professional digital infrastructure. It should come without the complexity, jargon, or inflated price tags that usually apply. We noticed something that no one else seemed to be talking about. Almost every agency builds beautiful digital presences and completely leaves out the security. Even fewer offer the full package that actually keeps you safe, compliant, and confident. That is not right. Every organisation deserves to be protected, educated, and supported across everything they do.</p>
             </div>
 
-            <!-- NICKI DROPDOWN — EXACT SERVICES E -->
+            <!-- NICKI DROPDOWN -->
             <div class="team-dropdown">
                 <button class="team-toggle" aria-expanded="false" id="nickiToggle">
-                    <span style="display:flex;align-items:center;">
-                        <span class="dd-e-wrap">
-                            <span class="dd-e-hex">
-                                <span class="dd-e-text">E</span>
-                            </span>
-                        </span>
-                        <span class="toggle-label">Nicki — Founder &amp; Business Director</span>
-                    </span>
+                    Nicki — Founder &amp; Business Director
                     <span class="plus-icon">+</span>
                 </button>
                 <div class="team-content" id="nickiContent">
@@ -330,17 +263,10 @@
                 </div>
             </div>
 
-            <!-- PRAISEGOD DROPDOWN — EXACT SERVICES E -->
+            <!-- PRAISEGOD DROPDOWN -->
             <div class="team-dropdown">
                 <button class="team-toggle" aria-expanded="false" id="praiseToggle">
-                    <span style="display:flex;align-items:center;">
-                        <span class="dd-e-wrap">
-                            <span class="dd-e-hex">
-                                <span class="dd-e-text">E</span>
-                            </span>
-                        </span>
-                        <span class="toggle-label">Praisegod — Cybersecurity Lead</span>
-                    </span>
+                    Praisegod — Cybersecurity Lead
                     <span class="plus-icon">+</span>
                 </button>
                 <div class="team-content" id="praiseContent">
@@ -350,17 +276,10 @@
                 </div>
             </div>
 
-            <!-- TOGETHER DROPDOWN — EXACT SERVICES E -->
+            <!-- TOGETHER DROPDOWN -->
             <div class="team-dropdown">
                 <button class="team-toggle" aria-expanded="false" id="togetherToggle">
-                    <span style="display:flex;align-items:center;">
-                        <span class="dd-e-wrap">
-                            <span class="dd-e-hex">
-                                <span class="dd-e-text">E</span>
-                            </span>
-                        </span>
-                        <span class="toggle-label">Together — The Eze Digital Difference</span>
-                    </span>
+                    Together — The Eze Digital Difference
                     <span class="plus-icon">+</span>
                 </button>
                 <div class="team-content" id="togetherContent">
@@ -371,24 +290,18 @@
 
         </div>
 
-        <!-- SHARED FOOTER -->
+        <!-- FOOTER -->
         <div id="footer-placeholder"></div>
         <script>
             fetch('footer.html')
-                .then(res => {
-                    if (!res.ok) throw new Error('Footer file not found');
-                    return res.text();
-                })
+                .then(res => res.text())
                 .then(html => {
                     document.getElementById('footer-placeholder').innerHTML = html;
                 })
-                .catch(err => {
-                    console.error('Footer load error:', err);
-                });
+                .catch(err => console.error('Footer load error'));
         </script>
     </div>
 
-    <!-- MENU & DROPDOWN BEHAVIOUR -->
     <script>
         function toggleMenu() {
             document.getElementById('hamburger').classList.toggle('open');
