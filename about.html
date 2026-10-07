@@ -168,7 +168,7 @@
             font-size: 0.95rem;
         }
 
-        /* ——— WHO WE ARE BLOCK — DARKER, MORE READABLE ——— */
+        /* ——— WHO WE ARE BLOCK ——— */
         .about-block {
             background: rgba(0, 8, 10, 0.75);
             border: 1px solid rgba(0, 184, 187, 0.2);
@@ -211,25 +211,34 @@
             align-items: center;
             justify-content: space-between;
         }
-        /* EXACT E-HEX from Services */
+        /* EXACT E-HEX copied from services.html */
         .dd-e-wrap {
-            display: flex; align-items: center; justify-content: center;
-            width: 32px; height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
             flex-shrink: 0;
             margin-right: 1rem;
         }
         .dd-e-hex {
-            width: 28px; height: 32px;
+            width: 32px;
+            height: 37px;
+            position: relative;
             background: linear-gradient(180deg, rgba(0,230,233,0.25), rgba(0,184,187,0.08));
             clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-            display: flex; align-items: center; justify-content: center;
-            border: 1px solid rgba(0, 230, 233, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(0, 230, 233, 0.35);
+            box-shadow: 0 0 12px rgba(0, 230, 233, 0.15);
         }
         .dd-e-text {
             color: #00E6E9;
             font-weight: 900;
-            font-size: 0.9rem;
+            font-size: 1rem;
             line-height: 1;
+            padding-top: 2px;
         }
         .toggle-label {
             flex: 1;
@@ -318,7 +327,7 @@
                 <p>Two different strengths, one shared vision</p>
             </div>
 
-            <!-- PROFILE PICTURES — with soft background cards -->
+            <!-- PROFILE PICTURES -->
             <div class="founders-top">
                 <div class="founder-portrait">
                     <img src="38056BA2-7397-4F60-AD7D-ECE7038AD774.jpg" alt="Nicki — Founder & Business Director">
@@ -332,17 +341,21 @@
                 </div>
             </div>
 
-            <!-- WHO WE ARE — darker background for readability -->
+            <!-- WHO WE ARE -->
             <div class="about-block">
                 <h2>Who We Are</h2>
                 <p>Eze Digital exists because every growing business and organisation deserves professional digital infrastructure. It should come without the complexity, jargon, or inflated price tags that usually apply. We noticed something that no one else seemed to be talking about. Almost every agency builds beautiful digital presences and completely leaves out the security. Even fewer offer the full package that actually keeps you safe, compliant, and confident. That is not right. Every organisation deserves to be protected, educated, and supported across everything they do.</p>
             </div>
 
-            <!-- NICKI DROPDOWN — EXACT Services E styling -->
+            <!-- NICKI DROPDOWN -->
             <div class="team-dropdown">
                 <button class="team-toggle" aria-expanded="false" id="nickiToggle">
                     <span style="display:flex;align-items:center;">
-                        <span class="dd-e-wrap"><span class="dd-e-hex"><span class="dd-e-text">E</span></span></span>
+                        <span class="dd-e-wrap">
+                            <span class="dd-e-hex">
+                                <span class="dd-e-text">E</span>
+                            </span>
+                        </span>
                         <span class="toggle-label">Nicki — Founder &amp; Business Director</span>
                     </span>
                     <span class="plus-icon">+</span>
@@ -354,11 +367,15 @@
                 </div>
             </div>
 
-            <!-- PRAISEGOD DROPDOWN — EXACT Services E styling -->
+            <!-- PRAISEGOD DROPDOWN -->
             <div class="team-dropdown">
                 <button class="team-toggle" aria-expanded="false" id="praiseToggle">
                     <span style="display:flex;align-items:center;">
-                        <span class="dd-e-wrap"><span class="dd-e-hex"><span class="dd-e-text">E</span></span></span>
+                        <span class="dd-e-wrap">
+                            <span class="dd-e-hex">
+                                <span class="dd-e-text">E</span>
+                            </span>
+                        </span>
                         <span class="toggle-label">Praisegod — Cybersecurity Lead</span>
                     </span>
                     <span class="plus-icon">+</span>
@@ -370,11 +387,15 @@
                 </div>
             </div>
 
-            <!-- TOGETHER DROPDOWN — EXACT Services E styling -->
+            <!-- TOGETHER DROPDOWN -->
             <div class="team-dropdown">
                 <button class="team-toggle" aria-expanded="false" id="togetherToggle">
                     <span style="display:flex;align-items:center;">
-                        <span class="dd-e-wrap"><span class="dd-e-hex"><span class="dd-e-text">E</span></span></span>
+                        <span class="dd-e-wrap">
+                            <span class="dd-e-hex">
+                                <span class="dd-e-text">E</span>
+                            </span>
+                        </span>
                         <span class="toggle-label">Together — The Eze Digital Difference</span>
                     </span>
                     <span class="plus-icon">+</span>
