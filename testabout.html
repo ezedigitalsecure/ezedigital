@@ -76,20 +76,37 @@
             margin: 0 auto;
         }
 
-        /* === EXACT SERVICES STYLES — SAME CLASSES === */
-        .services-heading-box,
-        .service-block,
-        .about-block {
+        /* ——— MAIN PAGE HEADER — NO E ICON ——— */
+        .page-heading-box {
             background: rgba(0, 12, 14, 0.85);
             border: 1px solid rgba(0, 184, 187, 0.25);
             border-radius: 14px;
             padding: 1.8rem;
             margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .page-heading-box h1 {
+            color: #00E6E9;
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+        .page-heading-box p {
+            color: #00B8BB;
+            font-size: 1.1rem;
+        }
+
+        /* ——— SUB BLOCKS — WITH E ICON ——— */
+        .about-block,
+        .team-dropdown {
+            background: rgba(0, 12, 14, 0.85);
+            border: 1px solid rgba(0, 184, 187, 0.25);
+            border-radius: 14px;
+            padding: 1.8rem;
+            margin-bottom: 1rem;
             position: relative;
             padding-left: 48px;
         }
-        /* EXACT E-HEXAGON — SAME SVG */
-        .services-heading-box::before,
+        /* EXACT E-HEXAGON — only on sub blocks */
         .about-block::before,
         .team-dropdown::before {
             content: "";
@@ -103,20 +120,6 @@
             background-repeat: no-repeat;
             filter: drop-shadow(0 0 5px #00E6E9);
             opacity: 0.95;
-        }
-
-        .services-heading-box {
-            color: #00E6E9;
-            font-weight: bold;
-            text-align: center;
-        }
-        .services-heading-box h1 {
-            font-size: 2.2rem;
-            margin-bottom: 0.5rem;
-        }
-        .services-heading-box p {
-            color: #00B8BB;
-            font-size: 1.1rem;
         }
 
         .founders-top {
@@ -149,14 +152,6 @@
         .about-block h2 { color: #00E6E9; font-size: 1.4rem; margin-bottom: 1rem; }
         .about-block p { color: #B2F0F2; line-height: 1.7; margin-bottom: 0.7rem; }
 
-        .team-dropdown {
-            background: rgba(0, 12, 14, 0.85);
-            border: 1px solid rgba(0, 184, 187, 0.25);
-            border-radius: 14px;
-            margin-bottom: 0.8rem;
-            overflow: hidden;
-            position: relative;
-        }
         .team-toggle {
             width: 100%;
             background: transparent;
@@ -165,7 +160,7 @@
             font-size: 1.1rem;
             font-weight: 600;
             text-align: left;
-            padding: 1.2rem 1.8rem 1.2rem 48px;
+            padding: 0;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -183,11 +178,11 @@
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.4s ease, padding 0.3s ease;
-            padding: 0 1.8rem 0 48px;
+            padding-top: 0;
         }
         .team-content.open {
             max-height: 2000px;
-            padding: 0 1.8rem 1.5rem 48px;
+            padding-top: 1rem;
         }
         .team-content p { color: #B2F0F2; line-height: 1.7; margin-bottom: 0.7rem; }
 
@@ -224,9 +219,9 @@
     <div class="scrollable-pages">
         <div class="page-wrapper">
 
-            <!-- PAGE HEADER -->
-            <div class="services-heading-box">
-                <h1>Meet the Team</h1>
+            <!-- PAGE HEADER — CLEAN, NO E ICON -->
+            <div class="page-heading-box">
+                <h1>Meet Our Founding Team</h1>
                 <p>Two different strengths, one shared vision</p>
             </div>
 
@@ -240,20 +235,20 @@
                 <div class="founder-portrait">
                     <img src="FF05173F-1D69-499E-9FDB-FCAB7EB3BC78.png" alt="Praisegod — Cybersecurity Lead">
                     <h3>Praisegod</h3>
-                    <p class="title">Cybersecurity Lead</p>
+                    <p class="title">Co Founder &amp; Technology Director</p>
                 </div>
             </div>
 
-            <!-- WHO WE ARE -->
+            <!-- WHO WE ARE — WITH E ICON -->
             <div class="about-block">
                 <h2>Who We Are</h2>
                 <p>Eze Digital exists because every growing business and organisation deserves professional digital infrastructure. It should come without the complexity, jargon, or inflated price tags that usually apply. We noticed something that no one else seemed to be talking about. Almost every agency builds beautiful digital presences and completely leaves out the security. Even fewer offer the full package that actually keeps you safe, compliant, and confident. That is not right. Every organisation deserves to be protected, educated, and supported across everything they do.</p>
             </div>
 
-            <!-- NICKI DROPDOWN -->
+            <!-- NICKI DROPDOWN — WITH E ICON -->
             <div class="team-dropdown">
                 <button class="team-toggle" aria-expanded="false" id="nickiToggle">
-                    Nicki — Founder &amp; Business Director
+                    Nicki Co Founder &amp; Business Director
                     <span class="plus-icon">+</span>
                 </button>
                 <div class="team-content" id="nickiContent">
@@ -263,23 +258,23 @@
                 </div>
             </div>
 
-            <!-- PRAISEGOD DROPDOWN -->
+            <!-- PRAISEGOD DROPDOWN — WITH E ICON -->
             <div class="team-dropdown">
                 <button class="team-toggle" aria-expanded="false" id="praiseToggle">
-                    Praisegod — Cybersecurity Lead
+                    Praisegod Co Founder &amp; Technology Director
                     <span class="plus-icon">+</span>
                 </button>
                 <div class="team-content" id="praiseContent">
-                    <p>Praisegod joined Eze Digital to bring specialist cybersecurity expertise to everything we do.</p>
+                    <p>Praisegod is the tech mind behind Eze Digital, he brings specialist cybersecurity expertise to everything we do.</p>
                     <p>He holds a Master's in Applied Cybersecurity, that qualification underpins the standards and technical rigour behind our work. His role is to provide that authority and depth, ensuring everything we build and teach is rooted in proven advanced practice.</p>
                     <p>He is here to give our programmes the technical backing they need, so you get accessible education alongside genuine specialist knowledge and aftercare.</p>
                 </div>
             </div>
 
-            <!-- TOGETHER DROPDOWN -->
+            <!-- TOGETHER DROPDOWN — WITH E ICON -->
             <div class="team-dropdown">
                 <button class="team-toggle" aria-expanded="false" id="togetherToggle">
-                    Together — The Eze Digital Difference
+                    Together The Eze Digital Difference
                     <span class="plus-icon">+</span>
                 </button>
                 <div class="team-content" id="togetherContent">
