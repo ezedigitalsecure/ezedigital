@@ -10,7 +10,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
         html, body { min-height: 100%; overflow: hidden; }
 
-        /* ——— CIRCUIT BACKGROUND — matches Services page ——— */
+        /* ——— CIRCUIT BACKGROUND ——— */
         .static-canvas {
             position: fixed;
             top: 0; left: 0;
@@ -23,11 +23,43 @@
         }
 
         /* ——— HEADER & HAMBURGER MENU ——— */
-        header {
+        .site-header {
             position: absolute;
-            top: 0; right: 0;
+            top: 0; left: 0;
+            width: 100%;
             padding: 1.5rem 2.5rem;
             z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo-group { display: flex; align-items: center; gap: 0.75rem; }
+        .logo-e {
+            width: 40px; height: 46px;
+            position: relative;
+        }
+        .logo-e-hex {
+            width: 40px; height: 46px;
+            background: linear-gradient(180deg, rgba(0,230,233,0.25), rgba(0,184,187,0.1));
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            display: flex; align-items: center; justify-content: center;
+            border: 1px solid rgba(0, 230, 233, 0.35);
+            box-shadow: 0 0 10px rgba(0, 230, 233, 0.15);
+        }
+        .logo-e-text {
+            color: #00E6E9;
+            font-weight: 900;
+            font-size: 1.4rem;
+            line-height: 1;
+        }
+        .logo-text h1 {
+            color: #fff;
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+        }
+        .logo-text p {
+            color: #00B8BB;
+            font-size: 0.75rem;
         }
         .menu-wrapper { position: relative; }
         .hamburger-circle {
@@ -73,19 +105,20 @@
             background: transparent;
         }
         .page-wrapper {
-            padding: 6rem 2rem 0;
+            padding: 8rem 2rem 0;
             max-width: 850px;
             margin: 0 auto;
         }
 
         /* ——— PAGE HEADER ——— */
         .page-heading-box {
-            background: rgba(0, 12, 14, 0.6);
-            border: 1px solid rgba(0, 184, 187, 0.25);
+            background: rgba(0, 8, 10, 0.75);
+            border: 1px solid rgba(0, 184, 187, 0.2);
             border-radius: 14px;
             padding: 1.5rem 2rem;
             margin-bottom: 2rem;
             text-align: center;
+            backdrop-filter: blur(4px);
         }
         .page-heading-box h1 {
             color: #00E6E9;
@@ -110,33 +143,39 @@
             flex: 1;
             min-width: 200px;
             max-width: 280px;
+            background: rgba(0, 8, 10, 0.7);
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            border: 1px solid rgba(0, 184, 187, 0.15);
+            backdrop-filter: blur(4px);
         }
         .founder-portrait img {
             width: 160px;
             height: 160px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid rgba(0, 230, 233, 0.3);
+            border: 3px solid rgba(0, 230, 233, 0.35);
             box-shadow: 0 0 20px rgba(0, 230, 233, 0.15);
-            margin-bottom: 0.75rem;
+            margin-bottom: 1rem;
         }
         .founder-portrait h3 {
-            color: #fff;
+            color: #00E6E9;
             font-size: 1.3rem;
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.3rem;
         }
         .founder-portrait .title {
-            color: #94A3B8;
+            color: #66D9DC;
             font-size: 0.95rem;
         }
 
-        /* ——— WHO WE ARE BLOCK ——— */
+        /* ——— WHO WE ARE BLOCK — DARKER, MORE READABLE ——— */
         .about-block {
-            background: rgba(0, 12, 14, 0.6);
-            border: 1px solid rgba(0, 184, 187, 0.25);
+            background: rgba(0, 8, 10, 0.75);
+            border: 1px solid rgba(0, 184, 187, 0.2);
             border-radius: 14px;
             padding: 2rem;
             margin-bottom: 1rem;
+            backdrop-filter: blur(4px);
         }
         .about-block h2 {
             color: #00E6E9;
@@ -144,18 +183,19 @@
             margin-bottom: 1rem;
         }
         .about-block p {
-            color: #99E6E8;
+            color: #B2F0F2;
             line-height: 1.7;
             margin-bottom: 0.7rem;
         }
 
-        /* ——— DROPDOWNS — EXACTLY LIKE SERVICES PAGE (E ICON + PLUS) ——— */
+        /* ——— DROPDOWNS — EXACT E STYLING FROM SERVICES PAGE ——— */
         .team-dropdown {
-            background: rgba(0, 12, 14, 0.6);
-            border: 1px solid rgba(0, 184, 187, 0.25);
+            background: rgba(0, 8, 10, 0.75);
+            border: 1px solid rgba(0, 184, 187, 0.2);
             border-radius: 14px;
             margin-bottom: 0.8rem;
             overflow: hidden;
+            backdrop-filter: blur(4px);
         }
         .team-toggle {
             width: 100%;
@@ -171,37 +211,37 @@
             align-items: center;
             justify-content: space-between;
         }
-        /* Hexagon E icon — matches Services */
-        .e-icon {
+        /* EXACT E-HEX from Services */
+        .dd-e-wrap {
             display: flex; align-items: center; justify-content: center;
             width: 32px; height: 32px;
             flex-shrink: 0;
             margin-right: 1rem;
         }
-        .e-hex {
-            position: relative;
+        .dd-e-hex {
             width: 28px; height: 32px;
-            background: linear-gradient(180deg, rgba(0,230,233,0.15), rgba(0,184,187,0.05));
+            background: linear-gradient(180deg, rgba(0,230,233,0.25), rgba(0,184,187,0.08));
             clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
             display: flex; align-items: center; justify-content: center;
-            border: 1px solid rgba(0, 230, 233, 0.25);
+            border: 1px solid rgba(0, 230, 233, 0.3);
         }
-        .e-letter {
+        .dd-e-text {
             color: #00E6E9;
-            font-weight: bold;
+            font-weight: 900;
             font-size: 0.9rem;
             line-height: 1;
         }
         .toggle-label {
             flex: 1;
+            color: #00E6E9;
         }
-        /* Plus sign — matches Services */
+        /* Plus icon */
         .plus-icon {
             font-size: 1.3rem;
             line-height: 1;
             color: #00E6E9;
             transition: transform 0.3s ease;
-            opacity: 0.8;
+            opacity: 0.85;
         }
         .team-toggle[aria-expanded="true"] .plus-icon {
             transform: rotate(45deg);
@@ -217,7 +257,7 @@
             padding: 0 1.8rem 1.5rem;
         }
         .team-content p {
-            color: #99E6E8;
+            color: #B2F0F2;
             line-height: 1.7;
             margin-bottom: 0.7rem;
         }
@@ -230,33 +270,46 @@
 
         /* ——— RESPONSIVE ——— */
         @media (max-width: 768px) {
-            header { padding: 1rem 1.2rem; }
-            .page-wrapper { padding: 5rem 1.2rem 0; }
+            .site-header { padding: 1rem 1.2rem; }
+            .page-wrapper { padding: 7rem 1.2rem 0; }
+            .founders-top { gap: 2rem; }
         }
     </style>
 </head>
 <body>
     <div class="static-canvas"></div>
 
-    <header>
-        <div class="menu-wrapper">
-            <div class="hamburger-circle" onclick="toggleMenu()">
-                <div class="hamburger" id="hamburger">
-                    <span></span><span></span><span></span>
+    <div class="scrollable-pages">
+        <!-- Top header bar with logo + hamburger -->
+        <div class="site-header">
+            <div class="logo-group">
+                <div class="logo-e">
+                    <div class="logo-e-hex">
+                        <span class="logo-e-text">E</span>
+                    </div>
+                </div>
+                <div class="logo-text">
+                    <h1>EZE DIGITAL</h1>
+                    <p>Secure &amp; Evolve</p>
                 </div>
             </div>
-            <nav class="dropdown-menu" id="dropdownMenu">
-                <a class="dropdown-link" href="index.html">Home</a>
-                <a class="dropdown-link" href="services.html">Services</a>
-                <a class="dropdown-link active" href="about.html">About Eze Digital</a>
-                <a class="dropdown-link" href="contact.html">Contact</a>
-                <a class="dropdown-link" href="academy.html">Academy</a>
-                <a class="dropdown-link" href="#" onclick="alert('Client Portal coming soon. Watch this space.'); return false;">Client Portal</a>
-            </nav>
+            <div class="menu-wrapper">
+                <div class="hamburger-circle" onclick="toggleMenu()">
+                    <div class="hamburger" id="hamburger">
+                        <span></span><span></span><span></span>
+                    </div>
+                </div>
+                <nav class="dropdown-menu" id="dropdownMenu">
+                    <a class="dropdown-link" href="index.html">Home</a>
+                    <a class="dropdown-link" href="services.html">Services</a>
+                    <a class="dropdown-link active" href="about.html">About Eze Digital</a>
+                    <a class="dropdown-link" href="contact.html">Contact</a>
+                    <a class="dropdown-link" href="academy.html">Academy</a>
+                    <a class="dropdown-link" href="#" onclick="alert('Client Portal coming soon. Watch this space.'); return false;">Client Portal</a>
+                </nav>
+            </div>
         </div>
-    </header>
 
-    <div class="scrollable-pages">
         <div class="page-wrapper">
 
             <!-- PAGE HEADER -->
@@ -265,7 +318,7 @@
                 <p>Two different strengths, one shared vision</p>
             </div>
 
-            <!-- PROFILE PICTURES -->
+            <!-- PROFILE PICTURES — with soft background cards -->
             <div class="founders-top">
                 <div class="founder-portrait">
                     <img src="38056BA2-7397-4F60-AD7D-ECE7038AD774.jpg" alt="Nicki — Founder & Business Director">
@@ -279,17 +332,17 @@
                 </div>
             </div>
 
-            <!-- WHO WE ARE -->
+            <!-- WHO WE ARE — darker background for readability -->
             <div class="about-block">
                 <h2>Who We Are</h2>
                 <p>Eze Digital exists because every growing business and organisation deserves professional digital infrastructure. It should come without the complexity, jargon, or inflated price tags that usually apply. We noticed something that no one else seemed to be talking about. Almost every agency builds beautiful digital presences and completely leaves out the security. Even fewer offer the full package that actually keeps you safe, compliant, and confident. That is not right. Every organisation deserves to be protected, educated, and supported across everything they do.</p>
             </div>
 
-            <!-- NICKI DROPDOWN — E ICON + PLUS -->
+            <!-- NICKI DROPDOWN — EXACT Services E styling -->
             <div class="team-dropdown">
                 <button class="team-toggle" aria-expanded="false" id="nickiToggle">
                     <span style="display:flex;align-items:center;">
-                        <span class="e-icon"><span class="e-hex"><span class="e-letter">E</span></span></span>
+                        <span class="dd-e-wrap"><span class="dd-e-hex"><span class="dd-e-text">E</span></span></span>
                         <span class="toggle-label">Nicki — Founder &amp; Business Director</span>
                     </span>
                     <span class="plus-icon">+</span>
@@ -301,11 +354,11 @@
                 </div>
             </div>
 
-            <!-- PRAISEGOD DROPDOWN — E ICON + PLUS -->
+            <!-- PRAISEGOD DROPDOWN — EXACT Services E styling -->
             <div class="team-dropdown">
                 <button class="team-toggle" aria-expanded="false" id="praiseToggle">
                     <span style="display:flex;align-items:center;">
-                        <span class="e-icon"><span class="e-hex"><span class="e-letter">E</span></span></span>
+                        <span class="dd-e-wrap"><span class="dd-e-hex"><span class="dd-e-text">E</span></span></span>
                         <span class="toggle-label">Praisegod — Cybersecurity Lead</span>
                     </span>
                     <span class="plus-icon">+</span>
@@ -317,11 +370,11 @@
                 </div>
             </div>
 
-            <!-- TOGETHER DROPDOWN — E ICON + PLUS -->
+            <!-- TOGETHER DROPDOWN — EXACT Services E styling -->
             <div class="team-dropdown">
                 <button class="team-toggle" aria-expanded="false" id="togetherToggle">
                     <span style="display:flex;align-items:center;">
-                        <span class="e-icon"><span class="e-hex"><span class="e-letter">E</span></span></span>
+                        <span class="dd-e-wrap"><span class="dd-e-hex"><span class="dd-e-text">E</span></span></span>
                         <span class="toggle-label">Together — The Eze Digital Difference</span>
                     </span>
                     <span class="plus-icon">+</span>
