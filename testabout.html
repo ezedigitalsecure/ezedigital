@@ -83,52 +83,21 @@
             margin: 0 auto;
         }
 
-        /* ===== BACK LINK ===== */
-        .back-link {
-            display: inline-block;
-            color: #00B8BB;
-            text-decoration: none;
-            font-size: 0.9rem;
-            margin-bottom: 2rem;
-            transition: color 0.2s ease;
-        }
-        .back-link:hover { color: #00E6E9; }
-
-        /* ===== HERO SECTION ===== */
+        /* ===== HERO SECTION — CLEANED ===== */
         .hero {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             background: rgba(0, 12, 14, 0.85);
             border: 1px solid rgba(0, 184, 187, 0.25);
             border-radius: 14px;
             padding: 2.5rem 2rem;
-            position: relative;
-            padding-left: 48px;
         }
-        .hero::before {
-            content: "";
-            position: absolute;
-            top: 2rem;
-            left: 12px;
-            width: 28px; height: 28px;
-            background-image: url("data:image/svg+xml,%3Csvg width='28' height='28' viewBox='0 0 28 28' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M14 3l9 5v10l-9 5-9-5V8l9-5z' stroke='%2300E6E9' stroke-width='1.5'/%3E%3Ctext x='14' y='17.5' text-anchor='middle' fill='%2300E6E9' font-size='12' font-weight='700' font-family='Arial,sans-serif'%3EE%3C/text%3E%3C/svg%3E");
-            background-size: contain;
-            background-repeat: no-repeat;
-            filter: drop-shadow(0 0 5px #00E6E9);
-            opacity: 0.95;
-        }
-        .badge {
-            display: inline-block;
-            background: rgba(0, 184, 187, 0.1);
-            color: #00E6E9;
-            border: 1px solid rgba(0, 184, 187, 0.25);
-            padding: 0.4rem 1rem;
-            border-radius: 100px;
-            font-size: 0.8rem;
-            font-weight: 600;
+        .hero-category {
+            color: #00B8BB;
+            font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
         .hero h1 {
             font-size: 2.2rem;
@@ -143,10 +112,10 @@
             line-height: 1.7;
         }
 
-        /* ===== CPD BANNER ===== */
+        /* ===== CPD BANNER — DARK OPAQUE ===== */
         .cpd-banner {
-            background: linear-gradient(90deg, rgba(0, 184, 187, 0.08) 0%, rgba(0, 184, 187, 0.02) 100%);
-            border: 1px solid rgba(0, 184, 187, 0.18);
+            background: rgba(0, 12, 14, 0.85);
+            border: 1px solid rgba(0, 184, 187, 0.25);
             border-radius: 12px;
             padding: 1.5rem 2rem;
             margin-bottom: 3rem;
@@ -243,20 +212,6 @@
             border: 1px solid rgba(0, 184, 187, 0.25);
             border-radius: 12px;
             padding: 2rem;
-            position: relative;
-            padding-left: 48px;
-        }
-        .block::before {
-            content: "";
-            position: absolute;
-            top: 2rem;
-            left: 12px;
-            width: 28px; height: 28px;
-            background-image: url("data:image/svg+xml,%3Csvg width='28' height='28' viewBox='0 0 28 28' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M14 3l9 5v10l-9 5-9-5V8l9-5z' stroke='%2300E6E9' stroke-width='1.5'/%3E%3Ctext x='14' y='17.5' text-anchor='middle' fill='%2300E6E9' font-size='12' font-weight='700' font-family='Arial,sans-serif'%3EE%3C/text%3E%3C/svg%3E");
-            background-size: contain;
-            background-repeat: no-repeat;
-            filter: drop-shadow(0 0 5px #00E6E9);
-            opacity: 0.95;
         }
         .block h3 {
             color: #00E6E9;
@@ -276,7 +231,7 @@
 
         /* ===== CTA BOX ===== */
         .cta-box {
-            background: linear-gradient(135deg, rgba(0, 184, 187, 0.12) 0%, rgba(0, 184, 187, 0.03) 100%);
+            background: rgba(0, 12, 14, 0.85);
             border: 1px solid rgba(0, 184, 187, 0.25);
             border-radius: 12px;
             padding: 2.5rem;
@@ -322,10 +277,6 @@
             header { padding: 1rem 1.2rem; }
             .page-wrapper { padding: 5rem 1.2rem 0; }
             .two-col { grid-template-columns: 1fr; }
-            .hero { padding-left: 2rem; }
-            .hero::before { display: none; }
-            .block { padding-left: 2rem; }
-            .block::before { display: none; }
         }
     </style>
 </head>
@@ -353,16 +304,14 @@
     <div class="scrollable-pages">
         <div class="page-wrapper">
 
-            <a href="index.html" class="back-link">← Back to Home</a>
-
-            <!-- HERO -->
+            <!-- HERO — CLEANED UP -->
             <div class="hero">
-                <span class="badge">Professional Development</span>
+                <p class="hero-category">Professional Development</p>
                 <h1>Eze Digital Academy</h1>
                 <p>Practical, accessible training in cybersecurity, digital safety and compliance — CPD accredited and delivered in plain English.</p>
             </div>
 
-            <!-- CPD BANNER -->
+            <!-- CPD BANNER — DARK OPAQUE BACKGROUND -->
             <div class="cpd-banner">
                 <div class="cpd-icon">✓</div>
                 <div class="cpd-text">
