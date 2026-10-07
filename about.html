@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eze Digital — About Us</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; form-action 'self' https://formspree.io;">
+    <link rel="stylesheet" href="footerstyles.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        html, body { min-height: 100%; }
+        .static-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: 1;
+            background:
+                url('mockup-bg.png') no-repeat center center,
+                linear-gradient(180deg, #001418 0%, #00222a 45%, #001115 100%);
+            background-size: cover;
+        }
+        header {
+            position: absolute;
+            top: 0; right: 0;
+            padding: 1.5rem 2.5rem;
+            z-index: 100;
+        }
+        .menu-wrapper { position: relative; }
+        .hamburger-circle {
+            width: 52px; height: 52px; border-radius: 50%;
+            background: rgba(0, 12, 14, 0.75);
+            border: 1px solid rgba(0, 184, 187, 0.25);
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+        }
+        .hamburger { display: flex; flex-direction: column; gap: 5px; }
+        .hamburger span {
+            width: 26px; height: 3px;
+            background: linear-gradient(90deg, #00B8BB, #00E6E9);
+            border-radius: 2px;
+            box-shadow: 0 0 6px rgba(0, 184, 187, 0.4);
+        }
+        .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+        .dropdown-menu {
+            position: absolute; top: 62px; right: 0;
+            background: rgba(0, 24, 28, 0.96);
+            border: 1px solid rgba(0, 184, 187, 0.35);
+            border-radius: 0 0 12px 12px;
+            min-width: 220px;
+            display: none;
+        }
+        .dropdown-menu.open { display: flex; flex-direction: column; }
+        .dropdown-link {
+            color: #00E6E9; font-weight: bold;
+            padding: 1rem 1.5rem; text-decoration: none;
+            border-bottom: 1px solid rgba(0, 184, 187, 0.1);
+        }
+        .dropdown-link:hover, .dropdown-link.active { color: #66F0F3; }
+        .page-content {
+            position: relative; z-index: 10;
+            min-height: 100vh;
+            padding: 6rem 2rem 4rem;
+        }
+        .content-box {
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(0, 8, 10, 0.85);
+            border-radius: 12px;
+            border: 1px solid rgba(0, 184, 187, 0.2);
+            padding: 3rem;
+        }
+        .content-box h1 {
+            color: #00E6E9;
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+        .intro {
+            color: #99E6E8;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 3rem;
+        }
+        .co-founders-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        .founder-card {
+            text-align: center;
+        }
+        .founder-photo {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(0, 230, 233, 0.3);
+            box-shadow: 0 0 15px rgba(0, 230, 233, 0.15);
+            margin-bottom: 1.5rem;
+        }
+        .founder-name {
+            color: #00E6E9;
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+        }
+        .founder-role {
+            color: #00B8BB;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .founder-bio {
+            color: #99E6E8;
+            line-height: 1.7;
+            text-align: left;
+        }
+        .section-divider {
+            border: none;
+            border-top: 1px solid rgba(0, 184, 187, 0.15);
+            margin: 3rem 0;
+        }
+        .about-block h2 {
+            color: #00E6E9;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .about-block p {
+            color: #99E6E8;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+        #footer-placeholder {
+            position: relative;
+            z-index: 50;
+            margin-top: 3rem;
+            width: 100%;
+        }
+        @media (max-width: 768px) {
+            header { padding: 1rem 1.2rem; }
+            .content-box { padding: 2rem 1.5rem; }
+            .co-founders-section { gap: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="static-canvas"></div>
+    <header>
+        <div class="menu-wrapper">
+            <div class="hamburger-circle" onclick="toggleMenu()">
+                <div class="hamburger" id="hamburger">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+            <nav class="dropdown-menu" id="dropdownMenu">
+                <a class="dropdown-link" href="index.html">Home</a>
+                <a class="dropdown-link" href="services.html">Services</a>
+                <a class="dropdown-link active" href="about.html">About Eze Digital</a>
+                <a class="dropdown-link" href="contact.html">Contact</a>
+                <a class="dropdown-link" href="academy.html">Academy</a>
+                <a class="dropdown-link" href="#" onclick="alert('Client Portal coming soon. Watch this space.'); return false;">Client Portal</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="page-content">
+        <div class="content-box">
+            <h1>Meet the Team</h1>
+            <p class="intro">We combine business vision, educational expertise, and advanced cybersecurity knowledge to build digital foundations you can trust.</p>
+
+            <div class="co-founders-section">
+                <!-- NICKI -->
+                <div class="founder-card">
+                    <img src="nicki.jpg" alt="Nicki — Founder and Business Director" class="founder-photo">
+                    <h3 class="founder-name">Nicki</h3>
+                    <p class="founder-role">Founder &amp; Business Director</p>
+                    <div class="founder-bio">
+                        <p>I founded Eze Digital because I believe every growing business deserves professional digital infrastructure — without the jargon, confusion, or inflated price tags.</p>
+                        <p>I am the educator and CPD-accredited lead here. I design, write, and deliver our training and programmes — that work is mine, and I could do it on my own. But I choose to bring in expertise where it strengthens what we offer.</p>
+                        <p>My background in teaching means I don't just hand you a finished product — I help you understand it, so you feel confident and in control of your own digital presence.</p>
+                        <p>I speak your language. I know what it feels like to build a business from the ground up. And I’m here to bridge the gap between complex technology and what actually works for you.</p>
+                    </div>
+                </div>
+
+                <!-- PRAISEGOD -->
+                <div class="founder-card">
+                    <img src="praisegod.jpg" alt="Praisegod — Cybersecurity Lead" class="founder-photo">
+                    <h3 class="founder-name">Praisegod</h3>
+                    <p class="founder-role">Cybersecurity Lead</p>
+                    <div class="founder-bio">
+                        <p>Praisegod joined Eze Digital to bring specialist cybersecurity expertise and deep technical knowledge to everything we build.</p>
+                        <p>He holds a Master’s in Applied Cybersecurity — a qualification that underpins the credibility, standards, and technical rigour behind our work. He brings that authority to our content and delivery, ensuring everything we teach and build is rooted in proven, advanced practice.</p>
+                        <p>While he is not a trainer or educator himself, his role is to provide the technical depth, specialist insight, and academic grounding that strengthens our programmes and gives our clients complete confidence in the information they receive.</p>
+                        <p>He works alongside me to ensure our materials are accurate, robust, and authoritative — so you get the best of both worlds: accessible, expert-led education, backed by genuine specialist knowledge.</p>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="section-divider">
+
+            <div class="about-block">
+                <h2>How We Work Together</h2>
+                <p>Our partnership is built on clear, complementary roles. I lead the business, the education, the client relationships, and the programme design — and Praisegod brings the advanced cybersecurity expertise that gives our work its technical weight and credibility.</p>
+                <p>We are equals in the business, but we each own our areas of strength. That means you get consistency, clarity, and confidence — knowing your education comes from an experienced, accredited lead, and your technical standards come from a qualified cybersecurity specialist.</p>
+            </div>
+        </div>
+
+        <!-- FOOTER — full width, single source -->
+        <div id="footer-placeholder"></div>
+    </div>
+
+    <script>
+        fetch('footer.html')
+            .then(res => {
+                if (!res.ok) throw new Error('Footer file not found');
+                return res.text();
+            })
+            .then(html => {
+                document.getElementById('footer-placeholder').innerHTML = html;
+            })
+            .catch(err => {
+                console.error('Footer load error:', err);
+                document.getElementById('footer-placeholder').innerHTML = 
+                    '<p style="color:#00E6E9; padding:2rem; text-align:center;">Footer loading — ensure footer.html is in the same folder</p>';
+            });
+    </script>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('hamburger').classList.toggle('open');
+            document.getElementById('dropdownMenu').classList.toggle('open');
+        }
+    </script>
+</body>
+</html>
