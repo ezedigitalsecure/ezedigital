@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eze Digital — Contact</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://formspree.io; font-src 'self'; base-uri 'self'; frame-src 'none'; object-src 'none'; form-action 'self' https://formspree.io;">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <link rel="stylesheet" href="footerstyles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+        .static-canvas {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: 1;
+            background:
+                url('mockup-bg.png') no-repeat center center,
+                linear-gradient(180deg, #001418 0%, #00222a 45%, #001115 100%);
+            background-size: cover;
+        }
+        header {
+            position: absolute;
+            top: 0; right: 0;
+            padding: 1.5rem 2.5rem;
+            z-index: 100;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .menu-wrapper { position: relative; }
+        .hamburger-circle {
+            width: 52px; height: 52px; border-radius: 50%;
+            background: rgba(0, 12, 14, 0.75);
+            border: 1px solid rgba(0, 184, 187, 0.25);
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+        }
+        .hamburger { display: flex; flex-direction: column; gap: 5px; }
+        .hamburger span {
+            width: 26px; height: 3px;
+            background: linear-gradient(90deg, #00B8BB, #00E6E9);
+            border-radius: 2px;
+        }
+        .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+        .dropdown-menu {
+            position: absolute; top: 62px; right: 0;
+            background: rgba(0, 24, 28, 0.96);
+            border: 1px solid rgba(0, 184, 187, 0.35);
+            border-radius: 0 0 12px 12px;
+            min-width: 220px;
+            display: none;
+            flex-direction: column;
+        }
+        .dropdown-menu.open { display: flex; }
+        .dropdown-link {
+            color: #00B8BB;
+            font-weight: bold;
+            padding: 1rem 1.5rem;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(0, 184, 187, 0.1);
+        }
+        .dropdown-link:hover,
+        .dropdown-link.active { color: #00E6E9; }
+
+        .scrollable-pages {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: 50;
+            overflow-y: auto;
+            background: transparent;
+        }
+        .page-wrapper {
+            padding: 6rem 2rem 0;
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        /* ——— CONTACT PANEL — WITH E HEXAGON ICON ——— */
+        .contact-panel {
+            background: rgba(0, 12, 14, 0.85);
+            border: 1px solid rgba(0, 184, 187, 0.25);
+            border-radius: 14px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-left: 48px;
+        }
+        .contact-panel::before {
+            content: "";
+            position: absolute;
+            top: 22px;
+            left: 12px;
+            width: 28px;
+            height: 28px;
+            background-image: url("data:image/svg+xml,%3Csvg width='28' height='28' viewBox='0 0 28 28' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M14 3l9 5v10l-9 5-9-5V8l9-5z' stroke='%2300E6E9' stroke-width='1.5'/%3E%3Ctext x='14' y='17.5' text-anchor='middle' fill='%2300E6E9' font-size='12' font-weight='700' font-family='Arial,sans-serif'%3EE%3C/text%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            filter: drop-shadow(0 0 5px #00E6E9);
+            opacity: 0.95;
+        }
+        .contact-panel h2 {
+            color: #00E6E9;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .contact-panel p {
+            color: #B2F0F2;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: #00E6E9;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            background: rgba(0, 24, 28, 0.9);
+            border: 1px solid rgba(0, 184, 187, 0.3);
+            color: #00E6E9;
+            border-radius: 8px;
+            margin-bottom: 1.2rem;
+            font-size: 1rem;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #00E6E9;
+            box-shadow: 0 0 8px rgba(0, 230, 233, 0.25);
+        }
+        .btn {
+            background: linear-gradient(90deg, #00E6E9, #00B8BB);
+            color: #001418;
+            font-weight: bold;
+            padding: 0.9rem 2.2rem;
+            border-radius: 28px;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        .btn:hover {
+            background: linear-gradient(90deg, #00E6E9, #00E6E9);
+            box-shadow: 0 0 20px rgba(0, 230, 233, 0.7), 0 0 40px rgba(0, 230, 233, 0.4);
+            transform: scale(1.02);
+        }
+        #thankYouMsg {
+            display: none;
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background: rgba(0, 24, 28, 0.9);
+            border: 1px solid rgba(0, 184, 187, 0.35);
+            border-radius: 8px;
+            color: #00E6E9;
+            text-align: center;
+            line-height: 1.7;
+        }
+
+        /* ——— FOOTER ——— */
+        #footer-placeholder {
+            width: 100%;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 1rem 1.2rem; }
+            .page-wrapper { padding: 5rem 1.2rem 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="static-canvas"></div>
+
+    <header>
+        <div class="menu-wrapper">
+            <div class="hamburger-circle" onclick="toggleMenu()">
+                <div class="hamburger" id="hamburger">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+            <nav class="dropdown-menu" id="dropdownMenu">
+                <a class="dropdown-link" href="index.html">Home</a>
+                <a class="dropdown-link" href="services.html">Services</a>
+                <a class="dropdown-link" href="about.html">About Eze Digital</a>
+                <a class="dropdown-link active" href="contact.html">Contact</a>
+                <a class="dropdown-link" href="academy.html">Academy</a>
+                <a class="dropdown-link" href="#" onclick="alert('Client Portal coming soon. Watch this space.'); return false;">Client Portal</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="scrollable-pages">
+        <div class="page-wrapper">
+
+            <div class="contact-panel">
+                <h2>Let's Talk</h2>
+                <p>Tell me how you want to evolve and let's build something great together.</p>
+
+                <form action="https://formspree.io/f/mvkoqvnp" method="POST">
+                    <input type="hidden" name="_redirect" value="https://ezedigital.co.uk/contact.html?submitted=yes">
+
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn">Connect With Me</button>
+                </form>
+
+                <div id="thankYouMsg">
+                    ✅ Thank you for reaching out.<br><br>
+                    I personally answer every message and I look forward to working together soon.<br><br>
+                    — Nicki
+                </div>
+            </div>
+
+        </div>
+
+        <!-- SHARED FOOTER -->
+        <div id="footer-placeholder"></div>
+        <script>
+            fetch('footer.html')
+                .then(res => {
+                    if (!res.ok) throw new Error('Footer not found');
+                    return res.text();
+                })
+                .then(html => {
+                    document.getElementById('footer-placeholder').innerHTML = html;
+                })
+                .catch(err => console.error('Footer load error:', err));
+        </script>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('hamburger').classList.toggle('open');
+            document.getElementById('dropdownMenu').classList.toggle('open');
+        }
+        // Show thank-you message on return from Formspree
+        if (window.location.search.includes('submitted=yes')) {
+            document.getElementById('thankYouMsg').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
