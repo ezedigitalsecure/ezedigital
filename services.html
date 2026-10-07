@@ -9,6 +9,9 @@
     <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
     <meta name="referrer" content="strict-origin-when-cross-origin">
 
+    <!-- Footer styles — ONE line -->
+    <link rel="stylesheet" href="footerstyles.css">
+
     <style>
 * {
     margin: 0;
@@ -101,7 +104,7 @@ header {
 .dropdown-menu.open { display: flex; }
 .dropdown-link {
     color: #00B8BB !important;
-    font-weight: bold; 
+    font-weight: bold;
     padding: 1rem 1.5rem;
     text-decoration: none;
     border-bottom: 1px solid rgba(0, 184, 187, 0.1);
@@ -216,12 +219,12 @@ header {
     padding: 1rem 0;
     margin-bottom: 1.5rem;
 }
-.services-heading-box h2 { 
-    color: #00E6E9 !important; 
+.services-heading-box h2 {
+    color: #00E6E9 !important;
     font-weight: bold;
-    font-size: 2.2rem; 
-    text-align: center; 
-    margin-bottom: 0.5rem; 
+    font-size: 2.2rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
 }
 .services-heading-box p { color: #00B8BB !important; text-align: center; font-size: 1.2rem; }
 .service-title {
@@ -234,9 +237,9 @@ header {
     align-items: center;
 }
 .service-title:hover { color: #00B8BB !important; }
-.toggle-icon { 
-    color: #00B8BB !important; 
-    font-size: 1.6rem; 
+.toggle-icon {
+    color: #00B8BB !important;
+    font-size: 1.6rem;
     display: inline-block;
     transition: transform 0.3s ease;
 }
@@ -253,22 +256,6 @@ header {
     transform: rotate(45deg);
 }
 .service-content p { color: #00E6E9 !important; line-height: 1.7; margin-bottom: 0.7rem; }
-.about-block h2 { color: #00E6E9 !important; margin-bottom: 1rem; }
-.about-block h3 { color: #00E6E9 !important; margin: 1.4rem 0 0.5rem; }
-.about-block p { color: #00E6E9 !important; line-height: 1.7; }
-.contact-panel h2 { color: #00E6E9 !important; margin-bottom: 0.5rem; }
-.contact-panel p { color: #00E6E9 !important; margin-bottom: 1.5rem; }
-.form-group label { color: #00E6E9 !important; }
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 0.85rem;
-    background: rgba(0, 24, 28, 0.9);
-    border: 1px solid rgba(0, 184, 187, 0.3);
-    color: #00E6E9 !important;
-    border-radius: 8px;
-    margin-bottom: 1.2rem;
-}
 @media (max-width: 768px) {
     header { padding: 1rem 1.2rem; }
     .home-box h2 { font-size: 1.9rem; }
@@ -294,45 +281,6 @@ header {
     pointer-events: auto !important;
     position: relative !important;
     z-index: 99999 !important;
-}
-
-/* ===== FOOTER STYLES — Applied to loaded footer ===== */
-.footer-master {
-    width: 100%;
-    padding: 2.5rem 2rem;
-    margin-top: 3rem;
-    border-top: 1px solid rgba(0, 184, 187, 0.15);
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    color: #00E6E9;
-    font-size: 0.9rem;
-}
-.footer-master h3 {
-    color: #00E6E9;
-    font-size: 1rem;
-    margin-bottom: 1rem;
-    font-weight: bold;
-}
-.footer-master p,
-.footer-master a {
-    color: #99E6E8;
-    text-decoration: none;
-    line-height: 1.7;
-    margin-bottom: 0.5rem;
-    display: block;
-}
-.footer-master a:hover {
-    color: #00E6E9;
-    text-decoration: underline;
-}
-.footer-master .copyright {
-    grid-column: 1 / -1;
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid rgba(0, 184, 187, 0.1);
-    color: #00B8BB;
-    font-size: 0.8rem;
 }
     </style>
 </head>
@@ -433,16 +381,16 @@ header {
                 </div>
             </div><!-- .page-wrapper ENDS -->
 
-            <!-- ✅ FETCH FOOTER — outside wrapper = FULL WIDTH -->
-            <div id="footer-slot"></div>
+            <!-- ✅ FOOTER FETCH — outside wrapper = FULL WIDTH -->
+            <div id="footer-here"></div>
             <script>
             document.addEventListener('DOMContentLoaded', () => {
               fetch('footer.html')
                 .then(r => r.text())
                 .then(html => {
-                  document.getElementById('footer-slot').innerHTML = html;
+                  document.getElementById('footer-here').innerHTML = html;
                 })
-                .catch(e => console.error('Footer failed:', e));
+                .catch(e => console.error('Footer load error:', e));
             });
             </script>
         </div><!-- #services tab ends -->
