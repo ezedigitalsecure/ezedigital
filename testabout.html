@@ -83,7 +83,7 @@
             margin: 0 auto;
         }
 
-        /* ===== HERO SECTION — CLEANED ===== */
+        /* ===== HERO SECTION ===== */
         .hero {
             text-align: center;
             margin-bottom: 2rem;
@@ -112,28 +112,31 @@
             line-height: 1.7;
         }
 
-        /* ===== CPD BANNER — DARK OPAQUE ===== */
-        .cpd-banner {
+        /* ===== INFO BANNER — CENTRALISED, NO TICK ===== */
+        .info-banner {
             background: rgba(0, 12, 14, 0.85);
             border: 1px solid rgba(0, 184, 187, 0.25);
             border-radius: 12px;
-            padding: 1.5rem 2rem;
+            padding: 2rem;
             margin-bottom: 3rem;
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
+            text-align: center;
         }
-        .cpd-icon {
-            font-size: 2rem;
+        .banner-subheading {
             color: #00E6E9;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        .banner-text {
+            color: #B2F0F2;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
         }
         .cpd-text h3 {
             color: #00E6E9;
             font-size: 1rem;
             text-transform: uppercase;
             letter-spacing: 0.08em;
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.5rem;
         }
         .cpd-text p {
             color: #B2F0F2;
@@ -304,16 +307,17 @@
     <div class="scrollable-pages">
         <div class="page-wrapper">
 
-            <!-- HERO — CLEANED UP -->
+            <!-- HERO -->
             <div class="hero">
                 <p class="hero-category">Professional Development</p>
                 <h1>Eze Digital Academy</h1>
                 <p>Practical, accessible training in cybersecurity, digital safety and compliance — CPD accredited and delivered in plain English.</p>
             </div>
 
-            <!-- CPD BANNER — DARK OPAQUE BACKGROUND -->
-            <div class="cpd-banner">
-                <div class="cpd-icon">✓</div>
+            <!-- INFO BANNER — CENTRALISED, TICK REMOVED, ALL TEXT HERE -->
+            <div class="info-banner">
+                <h2 class="banner-subheading">Our Courses</h2>
+                <p class="banner-text">Tailored for schools, businesses, and teams. We deliver on-site or remotely.</p>
                 <div class="cpd-text">
                     <h3>CPD Accredited Training</h3>
                     <p>Every course carries formal Continuing Professional Development accreditation — verifiable, recognised, and built to current standards.</p>
@@ -322,8 +326,6 @@
 
             <!-- COURSES GRID -->
             <section>
-                <h2 class="section-heading">Our Courses</h2>
-                <p class="section-subtitle">Tailored for schools, businesses, and teams — delivered on-site or remotely.</p>
                 <div class="courses-grid">
                     <div class="course-card">
                         <span class="course-level">Foundation</span>
