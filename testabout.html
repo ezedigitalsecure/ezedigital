@@ -112,7 +112,7 @@
             line-height: 1.7;
         }
 
-        /* ===== INFO BANNER — CENTRALISED, NO TICK ===== */
+        /* ===== INFO BANNER ===== */
         .info-banner {
             background: rgba(0, 12, 14, 0.85);
             border: 1px solid rgba(0, 184, 187, 0.25);
@@ -149,11 +149,15 @@
             font-size: 1.5rem;
             color: #00E6E9;
             margin-bottom: 0.5rem;
+            text-align: center;
         }
         .section-subtitle {
             color: #B2F0F2;
             margin-bottom: 2rem;
-            max-width: 600px;
+            text-align: center;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         /* ===== COURSE CARDS GRID ===== */
@@ -161,6 +165,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 1.5rem;
+            margin-bottom: 3rem;
         }
         .course-card {
             background: rgba(0, 12, 14, 0.85);
@@ -204,6 +209,63 @@
             padding-top: 1rem;
         }
 
+        /* ===== PRICING DROPDOWNS ===== */
+        .pricing-dropdown {
+            background: rgba(0, 12, 14, 0.85);
+            border: 1px solid rgba(0, 184, 187, 0.25);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+        .pricing-toggle {
+            width: 100%;
+            background: transparent;
+            border: none;
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-align: left;
+        }
+        .pricing-toggle h3 {
+            color: #00E6E9;
+            font-size: 1.05rem;
+        }
+        .price-tag {
+            color: #00B8BB;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        .toggle-icon {
+            color: #00B8BB;
+            font-size: 1.4rem;
+            transition: transform 0.3s ease;
+        }
+        .pricing-dropdown.expanded .toggle-icon {
+            transform: rotate(45deg);
+        }
+        .pricing-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+        }
+        .pricing-dropdown.expanded .pricing-content {
+            max-height: 1000px;
+            padding: 0 1.5rem 1.5rem;
+        }
+        .pricing-content p {
+            color: #B2F0F2;
+            font-size: 0.9rem;
+            line-height: 1.7;
+            margin-bottom: 0.5rem;
+        }
+        .pricing-content .discount-note {
+            color: #00B8BB;
+            font-style: italic;
+            margin-top: 0.5rem;
+        }
+
         /* ===== TWO-COLUMN BLOCKS ===== */
         .two-col {
             display: grid;
@@ -239,6 +301,7 @@
             border-radius: 12px;
             padding: 2.5rem;
             text-align: center;
+            margin-top: 2rem;
         }
         .cta-box h3 {
             color: #00E6E9;
@@ -280,6 +343,7 @@
             header { padding: 1rem 1.2rem; }
             .page-wrapper { padding: 5rem 1.2rem 0; }
             .two-col { grid-template-columns: 1fr; }
+            .pricing-toggle { flex-wrap: wrap; gap: 0.5rem; }
         }
     </style>
 </head>
@@ -314,7 +378,7 @@
                 <p>Practical, accessible training in cybersecurity, digital safety and compliance — CPD accredited and delivered in plain English.</p>
             </div>
 
-            <!-- INFO BANNER — CENTRALISED, TICK REMOVED, ALL TEXT HERE -->
+            <!-- INFO BANNER -->
             <div class="info-banner">
                 <h2 class="banner-subheading">Our Courses</h2>
                 <p class="banner-text">Tailored for schools, businesses, and teams. We deliver on-site or remotely.</p>
@@ -366,6 +430,75 @@
                 </div>
             </section>
 
+            <!-- PRICING WITH DROPDOWNS -->
+            <section>
+                <h2 class="section-heading">Pricing</h2>
+                <p class="section-subtitle">Transparent starting prices — click to see what's included. Every quote is personalised to your team size, location, and needs.</p>
+
+                <div class="pricing-dropdown">
+                    <button class="pricing-toggle" onclick="togglePricing(this)">
+                        <div>
+                            <h3>Cybersecurity Awareness for Everyone</h3>
+                            <span class="price-tag">From £295</span>
+                        </div>
+                        <span class="toggle-icon">+</span>
+                    </button>
+                    <div class="pricing-content">
+                        <p><strong>½ Day — Foundation Level</strong></p>
+                        <p>Includes live delivery, digital resources, and certificates for all attendees. Remote delivery at no extra cost.</p>
+                        <p>On-site delivery within 50 miles — +£95 travel fee.</p>
+                        <p class="discount-note">Schools & registered charities — 20% discount available</p>
+                    </div>
+                </div>
+
+                <div class="pricing-dropdown">
+                    <button class="pricing-toggle" onclick="togglePricing(this)">
+                        <div>
+                            <h3>Data Protection & UK GDPR Essentials</h3>
+                            <span class="price-tag">From £495</span>
+                        </div>
+                        <span class="toggle-icon">+</span>
+                    </button>
+                    <div class="pricing-content">
+                        <p><strong>1 Day — Practitioner Level</strong></p>
+                        <p>Full-day session covering legal obligations, consent management, subject access requests, and practical data security. Includes template resources and 7 days post-session email support.</p>
+                        <p>On-site delivery within 50 miles — +£95 travel fee.</p>
+                        <p class="discount-note">Schools & registered charities — 20% discount available</p>
+                    </div>
+                </div>
+
+                <div class="pricing-dropdown">
+                    <button class="pricing-toggle" onclick="togglePricing(this)">
+                        <div>
+                            <h3>Secure Systems & Infrastructure</h3>
+                            <span class="price-tag">From £895</span>
+                        </div>
+                        <span class="toggle-icon">+</span>
+                    </button>
+                    <div class="pricing-content">
+                        <p><strong>2 Days — Technical Level</strong></p>
+                        <p>Deep-dive for IT teams and leaders: network hardening, secure remote access, monitoring basics, and building a security-first culture. Delivered remotely or on-site.</p>
+                        <p>On-site delivery — travel fee calculated separately.</p>
+                        <p class="discount-note">Schools & registered charities — 20% discount available</p>
+                    </div>
+                </div>
+
+                <div class="pricing-dropdown">
+                    <button class="pricing-toggle" onclick="togglePricing(this)">
+                        <div>
+                            <h3>Bespoke Tailored Training</h3>
+                            <span class="price-tag">From £595 / day</span>
+                        </div>
+                        <span class="toggle-icon">+</span>
+                    </button>
+                    <div class="pricing-content">
+                        <p>Built entirely around your organisation — your policies, your risks, your scenarios. We design the content together and quote a fixed price before we begin.</p>
+                        <p>Includes pre-delivery consultation, custom materials, and follow-up support.</p>
+                        <p class="discount-note">Schools & registered charities — 20% discount available</p>
+                    </div>
+                </div>
+            </section>
+
             <!-- WHO & WHY -->
             <section class="two-col">
                 <div class="block">
@@ -392,9 +525,9 @@
             <!-- CTA -->
             <section>
                 <div class="cta-box">
-                    <h3>Ready to train your team?</h3>
-                    <p>Tell us about your organisation, your goals, and your preferred dates — we'll build a training plan that fits you.</p>
-                    <a href="contact.html" class="btn-primary">Get in Touch</a>
+                    <h3>Need a custom quote?</h3>
+                    <p>Tell me your team size, location, and preferred dates — I'll send a clear, itemised quote within 24 hours.</p>
+                    <a href="contact.html" class="btn-primary">Request Your Quote</a>
                 </div>
             </section>
 
@@ -419,6 +552,9 @@
         function toggleMenu() {
             document.getElementById('hamburger').classList.toggle('open');
             document.getElementById('dropdownMenu').classList.toggle('open');
+        }
+        function togglePricing(btn) {
+            btn.parentElement.classList.toggle('expanded');
         }
     </script>
 </body>
