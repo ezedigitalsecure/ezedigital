@@ -3,137 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eze Digital — Meet the Team</title>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; form-action 'self' https://formspree.io;">
-    <link rel="stylesheet" href="footerstyles.css">
+    <title>Eze Digital — Meet Our Co-Founders Preview</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; font-src 'self';">
+    
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        html, body { min-height: 100%; overflow: hidden; }
-
-        /* ——— CIRCUIT BACKGROUND ——— */
-        .static-canvas {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100vw; height: 100vh;
-            z-index: 1;
-            background:
-                url('mockup-bg.png') no-repeat center center,
-                linear-gradient(180deg, #001418 0%, #00222a 45%, #001115 100%);
-            background-size: cover;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
         }
-
-        /* ——— HEADER & HAMBURGER MENU ——— */
-        .site-header {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%;
-            padding: 1.5rem 2.5rem;
-            z-index: 100;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo-group { display: flex; align-items: center; gap: 0.75rem; }
-        .logo-e {
-            width: 40px; height: 46px;
-            position: relative;
-        }
-        .logo-e-hex {
-            width: 40px; height: 46px;
-            background: linear-gradient(180deg, rgba(0,230,233,0.25), rgba(0,184,187,0.1));
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-            display: flex; align-items: center; justify-content: center;
-            border: 1px solid rgba(0, 230, 233, 0.35);
-            box-shadow: 0 0 10px rgba(0, 230, 233, 0.15);
-        }
-        .logo-e-text {
-            color: #00E6E9;
-            font-weight: 900;
-            font-size: 1.4rem;
-            line-height: 1;
-        }
-        .logo-text h1 {
+        html, body {
+            min-height: 100%;
+            background: #0A1628;
             color: #fff;
-            font-size: 1.4rem;
-            letter-spacing: 1px;
-        }
-        .logo-text p {
-            color: #00B8BB;
-            font-size: 0.75rem;
-        }
-        .menu-wrapper { position: relative; }
-        .hamburger-circle {
-            width: 52px; height: 52px; border-radius: 50%;
-            background: rgba(0, 12, 14, 0.75);
-            border: 1px solid rgba(0, 184, 187, 0.25);
-            display: flex; align-items: center; justify-content: center;
-            cursor: pointer;
-        }
-        .hamburger { display: flex; flex-direction: column; gap: 5px; }
-        .hamburger span {
-            width: 26px; height: 3px;
-            background: linear-gradient(90deg, #00B8BB, #00E6E9);
-            border-radius: 2px;
-            box-shadow: 0 0 6px rgba(0, 184, 187, 0.4);
-        }
-        .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
-        .hamburger.open span:nth-child(2) { opacity: 0; }
-        .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
-        .dropdown-menu {
-            position: absolute; top: 62px; right: 0;
-            background: rgba(0, 24, 28, 0.96);
-            border: 1px solid rgba(0, 184, 187, 0.35);
-            border-radius: 0 0 12px 12px;
-            min-width: 220px;
-            display: none;
-        }
-        .dropdown-menu.open { display: flex; flex-direction: column; }
-        .dropdown-link {
-            color: #00E6E9; font-weight: bold;
-            padding: 1rem 1.5rem; text-decoration: none;
-            border-bottom: 1px solid rgba(0, 184, 187, 0.1);
-        }
-        .dropdown-link:hover, .dropdown-link.active { color: #66F0F3; }
-
-        /* ——— SCROLLABLE CONTENT ——— */
-        .scrollable-pages {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100vw; height: 100vh;
-            z-index: 50;
-            overflow-y: auto;
-            background: transparent;
+            line-height: 1.7;
         }
         .page-wrapper {
-            padding: 8rem 2rem 0;
+            padding: 4rem 2rem 0;
             max-width: 850px;
             margin: 0 auto;
         }
-
-        /* ——— PAGE HEADER ——— */
-        .page-heading-box {
-            background: rgba(0, 8, 10, 0.75);
-            border: 1px solid rgba(0, 184, 187, 0.2);
-            border-radius: 14px;
-            padding: 1.5rem 2rem;
+        .preview-note {
+            background: rgba(189, 134, 22, 0.15);
+            border-left: 3px solid #bd8616;
+            padding: 1rem 1.5rem;
             margin-bottom: 2rem;
+            border-radius: 0 8px 8px 0;
+        }
+        .preview-note p {
+            margin: 0;
+            color: #f3eee7;
+            font-size: 0.9rem;
+        }
+        .services-heading-box {
+            color: #4ECDC4;
+            font-weight: bold;
             text-align: center;
-            backdrop-filter: blur(4px);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            background: rgba(16, 34, 64, 0.6);
+            border: 1px solid rgba(78, 205, 196, 0.25);
+            border-radius: 12px;
         }
-        .page-heading-box h1 {
-            color: #00E6E9;
+        .services-heading-box h2 {
             font-size: 2.2rem;
-            margin-bottom: 0.3rem;
+            margin-bottom: 0.5rem;
         }
-        .page-heading-box p {
-            color: #99E6E8;
-            font-size: 1.05rem;
+        .services-heading-box p {
+            color: #94A3B8;
+            font-size: 1.1rem;
         }
-
-        /* ——— PROFILES ROW ——— */
         .founders-top {
             display: flex;
-            gap: 3rem;
+            gap: 2rem;
             margin-bottom: 2rem;
             flex-wrap: wrap;
             justify-content: center;
@@ -143,76 +66,45 @@
             flex: 1;
             min-width: 200px;
             max-width: 280px;
-            background: rgba(0, 8, 10, 0.7);
-            border-radius: 16px;
-            padding: 2rem 1.5rem;
-            border: 1px solid rgba(0, 184, 187, 0.15);
-            backdrop-filter: blur(4px);
         }
         .founder-portrait img {
             width: 160px;
             height: 160px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid rgba(0, 230, 233, 0.35);
-            box-shadow: 0 0 20px rgba(0, 230, 233, 0.15);
-            margin-bottom: 1rem;
+            border: 3px solid rgba(78, 205, 196, 0.3);
+            box-shadow: 0 0 20px rgba(78, 205, 196, 0.15);
+            margin-bottom: 0.75rem;
         }
         .founder-portrait h3 {
-            color: #00E6E9;
-            font-size: 1.3rem;
-            margin-bottom: 0.3rem;
+            color: #fff;
+            font-size: 1.2rem;
+            margin-bottom: 0.25rem;
         }
         .founder-portrait .title {
-            color: #66D9DC;
-            font-size: 0.95rem;
+            color: #94A3B8;
+            font-size: 0.9rem;
         }
-
-        /* ——— WHO WE ARE BLOCK ——— */
         .about-block {
-            background: rgba(0, 8, 10, 0.75);
-            border: 1px solid rgba(0, 184, 187, 0.2);
-            border-radius: 14px;
+            background: rgba(16, 34, 64, 0.6);
+            border: 1px solid rgba(78, 205, 196, 0.25);
+            border-radius: 12px;
             padding: 2rem;
             margin-bottom: 1rem;
-            backdrop-filter: blur(4px);
         }
         .about-block h2 {
-            color: #00E6E9;
-            font-size: 1.4rem;
+            color: #4ECDC4;
             margin-bottom: 1rem;
+            font-size: 1.4rem;
         }
         .about-block p {
-            color: #B2F0F2;
+            color: #CBD5E1;
             line-height: 1.7;
-            margin-bottom: 0.7rem;
+            margin-bottom: 0.75rem;
         }
 
-        /* ——— DROPDOWNS — EXACT E STYLING FROM SERVICES PAGE ——— */
-        .team-dropdown {
-            background: rgba(0, 8, 10, 0.75);
-            border: 1px solid rgba(0, 184, 187, 0.2);
-            border-radius: 14px;
-            margin-bottom: 0.8rem;
-            overflow: hidden;
-            backdrop-filter: blur(4px);
-        }
-        .team-toggle {
-            width: 100%;
-            background: transparent;
-            border: none;
-            color: #00E6E9;
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-align: left;
-            padding: 1.2rem 1.8rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        /* EXACT E-HEX copied from services.html */
-        .dd-e-wrap {
+        /* ——— E-HEXAGON ICON ——— */
+        .e-icon-wrap {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -221,222 +113,317 @@
             flex-shrink: 0;
             margin-right: 1rem;
         }
-        .dd-e-hex {
+        .e-icon-hex {
             width: 32px;
             height: 37px;
-            position: relative;
-            background: linear-gradient(180deg, rgba(0,230,233,0.25), rgba(0,184,187,0.08));
+            background: linear-gradient(180deg, rgba(78, 205, 196, 0.25), rgba(78, 205, 196, 0.08));
             clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid rgba(0, 230, 233, 0.35);
-            box-shadow: 0 0 12px rgba(0, 230, 233, 0.15);
+            border: 1px solid rgba(78, 205, 196, 0.35);
+            box-shadow: 0 0 12px rgba(78, 205, 196, 0.15);
         }
-        .dd-e-text {
-            color: #00E6E9;
+        .e-icon-text {
+            color: #4ECDC4;
             font-weight: 900;
             font-size: 1rem;
             line-height: 1;
             padding-top: 2px;
         }
-        .toggle-label {
-            flex: 1;
-            color: #00E6E9;
+
+        .dropdown-block {
+            background: rgba(16, 34, 64, 0.6);
+            border: 1px solid rgba(78, 205, 196, 0.25);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            overflow: hidden;
         }
-        /* Plus icon */
+        .dropdown-toggle {
+            width: 100%;
+            background: transparent;
+            border: none;
+            color: #4ECDC4;
+            font-size: 1.15rem;
+            font-weight: 600;
+            text-align: left;
+            padding: 1.25rem 2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.2s ease;
+        }
+        .dropdown-toggle:hover {
+            color: #fff;
+        }
+        .toggle-label-group {
+            display: flex;
+            align-items: center;
+        }
         .plus-icon {
             font-size: 1.3rem;
             line-height: 1;
-            color: #00E6E9;
+            color: #4ECDC4;
             transition: transform 0.3s ease;
             opacity: 0.85;
         }
-        .team-toggle[aria-expanded="true"] .plus-icon {
+        .dropdown-toggle[aria-expanded="true"] .plus-icon {
             transform: rotate(45deg);
         }
-        .team-content {
+        .dropdown-content {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.4s ease, padding 0.3s ease;
-            padding: 0 1.8rem;
+            padding: 0 2rem;
         }
-        .team-content.open {
+        .dropdown-content.open {
             max-height: 2000px;
-            padding: 0 1.8rem 1.5rem;
+            padding: 0 2rem 1.75rem;
         }
-        .team-content p {
-            color: #B2F0F2;
+        .dropdown-content p {
+            color: #CBD5E1;
             line-height: 1.7;
-            margin-bottom: 0.7rem;
+            margin-bottom: 0.75rem;
+        }
+        .dropdown-content h3 {
+            color: #4ECDC4;
+            margin: 1.4rem 0 0.5rem;
+            font-size: 1.1rem;
+        }
+        .tech-note {
+            font-style: italic;
+            opacity: 0.8;
+            margin: 1rem 0;
+            color: #94A3B8;
         }
 
-        /* ——— FOOTER ——— */
-        #footer-placeholder {
-            width: 100%;
-            margin-top: 3rem;
+        /* ——— SENTIA-STYLE FOOTER ——— */
+        .site-footer {
+            background: #0B1527;
+            border-top: 1px solid rgba(78, 205, 196, 0.08);
+            padding: 4rem 2rem 2rem;
+            margin-top: 5rem;
         }
-
-        /* ——— RESPONSIVE ——— */
-        @media (max-width: 768px) {
-            .site-header { padding: 1rem 1.2rem; }
-            .page-wrapper { padding: 7rem 1.2rem 0; }
-            .founders-top { gap: 2rem; }
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+        .footer-col h4 {
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .footer-col p {
+            color: #94A3B8;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+        .footer-col a {
+            display: block;
+            color: #94A3B8;
+            font-size: 0.85rem;
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            transition: color 0.2s ease;
+        }
+        .footer-col a:hover {
+            color: #4ECDC4;
+        }
+        .footer-bottom-bar {
+            border-top: 1px solid rgba(78, 205, 196, 0.08);
+            padding-top: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .footer-bottom-bar p {
+            color: #64748B;
+            font-size: 0.8rem;
+        }
+        .footer-legal-links a {
+            color: #94A3B8;
+            font-size: 0.8rem;
+            text-decoration: none;
+            margin-left: 1.5rem;
+            transition: color 0.2s ease;
+        }
+        .footer-legal-links a:hover {
+            color: #4ECDC4;
+        }
+        @media (max-width: 900px) {
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 500px) {
+            .page-wrapper { padding: 2.5rem 1rem 0; }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .footer-bottom-bar {
+                flex-direction: column;
+                text-align: center;
+            }
+            .footer-legal-links a {
+                margin: 0 0.75rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="static-canvas"></div>
-
-    <div class="scrollable-pages">
-        <!-- Top header bar with logo + hamburger -->
-        <div class="site-header">
-            <div class="logo-group">
-                <div class="logo-e">
-                    <div class="logo-e-hex">
-                        <span class="logo-e-text">E</span>
-                    </div>
-                </div>
-                <div class="logo-text">
-                    <h1>EZE DIGITAL</h1>
-                    <p>Secure &amp; Evolve</p>
-                </div>
+    <div class="page-wrapper">
+        
+        <div class="preview-note">
+            <p>🔒 Private Preview — Not Live. This is a draft for your review only. Remove this notice before publishing.</p>
+        </div>
+        <div class="services-heading-box">
+            <h2>Meet Our Co-Founders</h2>
+            <p>Two perspectives. One integrated approach.</p>
+        </div>
+        <div class="founders-top">
+            <div class="founder-portrait">
+                <img src="38056BA2-7397-4F60-AD7D-ECE7038AD774.jpg" alt="Nicki — Co-Founder & Business Director">
+                <h3>Nicki</h3>
+                <p class="title">Co-Founder & Business Director</p>
             </div>
-            <div class="menu-wrapper">
-                <div class="hamburger-circle" onclick="toggleMenu()">
-                    <div class="hamburger" id="hamburger">
-                        <span></span><span></span><span></span>
-                    </div>
-                </div>
-                <nav class="dropdown-menu" id="dropdownMenu">
-                    <a class="dropdown-link" href="index.html">Home</a>
-                    <a class="dropdown-link" href="services.html">Services</a>
-                    <a class="dropdown-link active" href="about.html">About Eze Digital</a>
-                    <a class="dropdown-link" href="contact.html">Contact</a>
-                    <a class="dropdown-link" href="academy.html">Academy</a>
-                    <a class="dropdown-link" href="#" onclick="alert('Client Portal coming soon. Watch this space.'); return false;">Client Portal</a>
-                </nav>
+            <div class="founder-portrait">
+                <img src="FF05173F-1D69-499E-9FDB-FCAB7EB3BC78.png" alt="Praisegod — Co-Founder & Technical Director">
+                <h3>Praisegod</h3>
+                <p class="title">Co-Founder & Technical Director</p>
+            </div>
+        </div>
+        <div class="about-block">
+            <h2>Who We Are</h2>
+            <p>Eze Digital exists because every growing business and organisation deserves professional digital infrastructure. It should come without the complexity, jargon, or inflated price tags that usually apply. We noticed something that no one else seemed to be talking about. Almost every agency builds beautiful digital presences and completely leaves out the security. Even fewer offer the full package that actually keeps you safe, compliant, and confident. That is not right. Every organisation deserves to be protected, educated, and supported across everything they do.</p>
+        </div>
+
+        <!-- NICKI DROPDOWN -->
+        <div class="dropdown-block">
+            <button class="dropdown-toggle" aria-expanded="false" id="nickiToggle">
+                <span class="toggle-label-group">
+                    <span class="e-icon-wrap">
+                        <span class="e-icon-hex">
+                            <span class="e-icon-text">E</span>
+                        </span>
+                    </span>
+                    Nicki — Co-Founder & Business Director
+                </span>
+                <span class="plus-icon">+</span>
+            </button>
+            <div class="dropdown-content" id="nickiContent">
+                <p>My vision for Eze Digital is built on one simple belief. Great business is built on trust, clarity, and the right people working together. I do not claim to be a technical expert in every field but I definitely know how to find the right people who are.</p>
+                <h3>Where I Add Value</h3>
+                <p>I speak your language. I know what it feels like to build something from the ground up. I understand the full picture from branding and design to compliance and training. I know the pressure to get it right and the confusion that comes with keeping up with changing rules and standards.</p>
+                <p>With a background in teaching and training, I do not just hand you something finished. I help you understand it so you feel confident and in control. We deliver CPD accredited education that comes to you whether you are a school, a business, or a team that needs to upskill. We build your brand identity, guide you through compliance, and create systems that fit how you work. Technology should serve you, not confuse you. I bridge that gap so you can focus on what you do best.</p>
             </div>
         </div>
 
-        <div class="page-wrapper">
-
-            <!-- PAGE HEADER -->
-            <div class="page-heading-box">
-                <h1>Meet the Team</h1>
-                <p>Two different strengths, one shared vision</p>
-            </div>
-
-            <!-- PROFILE PICTURES -->
-            <div class="founders-top">
-                <div class="founder-portrait">
-                    <img src="38056BA2-7397-4F60-AD7D-ECE7038AD774.jpg" alt="Nicki — Founder & Business Director">
-                    <h3>Nicki</h3>
-                    <p class="title">Founder &amp; Business Director</p>
-                </div>
-                <div class="founder-portrait">
-                    <img src="FF05173F-1D69-499E-9FDB-FCAB7EB3BC78.png" alt="Praisegod — Cybersecurity Lead">
-                    <h3>Praisegod</h3>
-                    <p class="title">Cybersecurity Lead</p>
-                </div>
-            </div>
-
-            <!-- WHO WE ARE -->
-            <div class="about-block">
-                <h2>Who We Are</h2>
-                <p>Eze Digital exists because every growing business and organisation deserves professional digital infrastructure. It should come without the complexity, jargon, or inflated price tags that usually apply. We noticed something that no one else seemed to be talking about. Almost every agency builds beautiful digital presences and completely leaves out the security. Even fewer offer the full package that actually keeps you safe, compliant, and confident. That is not right. Every organisation deserves to be protected, educated, and supported across everything they do.</p>
-            </div>
-
-            <!-- NICKI DROPDOWN -->
-            <div class="team-dropdown">
-                <button class="team-toggle" aria-expanded="false" id="nickiToggle">
-                    <span style="display:flex;align-items:center;">
-                        <span class="dd-e-wrap">
-                            <span class="dd-e-hex">
-                                <span class="dd-e-text">E</span>
-                            </span>
+        <!-- PRAISEGOD DROPDOWN -->
+        <div class="dropdown-block">
+            <button class="dropdown-toggle" aria-expanded="false" id="praiseToggle">
+                <span class="toggle-label-group">
+                    <span class="e-icon-wrap">
+                        <span class="e-icon-hex">
+                            <span class="e-icon-text">E</span>
                         </span>
-                        <span class="toggle-label">Nicki — Founder &amp; Business Director</span>
                     </span>
-                    <span class="plus-icon">+</span>
-                </button>
-                <div class="team-content" id="nickiContent">
-                    <p>I founded Eze Digital because I believe every growing business deserves professional digital infrastructure without the jargon or inflated price tags.</p>
-                    <p>I am a business developer, an educator and the CPD accredited lead. I design, write, and deliver our training. I built the business around my strengths and Praisegod's expertise, so what we offer is different: real passion, experience and real credibility.</p>
-                    <p>My background in teaching means I don't just hand you a finished product: I understand how to help you understand it. I bridge the gap between complex technology and what actually works for your business.</p>
-                </div>
+                    Praisegod — Co-Founder & Technical Director
+                </span>
+                <span class="plus-icon">+</span>
+            </button>
+            <div class="dropdown-content" id="praiseContent">
+                <p>I am the technical brain behind Eze Digital. I lead everything technical from custom websites and booking systems to enterprise-grade threat detection, network security, and infrastructure protection. Certified in Cisco CCNA and CyberOps, I spent years in Security Operations stopping threats before they become problems.</p>
+                <p class="tech-note">Quick techy bit — if you think Splunk is an arcade game, feel free to skip this part. I deploy SIEM tools like Splunk and Wazuh for round the clock monitoring, build secure cloud infrastructure on AWS, and design end-to-end security for systems of all kinds.</p>
+                <h3>Where I Add Value</h3>
+                <p>I saw the gap from the inside. I have built systems and I have seen that even technically built work often goes live without proper security. That realisation is exactly why we are here. Everything we deliver carries proper security built in from day one. Not bolted on later. Not sold as an expensive extra. Just there as standard.</p>
+                <p>Beyond building secure systems, I design and deliver the cybersecurity education that empowers people and teams to stay safe long after we leave. I create practical, accessible training that meets CPD standards and real world needs. When I am not protecting systems, I am in ethical hacking labs staying one step ahead so you do not have to.</p>
             </div>
-
-            <!-- PRAISEGOD DROPDOWN -->
-            <div class="team-dropdown">
-                <button class="team-toggle" aria-expanded="false" id="praiseToggle">
-                    <span style="display:flex;align-items:center;">
-                        <span class="dd-e-wrap">
-                            <span class="dd-e-hex">
-                                <span class="dd-e-text">E</span>
-                            </span>
-                        </span>
-                        <span class="toggle-label">Praisegod — Cybersecurity Lead</span>
-                    </span>
-                    <span class="plus-icon">+</span>
-                </button>
-                <div class="team-content" id="praiseContent">
-                    <p>Praisegod joined Eze Digital to bring specialist cybersecurity expertise to everything we do.</p>
-                    <p>He holds a Master's in Applied Cybersecurity, that qualification underpins the standards and technical rigour behind our work. His role is to provide that authority and depth, ensuring everything we build and teach is rooted in proven advanced practice.</p>
-                    <p>He is here to give our programmes the technical backing they need, so you get accessible education alongside genuine specialist knowledge and aftercare.</p>
-                </div>
-            </div>
-
-            <!-- TOGETHER DROPDOWN -->
-            <div class="team-dropdown">
-                <button class="team-toggle" aria-expanded="false" id="togetherToggle">
-                    <span style="display:flex;align-items:center;">
-                        <span class="dd-e-wrap">
-                            <span class="dd-e-hex">
-                                <span class="dd-e-text">E</span>
-                            </span>
-                        </span>
-                        <span class="toggle-label">Together — The Eze Digital Difference</span>
-                    </span>
-                    <span class="plus-icon">+</span>
-                </button>
-                <div class="team-content" id="togetherContent">
-                    <p>We have clear complementary roles. I lead the business, the education, the client relationships, and programme design. Praisegod brings the advanced cybersecurity expertise that gives our work its technical weight and credibility.</p>
-                    <p>That means you get consistency, clarity, and confidence: knowing your education comes from an experienced accredited lead, and your technical standards come from a qualified cybersecurity specialist.</p>
-                </div>
-            </div>
-
         </div>
 
-        <!-- SHARED FOOTER -->
-        <div id="footer-placeholder"></div>
-        <script>
-            fetch('footer.html')
-                .then(res => {
-                    if (!res.ok) throw new Error('Footer file not found');
-                    return res.text();
-                })
-                .then(html => {
-                    document.getElementById('footer-placeholder').innerHTML = html;
-                })
-                .catch(err => {
-                    console.error('Footer load error:', err);
-                });
-        </script>
+        <!-- TOGETHER DROPDOWN -->
+        <div class="dropdown-block">
+            <button class="dropdown-toggle" aria-expanded="false" id="togetherToggle">
+                <span class="toggle-label-group">
+                    <span class="e-icon-wrap">
+                        <span class="e-icon-hex">
+                            <span class="e-icon-text">E</span>
+                        </span>
+                    </span>
+                    Together — The Eze Digital Difference
+                </span>
+                <span class="plus-icon">+</span>
+            </button>
+            <div class="dropdown-content" id="togetherContent">
+                <p>Nicki brings the relationship building, the clear communication, educational expertise, brand care, and compliance guidance. She makes technology feel approachable and human. Praisegod brings the deep technical expertise and cybersecurity focus that most agencies simply do not have. He builds the protection that keeps what you have built safe.</p>
+                <p>We are equals in this. We bring different strengths and we lean on each other where the other is not expert. Together we offer something truly integrated. We can build your online presence, design your brand, guide you through compliance, train your team or your students in cybersecurity, and monitor your systems round the clock. One team. One joined up approach. Everything explained in plain English. That is the Eze Digital difference.</p>
+            </div>
+        </div>
     </div>
 
-    <!-- MENU & DROPDOWN BEHAVIOUR -->
+    <!-- SENTIA-STYLE FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Eze Digital</h4>
+                    <p>Integrated digital protection, education & design.</p>
+                    <p style="margin-top: 1rem;">hello@ezedigital.co.uk</p>
+                    <p>United Kingdom</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <a href="#">Website & Digital Build</a>
+                    <a href="#">Cybersecurity & Monitoring</a>
+                    <a href="#">Compliance Guidance</a>
+                    <a href="#">CPD Accredited Training</a>
+                    <a href="#">Brand & Identity</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <a href="index.html">Home</a>
+                    <a href="index.html#services">Services</a>
+                    <a href="about.html">About Us</a>
+                    <a href="compliance-protocol.html">Compliance Protocol</a>
+                    <a href="index.html#contact">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-of-service.html">Terms of Service</a>
+                </div>
+            </div>
+            <div class="footer-bottom-bar">
+                <p>© 2026 Eze Digital Ltd. All rights reserved.</p>
+                <div class="footer-legal-links">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-of-service.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
     <script>
-        function toggleMenu() {
-            document.getElementById('hamburger').classList.toggle('open');
-            document.getElementById('dropdownMenu').classList.toggle('open');
-        }
-        const toggles = document.querySelectorAll('.team-toggle');
+        const toggles = document.querySelectorAll('.dropdown-toggle');
         toggles.forEach(toggle => {
             toggle.addEventListener('click', () => {
                 const expanded = toggle.getAttribute('aria-expanded') === 'true';
                 toggle.setAttribute('aria-expanded', !expanded);
-                toggle.nextElementSibling.classList.toggle('open');
+                const content = toggle.nextElementSibling;
+                content.classList.toggle('open');
             });
         });
     </script>
