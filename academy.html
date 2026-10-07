@@ -6,7 +6,6 @@
     <title>Academy · Eze Digital</title>
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; font-src 'self';">
     
-    <!-- SAME GLOBAL STYLES ACROSS ALL PAGES -->
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
         html, body {
@@ -30,7 +29,7 @@
         }
         .back-link:hover { color: #fff; }
 
-        /* HERO */
+        /* ——— HERO ——— */
         .hero {
             text-align: center;
             margin-bottom: 4rem;
@@ -61,7 +60,7 @@
             margin: 0 auto;
         }
 
-        /* CPD BANNER */
+        /* ——— CPD BANNER ——— */
         .cpd-banner {
             background: linear-gradient(90deg, rgba(78, 205, 196, 0.08) 0%, rgba(78, 205, 196, 0.02) 100%);
             border: 1px solid rgba(78, 205, 196, 0.18);
@@ -73,7 +72,9 @@
             gap: 1.5rem;
             flex-wrap: wrap;
         }
-        .cpd-icon { font-size: 2rem; }
+        .cpd-icon {
+            font-size: 2rem;
+        }
         .cpd-text h3 {
             color: #4ECDC4;
             font-size: 1rem;
@@ -86,6 +87,7 @@
             font-size: 0.9rem;
         }
 
+        /* ——— SECTION STYLES ——— */
         section { margin-bottom: 4rem; }
         .section-heading {
             font-size: 1.5rem;
@@ -98,7 +100,7 @@
             max-width: 600px;
         }
 
-        /* COURSES GRID */
+        /* ——— COURSE CARDS ——— */
         .courses-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -146,7 +148,7 @@
             padding-top: 1rem;
         }
 
-        /* TWO-COLUMN BLOCKS */
+        /* ——— WHO & WHY ——— */
         .two-col {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -168,9 +170,11 @@
             font-size: 0.9rem;
             margin-bottom: 0.5rem;
         }
-        .block ul { padding-left: 1.25rem; }
+        .block ul {
+            padding-left: 1.25rem;
+        }
 
-        /* CTA */
+        /* ——— CTA ——— */
         .cta-box {
             background: linear-gradient(135deg, rgba(78, 205, 196, 0.12) 0%, rgba(78, 205, 196, 0.03) 100%);
             border: 1px solid rgba(78, 205, 196, 0.25);
@@ -200,9 +204,11 @@
             text-decoration: none;
             transition: background 0.25s ease;
         }
-        .btn-primary:hover { background: #7EDDD6; }
+        .btn-primary:hover {
+            background: #7EDDD6;
+        }
 
-        /* SENTIA-STYLE FOOTER — UNIFORM ACROSS ALL PAGES */
+        /* ——— SENTIA-STYLE FOOTER ——— */
         .site-footer {
             background: #0B1527;
             border-top: 1px solid rgba(78, 205, 196, 0.08);
@@ -265,7 +271,6 @@
         }
         .footer-legal-links a:hover { color: #4ECDC4; }
 
-        /* RESPONSIVE */
         @media (max-width: 768px) {
             .two-col { grid-template-columns: 1fr; }
         }
@@ -279,8 +284,7 @@
         }
     </style>
 </head>
-<script>fetch('footer.html').then(r=>r.text()).then(html=>document.write(html))</script>
-    <body>
+<body>
     <div class="page-wrapper">
         <a href="index.html" class="back-link">← Back to Home</a>
 
@@ -306,6 +310,7 @@
             <p class="section-subtitle">Tailored for schools, businesses, and teams — delivered on-site or remotely.</p>
 
             <div class="courses-grid">
+                <!-- Course 1 -->
                 <div class="course-card">
                     <span class="course-level">Foundation</span>
                     <h3>Cybersecurity Awareness for Everyone</h3>
@@ -316,6 +321,7 @@
                     </div>
                 </div>
 
+                <!-- Course 2 -->
                 <div class="course-card">
                     <span class="course-level">Practitioner</span>
                     <h3>Data Protection & UK GDPR Essentials</h3>
@@ -326,6 +332,7 @@
                     </div>
                 </div>
 
+                <!-- Course 3 -->
                 <div class="course-card">
                     <span class="course-level">Technical</span>
                     <h3>Secure Systems & Infrastructure</h3>
@@ -336,6 +343,7 @@
                     </div>
                 </div>
 
+                <!-- Course 4 -->
                 <div class="course-card">
                     <span class="course-level">Bespoke</span>
                     <h3>Tailored Training for Your Team</h3>
@@ -380,9 +388,10 @@
                 <a href="index.html#contact" class="btn-primary">Get in Touch</a>
             </div>
         </section>
+
     </div>
 
-    <!-- FOOTER — SAME ON EVERY PAGE -->
+    <!-- FOOTER -->
     <footer class="site-footer">
         <div class="footer-inner">
             <div class="footer-grid">
