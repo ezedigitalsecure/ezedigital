@@ -9,9 +9,6 @@
     <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
     <meta name="referrer" content="strict-origin-when-cross-origin">
 
-    <!-- Shared footer styles -->
-    <link rel="stylesheet" href="footerstyles.css?v=5">
-    
     <style>
  * {
             margin: 0;
@@ -26,7 +23,6 @@
             padding: 0;
             overflow: hidden;
         }
-        /* ===== BACKGROUND ===== */
         .static-canvas {
             position: absolute;
             top: 0;
@@ -41,7 +37,6 @@
             background-size: cover;
             background-attachment: scroll;
         }
-        /* ===== HEADER & MENU ===== */
         header {
             position: absolute;
             top: 0;
@@ -117,7 +112,6 @@
             color: #00E6E9 !important;
             background: transparent;
         }
-        /* ===== HOME BOX ===== */
         .home-box {
             position: absolute;
             top: 50%;
@@ -161,7 +155,6 @@
             font-size: 0.85rem;
             z-index: 30;
         }
-        /* ===== SCROLLABLE PAGES ===== */
         .scrollable-pages {
             position: absolute;
             top: 0;
@@ -180,13 +173,12 @@
         }
         .scrollable-pages.active { opacity: 1; pointer-events: auto; }
         .page-wrapper {
-            padding: 6rem 2rem 3rem;
+            padding: 6rem 2rem 0;
             max-width: 850px;
             margin: 0 auto;
         }
         .tab-content { display: none; }
         .tab-content.active { display: block; }
-        /* ===== SERVICE BLOCKS — HEXAGON 'E' ICON PRESERVED ===== */
         .services-heading-box,
         .service-block,
         .about-block,
@@ -216,7 +208,6 @@
             opacity: 0.95;
             z-index: 10;
         }
-        /* ===== TEXT COLOURS ===== */
         .services-heading-box {
             color: #00E6E9 !important;
             font-weight: bold;
@@ -278,13 +269,11 @@
             border-radius: 8px;
             margin-bottom: 1.2rem;
         }
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             header { padding: 1rem 1.2rem; }
             .home-box h2 { font-size: 1.9rem; }
-            .page-wrapper { padding: 5rem 1.2rem 3rem; }
+            .page-wrapper { padding: 5rem 1.2rem 0; }
         }
-        /* ===== FIXED MENU & HAMBURGER ===== */
         .hamburger-circle {
             display: flex !important;
             align-items: center !important;
@@ -306,8 +295,9 @@
             position: relative !important;
             z-index: 99999 !important;
         }
-        /* Footer placeholder */
-        #footer-placeholder {
+        /* Footer container — full width */
+        .footer-container {
+            width: 100%;
             margin-top: 3rem;
         }
     </style>
@@ -345,7 +335,7 @@
 
     <!-- SCROLLABLE PAGES -->
     <div class="scrollable-pages" id="scrollablePages">
-        <!-- SERVICES TAB — ACTIVE BY DEFAULT -->
+        <!-- SERVICES TAB -->
         <div id="services" class="tab-content active">
             <div class="page-wrapper">
                 <div class="services-heading-box">
@@ -407,8 +397,9 @@
                         <p>From your website to your booking system, your brand, your social media presence, and your compliance. We build the whole digital foundation you need to grow with confidence.</p>
                     </div>
                 </div>
-                <div id="footer-placeholder"></div>
             </div>
+            <!-- ✅ FOOTER OUTSIDE WRAPPER = FULL WIDTH -->
+            <div class="footer-container" id="footer-services"></div>
         </div>
 
         <!-- ABOUT TAB -->
@@ -442,8 +433,9 @@
                     <h3>Education and Empowerment</h3>
                     <p>With a background in teaching and training, I do not just hand you a finished product. I help you understand it so you feel confident and in control of your own digital presence.</p>
                 </div>
-                <div id="footer-placeholder"></div>
             </div>
+            <!-- ✅ FOOTER OUTSIDE WRAPPER = FULL WIDTH -->
+            <div class="footer-container" id="footer-about"></div>
         </div>
 
         <!-- CONTACT TAB -->
@@ -474,31 +466,29 @@
                         </div>
                     </form>
                 </div>
-                <div id="footer-placeholder"></div>
             </div>
+            <!-- ✅ FOOTER OUTSIDE WRAPPER = FULL WIDTH -->
+            <div class="footer-container" id="footer-contact"></div>
         </div>
     </div>
 
     <script>
 document.addEventListener('DOMContentLoaded', function () {
-  console.log('✅ Scripts running!');
-
-  // Load shared footer
+  // Load shared footer — targets ALL footer containers
   function loadFooter() {
-    document.querySelectorAll('#footer-placeholder').forEach(placeholder => {
+    document.querySelectorAll('.footer-container').forEach(container => {
       fetch('footer.html')
         .then(res => res.text())
         .then(html => {
-          placeholder.innerHTML = html;
+          container.innerHTML = html;
         })
         .catch(err => {
-          console.error('Footer error:', err);
+          console.error('Footer load error:', err);
         });
     });
   }
   loadFooter();
 
-  // ✅ Auto-activate Services tab on page load
   window.switchTab = function(tabName) {
     document.querySelectorAll('.tab-content').forEach(tab => {
       tab.classList.remove('active');
@@ -522,17 +512,14 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   };
 
-  // Auto-show Services on load
   switchTab('services');
 
-  // Service accordion toggles
   document.querySelectorAll('.service-title').forEach(title => {
     title.addEventListener('click', function () {
       this.closest('.service-block').classList.toggle('expanded');
     });
   });
 
-  // Hamburger menu
   const hamburger = document.getElementById('hamburger');
   const navMenu = document.getElementById('dropdownMenu');
   if (hamburger && navMenu) {
@@ -544,7 +531,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Show thank-you message on return from Formspree
   if (window.location.hash === '#contact') {
     const msg = document.getElementById('thankYouMsg');
     if (msg) msg.style.display = 'block';
