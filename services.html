@@ -8,313 +8,294 @@
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
     <meta name="referrer" content="strict-origin-when-cross-origin">
-
-    <!-- Footer styles — ONE line -->
-    <link rel="stylesheet" href="footerstyles.css">
-
+    
+    <!-- Shared footer styles — ONE central file, versioned for cache refresh -->
+    <link rel="stylesheet" href="footerstyles.css?v=3">
+    
     <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', sans-serif;
-}
-html,
-body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-}
-.static-canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 1;
-    overflow: hidden;
-    background:
-        url('mockup-bg.png') no-repeat center center,
-        linear-gradient(180deg, #001418 0%, #00222a 45%, #001115 100%);
-    background-size: cover;
-    background-attachment: scroll;
-}
-header {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 1.5rem 2.5rem;
-    z-index: 100;
-    display: flex;
-    justify-content: flex-end;
-    background: transparent;
-}
-.menu-wrapper { position: relative; }
-.hamburger-circle {
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    background: rgba(0, 12, 14, 0.75);
-    border: 1px solid rgba(0, 184, 187, 0.25);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    z-index: 100;
-}
-.hamburger {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    z-index: 9999;
-    pointer-events: auto;
-}
-.hamburger span {
-    width: 26px;
-    height: 3px;
-    background: linear-gradient(90deg, #00B8BB, #00E6E9);
-    border-radius: 2px;
-    box-shadow: 0 0 8px rgba(0, 184, 187, 0.6);
-    transition: all 0.3s ease;
-    pointer-events: none;
-}
-.hamburger:hover span {
-    filter: drop-shadow(0 0 8px rgba(0, 230, 233, 0.9)) drop-shadow(0 0 16px rgba(0, 230, 233, 0.6));
-}
-.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
-.hamburger.open span:nth-child(2) { opacity: 0; }
-.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
-.dropdown-menu {
-    position: absolute;
-    top: 62px;
-    right: 0;
-    background: rgba(0, 24, 28, 0.96);
-    border: 1px solid rgba(0, 184, 187, 0.35);
-    border-radius: 0 0 12px 12px;
-    min-width: 220px;
-    display: none;
-    flex-direction: column;
-}
-.dropdown-menu.open { display: flex; }
-.dropdown-link {
-    color: #00B8BB !important;
-    font-weight: bold;
-    padding: 1rem 1.5rem;
-    text-decoration: none;
-    border-bottom: 1px solid rgba(0, 184, 187, 0.1);
-    cursor: pointer;
-}
-.dropdown-link:hover,
-.dropdown-link.active {
-    color: #00E6E9 !important;
-    background: transparent;
-}
-.home-box {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 2.8rem;
-    max-width: 640px;
-    width: 90%;
-    text-align: center;
-    background: rgba(0, 8, 10, 0.78);
-    border-radius: 16px;
-    border: 1px solid rgba(0, 184, 187, 0.18);
-    z-index: 30;
-}
-.home-box h2 { color: #00E6E9 !important; font-size: 2.6rem; margin-bottom: 1.5rem; }
-.home-box p { color: #00E6E9 !important; font-size: 1.05rem; line-height: 1.7; margin-bottom: 2rem; }
-.btn {
-    background: linear-gradient(90deg, #00E6E9, #00B8BB);
-    color: #001418 !important;
-    font-weight: bold;
-    padding: 0.9rem 2.2rem;
-    border-radius: 28px;
-    border: none;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-.btn:hover {
-    background: linear-gradient(90deg, #00E6E9, #00E6E9);
-    box-shadow: 0 0 20px rgba(0, 230, 233, 0.7), 0 0 40px rgba(0, 230, 233, 0.4);
-    transform: scale(1.05);
-}
-.home-tagline {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    padding: 0 0 1.5rem;
-    color: #00B8BB !important;
-    font-size: 0.85rem;
-    z-index: 30;
-}
-.scrollable-pages {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 50;
-    overflow-y: auto;
-    background:
-        url('mockup-bg.png') no-repeat center center fixed,
-        linear-gradient(180deg, #001418 0%, #00222a 45%, #001115 100%);
-    background-size: cover;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-}
-.scrollable-pages.active { opacity: 1; pointer-events: auto; }
-.page-wrapper {
-    padding: 6rem 2rem 0;
-    max-width: 850px;
-    margin: 0 auto;
-}
-.tab-content { display: none; }
-.tab-content.active { display: block; }
-.services-heading-box,
-.service-block,
-.about-block,
-.contact-panel {
-    background: rgba(0, 12, 14, 0.85);
-    border: 1px solid rgba(0, 184, 187, 0.25);
-    border-radius: 14px;
-    padding: 1.8rem;
-    margin-bottom: 1.5rem;
-    position: relative;
-    padding-left: 48px;
-}
-.service-block::before,
-.about-block::before,
-.contact-panel::before {
-    content: "";
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    width: 28px;
-    height: 28px;
-    pointer-events: none;
-    background-image: url("data:image/svg+xml,%3Csvg width='28' height='28' viewBox='0 0 28 28' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M14 3l9 5v10l-9 5-9-5V8l9-5z' stroke='%2300E6E9' stroke-width='1.5'/%3E%3Ctext x='14' y='17.5' text-anchor='middle' fill='%2300E6E9' font-size='12' font-weight='700' font-family='Arial,sans-serif'%3EE%3C/text%3E%3C/svg%3E");
-    background-size: contain;
-    background-repeat: no-repeat;
-    filter: drop-shadow(0 0 5px #00E6E9);
-    opacity: 0.95;
-    z-index: 10;
-}
-.services-heading-box {
-    color: #00E6E9 !important;
-    font-weight: bold;
-    font-size: 2.5rem;
-    text-align: center;
-    padding: 1rem 0;
-    margin-bottom: 1.5rem;
-}
-.services-heading-box h2 {
-    color: #00E6E9 !important;
-    font-weight: bold;
-    font-size: 2.2rem;
-    text-align: center;
-    margin-bottom: 0.5rem;
-}
-.services-heading-box p { color: #00B8BB !important; text-align: center; font-size: 1.2rem; }
-.service-title {
-    color: #00B8BB !important;
-    font-size: 1.25rem;
-    padding: 0;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.service-title:hover { color: #00B8BB !important; }
-.toggle-icon {
-    color: #00B8BB !important;
-    font-size: 1.6rem;
-    display: inline-block;
-    transition: transform 0.3s ease;
-}
-.service-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease;
-}
-.service-block.expanded .service-content {
-    max-height: 2000px;
-    padding-top: 1rem;
-}
-.service-block.expanded .toggle-icon {
-    transform: rotate(45deg);
-}
-.service-content p { color: #00E6E9 !important; line-height: 1.7; margin-bottom: 0.7rem; }
-@media (max-width: 768px) {
-    header { padding: 1rem 1.2rem; }
-    .home-box h2 { font-size: 1.9rem; }
-    .page-wrapper { padding: 5rem 1.2rem 0; }
-}
-.hamburger-circle {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-}
-.hamburger {
-    position: relative !important;
-    top: auto !important;
-    right: auto !important;
-    margin: 0 !important;
-}
-.dropdown-link {
-    pointer-events: auto !important;
-    position: relative !important;
-    z-index: 99999 !important;
-}
-.btn {
-    pointer-events: auto !important;
-    position: relative !important;
-    z-index: 99999 !important;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        .static-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+            overflow: hidden;
+            background:
+                url('mockup-bg.png') no-repeat center center,
+                linear-gradient(180deg, #001418 0%, #00222a 45%, #001115 100%);
+            background-size: cover;
+            background-attachment: scroll;
+        }
+        header {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 1.5rem 2.5rem;
+            z-index: 100;
+            display: flex;
+            justify-content: flex-end;
+            background: transparent;
+        }
+        .menu-wrapper { position: relative; }
+        .hamburger-circle {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: rgba(0, 12, 14, 0.75);
+            border: 1px solid rgba(0, 184, 187, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .hamburger span {
+            width: 26px;
+            height: 3px;
+            background: linear-gradient(90deg, #00B8BB, #00E6E9);
+            border-radius: 2px;
+            box-shadow: 0 0 6px rgba(0, 184, 187, 0.4);
+        }
+        .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+        .dropdown-menu {
+            position: absolute;
+            top: 62px;
+            right: 0;
+            background: rgba(0, 24, 28, 0.96);
+            border: 1px solid rgba(0, 184, 187, 0.35);
+            border-radius: 0 0 12px 12px;
+            min-width: 220px;
+            display: none;
+            flex-direction: column;
+        }
+        .dropdown-menu.open { display: flex; }
+        .dropdown-link {
+            color: #00E6E9;
+            font-weight: bold;
+            padding: 1rem 1.5rem;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(0, 184, 187, 0.1);
+        }
+        .dropdown-link:hover,
+        .dropdown-link.active { color: #66F0F3; }
+        
+        .home-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 2.8rem;
+            max-width: 640px;
+            width: 90%;
+            text-align: center;
+            background: rgba(0, 8, 10, 0.78);
+            border-radius: 16px;
+            border: 1px solid rgba(0, 184, 187, 0.18);
+            z-index: 30;
+        }
+        .home-box h2 {
+            color: #00E6E9;
+            font-size: 2.6rem;
+            margin-bottom: 1.5rem;
+        }
+        .home-box p {
+            color: #B2F0F2;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+        .btn {
+            background: linear-gradient(90deg, #00E6E9, #00B8BB);
+            color: #001418;
+            font-weight: bold;
+            padding: 0.9rem 2.2rem;
+            border-radius: 28px;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn:hover {
+            box-shadow: 0 0 15px rgba(0, 230, 233, 0.5);
+            transform: scale(1.05);
+        }
+        .home-tagline {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            padding: 0 0 1.5rem;
+            color: #00B8BB;
+            font-size: 0.85rem;
+            z-index: 30;
+        }
+        .scrollable-pages {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 50;
+            overflow-y: auto;
+            background: transparent;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .scrollable-pages.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .page-wrapper {
+            padding: 6rem 2rem 0;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .services-heading-box,
+        .service-block {
+            background: rgba(0, 12, 14, 0.85);
+            border: 1px solid rgba(0, 184, 187, 0.25);
+            border-radius: 14px;
+            padding: 1.8rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-left: 48px;
+        }
+        .service-block::before {
+            content: "";
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            width: 28px;
+            height: 28px;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg width='28' height='28' viewBox='0 0 28 28' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M14 3l9 5v10l-9 5-9-5V8l9-5z' stroke='%2300E6E9' stroke-width='1.5'/%3E%3Ctext x='14' y='17.5' text-anchor='middle' fill='%2300E6E9' font-size='12' font-weight='700' font-family='Arial,sans-serif'%3EE%3C/text%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            filter: drop-shadow(0 0 5px #00E6E9);
+            opacity: 0.95;
+            z-index: 10;
+        }
+        .services-heading-box {
+            color: #00E6E9;
+            font-weight: bold;
+            font-size: 2.5rem;
+            text-align: center;
+            padding: 1rem 0;
+            margin-bottom: 1.5rem;
+        }
+        .services-heading-box h2 {
+            color: #00E6E9;
+            font-weight: bold;
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+        .services-heading-box p {
+            color: #00B8BB;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+        .service-title {
+            color: #00B8BB;
+            font-size: 1.25rem;
+            padding: 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .toggle-icon {
+            color: #00B8BB;
+            font-size: 1.6rem;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        .service-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+        .service-block.expanded .service-content {
+            max-height: 2000px;
+            padding-top: 1rem;
+        }
+        .service-block.expanded .toggle-icon {
+            transform: rotate(45deg);
+        }
+        .service-content p {
+            color: #B2F0F2;
+            line-height: 1.7;
+            margin-bottom: 0.7rem;
+        }
+        /* Footer positioning only — styling comes from footerstyles.css */
+        #footer-placeholder {
+            position: relative;
+            z-index: 50;
+        }
+        @media (max-width: 768px) {
+            header { padding: 1rem 1.2rem; }
+            .home-box h2 { font-size: 1.9rem; }
+            .page-wrapper { padding: 5rem 1.2rem 0; }
+        }
     </style>
 </head>
 <body>
     <div class="static-canvas"></div>
+    
     <header>
         <div class="menu-wrapper">
-            <div class="hamburger-circle" id="hamburgerCircle" style="pointer-events: none;">
-                <div class="hamburger" id="hamburger" style="position: relative; z-index: 99999; pointer-events: auto;">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+            <div class="hamburger-circle" onclick="toggleMenu()">
+                <div class="hamburger" id="hamburger">
+                    <span></span><span></span><span></span>
                 </div>
             </div>
             <nav class="dropdown-menu" id="dropdownMenu">
-                <a class="dropdown-link" data-page="home" onclick="switchTab('home')">Home</a>
-                <a class="dropdown-link active" data-page="services" onclick="switchTab('services')">Services</a>
-                <a class="dropdown-link" data-page="about" onclick="switchTab('about')">About Eze Digital</a>
-                <a class="dropdown-link" data-page="contact" onclick="switchTab('contact')">Contact</a>
-                <a class="dropdown-link" onclick="alert('Client Portal coming soon. Watch this space.')">Client Portal</a>
+                <a class="dropdown-link" data-page="home" href="index.html">Home</a>
+                <a class="dropdown-link active" data-page="services" href="services.html">Services</a>
+                <a class="dropdown-link" data-page="about" href="about.html">About Eze Digital</a>
+                <a class="dropdown-link" data-page="contact" href="contact.html">Contact</a>
+                <a class="dropdown-link" href="academy.html">Academy</a>
+                <a class="dropdown-link" href="#" onclick="alert('Client Portal coming soon. Watch this space.'); return false;">Client Portal</a>
             </nav>
         </div>
     </header>
-
+    
     <!-- HOME TAB -->
     <div id="home" class="tab-content">
         <div class="home-box">
             <h2>Your Digital Presence,<br>Built Securely</h2>
             <p>Eze Digital supports growing businesses with web design, cybersecurity, booking systems, education, and business development. We bring together the right expertise to build clear, protected digital foundations that fit your goals.</p>
-            <button class="btn" onclick="switchTab('contact')">Let's Talk</button>
+            <a href="contact.html" class="btn">Let's Talk</a>
         </div>
         <div class="home-tagline">Designed and Built by Eze Digital Ltd © All Rights Reserved 2026</div>
     </div>
-
+    
     <!-- SCROLLABLE PAGES -->
     <div class="scrollable-pages" id="scrollablePages">
         <!-- SERVICES TAB -->
@@ -324,6 +305,7 @@ header {
                     <h2>What We Do</h2>
                     <p>Professional digital solutions. Built securely. Delivered clearly.</p>
                 </div>
+                
                 <div class="service-block">
                     <div class="service-title">
                         Web Development and Brand Design
@@ -333,6 +315,7 @@ header {
                         <p>Custom websites built from the ground up, designed around your brand and your clients. No generic templates, no hidden code. Clean, fast, and fully yours. We build your visual identity alongside your site so your brand feels consistent, professional, and instantly recognisable.</p>
                     </div>
                 </div>
+                
                 <div class="service-block">
                     <div class="service-title">
                         Bespoke Booking Systems
@@ -343,6 +326,7 @@ header {
                         <p>If you are currently paying monthly subscriptions, commission fees, or being locked into platforms that take a cut on every single booking, we build you a system that lives on your website on your terms with zero ongoing commission. You own your data. You own your client relationships. You regain full control.</p>
                     </div>
                 </div>
+                
                 <div class="service-block">
                     <div class="service-title">
                         ICO Registration and GDPR Compliance
@@ -352,6 +336,7 @@ header {
                         <p>Never risk a fine or uncertainty again. We guide you step by step through ICO registration and build your full GDPR compliance framework including privacy policies, consent records, data processing documentation, and staff guidance.</p>
                     </div>
                 </div>
+                
                 <div class="service-block">
                     <div class="service-title">
                         Cybersecurity and Digital Protection
@@ -361,6 +346,7 @@ header {
                         <p>Delivered by our in-house cybersecurity specialists. We provide security monitoring and threat detection across your systems, SIEM deployment for clear visibility, and practical cybersecurity consulting.</p>
                     </div>
                 </div>
+                
                 <div class="service-block">
                     <div class="service-title">
                         CPD Accredited Cybersecurity Training
@@ -370,6 +356,7 @@ header {
                         <p>We are developing CPD accredited cybersecurity training delivered by our in-house specialists. Accreditation is currently in progress.</p>
                     </div>
                 </div>
+                
                 <div class="service-block">
                     <div class="service-title">
                         Business Strategy and Growth Support
@@ -379,72 +366,39 @@ header {
                         <p>From your website to your booking system, your brand, your social media presence, and your compliance. We build the whole digital foundation you need to grow with confidence.</p>
                     </div>
                 </div>
-            </div><!-- .page-wrapper ENDS -->
-
-            <!-- ✅ FOOTER FETCH — outside wrapper = FULL WIDTH -->
-            <div id="footer-here"></div>
-            <script>
-            document.addEventListener('DOMContentLoaded', () => {
-              fetch('footer.html')
-                .then(r => r.text())
-                .then(html => {
-                  document.getElementById('footer-here').innerHTML = html;
-                })
-                .catch(e => console.error('Footer load error:', e));
-            });
-            </script>
-        </div><!-- #services tab ends -->
-    </div><!-- .scrollable-pages ends -->
-
+            </div>
+            
+            <!-- Footer loaded centrally — NO styling here -->
+            <div id="footer-placeholder"></div>
+        </div>
+    </div>
+    
     <script>
-document.addEventListener('DOMContentLoaded', function () {
-  window.switchTab = function(tabName) {
-    document.querySelectorAll('.tab-content').forEach(tab => {
-      tab.classList.remove('active');
-    });
-    const targetTab = document.getElementById(tabName);
-    if (targetTab) {
-      targetTab.classList.add('active');
-    }
-    document.querySelectorAll('.dropdown-link').forEach(link => {
-      link.classList.remove('active');
-    });
-    const activeLink = document.querySelector(`.dropdown-link[data-page="${tabName}"]`);
-    if (activeLink) activeLink.classList.add('active');
-    document.getElementById('dropdownMenu').classList.remove('open');
-    document.getElementById('hamburger').classList.remove('open');
-    const scrollablePages = document.getElementById('scrollablePages');
-    if (tabName === 'home') {
-      scrollablePages.classList.remove('active');
-    } else {
-      scrollablePages.classList.add('active');
-    }
-  };
-
-  switchTab('services');
-
-  document.querySelectorAll('.service-title').forEach(title => {
-    title.addEventListener('click', function () {
-      this.closest('.service-block').classList.toggle('expanded');
-    });
-  });
-
-  const hamburger = document.getElementById('hamburger');
-  const navMenu = document.getElementById('dropdownMenu');
-  if (hamburger && navMenu) {
-    hamburger.addEventListener('click', function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-      hamburger.classList.toggle('open');
-      navMenu.classList.toggle('open');
-    });
-  }
-
-  if (window.location.hash === '#contact') {
-    const msg = document.getElementById('thankYouMsg');
-    if (msg) msg.style.display = 'block';
-  }
-});
+        // Hamburger toggle — exactly matches index.html
+        function toggleMenu() {
+            document.getElementById('hamburger').classList.toggle('open');
+            document.getElementById('dropdownMenu').classList.toggle('open');
+        }
+        
+        // Service accordions
+        document.querySelectorAll('.service-title').forEach(title => {
+            title.addEventListener('click', function () {
+                this.closest('.service-block').classList.toggle('expanded');
+            });
+        });
+        
+        // Footer load — central file only
+        fetch('footer.html')
+            .then(res => {
+                if (!res.ok) throw new Error('Footer file not found');
+                return res.text();
+            })
+            .then(html => {
+                document.getElementById('footer-placeholder').innerHTML = html;
+            })
+            .catch(err => {
+                console.error('Footer load error:', err);
+            });
     </script>
 </body>
 </html>
