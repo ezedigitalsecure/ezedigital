@@ -9,7 +9,7 @@
     <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     
-    <!-- Shared footer styles — ONE central file, versioned for cache refresh -->
+    <!-- Shared footer styles -->
     <link rel="stylesheet" href="footerstyles.css?v=3">
     
     <style>
@@ -19,8 +19,7 @@
             box-sizing: border-box;
             font-family: 'Segoe UI', sans-serif;
         }
-        html,
-        body {
+        html, body {
             height: 100%;
             margin: 0;
             padding: 0;
@@ -28,48 +27,31 @@
         }
         .static-canvas {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
             z-index: 1;
-            overflow: hidden;
             background:
                 url('mockup-bg.png') no-repeat center center,
                 linear-gradient(180deg, #001418 0%, #00222a 45%, #001115 100%);
             background-size: cover;
-            background-attachment: scroll;
         }
         header {
             position: absolute;
-            top: 0;
-            right: 0;
+            top: 0; right: 0;
             padding: 1.5rem 2.5rem;
             z-index: 100;
-            display: flex;
-            justify-content: flex-end;
-            background: transparent;
         }
         .menu-wrapper { position: relative; }
         .hamburger-circle {
-            width: 52px;
-            height: 52px;
-            border-radius: 50%;
+            width: 52px; height: 52px; border-radius: 50%;
             background: rgba(0, 12, 14, 0.75);
             border: 1px solid rgba(0, 184, 187, 0.25);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex; align-items: center; justify-content: center;
             cursor: pointer;
         }
-        .hamburger {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
+        .hamburger { display: flex; flex-direction: column; gap: 5px; }
         .hamburger span {
-            width: 26px;
-            height: 3px;
+            width: 26px; height: 3px;
             background: linear-gradient(90deg, #00B8BB, #00E6E9);
             border-radius: 2px;
             box-shadow: 0 0 6px rgba(0, 184, 187, 0.4);
@@ -77,10 +59,9 @@
         .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
         .hamburger.open span:nth-child(2) { opacity: 0; }
         .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+        
         .dropdown-menu {
-            position: absolute;
-            top: 62px;
-            right: 0;
+            position: absolute; top: 62px; right: 0;
             background: rgba(0, 24, 28, 0.96);
             border: 1px solid rgba(0, 184, 187, 0.35);
             border-radius: 0 0 12px 12px;
@@ -96,13 +77,11 @@
             text-decoration: none;
             border-bottom: 1px solid rgba(0, 184, 187, 0.1);
         }
-        .dropdown-link:hover,
-        .dropdown-link.active { color: #66F0F3; }
+        .dropdown-link:hover, .dropdown-link.active { color: #66F0F3; }
         
         .home-box {
             position: absolute;
-            top: 50%;
-            left: 50%;
+            top: 50%; left: 50%;
             transform: translate(-50%, -50%);
             padding: 2.8rem;
             max-width: 640px;
@@ -143,8 +122,7 @@
         }
         .home-tagline {
             position: absolute;
-            bottom: 0;
-            left: 0;
+            bottom: 0; left: 0;
             width: 100%;
             text-align: center;
             padding: 0 0 1.5rem;
@@ -152,30 +130,21 @@
             font-size: 0.85rem;
             z-index: 30;
         }
+        
         .scrollable-pages {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
             z-index: 50;
             overflow-y: auto;
             background: transparent;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
         }
-        .scrollable-pages.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
+        
         .page-wrapper {
             padding: 6rem 2rem 0;
             max-width: 850px;
             margin: 0 auto;
         }
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
         .services-heading-box,
         .service-block {
             background: rgba(0, 12, 14, 0.85);
@@ -189,42 +158,30 @@
         .service-block::before {
             content: "";
             position: absolute;
-            top: 12px;
-            left: 12px;
-            width: 28px;
-            height: 28px;
-            pointer-events: none;
+            top: 12px; left: 12px;
+            width: 28px; height: 28px;
             background-image: url("data:image/svg+xml,%3Csvg width='28' height='28' viewBox='0 0 28 28' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M14 3l9 5v10l-9 5-9-5V8l9-5z' stroke='%2300E6E9' stroke-width='1.5'/%3E%3Ctext x='14' y='17.5' text-anchor='middle' fill='%2300E6E9' font-size='12' font-weight='700' font-family='Arial,sans-serif'%3EE%3C/text%3E%3C/svg%3E");
             background-size: contain;
             background-repeat: no-repeat;
             filter: drop-shadow(0 0 5px #00E6E9);
-            opacity: 0.95;
             z-index: 10;
         }
         .services-heading-box {
-            color: #00E6E9;
-            font-weight: bold;
-            font-size: 2.5rem;
             text-align: center;
-            padding: 1rem 0;
-            margin-bottom: 1.5rem;
+            padding: 2rem;
         }
         .services-heading-box h2 {
             color: #00E6E9;
-            font-weight: bold;
             font-size: 2.2rem;
-            text-align: center;
             margin-bottom: 0.5rem;
         }
         .services-heading-box p {
             color: #00B8BB;
-            text-align: center;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
         }
         .service-title {
             color: #00B8BB;
             font-size: 1.25rem;
-            padding: 0;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
@@ -233,7 +190,6 @@
         .toggle-icon {
             color: #00B8BB;
             font-size: 1.6rem;
-            display: inline-block;
             transition: transform 0.3s ease;
         }
         .service-content {
@@ -253,7 +209,7 @@
             line-height: 1.7;
             margin-bottom: 0.7rem;
         }
-        /* Footer positioning only — styling comes from footerstyles.css */
+        
         #footer-placeholder {
             position: relative;
             z-index: 50;
@@ -276,129 +232,108 @@
                 </div>
             </div>
             <nav class="dropdown-menu" id="dropdownMenu">
-                <a class="dropdown-link" data-page="home" href="index.html">Home</a>
-                <a class="dropdown-link active" data-page="services" href="services.html">Services</a>
-                <a class="dropdown-link" data-page="about" href="about.html">About Eze Digital</a>
-                <a class="dropdown-link" data-page="contact" href="contact.html">Contact</a>
+                <a class="dropdown-link" href="index.html">Home</a>
+                <a class="dropdown-link active" href="services.html">Services</a>
+                <a class="dropdown-link" href="about.html">About Eze Digital</a>
+                <a class="dropdown-link" href="contact.html">Contact</a>
                 <a class="dropdown-link" href="academy.html">Academy</a>
                 <a class="dropdown-link" href="#" onclick="alert('Client Portal coming soon. Watch this space.'); return false;">Client Portal</a>
             </nav>
         </div>
     </header>
-    
-    <!-- HOME TAB -->
-    <div id="home" class="tab-content">
-        <div class="home-box">
-            <h2>Your Digital Presence,<br>Built Securely</h2>
-            <p>Eze Digital supports growing businesses with web design, cybersecurity, booking systems, education, and business development. We bring together the right expertise to build clear, protected digital foundations that fit your goals.</p>
-            <a href="contact.html" class="btn">Let's Talk</a>
-        </div>
-        <div class="home-tagline">Designed and Built by Eze Digital Ltd © All Rights Reserved 2026</div>
-    </div>
-    
-    <!-- SCROLLABLE PAGES -->
-    <div class="scrollable-pages" id="scrollablePages">
-        <!-- SERVICES TAB -->
-        <div id="services" class="tab-content active">
-            <div class="page-wrapper">
-                <div class="services-heading-box">
-                    <h2>What We Do</h2>
-                    <p>Professional digital solutions. Built securely. Delivered clearly.</p>
+
+    <div class="scrollable-pages">
+        <div class="page-wrapper">
+            <div class="services-heading-box">
+                <h2>What We Do</h2>
+                <p>Professional digital solutions. Built securely. Delivered clearly.</p>
+            </div>
+
+            <div class="service-block">
+                <div class="service-title">
+                    Web Development and Brand Design
+                    <span class="toggle-icon">+</span>
                 </div>
-                
-                <div class="service-block">
-                    <div class="service-title">
-                        Web Development and Brand Design
-                        <span class="toggle-icon">+</span>
-                    </div>
-                    <div class="service-content">
-                        <p>Custom websites built from the ground up, designed around your brand and your clients. No generic templates, no hidden code. Clean, fast, and fully yours. We build your visual identity alongside your site so your brand feels consistent, professional, and instantly recognisable.</p>
-                    </div>
-                </div>
-                
-                <div class="service-block">
-                    <div class="service-title">
-                        Bespoke Booking Systems
-                        <span class="toggle-icon">+</span>
-                    </div>
-                    <div class="service-content">
-                        <p>We specialise in building bespoke booking systems designed around your business, not the other way around.</p>
-                        <p>If you are currently paying monthly subscriptions, commission fees, or being locked into platforms that take a cut on every single booking, we build you a system that lives on your website on your terms with zero ongoing commission. You own your data. You own your client relationships. You regain full control.</p>
-                    </div>
-                </div>
-                
-                <div class="service-block">
-                    <div class="service-title">
-                        ICO Registration and GDPR Compliance
-                        <span class="toggle-icon">+</span>
-                    </div>
-                    <div class="service-content">
-                        <p>Never risk a fine or uncertainty again. We guide you step by step through ICO registration and build your full GDPR compliance framework including privacy policies, consent records, data processing documentation, and staff guidance.</p>
-                    </div>
-                </div>
-                
-                <div class="service-block">
-                    <div class="service-title">
-                        Cybersecurity and Digital Protection
-                        <span class="toggle-icon">+</span>
-                    </div>
-                    <div class="service-content">
-                        <p>Delivered by our in-house cybersecurity specialists. We provide security monitoring and threat detection across your systems, SIEM deployment for clear visibility, and practical cybersecurity consulting.</p>
-                    </div>
-                </div>
-                
-                <div class="service-block">
-                    <div class="service-title">
-                        CPD Accredited Cybersecurity Training
-                        <span class="toggle-icon">+</span>
-                    </div>
-                    <div class="service-content">
-                        <p>We are developing CPD accredited cybersecurity training delivered by our in-house specialists. Accreditation is currently in progress.</p>
-                    </div>
-                </div>
-                
-                <div class="service-block">
-                    <div class="service-title">
-                        Business Strategy and Growth Support
-                        <span class="toggle-icon">+</span>
-                    </div>
-                    <div class="service-content">
-                        <p>From your website to your booking system, your brand, your social media presence, and your compliance. We build the whole digital foundation you need to grow with confidence.</p>
-                    </div>
+                <div class="service-content">
+                    <p>Custom websites built from the ground up, designed around your brand and your clients. No generic templates, no hidden code. Clean, fast, and fully yours. We build your visual identity alongside your site so your brand feels consistent, professional, and instantly recognisable.</p>
                 </div>
             </div>
-            
-            <!-- Footer loaded centrally — NO styling here -->
-            <div id="footer-placeholder"></div>
+
+            <div class="service-block">
+                <div class="service-title">
+                    Bespoke Booking Systems
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="service-content">
+                    <p>We specialise in building bespoke booking systems designed around your business, not the other way around.</p>
+                    <p>If you are currently paying monthly subscriptions, commission fees, or being locked into platforms that take a cut on every single booking, we build you a system that lives on your website on your terms with zero ongoing commission. You own your data. You own your client relationships. You regain full control.</p>
+                </div>
+            </div>
+
+            <div class="service-block">
+                <div class="service-title">
+                    ICO Registration and GDPR Compliance
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="service-content">
+                    <p>Never risk a fine or uncertainty again. We guide you step by step through ICO registration and build your full GDPR compliance framework including privacy policies, consent records, data processing documentation, and staff guidance.</p>
+                </div>
+            </div>
+
+            <div class="service-block">
+                <div class="service-title">
+                    Cybersecurity and Digital Protection
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="service-content">
+                    <p>Delivered by our in-house cybersecurity specialists. We provide security monitoring and threat detection across your systems, SIEM deployment for clear visibility, and practical cybersecurity consulting.</p>
+                </div>
+            </div>
+
+            <div class="service-block">
+                <div class="service-title">
+                    CPD Accredited Cybersecurity Training
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="service-content">
+                    <p>We are developing CPD accredited cybersecurity training delivered by our in-house specialists. Accreditation is currently in progress.</p>
+                </div>
+            </div>
+
+            <div class="service-block">
+                <div class="service-title">
+                    Business Strategy and Growth Support
+                    <span class="toggle-icon">+</span>
+                </div>
+                <div class="service-content">
+                    <p>From your website to your booking system, your brand, your social media presence, and your compliance. We build the whole digital foundation you need to grow with confidence.</p>
+                </div>
+            </div>
         </div>
+
+        <!-- Central Footer -->
+        <div id="footer-placeholder"></div>
     </div>
-    
+
     <script>
-        // Hamburger toggle — exactly matches index.html
+        // Hamburger — exactly matches index.html
         function toggleMenu() {
             document.getElementById('hamburger').classList.toggle('open');
             document.getElementById('dropdownMenu').classList.toggle('open');
         }
         
-        // Service accordions
+        // Accordions
         document.querySelectorAll('.service-title').forEach(title => {
             title.addEventListener('click', function () {
                 this.closest('.service-block').classList.toggle('expanded');
             });
         });
         
-        // Footer load — central file only
+        // Footer — central file only
         fetch('footer.html')
-            .then(res => {
-                if (!res.ok) throw new Error('Footer file not found');
-                return res.text();
-            })
-            .then(html => {
-                document.getElementById('footer-placeholder').innerHTML = html;
-            })
-            .catch(err => {
-                console.error('Footer load error:', err);
-            });
+            .then(res => { if (!res.ok) throw new Error('Footer missing'); return res.text(); })
+            .then(html => { document.getElementById('footer-placeholder').innerHTML = html; })
+            .catch(err => console.error('Footer load error:', err));
     </script>
 </body>
 </html>
