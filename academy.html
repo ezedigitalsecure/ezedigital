@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Academy · Eze Digital</title>
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self'; font-src 'self';">
-    <link rel="stylesheet" href="footerstyles.css">
+    <!-- ✅ Versioned — forces fresh footer styles -->
+    <link rel="stylesheet" href="footerstyles.css?v=4">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
         html, body { height: 100%; overflow: hidden; }
-
         .static-canvas {
             position: absolute;
             top: 0; left: 0;
@@ -20,7 +20,6 @@
                 linear-gradient(180deg, #001418 0%, #00222a 45%, #001115 100%);
             background-size: cover;
         }
-
         header {
             position: absolute;
             top: 0; right: 0;
@@ -29,7 +28,6 @@
             display: flex;
             justify-content: flex-end;
         }
-
         .menu-wrapper { position: relative; }
         .hamburger-circle {
             width: 52px; height: 52px; border-radius: 50%;
@@ -47,7 +45,6 @@
         .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
         .hamburger.open span:nth-child(2) { opacity: 0; }
         .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
-
         .dropdown-menu {
             position: absolute; top: 62px; right: 0;
             background: rgba(0, 24, 28, 0.96);
@@ -67,7 +64,6 @@
         }
         .dropdown-link:hover,
         .dropdown-link.active { color: #00E6E9; }
-
         .scrollable-pages {
             position: absolute;
             top: 0; left: 0;
@@ -76,13 +72,11 @@
             overflow-y: auto;
             background: transparent;
         }
-
         .page-wrapper {
             padding: 6rem 2rem 0;
             max-width: 900px;
             margin: 0 auto;
         }
-
         .hero {
             text-align: center;
             margin-bottom: 2rem;
@@ -110,7 +104,6 @@
             margin: 0 auto;
             line-height: 1.7;
         }
-
         .info-banner {
             background: rgba(0, 12, 14, 0.85);
             border: 1px solid rgba(0, 184, 187, 0.25);
@@ -140,7 +133,6 @@
             color: #B2F0F2;
             font-size: 0.9rem;
         }
-
         section { margin-bottom: 3rem; }
         .section-heading {
             font-size: 1.5rem;
@@ -156,8 +148,6 @@
             margin-left: auto;
             margin-right: auto;
         }
-
-        /* ===== PRICING CONTAINER — MATCHES OTHER BLOCKS ===== */
         .pricing-container {
             background: rgba(0, 12, 14, 0.85);
             border: 1px solid rgba(0, 184, 187, 0.25);
@@ -165,7 +155,6 @@
             padding: 2rem;
             margin-bottom: 3rem;
         }
-
         .courses-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -213,7 +202,6 @@
             border-top: 1px solid rgba(0, 184, 187, 0.1);
             padding-top: 1rem;
         }
-
         .pricing-block {
             padding: 1.5rem 0;
             border-bottom: 1px solid rgba(0, 184, 187, 0.1);
@@ -254,7 +242,6 @@
             font-style: italic;
             margin-top: 0.5rem;
         }
-
         .two-col {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -281,7 +268,6 @@
             padding-left: 1.25rem;
         }
         .block strong { color: #00E6E9; }
-
         .cta-box {
             background: rgba(0, 12, 14, 0.85);
             border: 1px solid rgba(0, 184, 187, 0.25);
@@ -318,12 +304,10 @@
             box-shadow: 0 0 20px rgba(0, 230, 233, 0.6);
             transform: scale(1.05);
         }
-
+        /* ✅ Footer placeholder — spacing ONLY, no visual styling */
         #footer-placeholder {
-            width: 100%;
             margin-top: 3rem;
         }
-
         @media (max-width: 768px) {
             header { padding: 1rem 1.2rem; }
             .page-wrapper { padding: 5rem 1.2rem 0; }
@@ -334,7 +318,6 @@
 </head>
 <body>
     <div class="static-canvas"></div>
-
     <header>
         <div class="menu-wrapper">
             <div class="hamburger-circle" onclick="toggleMenu()">
@@ -352,16 +335,13 @@
             </nav>
         </div>
     </header>
-
     <div class="scrollable-pages">
         <div class="page-wrapper">
-
             <div class="hero">
                 <p class="hero-category">Professional Development</p>
                 <h1>Eze Digital Academy</h1>
                 <p>Practical, accessible training in cybersecurity, digital safety and compliance — CPD accredited and delivered in plain English.</p>
             </div>
-
             <div class="info-banner">
                 <h2 class="banner-subheading">Our Courses</h2>
                 <p class="banner-text">Tailored for schools, businesses, and teams. We deliver on-site or remotely.</p>
@@ -370,12 +350,9 @@
                     <p>Every course carries formal Continuing Professional Development accreditation — verifiable, recognised, and built to current standards.</p>
                 </div>
             </div>
-
-            <!-- PRICING — NOW IN MATCHING BACKGROUND BOX -->
             <div class="pricing-container">
                 <h2 class="section-heading">Pricing</h2>
                 <p class="section-subtitle">Transparent starting prices — every quote is personalised to your team size, location, and needs.</p>
-
                 <div class="pricing-block">
                     <div class="pricing-header">
                         <h3>Cybersecurity Awareness for Everyone — Half Day</h3>
@@ -387,7 +364,6 @@
                         <p class="discount">Schools & registered charities — 20% discount available</p>
                     </div>
                 </div>
-
                 <div class="pricing-block">
                     <div class="pricing-header">
                         <h3>Data Protection & UK GDPR Essentials — One Day</h3>
@@ -399,7 +375,6 @@
                         <p class="discount">Schools & registered charities — 20% discount available</p>
                     </div>
                 </div>
-
                 <div class="pricing-block">
                     <div class="pricing-header">
                         <h3>Secure Systems & Infrastructure — Two Days</h3>
@@ -411,7 +386,6 @@
                         <p class="discount">Schools & registered charities — 20% discount available</p>
                     </div>
                 </div>
-
                 <div class="pricing-block">
                     <div class="pricing-header">
                         <h3>Bespoke Tailored Training</h3>
@@ -423,7 +397,6 @@
                     </div>
                 </div>
             </div>
-
             <section class="two-col">
                 <div class="block">
                     <h3>Who This Is For</h3>
@@ -445,7 +418,6 @@
                     </ul>
                 </div>
             </section>
-
             <section>
                 <div class="cta-box">
                     <h3>Need a custom quote?</h3>
@@ -453,7 +425,6 @@
                     <a href="contact.html" class="btn-primary">Request Your Quote</a>
                 </div>
             </section>
-
         </div>
         <div id="footer-placeholder"></div>
         <script>
@@ -468,7 +439,6 @@
                 .catch(err => console.error('Footer load error:', err));
         </script>
     </div>
-
     <script>
         function toggleMenu() {
             document.getElementById('hamburger').classList.toggle('open');
