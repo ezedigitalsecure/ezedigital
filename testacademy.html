@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academy · Eze Digital</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self'; font-src 'self';">
+    <link rel="stylesheet" href="footerstyles.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        html, body { height: 100%; overflow: hidden; }
+
+        .static-canvas {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: 1;
+            background:
+                url('mockup-bg.png') no-repeat center center,
+                linear-gradient(180deg, #001418 0%, #00222a 45%, #001115 100%);
+            background-size: cover;
+        }
+
+        header {
+            position: absolute;
+            top: 0; right: 0;
+            padding: 1.5rem 2.5rem;
+            z-index: 100;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .menu-wrapper { position: relative; }
+        .hamburger-circle {
+            width: 52px; height: 52px; border-radius: 50%;
+            background: rgba(0, 12, 14, 0.75);
+            border: 1px solid rgba(0, 184, 187, 0.25);
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+        }
+        .hamburger { display: flex; flex-direction: column; gap: 5px; }
+        .hamburger span {
+            width: 26px; height: 3px;
+            background: linear-gradient(90deg, #00B8BB, #00E6E9);
+            border-radius: 2px;
+        }
+        .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+        .dropdown-menu {
+            position: absolute; top: 62px; right: 0;
+            background: rgba(0, 24, 28, 0.96);
+            border: 1px solid rgba(0, 184, 187, 0.35);
+            border-radius: 0 0 12px 12px;
+            min-width: 220px;
+            display: none;
+            flex-direction: column;
+        }
+        .dropdown-menu.open { display: flex; }
+        .dropdown-link {
+            color: #00B8BB;
+            font-weight: bold;
+            padding: 1rem 1.5rem;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(0, 184, 187, 0.1);
+        }
+        .dropdown-link:hover,
+        .dropdown-link.active { color: #00E6E9; }
+
+        .scrollable-pages {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: 50;
+            overflow-y: auto;
+            background: transparent;
+        }
+        .page-wrapper {
+            padding: 6rem 2rem 0;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 2rem;
+            background: rgba(0, 12, 14, 0.85);
+            border: 1px solid rgba(0, 184, 187, 0.25);
+            border-radius: 14px;
+            padding: 2.5rem 2rem;
+        }
+        .hero-category {
+            color: #00B8BB;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+        .hero h1 {
+            font-size: 2.2rem;
+            color: #00E6E9;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1.05rem;
+            color: #B2F0F2;
+            max-width: 650px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .info-banner {
+            background: rgba(0, 12, 14, 0.85);
+            border: 1px solid rgba(0, 184, 187, 0.25);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        .banner-subheading {
+            color: #00E6E9;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        .banner-text {
+            color: #B2F0F2;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+        .cpd-text h3 {
+            color: #00E6E9;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.5rem;
+        }
+        .cpd-text p {
+            color: #B2F0F2;
+            font-size: 0.9rem;
+        }
+
+        section { margin-bottom: 3rem; }
+        .section-heading {
+            font-size: 1.5rem;
+            color: #00E6E9;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+        .section-subtitle {
+            color: #B2F0F2;
+            margin-bottom: 2rem;
+            text-align: center;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        .course-card {
+            background: rgba(0, 12, 14, 0.85);
+            border: 1px solid rgba(0, 184, 187, 0.25);
+            border-radius: 12px;
+            padding: 1.75rem;
+            transition: transform 0.25s ease, border-color 0.25s ease;
+        }
+        .course-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(0, 230, 233, 0.5);
+        }
+        .course-level {
+            display: inline-block;
+            background: rgba(0, 184, 187, 0.1);
+            color: #00E6E9;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.2rem 0.7rem;
+            border-radius: 100px;
+            margin-bottom: 1rem;
+        }
+        .course-card h3 {
+            color: #00E6E9;
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+        }
+        .course-card p {
+            color: #B2F0F2;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        .course-meta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            font-size: 0.8rem;
+            color: #00888A;
+            border-top: 1px solid rgba(0, 184, 187, 0.1);
+            padding-top: 1rem;
+        }
+
+        /* ===== PRICING — NOW VISIBLE BY DEFAULT ===== */
+        .pricing-block {
+            background: rgba(0, 12, 14, 0.85);
+            border: 1px solid rgba(0, 184, 187, 0.25);
+            border-radius: 12px;
+            padding: 1.75rem;
+            margin-bottom: 1rem;
+        }
+        .pricing-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .pricing-header h3 {
+            color: #00E6E9;
+            font-size: 1.1rem;
+        }
+        .price {
+            color: #00E6E9;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        .price-note {
+            color: #00B8BB;
+            font-size: 0.85rem;
+        }
+        .pricing-details p {
+            color: #B2F0F2;
+            font-size: 0.9rem;
+            line-height: 1.7;
+            margin-bottom: 0.4rem;
+        }
+        .discount {
+            color: #00B8BB;
+            font-style: italic;
+            margin-top: 0.5rem;
+        }
+
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        .block {
+            background: rgba(0, 12, 14, 0.85);
+            border: 1px solid rgba(0, 184, 187, 0.25);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+        .block h3 {
+            color: #00E6E9;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+        .block p, .block li {
+            color: #B2F0F2;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+        .block ul {
+            padding-left: 1.25rem;
+        }
+        .block strong { color: #00E6E9; }
+
+        .cta-box {
+            background: rgba(0, 12, 14, 0.85);
+            border: 1px solid rgba(0, 184, 187, 0.25);
+            border-radius: 12px;
+            padding: 2.5rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+        .cta-box h3 {
+            color: #00E6E9;
+            font-size: 1.4rem;
+            margin-bottom: 0.75rem;
+        }
+        .cta-box p {
+            color: #B2F0F2;
+            margin-bottom: 1.5rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+        .btn-primary {
+            display: inline-block;
+            background: linear-gradient(90deg, #00E6E9, #00B8BB);
+            color: #001418;
+            font-weight: bold;
+            padding: 0.8rem 2rem;
+            border-radius: 28px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            background: linear-gradient(90deg, #00E6E9, #00E6E9);
+            box-shadow: 0 0 20px rgba(0, 230, 233, 0.6);
+            transform: scale(1.05);
+        }
+
+        #footer-placeholder {
+            width: 100%;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 1rem 1.2rem; }
+            .page-wrapper { padding: 5rem 1.2rem 0; }
+            .two-col { grid-template-columns: 1fr; }
+            .pricing-header { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+    <div class="static-canvas"></div>
+
+    <header>
+        <div class="menu-wrapper">
+            <div class="hamburger-circle" onclick="toggleMenu()">
+                <div class="hamburger" id="hamburger">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+            <nav class="dropdown-menu" id="dropdownMenu">
+                <a class="dropdown-link" href="index.html">Home</a>
+                <a class="dropdown-link" href="services.html">Services</a>
+                <a class="dropdown-link" href="about.html">About Eze Digital</a>
+                <a class="dropdown-link" href="contact.html">Contact</a>
+                <a class="dropdown-link active" href="academy.html">Academy</a>
+                <a class="dropdown-link" href="#" onclick="alert('Client Portal coming soon. Watch this space.'); return false;">Client Portal</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="scrollable-pages">
+        <div class="page-wrapper">
+
+            <div class="hero">
+                <p class="hero-category">Professional Development</p>
+                <h1>Eze Digital Academy</h1>
+                <p>Practical, accessible training in cybersecurity, digital safety and compliance — CPD accredited and delivered in plain English.</p>
+            </div>
+
+            <div class="info-banner">
+                <h2 class="banner-subheading">Our Courses</h2>
+                <p class="banner-text">Tailored for schools, businesses, and teams. We deliver on-site or remotely.</p>
+                <div class="cpd-text">
+                    <h3>CPD Accredited Training</h3>
+                    <p>Every course carries formal Continuing Professional Development accreditation — verifiable, recognised, and built to current standards.</p>
+                </div>
+            </div>
+
+            <section>
+                <h2 class="section-heading">Pricing</h2>
+                <p class="section-subtitle">Transparent starting prices — every quote is personalised to your team size, location, and needs.</p>
+
+                <div class="pricing-block">
+                    <div class="pricing-header">
+                        <h3>Cybersecurity Awareness for Everyone — Half Day</h3>
+                        <span class="price">From £295</span>
+                    </div>
+                    <div class="pricing-details">
+                        <p>Live session, digital resources, and certificates for all attendees. Remote delivery at no extra cost.</p>
+                        <p class="price-note">On-site within 50 miles — +£95 travel fee</p>
+                        <p class="discount">Schools & registered charities — 20% discount available</p>
+                    </div>
+                </div>
+
+                <div class="pricing-block">
+                    <div class="pricing-header">
+                        <h3>Data Protection & UK GDPR Essentials — One Day</h3>
+                        <span class="price">From £495</span>
+                    </div>
+                    <div class="pricing-details">
+                        <p>Legal obligations, consent, subject access requests, and practical data security. Includes template resources and 7 days post-session support.</p>
+                        <p class="price-note">On-site within 50 miles — +£95 travel fee</p>
+                        <p class="discount">Schools & registered charities — 20% discount available</p>
+                    </div>
+                </div>
+
+                <div class="pricing-block">
+                    <div class="pricing-header">
+                        <h3>Secure Systems & Infrastructure — Two Days</h3>
+                        <span class="price">From £895</span>
+                    </div>
+                    <div class="pricing-details">
+                        <p>Network hardening, secure remote access, monitoring, and building a security-first culture — for IT teams and leaders.</p>
+                        <p class="price-note">On-site travel calculated separately</p>
+                        <p class="discount">Schools & registered charities — 20% discount available</p>
+                    </div>
+                </div>
+
+                <div class="pricing-block">
+                    <div class="pricing-header">
+                        <h3>Bespoke Tailored Training</h3>
+                        <span class="price">From £595 per day</span>
+                    </div>
+                    <div class="pricing-details">
+                        <p>Custom content built around your organisation — your policies, your risks, your scenarios. Fixed price agreed upfront.</p>
+                        <p class="discount">Schools & registered charities — 20% discount available</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="two-col">
+                <div class="block">
+                    <h3>Who This Is For</h3>
+                    <ul>
+                        <li><strong>Schools & Colleges</strong> — protect staff, students and systems; meet statutory guidance</li>
+                        <li><strong>Businesses</strong> — upskill your team, reduce risk, demonstrate compliance</li>
+                        <li><strong>Charities & Public Sector</strong> — accessible, affordable training built for your resources</li>
+                        <li><strong>Individuals</strong> — build your confidence and credentials in digital safety</li>
+                    </ul>
+                </div>
+                <div class="block">
+                    <h3>How We're Different</h3>
+                    <ul>
+                        <li>No confusing jargon — everything explained in plain English</li>
+                        <li>Built by a trainer and a cybersecurity expert — together</li>
+                        <li>Live delivery with Q&A — not just pre-recorded videos</li>
+                        <li>Certificates issued immediately on completion</li>
+                        <li>Follow-up resources included — so you keep benefiting</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <div class="cta-box">
+                    <h3>Need a custom quote?</h3>
+                    <p>Tell me your team size, location, and preferred dates — I'll send a clear, itemised quote within 24 hours.</p>
+                    <a href="contact.html" class="btn-primary">Request Your Quote</a>
+                </div>
+            </section>
+
+        </div>
+
+        <div id="footer-placeholder"></div>
+        <script>
+            fetch('footer.html')
+                .then(res => {
+                    if (!res.ok) throw new Error('Footer not found');
+                    return res.text();
+                })
+                .then(html => {
+                    document.getElementById('footer-placeholder').innerHTML = html;
+                })
+                .catch(err => console.error('Footer load error:', err));
+        </script>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('hamburger').classList.toggle('open');
+            document.getElementById('dropdownMenu').classList.toggle('open');
+        }
+    </script>
+</body>
+</html>
