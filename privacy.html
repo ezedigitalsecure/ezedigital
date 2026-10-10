@@ -6,6 +6,9 @@
     <title>Privacy Policy · Eze Digital</title>
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; font-src 'self';">
     
+    <!-- Central footer styles -->
+    <link rel="stylesheet" href="footerstyles.css?v=9">
+    
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
         html, body {
@@ -15,13 +18,13 @@
             line-height: 1.7;
         }
         .page-wrapper {
-            padding: 4rem 2rem 6rem;
+            padding: 4rem 2rem 2rem;
             max-width: 750px;
             margin: 0 auto;
         }
         .back-link {
             display: inline-block;
-            color: #4ECDC4;
+            color: #00E6E9;
             text-decoration: none;
             font-size: 0.9rem;
             margin-bottom: 2rem;
@@ -30,7 +33,7 @@
         .back-link:hover { color: #fff; }
         h1 {
             font-size: 2rem;
-            color: #fff;
+            color: #00E6E9;
             margin-bottom: 0.5rem;
         }
         .updated {
@@ -38,95 +41,31 @@
             font-size: 0.85rem;
             margin-bottom: 2rem;
             padding-bottom: 1.5rem;
-            border-bottom: 1px solid rgba(78, 205, 196, 0.1);
+            border-bottom: 1px solid rgba(0, 184, 187, 0.1);
         }
         h2 {
             font-size: 1.1rem;
-            color: #4ECDC4;
+            color: #00E6E9;
             margin: 2rem 0 0.8rem;
         }
         p { margin-bottom: 1rem; font-size: 0.95rem; }
         ul { padding-left: 1.5rem; margin-bottom: 1rem; }
         li { margin-bottom: 0.5rem; font-size: 0.95rem; }
-        a { color: #4ECDC4; text-decoration: none; }
+        a { color: #00E6E9; text-decoration: none; }
         a:hover { text-decoration: underline; }
-
-        /* ——— SENTIA-STYLE FOOTER ——— */
-        .site-footer {
-            background: #0B1527;
-            border-top: 1px solid rgba(78, 205, 196, 0.08);
-            padding: 4rem 2rem 2rem;
-            margin-top: 5rem;
+        
+        /* Footer placeholder only — styling comes from footerstyles.css */
+        #footer-placeholder {
+            margin-top: 4rem;
         }
-        .footer-inner {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2.5rem;
-            margin-bottom: 3rem;
-        }
-        .footer-col h4 {
-            color: #fff;
-            font-size: 0.95rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        .footer-col p {
-            color: #94A3B8;
-            font-size: 0.85rem;
-            line-height: 1.6;
-            margin-bottom: 0.5rem;
-        }
-        .footer-col a {
-            display: block;
-            color: #94A3B8;
-            font-size: 0.85rem;
-            text-decoration: none;
-            margin-bottom: 0.5rem;
-            transition: color 0.2s ease;
-        }
-        .footer-col a:hover { color: #4ECDC4; }
-        .footer-bottom-bar {
-            border-top: 1px solid rgba(78, 205, 196, 0.08);
-            padding-top: 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-        .footer-bottom-bar p {
-            color: #64748B;
-            font-size: 0.8rem;
-            margin: 0;
-        }
-        .footer-legal-links a {
-            color: #94A3B8;
-            font-size: 0.8rem;
-            text-decoration: none;
-            margin-left: 1.5rem;
-            transition: color 0.2s ease;
-        }
-        .footer-legal-links a:hover { color: #4ECDC4; }
-        @media (max-width: 900px) {
-            .footer-grid { grid-template-columns: repeat(2, 1fr); }
-        }
+        
         @media (max-width: 640px) {
-            .page-wrapper { padding: 2.5rem 1.2rem 4rem; }
+            .page-wrapper { padding: 2.5rem 1.2rem 2rem; }
             h1 { font-size: 1.6rem; }
-            .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
-            .footer-bottom-bar { flex-direction: column; text-align: center; }
-            .footer-legal-links a { margin: 0 0.75rem; }
         }
     </style>
 </head>
-<script>fetch('footer.html').then(r=>r.text()).then(html=>document.write(html))</script>
-    <body>
+<body>
     <div class="page-wrapper">
         <a href="index.html" class="back-link">← Back to Home</a>
         
@@ -185,90 +124,3 @@
         <p>We never sell your personal data. We share it only where necessary to deliver our services:</p>
         <ul>
             <li>Website hosting providers — to serve our pages securely</li>
-            <li>Form processing services — to receive and manage your enquiries</li>
-            <li>Training platforms — where required to deliver course materials and certification</li>
-        </ul>
-        <p>All third-party processors are bound by data protection agreements and required to handle your data securely.</p>
-        
-        <h2>6. How Long We Keep Your Data</h2>
-        <ul>
-            <li>Server logs — retained for 90 days then permanently deleted</li>
-            <li>Enquiry records — retained for 2 years or until the relationship is complete</li>
-            <li>Training and certification records — retained as required by CPD standards and tax regulations</li>
-            <li>Marketing preferences — retained until you unsubscribe or ask us to stop</li>
-        </ul>
-        
-        <h2>7. Your Rights Under UK GDPR</h2>
-        <p>You have the right to:</p>
-        <ul>
-            <li>Request a copy of the data we hold about you</li>
-            <li>Ask us to correct inaccurate or incomplete information</li>
-            <li>Ask us to delete your data — the "right to be forgotten" — where there's no compelling reason to keep it</li>
-            <li>Restrict how we use your data in certain circumstances</li>
-            <li>Data portability — request your data in a machine-readable format</li>
-            <li>Object to processing based on legitimate interests</li>
-            <li>Withdraw consent at any time — this doesn't affect processing done before withdrawal</li>
-        </ul>
-        <p>To exercise any right, contact us at hello@ezedigital.co.uk. We will respond within 30 days.</p>
-        
-        <h2>8. Complaints</h2>
-        <p>If you're unhappy with how we've handled your data, you have the right to lodge a complaint with the Information Commissioner's Office (ICO):</p>
-        <p>Website: <a href="https://ico.org.uk" target="_blank" rel="noopener">ico.org.uk</a><br>Phone: 0303 123 1113</p>
-        <p>We'd appreciate the chance to address your concerns first — please contact us before raising with the ICO.</p>
-        
-        <h2>9. Data Security</h2>
-        <p>All data in transit is encrypted via HTTPS/TLS. Access to client data is restricted to authorised personnel only. We regularly review and update our security practices.</p>
-        
-        <h2>10. Children's Privacy</h2>
-        <p>Our services are not directed at individuals under 16. We do not knowingly collect data from children. If you believe we have, contact us immediately and we will delete it.</p>
-        
-        <h2>11. Changes to This Policy</h2>
-        <p>We may update this page from time to time. The date at the top shows when it was last revised. Material changes will be communicated via our website or direct notice where appropriate.</p>
-        
-        <h2>12. Contact Us</h2>
-        <p>Eze Digital<br>Email: hello@ezedigital.co.uk<br>Subject line: "Data Protection Enquiry"</p>
-    </div>
-
-    <!-- FOOTER -->
-    <footer class="site-footer">
-        <div class="footer-inner">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h4>Eze Digital</h4>
-                    <p>Integrated digital protection, education & design.</p>
-                    <p style="margin-top: 1rem;">hello@ezedigital.co.uk</p>
-                    <p>United Kingdom</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Services</h4>
-                    <a href="#">Website & Digital Build</a>
-                    <a href="#">Cybersecurity & Monitoring</a>
-                    <a href="#">Compliance Guidance</a>
-                    <a href="#">CPD Accredited Training</a>
-                    <a href="#">Brand & Identity</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Quick Links</h4>
-                    <a href="index.html">Home</a>
-                    <a href="index.html#services">Services</a>
-                    <a href="about.html">About Us</a>
-                    <a href="compliance-protocol.html">Compliance Protocol</a>
-                    <a href="index.html#contact">Contact</a>
-                </div>
-                <div class="footer-col">
-                    <h4>Legal</h4>
-                    <a href="privacy-policy.html">Privacy Policy</a>
-                    <a href="terms-of-service.html">Terms of Service</a>
-                </div>
-            </div>
-            <div class="footer-bottom-bar">
-                <p>© 2026 Eze Digital Ltd. All rights reserved.</p>
-                <div class="footer-legal-links">
-                    <a href="privacy-policy.html">Privacy Policy</a>
-                    <a href="terms-of-service.html">Terms of Service</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-</body>
-</html>
