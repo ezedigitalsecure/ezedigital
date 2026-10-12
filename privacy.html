@@ -6,8 +6,7 @@
     <title>Privacy Policy · Eze Digital</title>
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; font-src 'self';">
     
-    <!-- Central footer styles -->
-    <link rel="stylesheet" href="footerstyles.css?v=9">
+    <link rel="stylesheet" href="footerstyles.css?v=10">
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
@@ -100,16 +99,6 @@
             margin-bottom: 3rem;
         }
 
-        .back-link {
-            display: inline-block;
-            color: #00E6E9;
-            text-decoration: none;
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
-            transition: color 0.2s ease;
-        }
-        .back-link:hover { color: #fff; }
-
         h1 {
             font-size: 2rem;
             color: #00E6E9;
@@ -172,7 +161,7 @@
 
     <header>
         <div class="menu-wrapper">
-            <div class="hamburger-circle" onclick="toggleMenu()">
+            <div class="hamburger-circle" id="hamburgerBtn">
                 <div class="hamburger" id="hamburger">
                     <span></span><span></span><span></span>
                 </div>
@@ -190,8 +179,6 @@
 
     <div class="scrollable-pages">
         <div class="page-wrapper">
-            <a href="index.html" class="back-link">← Back to Home</a>
-
             <div class="content-block">
                 <h1>Privacy Policy</h1>
                 <p class="updated">Last updated: October 2026 · Eze Digital</p>
@@ -293,20 +280,38 @@
             </div>
 
             <div id="footer-placeholder"></div>
-            <script>
-                fetch('footer.html')
-                    .then(res => { if (!res.ok) throw new Error('Footer not found'); return res.text(); })
-                    .then(html => { document.getElementById('footer-placeholder').innerHTML = html; })
-                    .catch(err => console.error('Footer load error:', err));
-            </script>
         </div>
     </div>
 
     <script>
-        function toggleMenu() {
-            document.getElementById('hamburger').classList.toggle('open');
-            document.getElementById('dropdownMenu').classList.toggle('open');
-        }
+        const btn = document.getElementById('hamburgerBtn');
+        const hamburger = document.getElementById('hamburger');
+        const menu = document.getElementById('dropdownMenu');
+        
+        btn.addEventListener('click', function() {
+            hamburger.classList.toggle('open');
+            menu.classList.toggle('open');
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const placeholder = document.getElementById('footer-placeholder');
+            if (!placeholder) return;
+            
+            fetch('footer.html')
+                .then(res => {
+                    if (!res.ok) {
+                        console.error('footer.html not found');
+                        return;
+                    }
+                    return res.text();
+                })
+                .then(html => {
+                    if (html) placeholder.innerHTML = html;
+                })
+                .catch(err => console.error('Footer error:', err));
+        });
     </script>
 </body>
 </html>
