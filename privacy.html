@@ -6,35 +6,24 @@
     <title>Privacy Policy · Eze Digital</title>
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; font-src 'self';">
     
-    <link rel="stylesheet" href="footerstyles.css?v=10">
+    <link rel="stylesheet" href="footerstyles.css?v=11">
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        
-        html, body {
-            height: 100%;
-            overflow: hidden;
-        }
+        html, body { height: 100%; overflow: hidden; }
 
         .static-canvas {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 1;
-            background:
-                url('mockup-bg.png') no-repeat center center,
-                linear-gradient(180deg, #001418 0%, #00222a 45%, #001115 100%);
+            position: absolute; top: 0; left: 0;
+            width: 100vw; height: 100vh; z-index: 1;
+            background: url('mockup-bg.png') no-repeat center center,
+                        linear-gradient(180deg, #001418 0%, #00222a 45%, #001115 100%);
             background-size: cover;
         }
 
         header {
-            position: absolute;
-            top: 0; right: 0;
-            padding: 1.5rem 2.5rem;
-            z-index: 100;
-            display: flex;
-            justify-content: flex-end;
+            position: absolute; top: 0; right: 0;
+            padding: 1.5rem 2.5rem; z-index: 100;
+            display: flex; justify-content: flex-end;
         }
 
         .menu-wrapper { position: relative; }
@@ -45,7 +34,7 @@
             display: flex; align-items: center; justify-content: center;
             cursor: pointer;
         }
-        .hamburger { display: flex; flex-direction: column; gap: 5px; }
+        .hamburger { display: flex; flex-direction: column; gap: 5px; pointer-events: none; }
         .hamburger span {
             width: 26px; height: 3px;
             background: linear-gradient(90deg, #00B8BB, #00E6E9);
@@ -60,95 +49,45 @@
             background: rgba(0, 24, 28, 0.96);
             border: 1px solid rgba(0, 184, 187, 0.35);
             border-radius: 0 0 12px 12px;
-            min-width: 220px;
-            display: none;
-            flex-direction: column;
+            min-width: 220px; display: none; flex-direction: column;
         }
         .dropdown-menu.open { display: flex; }
         .dropdown-link {
-            color: #00B8BB;
-            font-weight: bold;
-            padding: 1rem 1.5rem;
-            text-decoration: none;
+            color: #00B8BB; font-weight: bold;
+            padding: 1rem 1.5rem; text-decoration: none;
             border-bottom: 1px solid rgba(0, 184, 187, 0.1);
         }
-        .dropdown-link:hover,
-        .dropdown-link.active { color: #00E6E9; }
+        .dropdown-link:hover { color: #00E6E9; }
 
         .scrollable-pages {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 50;
-            overflow-y: auto;
-            background: transparent;
+            position: absolute; top: 0; left: 0;
+            width: 100vw; height: 100vh; z-index: 50;
+            overflow-y: auto; background: transparent;
         }
 
-        .page-wrapper {
-            padding: 6rem 2rem 0;
-            max-width: 750px;
-            margin: 0 auto;
-        }
+        .page-wrapper { padding: 6rem 2rem 0; max-width: 750px; margin: 0 auto; }
 
         .content-block {
             background: rgba(0, 12, 14, 0.85);
             border: 1px solid rgba(0, 184, 187, 0.25);
             border-radius: 14px;
-            padding: 2.5rem 2rem;
-            margin-bottom: 3rem;
+            padding: 2.5rem 2rem; margin-bottom: 3rem;
         }
 
-        h1 {
-            font-size: 2rem;
-            color: #00E6E9;
-            margin-bottom: 0.5rem;
-        }
-
+        h1 { font-size: 2rem; color: #00E6E9; margin-bottom: 0.5rem; }
         .updated {
-            color: #94A3B8;
-            font-size: 0.85rem;
-            margin-bottom: 2rem;
-            padding-bottom: 1.5rem;
-            border-bottom: 1px solid rgba(0, 184, 187, 0.1);
+            color: #94A3B8; font-size: 0.85rem; margin-bottom: 2rem;
+            padding-bottom: 1.5rem; border-bottom: 1px solid rgba(0, 184, 187, 0.1);
         }
-
-        h2 {
-            font-size: 1.1rem;
-            color: #00E6E9;
-            margin: 2rem 0 0.8rem;
-        }
-
-        p {
-            color: #B2F0F2;
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-
-        ul {
-            padding-left: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        li {
-            color: #B2F0F2;
-            margin-bottom: 0.5rem;
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
+        h2 { font-size: 1.1rem; color: #00E6E9; margin: 2rem 0 0.8rem; }
+        p { color: #B2F0F2; margin-bottom: 1rem; font-size: 0.95rem; line-height: 1.7; }
+        ul { padding-left: 1.5rem; margin-bottom: 1rem; }
+        li { color: #B2F0F2; margin-bottom: 0.5rem; font-size: 0.95rem; line-height: 1.6; }
         strong { color: #00E6E9; }
-
-        a {
-            color: #00E6E9;
-            text-decoration: none;
-        }
+        a { color: #00E6E9; text-decoration: none; }
         a:hover { text-decoration: underline; }
 
-        #footer-placeholder {
-            margin-top: 3rem;
-        }
+        #footer-placeholder { margin-top: 3rem; }
 
         @media (max-width: 768px) {
             header { padding: 1rem 1.2rem; }
@@ -161,7 +100,7 @@
 
     <header>
         <div class="menu-wrapper">
-            <div class="hamburger-circle" id="hamburgerBtn">
+            <div class="hamburger-circle" onclick="toggleNav()">
                 <div class="hamburger" id="hamburger">
                     <span></span><span></span><span></span>
                 </div>
@@ -172,7 +111,7 @@
                 <a class="dropdown-link" href="about.html">About Eze Digital</a>
                 <a class="dropdown-link" href="contact.html">Contact</a>
                 <a class="dropdown-link" href="academy.html">Academy</a>
-                <a class="dropdown-link" href="#" onclick="alert('Client Portal coming soon. Watch this space.'); return false;">Client Portal</a>
+                <a class="dropdown-link" href="#" onclick="alert('Client Portal coming soon.'); return false;">Client Portal</a>
             </nav>
         </div>
     </header>
@@ -187,7 +126,7 @@
 
                 <h2>1. Who We Are</h2>
                 <p>Eze Digital is an integrated digital services business — cybersecurity, web development, compliance guidance, brand design, and CPD-accredited training — based in the United Kingdom.</p>
-                <p><strong>Data Controller:</strong> Eze Digital<br>Email: hello@ezedigital.co.uk</p>
+                <p><strong>Data Controller:</strong> Nicola King<br>Email: secure@ezedigital.co.uk</p>
 
                 <h2>2. What Personal Data We Collect</h2>
                 <p><strong>Website visitors:</strong></p>
@@ -215,9 +154,9 @@
                 <h2>3. Legal Basis for Processing</h2>
                 <p>Under the UK GDPR and Data Protection Act 2018, we rely on these lawful bases:</p>
                 <ul>
-                    <li><strong>Contract performance</strong> — to deliver the services, training, or advice you've requested</li>
-                    <li><strong>Legitimate interests</strong> — to protect our platforms from fraud, abuse, and security threats</li>
-                    <li><strong>Consent</strong> — for marketing communications, where you've given clear agreement</li>
+                    <li><strong>Contract performance</strong> — to deliver the services you've requested</li>
+                    <li><strong>Legitimate interests</strong> — to protect our platforms from fraud and security threats</li>
+                    <li><strong>Consent</strong> — for marketing communications where agreed</li>
                     <li><strong>Legal obligation</strong> — where we're required to retain records by law</li>
                 </ul>
 
@@ -238,7 +177,7 @@
                     <li>Form processing services — to receive and manage your enquiries</li>
                     <li>Training platforms — where required to deliver course materials and certification</li>
                 </ul>
-                <p>All third-party processors are bound by data protection agreements and required to handle your data securely.</p>
+                <p>All third-party processors are bound by data protection agreements.</p>
 
                 <h2>6. How Long We Keep Your Data</h2>
                 <ul>
@@ -253,65 +192,63 @@
                 <ul>
                     <li>Request a copy of the data we hold about you</li>
                     <li>Ask us to correct inaccurate or incomplete information</li>
-                    <li>Ask us to delete your data — the "right to be forgotten" — where there's no compelling reason to keep it</li>
+                    <li>Ask us to delete your data — the "right to be forgotten"</li>
                     <li>Restrict how we use your data in certain circumstances</li>
                     <li>Data portability — request your data in a machine-readable format</li>
                     <li>Object to processing based on legitimate interests</li>
-                    <li>Withdraw consent at any time — this doesn't affect processing done before withdrawal</li>
+                    <li>Withdraw consent at any time</li>
                 </ul>
                 <p>To exercise any right, contact us at hello@ezedigital.co.uk. We will respond within 30 days.</p>
 
                 <h2>8. Complaints</h2>
                 <p>If you're unhappy with how we've handled your data, you have the right to lodge a complaint with the Information Commissioner's Office (ICO):</p>
                 <p>Website: <a href="https://ico.org.uk" target="_blank" rel="noopener">ico.org.uk</a><br>Phone: 0303 123 1113</p>
-                <p>We'd appreciate the chance to address your concerns first — please contact us before raising with the ICO.</p>
+                <p>We'd appreciate the chance to address your concerns first.</p>
 
                 <h2>9. Data Security</h2>
-                <p>All data in transit is encrypted via HTTPS/TLS. Access to client data is restricted to authorised personnel only. We regularly review and update our security practices.</p>
+                <p>All data in transit is encrypted via HTTPS/TLS. Access to client data is restricted to authorised personnel only.</p>
 
                 <h2>10. Children's Privacy</h2>
-                <p>Our services are not directed at individuals under 16. We do not knowingly collect data from children. If you believe we have, contact us immediately and we will delete it.</p>
+                <p>Our services are not directed at individuals under 16. We do not knowingly collect data from children.</p>
 
                 <h2>11. Changes to This Policy</h2>
-                <p>We may update this page from time to time. The date at the top shows when it was last revised. Material changes will be communicated via our website or direct notice where appropriate.</p>
+                <p>We may update this page from time to time. The date at the top shows when it was last revised.</p>
 
                 <h2>12. Contact Us</h2>
-                <p>Eze Digital<br>Email: hello@ezedigital.co.uk<br>Subject line: "Data Protection Enquiry"</p>
+                <p>Eze Digital<br>Email: secure@ezedigital.co.uk<br>Subject line: "Data Protection Enquiry"</p>
             </div>
 
             <div id="footer-placeholder"></div>
         </div>
     </div>
 
+    <!-- ✅ HAMBURGER — DIRECT ONCLICK, NO FAIL -->
     <script>
-        const btn = document.getElementById('hamburgerBtn');
-        const hamburger = document.getElementById('hamburger');
-        const menu = document.getElementById('dropdownMenu');
-        
-        btn.addEventListener('click', function() {
-            hamburger.classList.toggle('open');
-            menu.classList.toggle('open');
-        });
+        function toggleNav() {
+            document.getElementById('hamburger').classList.toggle('open');
+            document.getElementById('dropdownMenu').classList.toggle('open');
+        }
     </script>
 
+    <!-- ✅ FOOTER — SIMPLEST FETCH POSSIBLE -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const placeholder = document.getElementById('footer-placeholder');
-            if (!placeholder) return;
-            
-            fetch('footer.html')
-                .then(res => {
-                    if (!res.ok) {
-                        console.error('footer.html not found');
-                        return;
-                    }
-                    return res.text();
-                })
-                .then(html => {
-                    if (html) placeholder.innerHTML = html;
-                })
-                .catch(err => console.error('Footer error:', err));
-        });
+        fetch('footer.html')
+            .then(function(res) {
+                if (!res.ok) {
+                    console.log('⚠️ footer.html not found — check filename and folder');
+                    return '';
+                }
+                return res.text();
+            })
+            .then(function(content) {
+                if (content) {
+                    document.getElementById('footer-placeholder').innerHTML = content;
+                    console.log('✅ Footer loaded');
+                }
+            })
+            .catch(function(err) {
+                console.log('⚠️ Footer load error:', err.message);
+            });
     </script>
 </body>
 </html>
