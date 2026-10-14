@@ -1,0 +1,3 @@
+# NEVER upload private manuals to GitHub
+portal-resources/
+*.pdf
