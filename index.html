@@ -11,16 +11,11 @@
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            overflow: hidden; /* ✅ Keep this — matches services.html */
-        }
+        html, body { min-height: 100%; }
         
         .static-canvas {
             position: fixed;
-            inset: 0;
+            top: 0; left: 0;
             width: 100vw; height: 100vh;
             z-index: 1;
             background:
@@ -36,17 +31,8 @@
             z-index: 100;
         }
         
-        .scrollable-pages {
-            position: absolute;
-            inset: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 50;
-            overflow-y: auto; /* ✅ Scrolls everything inside */
-            background: transparent;
-        }
-        
         .page-content {
+            position: relative; z-index: 10;
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -106,8 +92,6 @@
         #footer-placeholder {
             position: relative;
             z-index: 50;
-            clear: both; /* ✅ Ensures it sits below everything */
-            width: 100%;
         }
         
         @media (max-width: 768px) {
@@ -124,34 +108,32 @@
         <div id="nav-container"></div>
     </header>
     
-    <div class="scrollable-pages">
-        <div class="page-content">
-            <div class="hero-box">
-                <h1>Welcome to Eze Digital</h1>
-                <p class="hero-tagline">Where heart meets HTML<br>your partner in creating your secure online home</p>
-                <p class="hero-desc">We build beautiful protected digital foundations that feel like you and grow with you. From website design to cybersecurity and training — everything crafted with care.</p>
-                <a href="contact.html" class="btn">Let's Talk</a>
-            </div>
+    <div class="page-content">
+        <div class="hero-box">
+            <h1>Welcome to Eze Digital</h1>
+            <p class="hero-tagline">Where heart meets HTML<br>your partner in creating your secure online home</p>
+            <p class="hero-desc">We build beautiful protected digital foundations that feel like you and grow with you. From website design to cybersecurity and training — everything crafted with care.</p>
+            <a href="contact.html" class="btn">Let's Talk</a>
         </div>
-        
-        <!-- ✅ FOOTER INSIDE scroll container → scripts also INSIDE -->
-        <div id="footer-placeholder"></div>
-        
-        <!-- ✅ BOTH SCRIPTS INSIDE scroll container → content loads in place -->
-        <script src="nav.js"></script>
-        <script>
-            fetch('footer.html')
-                .then(res => {
-                    if (!res.ok) throw new Error('Footer file not found');
-                    return res.text();
-                })
-                .then(html => {
-                    document.getElementById('footer-placeholder').innerHTML = html;
-                })
-                .catch(err => {
-                    console.error('Footer load error:', err);
-                });
-        </script>
     </div>
+    
+    <!-- YOUR EXACT WORKING FOOTER — unchanged -->
+    <div id="footer-placeholder"></div>
+    <script>
+        fetch('footer.html')
+            .then(res => {
+                if (!res.ok) throw new Error('Footer file not found');
+                return res.text();
+            })
+            .then(html => {
+                document.getElementById('footer-placeholder').innerHTML = html;
+            })
+            .catch(err => {
+                console.error('Footer load error:', err);
+            });
+    </script>
+    
+    <!-- CENTRAL NAV LOADER — one file, all pages use it -->
+    <script src="nav.js"></script>
 </body>
 </html>
