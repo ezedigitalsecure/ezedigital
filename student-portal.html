@@ -137,6 +137,14 @@
             color: #B2F0F2;
             font-size: 0.9rem;
         }
+        /* === NEW: Black box wrapper for Course Resources === */
+        .resources-section {
+            background: rgba(0, 8, 10, 0.9);
+            border: 1px solid rgba(0, 184, 187, 0.25);
+            border-radius: 14px;
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+        }
         .section-heading {
             font-size: 1.5rem;
             color: #00E6E9;
@@ -156,7 +164,6 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 1.5rem;
-            margin-bottom: 2.5rem;
         }
         .course-card {
             background: rgba(0, 12, 14, 0.85);
@@ -477,9 +484,14 @@
                     <p>All course materials carry formal Continuing Professional Development accreditation — verifiable, recognised, and built to current standards.</p>
                 </div>
             </div>
-            <h2 class="section-heading">Course Resources</h2>
-            <p class="section-subtitle">CPD accredited materials — download your manual and supporting resources for each enrolled course.</p>
-            <div class="courses-grid" id="coursesGrid"></div>
+
+            <!-- === BLACK BOX WRAPPER === -->
+            <div class="resources-section">
+                <h2 class="section-heading">Course Resources</h2>
+                <p class="section-subtitle">CPD accredited materials — download your manual and supporting resources for each enrolled course.</p>
+                <div class="courses-grid" id="coursesGrid"></div>
+            </div>
+
             <div class="security-note">
                 <h3>Important — How Access Is Protected</h3>
                 <p>This page uses a password gate to keep the course list tidy and private. For <strong>real security</strong> of the PDF files themselves, your course files are stored in separate password-protected folders on the server.</p>
@@ -535,9 +547,6 @@
 
     <script>
     (function () {
-        // ============================================================
-        // COURSE CONFIGURATION — Passwords below for your reference
-        // ============================================================
         var COURSES = [
             {
                 slug: 'cyber',
