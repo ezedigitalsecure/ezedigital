@@ -1,10 +1,7 @@
-<!-- REUSABLE HAMBURGER + DROPDOWN MENU → One source of truth for all pages -->
 <div class="menu-wrapper">
-    <div class="hamburger-circle" onclick="toggleMenu()">
+    <div class="hamburger-circle">
         <div class="hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
+            <span></span><span></span><span></span>
         </div>
     </div>
     <nav class="dropdown-menu" id="dropdownMenu">
@@ -14,15 +11,6 @@
         <a class="dropdown-link" href="contact.html">Contact</a>
         <a class="dropdown-link" href="academy.html">Academy</a>
         <a class="dropdown-link" href="student-portal.html">Student Portal</a>
-        <a class="dropdown-link" href="#" onclick="alert('Client Portal coming soon. Watch this space.'); return false;">Client Portal</a>
+        <a class="dropdown-link" href="#" data-alert="Client Portal coming soon. Watch this space.">Client Portal</a>
     </nav>
 </div>
-
-<script>
-function toggleMenu() {
-    const hamburger = document.getElementById('hamburger');
-    const dropdown = document.getElementById('dropdownMenu');
-    if (hamburger) hamburger.classList.toggle('open');
-    if (dropdown) dropdown.classList.toggle('open');
-}
-</script>
