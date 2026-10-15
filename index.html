@@ -12,7 +12,13 @@
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        html, body { min-height: 100%; }
+        /* ✅ FIXED: matches original working structure */
+        html, body { 
+            height: 100%; 
+            margin: 0; 
+            padding: 0; 
+            overflow: hidden; 
+        }
         
         /* Background */
         .static-canvas {
@@ -31,6 +37,17 @@
             top: 0; right: 0;
             padding: 1.5rem 2.5rem;
             z-index: 100;
+        }
+        
+        /* ✅ FIXED: scroll container added */
+        .scrollable-pages {
+            position: absolute;
+            inset: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 50;
+            overflow-y: auto;
+            background: transparent;
         }
         
         .page-content {
@@ -111,20 +128,25 @@
         <div id="nav-container"></div>
     </header>
     
-    <main class="page-content">
-        <div class="hero-box">
-            <h1>Welcome to Eze Digital</h1>
-            <p class="hero-tagline">Where heart meets HTML<br>your partner in creating your secure online home</p>
-            <p class="hero-desc">We build beautiful protected digital foundations that feel like you and grow with you. From website design to cybersecurity and training — everything crafted with care.</p>
-            <a href="contact.html" class="btn">Let's Talk</a>
-        </div>
-    </main>
+    <!-- ✅ FIXED: scroll container wraps everything -->
+    <div class="scrollable-pages">
+        <main class="page-content">
+            <div class="hero-box">
+                <h1>Welcome to Eze Digital</h1>
+                <p class="hero-tagline">Where heart meets HTML<br>your partner in creating your secure online home</p>
+                <p class="hero-desc">We build beautiful protected digital foundations that feel like you and grow with you. From website design to cybersecurity and training — everything crafted with care.</p>
+                <a href="contact.html" class="btn">Let's Talk</a>
+            </div>
+        </main>
+        
+        <!-- ✅ Footer inside scroll container — exactly your working code -->
+        <div id="footer-placeholder"></div>
+    </div>
     
-    <!-- 1. CENTRAL NAV — exactly from your working second file -->
+    <!-- Central nav loader -->
     <script src="nav.js"></script>
     
-        <!-- Footer loaded centrally — NO footer styling in this file -->
-    <div id="footer-placeholder"></div>
+    <!-- ✅ YOUR EXACT WORKING FOOTER FETCH — no changes -->
     <script>
         fetch('footer.html')
             .then(res => {
