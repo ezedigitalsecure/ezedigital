@@ -6,8 +6,8 @@
     <title>Eze Digital — Secure & Evolve</title>
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; form-action 'self' https://formspree.io;">
     
-    <link rel="stylesheet" href="nav-styles.css">
-    <link rel="stylesheet" href="footerstyles.css">
+    <link rel="stylesheet" href="nav-styles.css?v=1">
+    <link rel="stylesheet" href="footerstyles.css?v=3">
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
@@ -15,7 +15,7 @@
         
         .static-canvas {
             position: fixed;
-            inset: 0;
+            top: 0; left: 0;
             width: 100vw; height: 100vh;
             z-index: 1;
             background:
@@ -39,7 +39,6 @@
             justify-content: center;
             padding: 6rem 2rem 4rem;
         }
-        
         .hero-box {
             width: 92%;
             max-width: 900px;
@@ -49,13 +48,12 @@
             border-radius: 12px;
             border: 1px solid rgba(0, 184, 187, 0.2);
         }
-        
         .hero-box h1 {
             color: #00E6E9;
             font-size: 2.6rem;
             margin-bottom: 0.8rem;
+            font-weight: 600;
         }
-        
         .hero-tagline {
             color: #66F0F3;
             font-size: 1.25rem;
@@ -63,7 +61,6 @@
             margin-bottom: 1.5rem;
             font-style: italic;
         }
-        
         .hero-desc {
             color: #99E6E8;
             font-size: 1rem;
@@ -72,7 +69,6 @@
             max-width: 600px;
             margin-inline: auto;
         }
-        
         .btn {
             background: linear-gradient(90deg, #00E6E9, #00B8BB);
             color: #001418;
@@ -84,9 +80,9 @@
             text-decoration: none;
             display: inline-block;
         }
-        
         .btn:hover {
             box-shadow: 0 0 15px rgba(0, 230, 233, 0.5);
+            transform: scale(1.05);
         }
         
         #footer-placeholder {
@@ -98,6 +94,9 @@
             header { padding: 1rem 1.2rem; }
             .hero-box { padding: 2rem 1.8rem; }
             .hero-box h1 { font-size: 2rem; }
+        }
+        @media (max-width: 480px) {
+            .hero-box { padding: 1.5rem 1.2rem; }
         }
     </style>
 </head>
@@ -117,21 +116,23 @@
         </div>
     </div>
     
-    <!-- FOOTER — directly in body, exactly where it worked before -->
+    <!-- ✅ YOUR EXACT WORKING FOOTER — UNCHANGED -->
     <div id="footer-placeholder"></div>
     <script>
         fetch('footer.html')
             .then(res => {
-                if (!res.ok) throw new Error('footer.html not found');
+                if (!res.ok) throw new Error('Footer file not found');
                 return res.text();
             })
             .then(html => {
                 document.getElementById('footer-placeholder').innerHTML = html;
             })
-            .catch(err => console.error('Footer error:', err));
+            .catch(err => {
+                console.error('Footer load error:', err);
+            });
     </script>
     
-    <!-- NAV — loads after footer, no conflict -->
+    <!-- ✅ CENTRAL NAV LOADER -->
     <script src="nav.js"></script>
 </body>
 </html>
