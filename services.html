@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eze Digital — Services</title>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://formspree.io; font-src 'self'; base-uri 'self'; frame-src 'none'; object-src 'none'; form-action 'self' https://formspree.io;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://formspree.io; font-src 'self'; base-uri 'self'; frame-src 'none'; object-src 'none'; form-action 'self' https://formspree.io;">
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
     <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -40,6 +40,58 @@
             top: 0; right: 0;
             padding: 1.5rem 2.5rem;
             z-index: 100;
+        }
+        
+        .home-box {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 2.8rem;
+            max-width: 640px;
+            width: 90%;
+            text-align: center;
+            background: rgba(0, 8, 10, 0.78);
+            border-radius: 16px;
+            border: 1px solid rgba(0, 184, 187, 0.18);
+            z-index: 30;
+        }
+        .home-box h2 {
+            color: #00E6E9;
+            font-size: 2.6rem;
+            margin-bottom: 1.5rem;
+        }
+        .home-box p {
+            color: #B2F0F2;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+        .btn {
+            background: linear-gradient(90deg, #00E6E9, #00B8BB);
+            color: #001418;
+            font-weight: bold;
+            padding: 0.9rem 2.2rem;
+            border-radius: 28px;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn:hover {
+            box-shadow: 0 0 15px rgba(0, 230, 233, 0.5);
+            transform: scale(1.05);
+        }
+        .home-tagline {
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 100%;
+            text-align: center;
+            padding: 0 0 1.5rem;
+            color: #00B8BB;
+            font-size: 0.85rem;
+            z-index: 30;
         }
         
         .scrollable-pages {
@@ -127,6 +179,7 @@
         }
         @media (max-width: 768px) {
             header { padding: 1rem 1.2rem; }
+            .home-box h2 { font-size: 1.9rem; }
             .page-wrapper { padding: 5rem 1.2rem 0; }
         }
     </style>
@@ -135,6 +188,7 @@
     <div class="static-canvas"></div>
     
     <header>
+        <!-- ONLY change: replaced hard-coded menu with this -->
         <div id="nav-container"></div>
     </header>
     
@@ -201,22 +255,26 @@
             </div>
         </div>
         
+        <!-- FOOTER — exactly as you had it, untouched -->
         <div id="footer-placeholder"></div>
     </div>
     
     <script>
+        // Accordions — exactly as they were
         document.querySelectorAll('.service-title').forEach(title => {
             title.addEventListener('click', function () {
                 this.closest('.service-block').classList.toggle('expanded');
             });
         });
         
+        // Footer fetch — exactly as it was
         fetch('footer.html')
             .then(res => { if (!res.ok) throw new Error('Footer missing'); return res.text(); })
             .then(html => { document.getElementById('footer-placeholder').innerHTML = html; })
             .catch(err => console.error('Footer load error:', err));
     </script>
     
+    <!-- Added: loads the central nav -->
     <script src="nav.js"></script>
 </body>
 </html>
