@@ -6,8 +6,8 @@
     <title>Eze Digital — Secure & Evolve</title>
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; form-action 'self' https://formspree.io;">
     
-    <link rel="stylesheet" href="nav-styles.css?v=1">
-    <link rel="stylesheet" href="footerstyles.css?v=3">
+    <link rel="stylesheet" href="nav-styles.css">
+    <link rel="stylesheet" href="footerstyles.css">
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
@@ -15,7 +15,7 @@
         
         .static-canvas {
             position: fixed;
-            top: 0; left: 0;
+            inset: 0;
             width: 100vw; height: 100vh;
             z-index: 1;
             background:
@@ -117,23 +117,21 @@
         </div>
     </div>
     
-    <!-- YOUR EXACT WORKING FOOTER — unchanged -->
+    <!-- FOOTER — directly in body, exactly where it worked before -->
     <div id="footer-placeholder"></div>
     <script>
         fetch('footer.html')
             .then(res => {
-                if (!res.ok) throw new Error('Footer file not found');
+                if (!res.ok) throw new Error('footer.html not found');
                 return res.text();
             })
             .then(html => {
                 document.getElementById('footer-placeholder').innerHTML = html;
             })
-            .catch(err => {
-                console.error('Footer load error:', err);
-            });
+            .catch(err => console.error('Footer error:', err));
     </script>
     
-    <!-- CENTRAL NAV LOADER — one file, all pages use it -->
+    <!-- NAV — loads after footer, no conflict -->
     <script src="nav.js"></script>
 </body>
 </html>
