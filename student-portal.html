@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Portal · Eze Digital</title>
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self'; font-src 'self';">
-    <link rel="stylesheet" href="footerstyles.css?v=6">
+    <link rel="stylesheet" href="footerstyles.css?v=8">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
         html, body { height: 100%; overflow: hidden; }
@@ -168,11 +168,6 @@
             margin-top: 1.25rem;
             display: none;
         }
-        .success-msg {
-            color: #00E6E9;
-            margin-top: 1.25rem;
-            display: none;
-        }
         .courses-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -184,25 +179,20 @@
             border: 1px solid rgba(0, 184, 187, 0.25);
             border-radius: 12px;
             padding: 2rem;
-            display: none;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: all 0.4s ease;
+            transition: all 0.3s ease;
         }
-        .course-card.visible {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .course-card:hover {
+        .course-card.unlocked {
             border-color: rgba(0, 230, 233, 0.5);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 230, 233, 0.15);
+        }
+        .course-card.locked {
+            opacity: 0.7;
+            border-style: dashed;
+            border-color: rgba(0, 136, 138, 0.4);
         }
         .course-badge {
             display: inline-block;
-            background: rgba(0, 184, 187, 0.12);
-            color: #00E6E9;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 600;
             padding: 0.25rem 0.8rem;
             border-radius: 100px;
@@ -210,21 +200,29 @@
             text-transform: uppercase;
             letter-spacing: 0.08em;
         }
-        .course-card h3 {
+        .unlocked .course-badge {
+            background: rgba(0, 230, 233, 0.15);
             color: #00E6E9;
+        }
+        .locked .course-badge {
+            background: rgba(0, 136, 138, 0.15);
+            color: #00888A;
+        }
+        .course-card h3 {
+            color: #fff;
             font-size: 1.15rem;
             margin-bottom: 0.75rem;
         }
         .course-card p {
             color: #B2F0F2;
             font-size: 0.9rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
             line-height: 1.7;
         }
         .download-link {
             display: block;
-            padding: 0.85rem 1.25rem;
-            margin-bottom: 0.6rem;
+            padding: 0.75rem 1.25rem;
+            margin-bottom: 0.5rem;
             background: rgba(0, 184, 187, 0.1);
             border: 1px solid rgba(0, 184, 187, 0.2);
             border-radius: 8px;
@@ -237,14 +235,16 @@
             background: rgba(0, 230, 233, 0.18);
             border-color: #00E6E9;
         }
-        .download-link.coming-soon {
-            opacity: 0.55;
-            cursor: not-allowed;
-            pointer-events: none;
+        .locked-note {
+            color: #00888A;
+            font-size: 0.85rem;
+            padding: 0.75rem;
+            border-top: 1px dashed rgba(0, 136, 138, 0.2);
+            margin-top: 0.5rem;
         }
-        .download-link.coming-soon:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(255, 255, 255, 0.1);
+        .locked-note a {
+            color: #00B8BB;
+            text-decoration: underline;
         }
         .reset-note {
             margin-top: 2rem;
@@ -252,6 +252,7 @@
             border-top: 1px solid rgba(0, 184, 187, 0.1);
             color: #00888A;
             font-size: 0.85rem;
+            text-align: center;
         }
         .reset-btn {
             background: none;
@@ -263,7 +264,7 @@
             margin-top: 0.5rem;
         }
         .reset-btn:hover { color: #00E6E9; }
-        .info-note {
+        .portal-intro {
             background: rgba(0, 184, 187, 0.08);
             border-left: 3px solid #00B8BB;
             padding: 1rem 1.25rem;
@@ -305,29 +306,31 @@
             <div class="hero">
                 <p class="hero-category">Secure Student Area</p>
                 <h1>Student Portal</h1>
-                <p>Enter your unique course password to access your resources — only your purchased course will appear.</p>
+                <p>Enter any of your course passwords to unlock your resources. All courses are shown below — unlock more passwords to access additional materials.</p>
             </div>
 
-            <div class="info-note">
-                📌 <strong>Resources being prepared:</strong> Manual download links will activate once your course materials are fully set up. Your password confirms your access — files will appear here when ready.
-            </div>
-
-            <!-- LOCKED FRONT PAGE → Password Only -->
-            <div class="lock-section" id="lockScreen">
-                <h2>🔒 Enter Your Course Password</h2>
-                <p>Type the password sent to you for your specific training course.</p>
-                <div class="input-group">
-                    <input type="password" id="coursePassword" class="input-field" placeholder="Enter password here...">
-                    <button class="btn-primary" onclick="unlockCourse()">Unlock My Course</button>
+            <!-- LOCKED ENTRY SCREEN -->
+            <div id="entryScreen">
+                <div class="lock-section">
+                    <h2>🔒 Enter Your Course Password</h2>
+                    <p>Type the password provided for any of your courses to get started.</p>
+                    <div class="input-group">
+                        <input type="password" id="coursePassword" class="input-field" placeholder="Enter password here...">
+                        <button class="btn-primary" onclick="unlockCourse()">Unlock Course</button>
+                    </div>
+                    <p class="error-msg" id="errorMsg">Password not recognised. Check for typos or contact us if you need help.</p>
                 </div>
-                <p class="error-msg" id="errorMsg">Password not recognised. Check for typos or contact us if you need help.</p>
             </div>
 
-            <!-- UNLOCKED CONTENT → Only their course shows -->
-            <div id="unlockedContent" style="display: none;">
-                <div class="lock-section" style="padding: 2rem; margin-bottom: 2rem;">
-                    <h2 style="color:#00E6E9;">✅ Access Granted</h2>
-                    <p>Welcome back. Your course resources are below. Links will activate when your manual is ready.</p>
+            <!-- FULL PORTAL — All Courses Visible -->
+            <div id="portalContent" style="display: none;">
+                <div class="portal-intro">
+                    ✅ <strong>Access granted.</strong> Your unlocked courses are ready below. Enter another password to add more courses to your portal.
+                </div>
+
+                <div class="lock-section" style="padding: 1.5rem; margin-bottom: 2rem;">
+                    <input type="password" id="addPassword" class="input-field" placeholder="Unlock another course..." style="max-width: 300px;">
+                    <button class="btn-primary" style="padding: 0.7rem 1.5rem; font-size: 0.9rem;" onclick="addAnotherCourse()">Add Course</button>
                 </div>
 
                 <div class="courses-grid">
@@ -336,9 +339,14 @@
                         <span class="course-badge">Half Day Course</span>
                         <h3>Cybersecurity Awareness for Everyone</h3>
                         <p>Core security principles, phishing defence, password safety, and incident response protocols — built for all staff levels.</p>
-                        <a href="#" class="download-link coming-soon" onclick="return false;">📄 Course Manual — Coming Soon</a>
-                        <a href="#" class="download-link coming-soon" onclick="return false;">📊 Presentation Slides — Coming Soon</a>
-                        <a href="#" class="download-link coming-soon" onclick="return false;">📋 Quick Reference Pack — Coming Soon</a>
+                        <div class="unlocked-resources" style="display: none;">
+                            <a href="#" class="download-link">📄 Course Manual</a>
+                            <a href="#" class="download-link">📊 Presentation Slides</a>
+                            <a href="#" class="download-link">📋 Quick Reference Pack</a>
+                        </div>
+                        <div class="locked-note">
+                            🔒 Not yet purchased. <a href="academy.html">View course details →</a>
+                        </div>
                     </div>
 
                     <!-- GDPR / DATA PROTECTION -->
@@ -346,9 +354,14 @@
                         <span class="course-badge">1-Day Course</span>
                         <h3>Data Protection & UK GDPR Essentials</h3>
                         <p>Legal obligations, consent management, subject access requests, and practical data security measures for your organisation.</p>
-                        <a href="#" class="download-link coming-soon" onclick="return false;">📄 Course Manual — Coming Soon</a>
-                        <a href="#" class="download-link coming-soon" onclick="return false;">📊 Presentation Slides — Coming Soon</a>
-                        <a href="#" class="download-link coming-soon" onclick="return false;">📋 Compliance Template Pack — Coming Soon</a>
+                        <div class="unlocked-resources" style="display: none;">
+                            <a href="#" class="download-link">📄 Course Manual</a>
+                            <a href="#" class="download-link">📊 Presentation Slides</a>
+                            <a href="#" class="download-link">📋 Compliance Template Pack</a>
+                        </div>
+                        <div class="locked-note">
+                            🔒 Not yet purchased. <a href="academy.html">View course details →</a>
+                        </div>
                     </div>
 
                     <!-- SECURE SYSTEMS -->
@@ -356,9 +369,14 @@
                         <span class="course-badge">2-Day Course</span>
                         <h3>Secure Systems & Infrastructure</h3>
                         <p>Network hardening, secure remote access, identity management, monitoring, and building a security-first culture — for IT teams and leaders.</p>
-                        <a href="#" class="download-link coming-soon" onclick="return false;">📄 Course Manual — Coming Soon</a>
-                        <a href="#" class="download-link coming-soon" onclick="return false;">📊 Presentation Slides — Coming Soon</a>
-                        <a href="#" class="download-link coming-soon" onclick="return false;">🔐 Technical Policy Pack — Coming Soon</a>
+                        <div class="unlocked-resources" style="display: none;">
+                            <a href="#" class="download-link">📄 Course Manual</a>
+                            <a href="#" class="download-link">📊 Presentation Slides</a>
+                            <a href="#" class="download-link">🔐 Technical Policy Pack</a>
+                        </div>
+                        <div class="locked-note">
+                            🔒 Not yet purchased. <a href="academy.html">View course details →</a>
+                        </div>
                     </div>
 
                     <!-- BESPOKE TRAINING -->
@@ -366,15 +384,19 @@
                         <span class="course-badge">Custom Training</span>
                         <h3>Bespoke Tailored Training</h3>
                         <p>Your custom-built course — policies, scenarios, and content designed specifically for your organisation's needs.</p>
-                        <a href="#" class="download-link coming-soon" onclick="return false;">📄 Course Manual — Coming Soon</a>
-                        <a href="#" class="download-link coming-soon" onclick="return false;">📊 Custom Presentation — Coming Soon</a>
-                        <a href="#" class="download-link coming-soon" onclick="return false;">📁 Your Organisation Resources — Coming Soon</a>
+                        <div class="unlocked-resources" style="display: none;">
+                            <a href="#" class="download-link">📄 Course Manual</a>
+                            <a href="#" class="download-link">📊 Custom Presentation</a>
+                            <a href="#" class="download-link">📁 Your Organisation Resources</a>
+                        </div>
+                        <div class="locked-note">
+                            🔒 Not yet purchased. <a href="academy.html">View course details →</a>
+                        </div>
                     </div>
                 </div>
 
                 <div class="reset-note">
-                    Not the right course?
-                    <button class="reset-btn" onclick="resetPortal()">← Enter a different password</button>
+                    <button class="reset-btn" onclick="resetPortal()">← Reset Portal — Clear all unlocked courses</button>
                 </div>
             </div>
         </div>
@@ -402,54 +424,67 @@
             'EzeBespoke26!': { id: 'card-bespoke', name: 'Bespoke Training' }
         };
 
+        // Track unlocked courses
+        let unlocked = new Set(JSON.parse(sessionStorage.getItem('unlockedCourses') || '[]'));
+
+        function applyUnlockState() {
+            for (const [password, course] of Object.entries(courses)) {
+                const card = document.getElementById(course.id);
+                if (unlocked.has(course.id)) {
+                    card.classList.remove('locked');
+                    card.classList.add('unlocked');
+                    card.querySelector('.unlocked-resources').style.display = 'block';
+                    card.querySelector('.locked-note').style.display = 'none';
+                } else {
+                    card.classList.add('locked');
+                    card.classList.remove('unlocked');
+                    card.querySelector('.unlocked-resources').style.display = 'none';
+                    card.querySelector('.locked-note').style.display = 'block';
+                }
+            }
+        }
+
+        function processPassword(input) {
+            if (courses[input]) {
+                const course = courses[input];
+                unlocked.add(course.id);
+                sessionStorage.setItem('unlockedCourses', JSON.stringify([...unlocked]));
+                applyUnlockState();
+                return true;
+            }
+            return false;
+        }
+
         function unlockCourse() {
             const input = document.getElementById('coursePassword').value.trim();
             const errorMsg = document.getElementById('errorMsg');
 
-            if (courses[input]) {
-                // Correct password — show ONLY their course
+            if (processPassword(input)) {
                 errorMsg.style.display = 'none';
-                const course = courses[input];
-
-                // Hide lock screen, show content
-                document.getElementById('lockScreen').style.display = 'none';
-                document.getElementById('unlockedContent').style.display = 'block';
-
-                // Show ONLY their card
-                document.querySelectorAll('.course-card').forEach(card => {
-                    card.classList.remove('visible');
-                });
-                document.getElementById(course.id).classList.add('visible');
-
-                // Remember for this session
-                sessionStorage.setItem('unlockedCourse', course.id);
-                sessionStorage.setItem('unlockedPassword', input);
+                document.getElementById('entryScreen').style.display = 'none';
+                document.getElementById('portalContent').style.display = 'block';
             } else {
                 errorMsg.style.display = 'block';
             }
         }
 
-        // Restore if already unlocked
-        window.onload = function() {
-            const savedCourse = sessionStorage.getItem('unlockedCourse');
-            const savedPassword = sessionStorage.getItem('unlockedPassword');
-
-            if (savedCourse && savedPassword && courses[savedPassword]) {
-                document.getElementById('lockScreen').style.display = 'none';
-                document.getElementById('unlockedContent').style.display = 'block';
-                document.getElementById(savedCourse).classList.add('visible');
+        function addAnotherCourse() {
+            const input = document.getElementById('addPassword').value.trim();
+            if (!processPassword(input)) {
+                alert('Password not recognised — check and try again.');
             }
-        };
+            document.getElementById('addPassword').value = '';
+        }
 
-        // Let them switch courses
         function resetPortal() {
-            sessionStorage.clear();
-            document.getElementById('lockScreen').style.display = 'block';
-            document.getElementById('unlockedContent').style.display = 'none';
-            document.getElementById('coursePassword').value = '';
-            document.querySelectorAll('.course-card').forEach(card => {
-                card.classList.remove('visible');
-            });
+            if (confirm('Clear all unlocked courses? You will need to re-enter passwords to access them again.')) {
+                unlocked.clear();
+                sessionStorage.removeItem('unlockedCourses');
+                document.getElementById('entryScreen').style.display = 'block';
+                document.getElementById('portalContent').style.display = 'none';
+                document.getElementById('coursePassword').value = '';
+                applyUnlockState();
+            }
         }
 
         function toggleMenu() {
@@ -457,12 +492,23 @@
             document.getElementById('dropdownMenu').classList.toggle('open');
         }
 
-        // Allow Enter key to submit
+        // Enter key support
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' && document.activeElement.id === 'coursePassword') {
-                unlockCourse();
+            if (e.key === 'Enter') {
+                if (document.activeElement.id === 'coursePassword') unlockCourse();
+                if (document.activeElement.id === 'addPassword') addAnotherCourse();
             }
         });
+
+        // Restore state on load
+        window.onload = function() {
+            unlocked = new Set(JSON.parse(sessionStorage.getItem('unlockedCourses') || '[]'));
+            if (unlocked.size > 0) {
+                document.getElementById('entryScreen').style.display = 'none';
+                document.getElementById('portalContent').style.display = 'block';
+                applyUnlockState();
+            }
+        };
     </script>
 </body>
 </html>
