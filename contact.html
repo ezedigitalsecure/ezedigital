@@ -190,21 +190,7 @@
     <div class="static-canvas"></div>
 
     <header>
-        <div class="menu-wrapper">
-            <div class="hamburger-circle" onclick="toggleMenu()">
-                <div class="hamburger" id="hamburger">
-                    <span></span><span></span><span></span>
-                </div>
-            </div>
-            <nav class="dropdown-menu" id="dropdownMenu">
-                <a class="dropdown-link" href="index.html">Home</a>
-                <a class="dropdown-link" href="services.html">Services</a>
-                <a class="dropdown-link" href="about.html">About Eze Digital</a>
-                <a class="dropdown-link active" href="contact.html">Contact</a>
-                <a class="dropdown-link" href="academy.html">Academy</a>
-                <a class="dropdown-link" href="#" onclick="alert('Client Portal coming soon. Watch this space.'); return false;">Client Portal</a>
-            </nav>
-        </div>
+        <div id="nav-container"></div>
     </header>
 
     <div class="scrollable-pages">
@@ -257,15 +243,6 @@
         </script>
     </div>
 
-    <script>
-        function toggleMenu() {
-            document.getElementById('hamburger').classList.toggle('open');
-            document.getElementById('dropdownMenu').classList.toggle('open');
-        }
-        // Show thank-you message on return from Formspree
-        if (window.location.search.includes('submitted=yes')) {
-            document.getElementById('thankYouMsg').style.display = 'block';
-        }
-    </script>
+   <script src="nav.js"></script>
 </body>
 </html>
