@@ -6,17 +6,14 @@
     <title>Eze Digital — Secure & Evolve</title>
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; form-action 'self' https://formspree.io;">
     
-    <!-- Shared central styles -->
-    <link rel="stylesheet" href="nav-styles.css?v=1">
     <link rel="stylesheet" href="footerstyles.css?v=3">
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        html, body { min-height: 100%; }
+        html, body { height: 100%; margin: 0; padding: 0; overflow: hidden; }
         
-        /* Background */
         .static-canvas {
-            position: fixed;
+            position: absolute;
             inset: 0;
             width: 100vw; height: 100vh;
             z-index: 1;
@@ -26,7 +23,6 @@
             background-size: cover;
         }
         
-        /* Header positioning only — no menu styles here */
         header {
             position: absolute;
             top: 0; right: 0;
@@ -34,30 +30,40 @@
             z-index: 100;
         }
         
-        /* Hero — centered */
+        .scrollable-pages {
+            position: absolute;
+            inset: 0;
+            width: 100vw; height: 100vh;
+            z-index: 50;
+            overflow-y: auto;
+            background: transparent;
+        }
+        
         .page-content {
-            position: relative; z-index: 10;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 6rem 2rem 4rem;
         }
+        
         .hero-box {
             width: 92%;
             max-width: 900px;
             padding: 3rem 4rem;
             text-align: center;
             background: rgba(0, 8, 10, 0.85);
-            border-radius: 12px;
+            border-radius: 14px;
             border: 1px solid rgba(0, 184, 187, 0.2);
         }
+        
         .hero-box h1 {
             color: #00E6E9;
             font-size: 2.6rem;
             margin-bottom: 0.8rem;
             font-weight: 600;
         }
+        
         .hero-tagline {
             color: #66F0F3;
             font-size: 1.25rem;
@@ -65,6 +71,7 @@
             margin-bottom: 1.5rem;
             font-style: italic;
         }
+        
         .hero-desc {
             color: #99E6E8;
             font-size: 1rem;
@@ -73,6 +80,7 @@
             max-width: 600px;
             margin-inline: auto;
         }
+        
         .btn {
             background: linear-gradient(90deg, #00E6E9, #00B8BB);
             color: #001418;
@@ -86,6 +94,7 @@
             text-decoration: none;
             display: inline-block;
         }
+        
         .btn:hover {
             box-shadow: 0 0 15px rgba(0, 230, 233, 0.5);
             transform: scale(1.05);
@@ -96,12 +105,12 @@
             z-index: 50;
         }
         
-        /* Mobile */
         @media (max-width: 768px) {
             header { padding: 1rem 1.2rem; }
             .hero-box { padding: 2rem 1.8rem; }
             .hero-box h1 { font-size: 2rem; }
         }
+        
         @media (max-width: 480px) {
             .hero-box { padding: 1.5rem 1.2rem; }
         }
@@ -114,23 +123,50 @@
         <div id="nav-container"></div>
     </header>
     
-    <main class="page-content">
-        <div class="hero-box">
-            <h1>Welcome to Eze Digital</h1>
-            <p class="hero-tagline">Where heart meets HTML<br>your partner in creating your secure online home</p>
-            <p class="hero-desc">We build beautiful protected digital foundations that feel like you and grow with you. From website design to cybersecurity and training — everything crafted with care.</p>
-            <a href="contact.html" class="btn">Let's Talk</a>
+    <div class="scrollable-pages">
+        <div class="page-content">
+            <div class="hero-box">
+                <h1>Welcome to Eze Digital</h1>
+                <p class="hero-tagline">Where heart meets HTML<br>your partner in creating your secure online home</p>
+                <p class="hero-desc">We build beautiful protected digital foundations that feel like you and grow with you. From website design to cybersecurity and training — everything crafted with care.</p>
+                <a href="contact.html" class="btn">Let's Talk</a>
+            </div>
         </div>
-    </main>
+        
+        <div id="footer-placeholder"></div>
+    </div>
     
-    <!-- Central navigation loader -->
-    <script src="nav.js"></script>
+    <!-- FETCH NAV MENU from nav-menu.html -->
+    <script>
+        fetch('nav-menu.html')
+            .then(res => { if (!res.ok) throw new Error('nav-menu.html missing'); return res.text(); })
+            .then(html => {
+                document.getElementById('nav-container').innerHTML = html;
+                // Attach toggle after menu loads
+                setTimeout(() => {
+                    const circle = document.querySelector('.hamburger-circle');
+                    const hamburger = document.getElementById('hamburger');
+                    const dropdown = document.getElementById('dropdownMenu');
+                    if (circle) {
+                        circle.addEventListener('click', () => {
+                            hamburger?.classList.toggle('open');
+                            dropdown?.classList.toggle('open');
+                        });
+                    }
+                    // Auto-highlight active page
+                    const current = location.pathname.split('/').pop() || 'index.html';
+                    document.querySelectorAll('.dropdown-link').forEach(link => {
+                        if (link.getAttribute('href') === current) link.classList.add('active');
+                    });
+                }, 0);
+            })
+            .catch(err => console.error('Nav load error:', err));
+    </script>
     
-    <!-- Footer -->
-    <div id="footer-placeholder"></div>
+    <!-- FETCH FOOTER from footer.html -->
     <script>
         fetch('footer.html')
-            .then(res => { if (!res.ok) throw new Error('Footer not found'); return res.text(); })
+            .then(res => { if (!res.ok) throw new Error('footer.html missing'); return res.text(); })
             .then(html => { document.getElementById('footer-placeholder').innerHTML = html; })
             .catch(err => console.error('Footer load error:', err));
     </script>
