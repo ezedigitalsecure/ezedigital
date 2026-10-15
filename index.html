@@ -15,7 +15,7 @@
             height: 100%;
             margin: 0;
             padding: 0;
-            overflow: hidden;
+            overflow: hidden; /* ✅ Keep this — matches services.html */
         }
         
         .static-canvas {
@@ -42,7 +42,7 @@
             width: 100vw;
             height: 100vh;
             z-index: 50;
-            overflow-y: auto;
+            overflow-y: auto; /* ✅ Scrolls everything inside */
             background: transparent;
         }
         
@@ -106,6 +106,8 @@
         #footer-placeholder {
             position: relative;
             z-index: 50;
+            clear: both; /* ✅ Ensures it sits below everything */
+            width: 100%;
         }
         
         @media (max-width: 768px) {
@@ -119,11 +121,9 @@
     <div class="static-canvas"></div>
     
     <header>
-        <!-- ✅ HAMBURGER LOADS HERE via nav.js -->
         <div id="nav-container"></div>
     </header>
     
-    <!-- ✅ EVERYTHING inside scroll container -->
     <div class="scrollable-pages">
         <div class="page-content">
             <div class="hero-box">
@@ -134,26 +134,24 @@
             </div>
         </div>
         
-        <!-- ✅ FOOTER INSIDE scroll container — exactly your working code -->
+        <!-- ✅ FOOTER INSIDE scroll container → scripts also INSIDE -->
         <div id="footer-placeholder"></div>
+        
+        <!-- ✅ BOTH SCRIPTS INSIDE scroll container → content loads in place -->
+        <script src="nav.js"></script>
+        <script>
+            fetch('footer.html')
+                .then(res => {
+                    if (!res.ok) throw new Error('Footer file not found');
+                    return res.text();
+                })
+                .then(html => {
+                    document.getElementById('footer-placeholder').innerHTML = html;
+                })
+                .catch(err => {
+                    console.error('Footer load error:', err);
+                });
+        </script>
     </div>
-    
-    <!-- ✅ HAMBURGER LOADER — loads nav-menu.html -->
-    <script src="nav.js"></script>
-    
-    <!-- ✅ YOUR EXACT WORKING FOOTER FETCH — word for word -->
-    <script>
-        fetch('footer.html')
-            .then(res => {
-                if (!res.ok) throw new Error('Footer file not found');
-                return res.text();
-            })
-            .then(html => {
-                document.getElementById('footer-placeholder').innerHTML = html;
-            })
-            .catch(err => {
-                console.error('Footer load error:', err);
-            });
-    </script>
 </body>
 </html>
