@@ -6,7 +6,7 @@
     <title>Eze Digital — Secure & Evolve</title>
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; form-action 'self' https://formspree.io;">
     
-    <!-- Shared styles -->
+    <!-- CENTRAL SHARED STYLES — edit once, changes all pages -->
     <link rel="stylesheet" href="nav-styles.css?v=1">
     <link rel="stylesheet" href="footerstyles.css?v=3">
     
@@ -119,27 +119,27 @@
         </div>
     </main>
     
-    <!-- Navigation -->
+    <!-- CENTRAL NAV — loads nav-menu.html + makes hamburger work -->
     <script src="nav.js"></script>
     
-    <!-- Footer — FULLY RESTORED & WORKING ✅ -->
+    <!-- CENTRAL FOOTER — loads footer.html from one place -->
     <div id="footer-placeholder"></div>
     <script>
-        fetch('footer.html')
-            .then(res => {
-                if (!res.ok) throw new Error('Footer not found');
-                return res.text();
-            })
-            .then(html => {
-                document.getElementById('footer-placeholder').innerHTML = html;
-                console.log('✅ Footer loaded successfully');
-            })
-            .catch(err => {
-                console.error('❌ Footer load error:', err);
-                // Fallback text if file is missing
-                document.getElementById('footer-placeholder').innerHTML = 
-                    '<p style="text-align:center;color:#00B8BB;padding:2rem;">© 2026 Eze Digital · Secure & Evolve</p>';
-            });
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch('footer.html')
+                .then(res => {
+                    if (!res.ok) throw new Error('Footer file not found');
+                    return res.text();
+                })
+                .then(html => {
+                    document.getElementById('footer-placeholder').innerHTML = html;
+                    console.log('✅ Footer loaded from footer.html');
+                })
+                .catch(err => {
+                    console.error('❌ Footer load error:', err.message);
+                    alert('footer.html is missing — upload it to your main folder!');
+                });
+        });
     </script>
 </body>
 </html>
