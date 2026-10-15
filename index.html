@@ -6,7 +6,7 @@
     <title>Eze Digital — Secure & Evolve</title>
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; form-action 'self' https://formspree.io;">
     
-    <!-- Shared central styles -->
+    <!-- Central shared styles -->
     <link rel="stylesheet" href="nav-styles.css?v=1">
     <link rel="stylesheet" href="footerstyles.css?v=3">
     
@@ -26,7 +26,7 @@
             background-size: cover;
         }
         
-        /* Header positioning only — no menu styles here */
+        /* Header positioning only — menu loads from nav-menu.html via nav.js */
         header {
             position: absolute;
             top: 0; right: 0;
@@ -123,16 +123,23 @@
         </div>
     </main>
     
-    <!-- Central navigation loader -->
+    <!-- ✅ CENTRAL NAVIGATION — loads nav-menu.html + makes hamburger work -->
     <script src="nav.js"></script>
     
-    <!-- Footer loader — fully restored ✅ -->
+    <!-- ✅ CENTRAL FOOTER — exact working fetch from your original -->
     <div id="footer-placeholder"></div>
     <script>
         fetch('footer.html')
-            .then(res => { if (!res.ok) throw new Error('Footer not found'); return res.text(); })
-            .then(html => { document.getElementById('footer-placeholder').innerHTML = html; })
-            .catch(err => console.error('Footer load error:', err));
+            .then(res => {
+                if (!res.ok) throw new Error('Footer file not found');
+                return res.text();
+            })
+            .then(html => {
+                document.getElementById('footer-placeholder').innerHTML = html;
+            })
+            .catch(err => {
+                console.error('Footer load error:', err);
+            });
     </script>
 </body>
 </html>
