@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eze Digital — Secure & Evolve</title>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; form-action 'self' https://formspree.io;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; form-action 'self' https://formspree.io;">
     
-    <!-- Shared styles -->
+    <!-- Shared central styles -->
     <link rel="stylesheet" href="nav-styles.css?v=1">
     <link rel="stylesheet" href="footerstyles.css?v=3">
     
@@ -14,10 +14,10 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
         html, body { min-height: 100%; }
         
-        /* BACKGROUND */
+        /* Background */
         .static-canvas {
             position: fixed;
-            top: 0; left: 0;
+            inset: 0;
             width: 100vw; height: 100vh;
             z-index: 1;
             background:
@@ -26,7 +26,7 @@
             background-size: cover;
         }
         
-        /* HEADER — only positioning, no menu styles here */
+        /* Header positioning only — no menu styles here */
         header {
             position: absolute;
             top: 0; right: 0;
@@ -34,7 +34,7 @@
             z-index: 100;
         }
         
-        /* HERO — CENTERED */
+        /* Hero — centered */
         .page-content {
             position: relative; z-index: 10;
             min-height: 100vh;
@@ -71,12 +71,12 @@
             line-height: 1.7;
             margin-bottom: 2rem;
             max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            margin-inline: auto;
         }
         .btn {
             background: linear-gradient(90deg, #00E6E9, #00B8BB);
-            color: #001418; font-weight: bold;
+            color: #001418;
+            font-weight: bold;
             padding: 0.85rem 2.4rem;
             border-radius: 28px;
             border: none;
@@ -96,7 +96,7 @@
             z-index: 50;
         }
         
-        /* MOBILE */
+        /* Mobile */
         @media (max-width: 768px) {
             header { padding: 1rem 1.2rem; }
             .hero-box { padding: 2rem 1.8rem; }
@@ -114,28 +114,23 @@
         <div id="nav-container"></div>
     </header>
     
-    <div class="page-content">
+    <main class="page-content">
         <div class="hero-box">
             <h1>Welcome to Eze Digital</h1>
             <p class="hero-tagline">Where heart meets HTML<br>your partner in creating your secure online home</p>
-            <p class="hero-desc">We build beautiful protected digital foundations that feel like you and grow with you. From website design to cybersecurity and training everything crafted with care.</p>
+            <p class="hero-desc">We build beautiful protected digital foundations that feel like you and grow with you. From website design to cybersecurity and training — everything crafted with care.</p>
             <a href="contact.html" class="btn">Let's Talk</a>
         </div>
-    </div>
+    </main>
     
-    <!-- Load central navigation -->
-    <script>
-        fetch('nav-menu.html')
-            .then(res => { if (!res.ok) throw new Error('Nav file not found'); return res.text(); })
-            .then(html => { document.getElementById('nav-container').innerHTML = html; })
-            .catch(err => console.error('Nav load error:', err));
-    </script>
+    <!-- Central navigation loader -->
+    <script src="nav.js"></script>
     
-    <!-- Load footer -->
+    <!-- Footer -->
     <div id="footer-placeholder"></div>
     <script>
         fetch('footer.html')
-            .then(res => { if (!res.ok) throw new Error('Footer file not found'); return res.text(); })
+            .then(res => { if (!res.ok) throw new Error('Footer not found'); return res.text(); })
             .then(html => { document.getElementById('footer-placeholder').innerHTML = html; })
             .catch(err => console.error('Footer load error:', err));
     </script>
