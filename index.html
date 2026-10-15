@@ -6,7 +6,7 @@
     <title>Eze Digital — Secure & Evolve</title>
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; form-action 'self' https://formspree.io;">
     
-    <!-- CENTRAL SHARED STYLES — edit once, changes all pages -->
+    <!-- Shared central styles -->
     <link rel="stylesheet" href="nav-styles.css?v=1">
     <link rel="stylesheet" href="footerstyles.css?v=3">
     
@@ -119,27 +119,15 @@
         </div>
     </main>
     
-    <!-- CENTRAL NAV — loads nav-menu.html + makes hamburger work -->
+    <!-- BOTH CENTRAL LOADERS — exactly as it was, plus fixed hamburger -->
     <script src="nav.js"></script>
     
-    <!-- CENTRAL FOOTER — loads footer.html from one place -->
     <div id="footer-placeholder"></div>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            fetch('footer.html')
-                .then(res => {
-                    if (!res.ok) throw new Error('Footer file not found');
-                    return res.text();
-                })
-                .then(html => {
-                    document.getElementById('footer-placeholder').innerHTML = html;
-                    console.log('✅ Footer loaded from footer.html');
-                })
-                .catch(err => {
-                    console.error('❌ Footer load error:', err.message);
-                    alert('footer.html is missing — upload it to your main folder!');
-                });
-        });
+        fetch('footer.html')
+            .then(res => { if (!res.ok) throw new Error('Not found'); return res.text(); })
+            .then(html => { document.getElementById('footer-placeholder').innerHTML = html; })
+            .catch(err => console.error('Footer load error:', err));
     </script>
 </body>
 </html>
