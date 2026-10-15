@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Portal · Eze Digital</title>
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self'; font-src 'self';">
-    <link rel="stylesheet" href="footerstyles.css?v=8">
+    <link rel="stylesheet" href="footerstyles.css?v=4">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
         html, body { height: 100%; overflow: hidden; }
@@ -40,6 +40,7 @@
             width: 26px; height: 3px;
             background: linear-gradient(90deg, #00B8BB, #00E6E9);
             border-radius: 2px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
         }
         .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
         .hamburger.open span:nth-child(2) { opacity: 0; }
@@ -73,7 +74,7 @@
         }
         .page-wrapper {
             padding: 6rem 2rem 0;
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
         }
         .hero {
@@ -103,181 +104,341 @@
             margin: 0 auto;
             line-height: 1.7;
         }
-        .lock-section {
+        .info-banner {
             background: rgba(0, 12, 14, 0.85);
             border: 1px solid rgba(0, 184, 187, 0.25);
             border-radius: 12px;
-            padding: 3rem 2rem;
-            margin-bottom: 3rem;
+            padding: 2rem;
+            margin-bottom: 2.5rem;
             text-align: center;
         }
-        .lock-section h2 {
+        .banner-subheading {
             color: #00E6E9;
-            font-size: 1.5rem;
-            margin-bottom: 0.75rem;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
         }
-        .lock-section p {
+        .banner-text {
+            color: #B2F0F2;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+        .banner-text strong { color: #00E6E9; }
+        .cpd-text { margin-top: 1.5rem; }
+        .cpd-text h3 {
+            color: #00E6E9;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.5rem;
+        }
+        .cpd-text p {
+            color: #B2F0F2;
+            font-size: 0.9rem;
+        }
+        .section-heading {
+            font-size: 1.5rem;
+            color: #00E6E9;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+        .section-subtitle {
             color: #B2F0F2;
             margin-bottom: 2rem;
-            max-width: 500px;
+            text-align: center;
+            max-width: 650px;
             margin-left: auto;
             margin-right: auto;
-        }
-        .input-group {
-            display: flex;
-            gap: 0.75rem;
-            max-width: 450px;
-            margin: 0 auto;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .input-field {
-            flex: 1;
-            min-width: 220px;
-            padding: 0.9rem 1.25rem;
-            background: rgba(0, 24, 28, 0.6);
-            border: 1px solid rgba(0, 184, 187, 0.35);
-            border-radius: 8px;
-            color: #fff;
-            font-size: 1rem;
-            outline: none;
-        }
-        .input-field:focus {
-            border-color: #00E6E9;
-            box-shadow: 0 0 12px rgba(0, 230, 233, 0.3);
-        }
-        .btn-primary {
-            display: inline-block;
-            background: linear-gradient(90deg, #00E6E9, #00B8BB);
-            color: #001418;
-            font-weight: bold;
-            padding: 0.9rem 2rem;
-            border-radius: 28px;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-        .btn-primary:hover {
-            background: linear-gradient(90deg, #00E6E9, #00E6E9);
-            box-shadow: 0 0 20px rgba(0, 230, 233, 0.6);
-            transform: scale(1.05);
-        }
-        .error-msg {
-            color: #ff6b6b;
-            margin-top: 1.25rem;
-            display: none;
+            font-size: 0.95rem;
         }
         .courses-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 1.5rem;
-            margin-bottom: 3rem;
+            margin-bottom: 2.5rem;
         }
         .course-card {
             background: rgba(0, 12, 14, 0.85);
             border: 1px solid rgba(0, 184, 187, 0.25);
             border-radius: 12px;
-            padding: 2rem;
-            transition: all 0.3s ease;
+            padding: 1.75rem;
+            transition: transform 0.25s ease, border-color 0.25s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        .course-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(0, 230, 233, 0.5);
         }
         .course-card.unlocked {
-            border-color: rgba(0, 230, 233, 0.5);
-            box-shadow: 0 4px 20px rgba(0, 230, 233, 0.15);
+            border-color: rgba(0, 230, 120, 0.55);
+            box-shadow: 0 0 18px rgba(0, 230, 120, 0.12);
         }
-        .course-card.locked {
-            opacity: 0.7;
-            border-style: dashed;
-            border-color: rgba(0, 136, 138, 0.4);
-        }
-        .course-badge {
-            display: inline-block;
-            font-size: 0.7rem;
-            font-weight: 600;
-            padding: 0.25rem 0.8rem;
-            border-radius: 100px;
+        .course-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 0.5rem;
             margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
         }
-        .unlocked .course-badge {
-            background: rgba(0, 230, 233, 0.15);
+        .course-level {
+            display: inline-block;
+            background: rgba(0, 184, 187, 0.1);
             color: #00E6E9;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.2rem 0.7rem;
+            border-radius: 100px;
         }
-        .locked .course-badge {
-            background: rgba(0, 136, 138, 0.15);
-            color: #00888A;
+        .lock-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 0.25rem 0.65rem;
+            border-radius: 100px;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+        .lock-status.locked {
+            background: rgba(255, 152, 0, 0.12);
+            color: #ffb74d;
+            border: 1px solid rgba(255, 152, 0, 0.35);
+        }
+        .lock-status.unlocked {
+            background: rgba(0, 230, 120, 0.12);
+            color: #69f0ae;
+            border: 1px solid rgba(0, 230, 120, 0.4);
+        }
+        .lock-icon {
+            width: 12px; height: 12px;
+            display: inline-block;
         }
         .course-card h3 {
-            color: #fff;
-            font-size: 1.15rem;
+            color: #00E6E9;
+            font-size: 1.1rem;
             margin-bottom: 0.75rem;
+            line-height: 1.4;
         }
         .course-card p {
             color: #B2F0F2;
-            font-size: 0.9rem;
-            margin-bottom: 1.25rem;
-            line-height: 1.7;
-        }
-        .download-link {
-            display: block;
-            padding: 0.75rem 1.25rem;
-            margin-bottom: 0.5rem;
-            background: rgba(0, 184, 187, 0.1);
-            border: 1px solid rgba(0, 184, 187, 0.2);
-            border-radius: 8px;
-            color: #00E6E9;
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: all 0.25s ease;
-        }
-        .download-link:hover {
-            background: rgba(0, 230, 233, 0.18);
-            border-color: #00E6E9;
-        }
-        .locked-note {
-            color: #00888A;
             font-size: 0.85rem;
-            padding: 0.75rem;
-            border-top: 1px dashed rgba(0, 136, 138, 0.2);
-            margin-top: 0.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            flex: 1;
         }
-        .locked-note a {
-            color: #00B8BB;
-            text-decoration: underline;
-        }
-        .reset-note {
-            margin-top: 2rem;
-            padding-top: 1.5rem;
+        .course-meta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            font-size: 0.8rem;
+            color: #00888A;
             border-top: 1px solid rgba(0, 184, 187, 0.1);
-            color: #00888A;
-            font-size: 0.85rem;
+            padding-top: 1rem;
+            margin-bottom: 1rem;
+        }
+        .course-actions { min-height: 44px; }
+        .btn-primary {
+            display: inline-block;
+            background: linear-gradient(90deg, #00E6E9, #00B8BB);
+            color: #001418;
+            font-weight: bold;
+            padding: 0.7rem 1.5rem;
+            border-radius: 28px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            width: 100%;
             text-align: center;
         }
-        .reset-btn {
+        .btn-primary:hover {
+            background: linear-gradient(90deg, #00E6E9, #00E6E9);
+            box-shadow: 0 0 20px rgba(0, 230, 233, 0.6);
+            transform: scale(1.02);
+        }
+        .btn-ghost {
+            display: inline-block;
+            background: transparent;
+            color: #00B8BB;
+            border: 1px solid rgba(0, 184, 187, 0.4);
+            font-weight: 600;
+            padding: 0.55rem 1rem;
+            border-radius: 24px;
+            text-decoration: none;
+            font-size: 0.82rem;
+            transition: all 0.25s ease;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+        .btn-ghost:hover {
+            border-color: #00E6E9;
+            color: #00E6E9;
+            background: rgba(0, 184, 187, 0.08);
+        }
+        .unlocked-resources {
+            display: none;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+        .course-card.unlocked .unlocked-resources { display: flex; }
+        .course-card.unlocked .locked-cta { display: none; }
+        .res-label {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #69f0ae;
+            margin-bottom: 0.3rem;
+        }
+        .security-note {
+            background: rgba(40, 20, 0, 0.55);
+            border: 1px solid rgba(255, 152, 0, 0.4);
+            border-radius: 12px;
+            padding: 1.75rem 2rem;
+            margin-bottom: 2.5rem;
+        }
+        .security-note h3 {
+            color: #ffb74d;
+            font-size: 1rem;
+            margin-bottom: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+        .security-note p, .security-note li {
+            color: #e0d5c0;
+            font-size: 0.88rem;
+            line-height: 1.7;
+            margin-bottom: 0.4rem;
+        }
+        .security-note ul { padding-left: 1.25rem; margin-top: 0.5rem; }
+        .security-note strong { color: #ffcc80; }
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 8, 10, 0.82);
+            backdrop-filter: blur(4px);
+            z-index: 200;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        .modal-overlay.open { display: flex; }
+        .modal {
+            background: rgba(0, 24, 28, 0.98);
+            border: 1px solid rgba(0, 184, 187, 0.4);
+            border-radius: 14px;
+            padding: 2rem;
+            max-width: 420px;
+            width: 100%;
+            position: relative;
+            box-shadow: 0 0 40px rgba(0, 184, 187, 0.2);
+        }
+        .modal-close {
+            position: absolute;
+            top: 0.9rem; right: 1rem;
             background: none;
             border: none;
             color: #00B8BB;
-            text-decoration: underline;
+            font-size: 1.4rem;
             cursor: pointer;
-            font-size: 0.85rem;
-            margin-top: 0.5rem;
+            line-height: 1;
         }
-        .reset-btn:hover { color: #00E6E9; }
-        .portal-intro {
-            background: rgba(0, 184, 187, 0.08);
-            border-left: 3px solid #00B8BB;
-            padding: 1rem 1.25rem;
-            margin-bottom: 2rem;
+        .modal-close:hover { color: #00E6E9; }
+        .modal h3 {
+            color: #00E6E9;
+            font-size: 1.2rem;
+            margin-bottom: 0.4rem;
+        }
+        .modal-course-name {
             color: #B2F0F2;
             font-size: 0.9rem;
-            border-radius: 0 8px 8px 0;
+            margin-bottom: 1.25rem;
+            line-height: 1.5;
         }
-        #footer-placeholder { margin-top: 4rem; }
+        .modal label {
+            display: block;
+            color: #00B8BB;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.5rem;
+        }
+        .modal input[type="password"] {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            background: rgba(0, 12, 14, 0.9);
+            border: 1px solid rgba(0, 184, 187, 0.35);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            outline: none;
+        }
+        .modal input[type="password"]:focus {
+            border-color: #00E6E9;
+            box-shadow: 0 0 0 2px rgba(0, 230, 233, 0.15);
+        }
+        .modal-error {
+            color: #ff8a65;
+            font-size: 0.82rem;
+            min-height: 1.2em;
+            margin-bottom: 0.8rem;
+            display: none;
+        }
+        .modal-error.show { display: block; }
+        .modal .btn-primary { margin-top: 0.4rem; }
+        .modal-hint {
+            margin-top: 1rem;
+            font-size: 0.78rem;
+            color: #00888A;
+            line-height: 1.5;
+        }
+        #footer-placeholder { margin-top: 3rem; }
+        .fallback-footer {
+            background: rgba(0, 12, 14, 0.92);
+            border-top: 1px solid rgba(0, 184, 187, 0.25);
+            padding: 2.5rem 2rem 2rem;
+            text-align: center;
+            color: #00888A;
+            font-size: 0.85rem;
+        }
+        .fallback-footer .fb-brand {
+            color: #00E6E9;
+            font-weight: 700;
+            letter-spacing: 2px;
+            font-size: 1rem;
+            margin-bottom: 0.4rem;
+        }
+        .fallback-footer .fb-tag {
+            color: #00B8BB;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            margin-bottom: 1.2rem;
+        }
+        .fallback-footer .fb-links {
+            margin-bottom: 1.2rem;
+            display: flex;
+            gap: 1.2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .fallback-footer .fb-links a {
+            color: #00B8BB;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+        .fallback-footer .fb-links a:hover { color: #00E6E9; }
+        .fallback-footer .fb-copy { font-size: 0.78rem; color: #006668; }
         @media (max-width: 768px) {
             header { padding: 1rem 1.2rem; }
             .page-wrapper { padding: 5rem 1.2rem 0; }
-            .input-group { flex-direction: column; width: 100%; }
         }
     </style>
 </head>
@@ -304,211 +465,246 @@
     <div class="scrollable-pages">
         <div class="page-wrapper">
             <div class="hero">
-                <p class="hero-category">Secure Student Area</p>
+                <p class="hero-category">Eze Digital Academy</p>
                 <h1>Student Portal</h1>
-                <p>Enter any of your course passwords to unlock your resources. All courses are shown below — unlock more passwords to access additional materials.</p>
+                <p>Secure access to your course manuals, slides and resources. Each course is unlocked separately with the password you were given on enrolment.</p>
             </div>
-
-            <!-- LOCKED ENTRY SCREEN -->
-            <div id="entryScreen">
-                <div class="lock-section">
-                    <h2>🔒 Enter Your Course Password</h2>
-                    <p>Type the password provided for any of your courses to get started.</p>
-                    <div class="input-group">
-                        <input type="password" id="coursePassword" class="input-field" placeholder="Enter password here...">
-                        <button class="btn-primary" onclick="unlockCourse()">Unlock Course</button>
-                    </div>
-                    <p class="error-msg" id="errorMsg">Password not recognised. Check for typos or contact us if you need help.</p>
+            <div class="info-banner">
+                <h2 class="banner-subheading">Your Courses</h2>
+                <p class="banner-text">Select <strong>Enter Course Password</strong> on a course to unlock its resources. Once unlocked, access stays open for this browser session — you won't need to re-enter the password until you close the tab.</p>
+                <div class="cpd-text">
+                    <h3>CPD Accredited Resources</h3>
+                    <p>All course materials carry formal Continuing Professional Development accreditation — verifiable, recognised, and built to current standards.</p>
                 </div>
             </div>
-
-            <!-- FULL PORTAL — All Courses Visible -->
-            <div id="portalContent" style="display: none;">
-                <div class="portal-intro">
-                    ✅ <strong>Access granted.</strong> Your unlocked courses are ready below. Enter another password to add more courses to your portal.
-                </div>
-
-                <div class="lock-section" style="padding: 1.5rem; margin-bottom: 2rem;">
-                    <input type="password" id="addPassword" class="input-field" placeholder="Unlock another course..." style="max-width: 300px;">
-                    <button class="btn-primary" style="padding: 0.7rem 1.5rem; font-size: 0.9rem;" onclick="addAnotherCourse()">Add Course</button>
-                </div>
-
-                <div class="courses-grid">
-                    <!-- CYBERSECURITY AWARENESS -->
-                    <div class="course-card" id="card-cyber">
-                        <span class="course-badge">Half Day Course</span>
-                        <h3>Cybersecurity Awareness for Everyone</h3>
-                        <p>Core security principles, phishing defence, password safety, and incident response protocols — built for all staff levels.</p>
-                        <div class="unlocked-resources" style="display: none;">
-                            <a href="#" class="download-link">📄 Course Manual</a>
-                            <a href="#" class="download-link">📊 Presentation Slides</a>
-                            <a href="#" class="download-link">📋 Quick Reference Pack</a>
-                        </div>
-                        <div class="locked-note">
-                            🔒 Not yet purchased. <a href="academy.html">View course details →</a>
-                        </div>
-                    </div>
-
-                    <!-- GDPR / DATA PROTECTION -->
-                    <div class="course-card" id="card-gdpr">
-                        <span class="course-badge">1-Day Course</span>
-                        <h3>Data Protection & UK GDPR Essentials</h3>
-                        <p>Legal obligations, consent management, subject access requests, and practical data security measures for your organisation.</p>
-                        <div class="unlocked-resources" style="display: none;">
-                            <a href="#" class="download-link">📄 Course Manual</a>
-                            <a href="#" class="download-link">📊 Presentation Slides</a>
-                            <a href="#" class="download-link">📋 Compliance Template Pack</a>
-                        </div>
-                        <div class="locked-note">
-                            🔒 Not yet purchased. <a href="academy.html">View course details →</a>
-                        </div>
-                    </div>
-
-                    <!-- SECURE SYSTEMS -->
-                    <div class="course-card" id="card-systems">
-                        <span class="course-badge">2-Day Course</span>
-                        <h3>Secure Systems & Infrastructure</h3>
-                        <p>Network hardening, secure remote access, identity management, monitoring, and building a security-first culture — for IT teams and leaders.</p>
-                        <div class="unlocked-resources" style="display: none;">
-                            <a href="#" class="download-link">📄 Course Manual</a>
-                            <a href="#" class="download-link">📊 Presentation Slides</a>
-                            <a href="#" class="download-link">🔐 Technical Policy Pack</a>
-                        </div>
-                        <div class="locked-note">
-                            🔒 Not yet purchased. <a href="academy.html">View course details →</a>
-                        </div>
-                    </div>
-
-                    <!-- BESPOKE TRAINING -->
-                    <div class="course-card" id="card-bespoke">
-                        <span class="course-badge">Custom Training</span>
-                        <h3>Bespoke Tailored Training</h3>
-                        <p>Your custom-built course — policies, scenarios, and content designed specifically for your organisation's needs.</p>
-                        <div class="unlocked-resources" style="display: none;">
-                            <a href="#" class="download-link">📄 Course Manual</a>
-                            <a href="#" class="download-link">📊 Custom Presentation</a>
-                            <a href="#" class="download-link">📁 Your Organisation Resources</a>
-                        </div>
-                        <div class="locked-note">
-                            🔒 Not yet purchased. <a href="academy.html">View course details →</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="reset-note">
-                    <button class="reset-btn" onclick="resetPortal()">← Reset Portal — Clear all unlocked courses</button>
-                </div>
+            <h2 class="section-heading">Course Resources</h2>
+            <p class="section-subtitle">CPD accredited materials — download your manual and supporting resources for each enrolled course.</p>
+            <div class="courses-grid" id="coursesGrid"></div>
+            <div class="security-note">
+                <h3>Important — How Access Is Protected</h3>
+                <p>This page uses a password gate to keep the course list tidy and private. For <strong>real security</strong> of the PDF files themselves, your course files are stored in separate password-protected folders on the server.</p>
+                <ul>
+                    <li>Each course's files live in their own folder with their own password — a student on one course cannot access another course's files.</li>
+                    <li>Even if someone guesses a direct PDF link, the server will still ask for that course's credentials before serving the file.</li>
+                    <li>Passwords are issued by Eze Digital on enrolment and can be changed at any time — just get in touch.</li>
+                </ul>
+                <p style="margin-top:0.75rem;">Lost your password? <strong>Contact Eze Digital</strong> via the contact page and we'll re-issue your course access details after verifying your enrolment.</p>
             </div>
         </div>
-
-        <div id="footer-placeholder"></div>
+        <div id="footer-placeholder">
+            <footer class="fallback-footer">
+                <div class="fb-brand">EZE DIGITAL</div>
+                <div class="fb-tag">Secure &amp; Evolve</div>
+                <div class="fb-links">
+                    <a href="index.html">Home</a>
+                    <a href="services.html">Services</a>
+                    <a href="about.html">About</a>
+                    <a href="academy.html">Academy</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="fb-copy">&copy; 2026 Eze Digital · CPD Accredited Training · All rights reserved</div>
+            </footer>
+        </div>
         <script>
             fetch('footer.html')
-                .then(res => {
-                    if (!res.ok) throw new Error('Footer not found');
-                    return res.text();
-                })
-                .then(html => {
-                    document.getElementById('footer-placeholder').innerHTML = html;
-                })
+                .then(res => { if (!res.ok) throw new Error('Footer not found'); return res.text(); })
+                .then(html => { document.getElementById('footer-placeholder').innerHTML = html; })
                 .catch(err => console.error('Footer load error:', err));
         </script>
     </div>
 
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+            <h3 id="modalTitle">Enter Course Password</h3>
+            <div class="modal-course-name" id="modalCourseName"></div>
+            <label for="pwInput">Course Password</label>
+            <input type="password" id="pwInput" placeholder="Enter your course password" autocomplete="off">
+            <div class="modal-error" id="modalError">Incorrect password. Please try again or contact us if you've lost your details.</div>
+            <button class="btn-primary" id="pwSubmit">Unlock Course</button>
+            <div class="modal-hint">Passwords are case-sensitive. Your password was sent after enrolment.</div>
+        </div>
+    </div>
+
     <script>
-        // PASSWORD LIST — Edit these anytime
-        const courses = {
-            'EzeCyber26!': { id: 'card-cyber', name: 'Cybersecurity Awareness' },
-            'EzeGDPR26!': { id: 'card-gdpr', name: 'Data Protection & GDPR' },
-            'EzeSecure26!': { id: 'card-systems', name: 'Secure Systems & Infrastructure' },
-            'EzeBespoke26!': { id: 'card-bespoke', name: 'Bespoke Training' }
-        };
-
-        // Track unlocked courses
-        let unlocked = new Set(JSON.parse(sessionStorage.getItem('unlockedCourses') || '[]'));
-
-        function applyUnlockState() {
-            for (const [password, course] of Object.entries(courses)) {
-                const card = document.getElementById(course.id);
-                if (unlocked.has(course.id)) {
-                    card.classList.remove('locked');
-                    card.classList.add('unlocked');
-                    card.querySelector('.unlocked-resources').style.display = 'block';
-                    card.querySelector('.locked-note').style.display = 'none';
-                } else {
-                    card.classList.add('locked');
-                    card.classList.remove('unlocked');
-                    card.querySelector('.unlocked-resources').style.display = 'none';
-                    card.querySelector('.locked-note').style.display = 'block';
-                }
-            }
-        }
-
-        function processPassword(input) {
-            if (courses[input]) {
-                const course = courses[input];
-                unlocked.add(course.id);
-                sessionStorage.setItem('unlockedCourses', JSON.stringify([...unlocked]));
-                applyUnlockState();
-                return true;
-            }
-            return false;
-        }
-
-        function unlockCourse() {
-            const input = document.getElementById('coursePassword').value.trim();
-            const errorMsg = document.getElementById('errorMsg');
-
-            if (processPassword(input)) {
-                errorMsg.style.display = 'none';
-                document.getElementById('entryScreen').style.display = 'none';
-                document.getElementById('portalContent').style.display = 'block';
-            } else {
-                errorMsg.style.display = 'block';
-            }
-        }
-
-        function addAnotherCourse() {
-            const input = document.getElementById('addPassword').value.trim();
-            if (!processPassword(input)) {
-                alert('Password not recognised — check and try again.');
-            }
-            document.getElementById('addPassword').value = '';
-        }
-
-        function resetPortal() {
-            if (confirm('Clear all unlocked courses? You will need to re-enter passwords to access them again.')) {
-                unlocked.clear();
-                sessionStorage.removeItem('unlockedCourses');
-                document.getElementById('entryScreen').style.display = 'block';
-                document.getElementById('portalContent').style.display = 'none';
-                document.getElementById('coursePassword').value = '';
-                applyUnlockState();
-            }
-        }
-
         function toggleMenu() {
             document.getElementById('hamburger').classList.toggle('open');
             document.getElementById('dropdownMenu').classList.toggle('open');
         }
+    </script>
 
-        // Enter key support
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter') {
-                if (document.activeElement.id === 'coursePassword') unlockCourse();
-                if (document.activeElement.id === 'addPassword') addAnotherCourse();
+    <script>
+    (function () {
+        // ============================================================
+        // COURSE CONFIGURATION — Passwords below for your reference
+        // ============================================================
+        var COURSES = [
+            {
+                slug: 'cyber',
+                title: 'Cybersecurity Awareness for Everyone',
+                level: 'Half Day · 3 CPD Hours',
+                desc: 'Practical, plain-English training for all staff — spot phishing, protect accounts, handle data safely and report incidents.',
+                meta: ['Half Day', '3 CPD Hours', 'From £295'],
+                password: 'EzeCyber26!',
+                files: [
+                    { label: '📄 Course Manual', url: '#' },
+                    { label: '📊 Presentation Slides', url: '#' },
+                    { label: '📋 Quick Reference Pack', url: '#' }
+                ]
+            },
+            {
+                slug: 'gdpr',
+                title: 'Data Protection & UK GDPR Essentials',
+                level: 'One Day · 6 CPD Hours',
+                desc: 'Legal obligations, consent, subject access requests and practical data security — with template resources and post-session support.',
+                meta: ['One Day', '6 CPD Hours', 'From £495'],
+                password: 'EzeGDPR26!',
+                files: [
+                    { label: '📄 Course Manual', url: '#' },
+                    { label: '📊 Presentation Slides', url: '#' },
+                    { label: '📋 Compliance Template Pack', url: '#' }
+                ]
+            },
+            {
+                slug: 'systems',
+                title: 'Secure Systems & Infrastructure',
+                level: 'Two Days · 12 CPD Hours',
+                desc: 'Network hardening, secure remote access, monitoring and building a security-first culture — for IT teams and leaders.',
+                meta: ['Two Days', '12 CPD Hours', 'From £895'],
+                password: 'EzeSecure26!',
+                files: [
+                    { label: '📄 Course Manual', url: '#' },
+                    { label: '📊 Presentation Slides', url: '#' },
+                    { label: '🔐 Technical Policy Pack', url: '#' }
+                ]
+            },
+            {
+                slug: 'bespoke',
+                title: 'Bespoke Tailored Training',
+                level: 'Custom · CPD Accredited',
+                desc: 'Custom content built around your organisation — your policies, your risks, your scenarios. Access materials from your tailored session here.',
+                meta: ['Custom', 'CPD Accredited', 'From £595/day'],
+                password: 'EzeBespoke26!',
+                files: [
+                    { label: '📄 Course Manual', url: '#' },
+                    { label: '📊 Custom Presentation', url: '#' },
+                    { label: '📁 Your Organisation Resources', url: '#' }
+                ]
             }
+        ];
+
+        var STORAGE_PREFIX = 'ezedigital_unlocked_';
+        var activeSlug = null;
+
+        function isUnlocked(slug) {
+            try { return sessionStorage.getItem(STORAGE_PREFIX + slug) === '1'; }
+            catch (e) { return false; }
+        }
+        function setUnlocked(slug) {
+            try { sessionStorage.setItem(STORAGE_PREFIX + slug, '1'); } catch (e) {}
+        }
+        function verifyPassword(input, course) {
+            return input.trim() === course.password;
+        }
+
+        var grid = document.getElementById('coursesGrid');
+        COURSES.forEach(function (c) {
+            var unlocked = isUnlocked(c.slug);
+            var card = document.createElement('div');
+            card.className = 'course-card' + (unlocked ? ' unlocked' : '');
+            card.id = 'card-' + c.slug;
+            var fileLinks = c.files.map(function (f) {
+                return '<a class="btn-ghost" href="' + f.url + '" target="_blank" rel="noopener">' + f.label + '</a>';
+            }).join('');
+            card.innerHTML =
+                '<div class="course-top">' +
+                    '<span class="course-level">' + c.level + '</span>' +
+                    '<span class="lock-status ' + (unlocked ? 'unlocked' : 'locked') + '">' +
+                        (unlocked ?
+                            '<svg class="lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg> Unlocked' :
+                            '<svg class="lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Locked') +
+                    '</span>' +
+                '</div>' +
+                '<h3>' + c.title + '</h3>' +
+                '<p>' + c.desc + '</p>' +
+                '<div class="course-meta">' + c.meta.map(function (m) { return '<span>' + m + '</span>'; }).join('') + '</div>' +
+                '<div class="course-actions">' +
+                    '<div class="locked-cta">' +
+                        '<button class="btn-primary" data-slug="' + c.slug + '">Enter Course Password</button>' +
+                    '</div>' +
+                    '<div class="unlocked-resources">' +
+                        '<span class="res-label">Download your resources</span>' +
+                        fileLinks +
+                    '</div>' +
+                '</div>';
+            grid.appendChild(card);
         });
 
-        // Restore state on load
-        window.onload = function() {
-            unlocked = new Set(JSON.parse(sessionStorage.getItem('unlockedCourses') || '[]'));
-            if (unlocked.size > 0) {
-                document.getElementById('entryScreen').style.display = 'none';
-                document.getElementById('portalContent').style.display = 'block';
-                applyUnlockState();
-            }
-        };
+        var overlay = document.getElementById('modalOverlay');
+        var pwInput = document.getElementById('pwInput');
+        var pwSubmit = document.getElementById('pwSubmit');
+        var modalError = document.getElementById('modalError');
+        var modalCourseName = document.getElementById('modalCourseName');
+        var submitting = false;
+
+        function openModal(slug) {
+            var course = COURSES.find(function (c) { return c.slug === slug; });
+            if (!course) return;
+            activeSlug = slug;
+            modalCourseName.textContent = course.title;
+            pwInput.value = '';
+            modalError.classList.remove('show');
+            overlay.classList.add('open');
+            setTimeout(function () { pwInput.focus(); }, 50);
+        }
+        function closeModal() {
+            overlay.classList.remove('open');
+            activeSlug = null;
+            submitting = false;
+        }
+
+        grid.addEventListener('click', function (e) {
+            var btn = e.target.closest('button[data-slug]');
+            if (btn) openModal(btn.getAttribute('data-slug'));
+        });
+        document.getElementById('modalClose').addEventListener('click', closeModal);
+        overlay.addEventListener('click', function (e) { if (e.target === overlay) closeModal(); });
+        document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
+
+        function doSubmit() {
+            if (submitting || !activeSlug) return;
+            var course = COURSES.find(function (c) { return c.slug === activeSlug; });
+            if (!course) return;
+            submitting = true;
+            pwSubmit.textContent = 'Verifying…';
+            modalError.classList.remove('show');
+
+            setTimeout(function () {
+                var ok = verifyPassword(pwInput.value, course);
+                submitting = false;
+                pwSubmit.textContent = 'Unlock Course';
+                if (ok) {
+                    setUnlocked(activeSlug);
+                    var card = document.getElementById('card-' + activeSlug);
+                    if (card) {
+                        card.classList.add('unlocked');
+                        var ls = card.querySelector('.lock-status');
+                        if (ls) {
+                            ls.className = 'lock-status unlocked';
+                            ls.innerHTML = '<svg class="lock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 13l4 4L19 7"/></svg> Unlocked';
+                        }
+                    }
+                    closeModal();
+                } else {
+                    modalError.classList.add('show');
+                    pwInput.select();
+                }
+            }, 400);
+        }
+
+        pwSubmit.addEventListener('click', doSubmit);
+        pwInput.addEventListener('keydown', function (e) { if (e.key === 'Enter') doSubmit(); });
+    })();
     </script>
 </body>
 </html>
