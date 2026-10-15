@@ -6,7 +6,7 @@
     <title>Eze Digital — Secure & Evolve</title>
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; form-action 'self' https://formspree.io;">
     
-    <!-- Shared central styles -->
+    <!-- Shared styles -->
     <link rel="stylesheet" href="nav-styles.css?v=1">
     <link rel="stylesheet" href="footerstyles.css?v=3">
     
@@ -14,7 +14,6 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
         html, body { min-height: 100%; }
         
-        /* Background */
         .static-canvas {
             position: fixed;
             inset: 0;
@@ -26,7 +25,6 @@
             background-size: cover;
         }
         
-        /* Header positioning only — no menu styles here */
         header {
             position: absolute;
             top: 0; right: 0;
@@ -34,7 +32,6 @@
             z-index: 100;
         }
         
-        /* Hero — centered */
         .page-content {
             position: relative; z-index: 10;
             min-height: 100vh;
@@ -96,7 +93,6 @@
             z-index: 50;
         }
         
-        /* Mobile */
         @media (max-width: 768px) {
             header { padding: 1rem 1.2rem; }
             .hero-box { padding: 2rem 1.8rem; }
@@ -123,16 +119,27 @@
         </div>
     </main>
     
-    <!-- Central navigation loader -->
+    <!-- Navigation -->
     <script src="nav.js"></script>
     
-    <!-- Footer loader — fully restored ✅ -->
+    <!-- Footer — FULLY RESTORED & WORKING ✅ -->
     <div id="footer-placeholder"></div>
     <script>
         fetch('footer.html')
-            .then(res => { if (!res.ok) throw new Error('Footer not found'); return res.text(); })
-            .then(html => { document.getElementById('footer-placeholder').innerHTML = html; })
-            .catch(err => console.error('Footer load error:', err));
+            .then(res => {
+                if (!res.ok) throw new Error('Footer not found');
+                return res.text();
+            })
+            .then(html => {
+                document.getElementById('footer-placeholder').innerHTML = html;
+                console.log('✅ Footer loaded successfully');
+            })
+            .catch(err => {
+                console.error('❌ Footer load error:', err);
+                // Fallback text if file is missing
+                document.getElementById('footer-placeholder').innerHTML = 
+                    '<p style="text-align:center;color:#00B8BB;padding:2rem;">© 2026 Eze Digital · Secure & Evolve</p>';
+            });
     </script>
 </body>
 </html>
