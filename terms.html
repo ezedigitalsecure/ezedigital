@@ -11,7 +11,6 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
         html, body { height: 100%; overflow: hidden; }
-
         .static-canvas {
             position: absolute; top: 0; left: 0;
             width: 100vw; height: 100vh; z-index: 1;
@@ -19,13 +18,11 @@
                         linear-gradient(180deg, #001418 0%, #00222a 45%, #001115 100%);
             background-size: cover;
         }
-
         header {
             position: absolute; top: 0; right: 0;
             padding: 1.5rem 2.5rem; z-index: 100;
             display: flex; justify-content: flex-end;
         }
-
         .menu-wrapper { position: relative; }
         .hamburger-circle {
             width: 52px; height: 52px; border-radius: 50%;
@@ -43,7 +40,6 @@
         .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
         .hamburger.open span:nth-child(2) { opacity: 0; }
         .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
-
         .dropdown-menu {
             position: absolute; top: 62px; right: 0;
             background: rgba(0, 24, 28, 0.96);
@@ -58,22 +54,18 @@
             border-bottom: 1px solid rgba(0, 184, 187, 0.1);
         }
         .dropdown-link:hover { color: #00E6E9; }
-
         .scrollable-pages {
             position: absolute; top: 0; left: 0;
             width: 100vw; height: 100vh; z-index: 50;
             overflow-y: auto; background: transparent;
         }
-
         .page-wrapper { padding: 6rem 2rem 0; max-width: 750px; margin: 0 auto; }
-
         .content-block {
             background: rgba(0, 12, 14, 0.85);
             border: 1px solid rgba(0, 184, 187, 0.25);
             border-radius: 14px;
             padding: 2.5rem 2rem; margin-bottom: 3rem;
         }
-
         h1 { font-size: 2rem; color: #00E6E9; margin-bottom: 0.5rem; }
         .updated {
             color: #94A3B8; font-size: 0.85rem; margin-bottom: 2rem;
@@ -86,9 +78,8 @@
         strong { color: #00E6E9; }
         a { color: #00E6E9; text-decoration: none; }
         a:hover { text-decoration: underline; }
-
         #footer-placeholder { margin-top: 3rem; }
-
+        #nav-placeholder { display: contents; }
         @media (max-width: 768px) {
             header { padding: 1rem 1.2rem; }
             .page-wrapper { padding: 5rem 1.2rem 0; }
@@ -97,46 +88,25 @@
 </head>
 <body>
     <div class="static-canvas"></div>
-
     <header>
-        <div class="menu-wrapper">
-            <div class="hamburger-circle" onclick="toggleNav()">
-                <div class="hamburger" id="hamburger">
-                    <span></span><span></span><span></span>
-                </div>
-            </div>
-            <nav class="dropdown-menu" id="dropdownMenu">
-                <a class="dropdown-link" href="index.html">Home</a>
-                <a class="dropdown-link" href="services.html">Services</a>
-                <a class="dropdown-link" href="about.html">About Eze Digital</a>
-                <a class="dropdown-link" href="contact.html">Contact</a>
-                <a class="dropdown-link" href="academy.html">Academy</a>
-                <a class="dropdown-link" href="#" onclick="alert('Client Portal coming soon.'); return false;">Client Portal</a>
-            </nav>
-        </div>
+        <div id="nav-placeholder"></div>
     </header>
-
     <div class="scrollable-pages">
         <div class="page-wrapper">
             <div class="content-block">
                 <h1>Terms of Service</h1>
                 <p class="updated">Last updated: October 2026 · Eze Digital</p>
-
                 <p>Please read these Terms carefully. By using our website, engaging our services, or attending our training, you agree to be bound by these Terms.</p>
-
                 <h2>1. About Eze Digital</h2>
                 <p>Eze Digital is an integrated digital services business based in the United Kingdom. We provide website design and development, cybersecurity guidance and monitoring, compliance support, brand identity, and CPD-accredited training.</p>
-
                 <h2>2. Acceptance of Terms</h2>
                 <p>By accessing our website, requesting a quote, paying a deposit, or attending training, you confirm you have read, understood, and agree to these Terms.</p>
-
                 <h2>3. Our Services</h2>
                 <p><strong>Website & Digital Builds</strong> — Scope, timeline, and pricing agreed in writing. All deliverables subject to these Terms.</p>
                 <p><strong>Cybersecurity & Monitoring</strong> — Assessments, monitoring, practical guidance. Security reduces risk but no system is entirely immune.</p>
                 <p><strong>Compliance Guidance</strong> — Advice based on current UK regulations. You remain responsible for ongoing compliance.</p>
                 <p><strong>CPD-Accredited Training</strong> — Places confirmed on booking and payment. Certificates issued on successful completion.</p>
                 <p><strong>Brand & Identity</strong> — Concepts, revisions, deliverables agreed in writing.</p>
-
                 <h2>4. Payments & Deposits</h2>
                 <ul>
                     <li>50% deposit secures your project or training place unless agreed otherwise</li>
@@ -145,7 +115,6 @@
                     <li>Refunds considered case-by-case; prorated where work has commenced</li>
                     <li>Cancellations within 7 days of event may not be refunded</li>
                 </ul>
-
                 <h2>5. Intellectual Property</h2>
                 <ul>
                     <li>Full payment = ownership of project-specific deliverables</li>
@@ -153,16 +122,12 @@
                     <li>Content and materials remain our property until full payment received</li>
                     <li>Training materials may not be reproduced without written permission</li>
                 </ul>
-
                 <h2>6. Confidentiality</h2>
                 <p>All client information treated as confidential. Not shared unless required to deliver service or by law.</p>
-
                 <h2>7. Data Protection</h2>
                 <p>Governed by our <a href="privacy.html">Privacy Policy</a>, which forms part of these Terms.</p>
-
                 <h2>8. Acceptable Use</h2>
                 <p>You agree not to use our services to break law, access unauthorised systems, distribute harm, scrape content, or impersonate others.</p>
-
                 <h2>9. Limitation of Liability</h2>
                 <ul>
                     <li>No liability for indirect or consequential loss</li>
@@ -170,51 +135,62 @@
                     <li>Services not guaranteed error-free or uninterrupted</li>
                     <li>Cybersecurity reduces risk, does not eliminate it</li>
                 </ul>
-
                 <h2>10. Cancellation & Termination</h2>
                 <ul>
                     <li>Either party may terminate with 14 days' written notice</li>
                     <li>Immediate termination applies where Terms are breached</li>
                 </ul>
-
                 <h2>11. Governing Law</h2>
                 <p>Governing law of England and Wales.</p>
-
                 <h2>12. Contact Us</h2>
                 <p>Eze Digital<br>Email: secure@ezedigital.co.uk</p>
             </div>
-
             <div id="footer-placeholder"></div>
         </div>
     </div>
 
-    <!-- ✅ HAMBURGER -->
+    <!-- Load Shared Navigation -->
     <script>
+        fetch('nav.html')
+            .then(res => {
+                if (!res.ok) { console.log('⚠️ nav.html not found'); return ''; }
+                return res.text();
+            })
+            .then(content => {
+                if (content) {
+                    document.getElementById('nav-placeholder').innerHTML = content;
+                    console.log('✅ Nav loaded');
+                }
+            })
+            .catch(err => console.log('⚠️ Nav error:', err.message));
+
         function toggleNav() {
-            document.getElementById('hamburger').classList.toggle('open');
-            document.getElementById('dropdownMenu').classList.toggle('open');
+            const hamburger = document.getElementById('hamburger');
+            const dropdownMenu = document.getElementById('dropdownMenu');
+            if (hamburger && dropdownMenu) {
+                hamburger.classList.toggle('open');
+                dropdownMenu.classList.toggle('open');
+            }
         }
     </script>
 
-    <!-- ✅ FOOTER -->
+    <!-- Load Shared Footer -->
     <script>
         fetch('footer.html')
-            .then(function(res) {
+            .then(res => {
                 if (!res.ok) {
                     console.log('⚠️ footer.html not found — check filename');
                     return '';
                 }
                 return res.text();
             })
-            .then(function(content) {
+            .then(content => {
                 if (content) {
                     document.getElementById('footer-placeholder').innerHTML = content;
                     console.log('✅ Footer loaded');
                 }
             })
-            .catch(function(err) {
-                console.log('⚠️ Footer error:', err.message);
-            });
+            .catch(err => console.log('⚠️ Footer error:', err.message));
     </script>
 </body>
 </html>
