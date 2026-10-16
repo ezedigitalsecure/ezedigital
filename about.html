@@ -71,7 +71,6 @@
             max-width: 850px;
             margin: 0 auto;
         }
-        /* ——— MAIN PAGE HEADER — NO E ICON ——— */
         .page-heading-box {
             background: rgba(0, 12, 14, 0.85);
             border: 1px solid rgba(0, 184, 187, 0.25);
@@ -89,7 +88,6 @@
             color: #00B8BB;
             font-size: 1.1rem;
         }
-        /* ——— SUB BLOCKS — WITH E ICON ——— */
         .about-block,
         .team-dropdown {
             background: rgba(0, 12, 14, 0.85);
@@ -100,7 +98,6 @@
             position: relative;
             padding-left: 48px;
         }
-        /* EXACT E-HEXAGON — only on sub blocks */
         .about-block::before,
         .team-dropdown::before {
             content: "";
@@ -177,7 +174,6 @@
             padding-top: 1rem;
         }
         .team-content p { color: #B2F0F2; line-height: 1.7; margin-bottom: 0.7rem; }
-        /* FOOTER — FULL WIDTH, STATIC, NO JUMP */
         #footer-placeholder {
             width: 100%;
             margin: 0;
@@ -201,12 +197,10 @@
     </header>
     <div class="scrollable-pages">
         <div class="page-wrapper">
-            <!-- PAGE HEADER — CLEAN, NO E ICON -->
             <div class="page-heading-box">
                 <h1>Meet Our Founding Team</h1>
                 <p>Two different strengths, one shared vision</p>
             </div>
-            <!-- PROFILE PICTURES -->
             <div class="founders-top">
                 <div class="founder-portrait">
                     <img src="38056BA2-7397-4F60-AD7D-ECE7038AD774.jpg" alt="Nicki — Founder & Business Director">
@@ -219,12 +213,10 @@
                     <p class="title">Co Founder &amp; Technology Director</p>
                 </div>
             </div>
-            <!-- WHO WE ARE — WITH E ICON -->
             <div class="about-block">
                 <h2>Who We Are</h2>
                 <p>Eze Digital exists because every growing business and organisation deserves professional digital infrastructure. It should come without the complexity, jargon, or inflated price tags that usually apply. We noticed something that no one else seemed to be talking about. Almost every agency builds beautiful digital presences and completely leaves out the security. Even fewer offer the full package that actually keeps you safe, compliant, and confident. That is not right. Every organisation deserves to be protected, educated, and supported across everything they do.</p>
             </div>
-            <!-- NICKI DROPDOWN — WITH E ICON -->
             <div class="team-dropdown">
                 <button class="team-toggle" aria-expanded="false" id="nickiToggle">
                     Nicki - Founder &amp; Business Director
@@ -236,7 +228,6 @@
                     <p>I'm an entrepreneur with a background in teaching and training, I do not just hand you something finished. I help you understand it so you feel confident and in control. We deliver CPD accredited education that comes to you whether you are a school, a business, or a team that needs to upskill. We build your brand identity, guide you through compliance, and create systems that fit how you work. Technology should serve you, not confuse you. I bridge that gap so you can focus on what you do best.</p>
                 </div>
             </div>
-            <!-- PRAISEGOD DROPDOWN — WITH E ICON -->
             <div class="team-dropdown">
                 <button class="team-toggle" aria-expanded="false" id="praiseToggle">
                     PraiseGod - Co Founder &amp; Technology Director
@@ -249,7 +240,6 @@
                     <p>Beyond building secure systems, I design and deliver the cybersecurity education that empowers people and teams to stay safe long after we leave. I create practical, accessible training that meets CPD standards and real world needs. When I am not protecting systems, I am in ethical hacking labs staying one step ahead so you do not have to.</p>
                 </div>
             </div>
-            <!-- TOGETHER DROPDOWN — WITH E ICON -->
             <div class="team-dropdown">
                 <button class="team-toggle" aria-expanded="false" id="togetherToggle">
                     Together - The Eze Digital Difference
@@ -263,11 +253,10 @@
         </div>
     </div>
     
-    <!-- FOOTER OUTSIDE — FULL WIDTH, STATIC -->
     <div id="footer-placeholder"></div>
-
-    <!-- LOAD NAV + BULLETPROOF ACCORDIONS -->
+    
     <script>
+        // === HAMBURGER MENU ===
         function toggleNav() {
             const hamburger = document.getElementById('hamburger');
             const dropdownMenu = document.getElementById('dropdownMenu');
@@ -277,57 +266,57 @@
             }
         }
 
+        // === ACCORDIONS — SINGLE SETUP, NO DUPLICATE LISTENERS ===
         function setupAccordions() {
             const toggles = document.querySelectorAll('.team-toggle');
             toggles.forEach(toggle => {
-                // Remove old listeners first
-                toggle.onclick = null;
-                
-                toggle.onclick = function() {
-                    const expanded = this.getAttribute('aria-expanded') === 'true';
-                    this.setAttribute('aria-expanded', String(!expanded));
+                toggle.onclick = null; // Clear any existing listeners
+                toggle.addEventListener('click', function () {
+                    const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                    this.setAttribute('aria-expanded', String(!isExpanded));
                     
                     const contentId = this.id.replace('Toggle', 'Content');
                     const content = document.getElementById(contentId);
                     if (content) {
                         content.classList.toggle('open');
                     }
-                };
+                });
             });
-            console.log('✅ Accordions ready:', toggles.length);
+            console.log('✅ Accordions initialized:', toggles.length);
         }
 
-        // Load nav-menu.html and attach hamburger
+        // === LOAD NAV AND INITIALIZE EVERYTHING ===
         fetch('nav-menu.html')
           .then(res => res.ok ? res.text() : '')
           .then(content => {
             if (content) {
               document.getElementById('nav-placeholder').innerHTML = content;
-              console.log('✅ Nav loaded');
+              console.log('✅ Navigation loaded');
               
+              // Attach hamburger listener AFTER nav is inserted into DOM
               const circle = document.querySelector('.hamburger-circle');
-              if (circle) circle.onclick = toggleNav;
-              
-              document.addEventListener('click', e => {
-                if (e.target.closest('.hamburger-circle')) toggleNav();
-              });
+              if (circle) {
+                circle.addEventListener('click', toggleNav);
+              }
             }
+            // Always initialize accordions
             setupAccordions();
           });
 
-        // Also run accordions immediately
-        document.addEventListener('DOMContentLoaded', setupAccordions);
+        // Fallback: ensure accordions run once DOM is fully ready
         if (document.readyState === 'complete' || document.readyState === 'interactive') {
             setupAccordions();
+        } else {
+            document.addEventListener('DOMContentLoaded', setupAccordions);
         }
-    </script>
 
-    <!-- Load Footer -->
-    <script>
+        // === LOAD FOOTER ===
         fetch('footer.html')
           .then(res => res.ok ? res.text() : '')
           .then(content => {
-            if (content) document.getElementById('footer-placeholder').innerHTML = content;
+            if (content) {
+              document.getElementById('footer-placeholder').innerHTML = content;
+            }
           });
     </script>
 </body>
