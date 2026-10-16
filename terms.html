@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Terms of Service · Eze Digital</title>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; font-src 'self';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; font-src 'self';">
     
     <link rel="stylesheet" href="footerstyles.css?v=11">
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        html, body { height: 100%; overflow: hidden; }
+        html, body { min-height: 100%; }
         .static-canvas {
-            position: absolute; top: 0; left: 0;
+            position: fixed; top: 0; left: 0;
             width: 100vw; height: 100vh; z-index: 1;
             background: url('mockup-bg.png') no-repeat center center,
                         linear-gradient(180deg, #001418 0%, #00222a 45%, #001115 100%);
@@ -55,11 +55,10 @@
         }
         .dropdown-link:hover { color: #00E6E9; }
         .scrollable-pages {
-            position: absolute; top: 0; left: 0;
-            width: 100vw; height: 100vh; z-index: 50;
+            position: relative; z-index: 50;
             overflow-y: auto; background: transparent;
         }
-        .page-wrapper { padding: 6rem 2rem 0; max-width: 750px; margin: 0 auto; }
+        .page-wrapper { padding: 6rem 2rem 3rem; max-width: 750px; margin: 0 auto; }
         .content-block {
             background: rgba(0, 12, 14, 0.85);
             border: 1px solid rgba(0, 184, 187, 0.25);
@@ -82,7 +81,7 @@
         #nav-placeholder { display: contents; }
         @media (max-width: 768px) {
             header { padding: 1rem 1.2rem; }
-            .page-wrapper { padding: 5rem 1.2rem 0; }
+            .page-wrapper { padding: 5rem 1.2rem 3rem; }
         }
     </style>
 </head>
@@ -148,12 +147,11 @@
             <div id="footer-placeholder"></div>
         </div>
     </div>
-
     <!-- Load Shared Navigation + Hamburger Script -->
     <script>
-        fetch('nav.html')
+        fetch('nav-menu.html')
             .then(res => {
-                if (!res.ok) { console.log('⚠️ nav.html not found'); return ''; }
+                if (!res.ok) { console.log('⚠️ nav-menu.html not found'); return ''; }
                 return res.text();
             })
             .then(content => {
@@ -163,7 +161,6 @@
                 }
             })
             .catch(err => console.log('⚠️ Nav error:', err.message));
-
         function toggleNav() {
             const hamburger = document.getElementById('hamburger');
             const dropdownMenu = document.getElementById('dropdownMenu');
@@ -173,7 +170,6 @@
             }
         }
     </script>
-
     <!-- Load Shared Footer -->
     <script>
         fetch('footer.html')
