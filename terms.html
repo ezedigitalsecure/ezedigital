@@ -10,7 +10,7 @@
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        html, body { min-height: 100%; margin: 0; }
+        html, body { min-height: 100%; margin: 0; padding: 0; }
         .static-canvas {
             position: fixed; top: 0; left: 0;
             width: 100vw; height: 100vh; z-index: 1;
@@ -54,6 +54,7 @@
             border-bottom: 1px solid rgba(0, 184, 187, 0.1);
         }
         .dropdown-link:hover { color: #00E6E9; }
+        
         .scrollable-pages {
             position: relative; z-index: 50;
             overflow-y: auto; background: transparent;
@@ -79,15 +80,18 @@
         strong { color: #00E6E9; }
         a { color: #00E6E9; text-decoration: none; }
         a:hover { text-decoration: underline; }
-        /* FOOTER — FULL WIDTH, NOT INSIDE NARROW BOX */
+        
+        /* FOOTER — FULL WIDTH, STATIC, NO JUMPING */
         #footer-placeholder {
             position: relative;
             z-index: 60;
             width: 100%;
             margin: 0;
             padding: 0;
+            flex-shrink: 0;
         }
         #nav-placeholder { display: contents; }
+        
         @media (max-width: 768px) {
             header { padding: 1rem 1.2rem; }
             .page-wrapper { padding: 5rem 1.2rem 0; }
@@ -157,10 +161,10 @@
         </div>
     </div>
     
-    <!-- FOOTER OUTSIDE = FULL WIDTH -->
+    <!-- FOOTER OUTSIDE = FULL WIDTH + STATIC, NO JUMPING -->
     <div id="footer-placeholder"></div>
 
-    <!-- Load Navigation with Click Handler -->
+    <!-- Load Navigation + Hamburger — Attaches AFTER load -->
     <script>
         fetch('nav-menu.html')
           .then(res => {
@@ -172,7 +176,6 @@
               document.getElementById('nav-placeholder').innerHTML = content;
               console.log('✅ Nav loaded');
               
-              // Attach click AFTER menu exists
               const circle = document.querySelector('.hamburger-circle');
               if (circle) {
                 circle.onclick = function() {
