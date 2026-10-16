@@ -256,7 +256,7 @@
     <div id="footer-placeholder"></div>
     
     <script>
-        // === HAMBURGER MENU ===
+        // === HAMBURGER ===
         function toggleNav() {
             const hamburger = document.getElementById('hamburger');
             const dropdownMenu = document.getElementById('dropdownMenu');
@@ -266,14 +266,17 @@
             }
         }
 
-        // === ACCORDIONS — SINGLE SETUP, NO DUPLICATE LISTENERS ===
+        // === ACCORDIONS — DIRECT BINDING, NO DELAY ===
         function setupAccordions() {
             const toggles = document.querySelectorAll('.team-toggle');
             toggles.forEach(toggle => {
-                toggle.onclick = null; // Clear any existing listeners
-                toggle.addEventListener('click', function () {
-                    const isExpanded = this.getAttribute('aria-expanded') === 'true';
-                    this.setAttribute('aria-expanded', String(!isExpanded));
+                // Remove all existing listeners first
+                const newToggle = toggle.cloneNode(true);
+                toggle.parentNode.replaceChild(newToggle, toggle);
+                
+                newToggle.addEventListener('click', function () {
+                    const expanded = this.getAttribute('aria-expanded') === 'true';
+                    this.setAttribute('aria-expanded', String(!expanded));
                     
                     const contentId = this.id.replace('Toggle', 'Content');
                     const content = document.getElementById(contentId);
@@ -282,42 +285,36 @@
                     }
                 });
             });
-            console.log('✅ Accordions initialized:', toggles.length);
+            console.log('✅ Accordions ready');
         }
 
-        // === LOAD NAV AND INITIALIZE EVERYTHING ===
-        fetch('nav-menu.html')
-          .then(res => res.ok ? res.text() : '')
-          .then(content => {
-            if (content) {
-              document.getElementById('nav-placeholder').innerHTML = content;
-              console.log('✅ Navigation loaded');
-              
-              // Attach hamburger listener AFTER nav is inserted into DOM
-              const circle = document.querySelector('.hamburger-circle');
-              if (circle) {
-                circle.addEventListener('click', toggleNav);
-              }
-            }
-            // Always initialize accordions
+        // === RUN ON PAGE LOAD — GUARANTEED ===
+        document.addEventListener('DOMContentLoaded', function () {
+            // Accordions FIRST — they're already on this page
             setupAccordions();
-          });
 
-        // Fallback: ensure accordions run once DOM is fully ready
-        if (document.readyState === 'complete' || document.readyState === 'interactive') {
-            setupAccordions();
-        } else {
-            document.addEventListener('DOMContentLoaded', setupAccordions);
-        }
+            // Then load nav
+            fetch('nav-menu.html')
+              .then(res => res.ok ? res.text() : '')
+              .then(content => {
+                if (content) {
+                  document.getElementById('nav-placeholder').innerHTML = content;
+                  const circle = document.querySelector('.hamburger-circle');
+                  if (circle) {
+                    circle.addEventListener('click', toggleNav);
+                  }
+                }
+              });
 
-        // === LOAD FOOTER ===
-        fetch('footer.html')
-          .then(res => res.ok ? res.text() : '')
-          .then(content => {
-            if (content) {
-              document.getElementById('footer-placeholder').innerHTML = content;
-            }
-          });
+            // Load footer
+            fetch('footer.html')
+              .then(res => res.ok ? res.text() : '')
+              .then(content => {
+                if (content) {
+                  document.getElementById('footer-placeholder').innerHTML = content;
+                }
+              });
+        });
     </script>
 </body>
 </html>
