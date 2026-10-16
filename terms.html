@@ -6,11 +6,11 @@
     <title>Terms of Service · Eze Digital</title>
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; font-src 'self';">
     
-    <link rel="stylesheet" href="footerstyles.css?v=11">
+    <link rel="stylesheet" href="footerstyles.css?v=12">
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        html, body { min-height: 100%; }
+        html, body { min-height: 100%; margin: 0; }
         .static-canvas {
             position: fixed; top: 0; left: 0;
             width: 100vw; height: 100vh; z-index: 1;
@@ -57,8 +57,10 @@
         .scrollable-pages {
             position: relative; z-index: 50;
             overflow-y: auto; background: transparent;
+            min-height: 100vh;
+            padding-bottom: 3rem;
         }
-        .page-wrapper { padding: 6rem 2rem 3rem; max-width: 750px; margin: 0 auto; }
+        .page-wrapper { padding: 6rem 2rem 0; max-width: 750px; margin: 0 auto; }
         .content-block {
             background: rgba(0, 12, 14, 0.85);
             border: 1px solid rgba(0, 184, 187, 0.25);
@@ -77,11 +79,18 @@
         strong { color: #00E6E9; }
         a { color: #00E6E9; text-decoration: none; }
         a:hover { text-decoration: underline; }
-        #footer-placeholder { margin-top: 3rem; }
+        /* FOOTER — FULL WIDTH, NOT INSIDE NARROW BOX */
+        #footer-placeholder {
+            position: relative;
+            z-index: 60;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
         #nav-placeholder { display: contents; }
         @media (max-width: 768px) {
             header { padding: 1rem 1.2rem; }
-            .page-wrapper { padding: 5rem 1.2rem 3rem; }
+            .page-wrapper { padding: 5rem 1.2rem 0; }
         }
     </style>
 </head>
@@ -90,6 +99,7 @@
     <header>
         <div id="nav-placeholder"></div>
     </header>
+    
     <div class="scrollable-pages">
         <div class="page-wrapper">
             <div class="content-block">
@@ -144,49 +154,58 @@
                 <h2>12. Contact Us</h2>
                 <p>Eze Digital<br>Email: secure@ezedigital.co.uk</p>
             </div>
-            <div id="footer-placeholder"></div>
         </div>
     </div>
-    <!-- Load Shared Navigation + Hamburger Script -->
+    
+    <!-- FOOTER OUTSIDE = FULL WIDTH -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Load Navigation with Click Handler -->
     <script>
         fetch('nav-menu.html')
-            .then(res => {
-                if (!res.ok) { console.log('⚠️ nav-menu.html not found'); return ''; }
-                return res.text();
-            })
-            .then(content => {
-                if (content) {
-                    document.getElementById('nav-placeholder').innerHTML = content;
-                    console.log('✅ Nav loaded');
-                }
-            })
-            .catch(err => console.log('⚠️ Nav error:', err.message));
-        function toggleNav() {
-            const hamburger = document.getElementById('hamburger');
-            const dropdownMenu = document.getElementById('dropdownMenu');
-            if (hamburger && dropdownMenu) {
-                hamburger.classList.toggle('open');
-                dropdownMenu.classList.toggle('open');
+          .then(res => {
+            if (!res.ok) { console.log('⚠️ nav-menu.html not found'); return ''; }
+            return res.text();
+          })
+          .then(content => {
+            if (content) {
+              document.getElementById('nav-placeholder').innerHTML = content;
+              console.log('✅ Nav loaded');
+              
+              // Attach click AFTER menu exists
+              const circle = document.querySelector('.hamburger-circle');
+              if (circle) {
+                circle.onclick = function() {
+                  const hamburger = document.getElementById('hamburger');
+                  const dropdownMenu = document.getElementById('dropdownMenu');
+                  if (hamburger && dropdownMenu) {
+                    hamburger.classList.toggle('open');
+                    dropdownMenu.classList.toggle('open');
+                  }
+                };
+              }
             }
-        }
+          })
+          .catch(err => console.log('⚠️ Nav error:', err.message));
     </script>
-    <!-- Load Shared Footer -->
+
+    <!-- Load Footer -->
     <script>
         fetch('footer.html')
-            .then(res => {
-                if (!res.ok) {
-                    console.log('⚠️ footer.html not found — check filename');
-                    return '';
-                }
-                return res.text();
-            })
-            .then(content => {
-                if (content) {
-                    document.getElementById('footer-placeholder').innerHTML = content;
-                    console.log('✅ Footer loaded');
-                }
-            })
-            .catch(err => console.log('⚠️ Footer error:', err.message));
+          .then(res => {
+            if (!res.ok) {
+              console.log('⚠️ footer.html not found');
+              return '';
+            }
+            return res.text();
+          })
+          .then(content => {
+            if (content) {
+              document.getElementById('footer-placeholder').innerHTML = content;
+              console.log('✅ Footer loaded');
+            }
+          })
+          .catch(err => console.log('⚠️ Footer error:', err.message));
     </script>
 </body>
 </html>
