@@ -6,11 +6,16 @@
     <title>Privacy Policy · Eze Digital</title>
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; font-src 'self';">
     
-    <link rel="stylesheet" href="footerstyles.css?v=12">
+    <link rel="stylesheet" href="footerstyles.css?v=13">
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        html, body { min-height: 100%; margin: 0; }
+        html, body { 
+            height: 100%; 
+            margin: 0; 
+            padding: 0;
+            overflow: auto; /* Natural page scroll — no weird behaviour */
+        }
         .static-canvas {
             position: fixed; top: 0; left: 0;
             width: 100vw; height: 100vh; z-index: 1;
@@ -54,18 +59,23 @@
             border-bottom: 1px solid rgba(0, 184, 187, 0.1);
         }
         .dropdown-link:hover { color: #00E6E9; }
+        
         .scrollable-pages {
             position: relative; z-index: 50;
-            overflow-y: auto; background: transparent;
-            min-height: calc(100vh - 300px); /* Pushes footer down */
-            padding-bottom: 3rem;
+            background: transparent;
+            min-height: 1px; /* Let content define height naturally */
         }
-        .page-wrapper { padding: 6rem 2rem 0; max-width: 750px; margin: 0 auto; }
+        .page-wrapper { 
+            padding: 6rem 2rem 0; 
+            max-width: 750px; 
+            margin: 0 auto;
+        }
         .content-block {
             background: rgba(0, 12, 14, 0.85);
             border: 1px solid rgba(0, 184, 187, 0.25);
             border-radius: 14px;
-            padding: 2.5rem 2rem; margin-bottom: 3rem;
+            padding: 2.5rem 2rem; 
+            margin-bottom: 3rem;
         }
         h1 { font-size: 2rem; color: #00E6E9; margin-bottom: 0.5rem; }
         .updated {
@@ -80,16 +90,17 @@
         a { color: #00E6E9; text-decoration: none; }
         a:hover { text-decoration: underline; }
         
-        /* FOOTER — STATIC, FULL WIDTH, NO JUMPING */
+        /* FOOTER — LOCKED STATIC, FULL WIDTH, ZERO JUMP */
         #footer-placeholder {
-            position: relative; /* STATIC — sits at bottom of content, not fixed */
+            position: relative;
             z-index: 60;
             width: 100%;
             margin: 0;
             padding: 0;
-            flex-shrink: 0;
+            clear: both;
         }
         #nav-placeholder { display: contents; }
+        
         @media (max-width: 768px) {
             header { padding: 1rem 1.2rem; }
             .page-wrapper { padding: 5rem 1.2rem 0; }
@@ -182,10 +193,10 @@
         </div>
     </div>
     
-    <!-- FOOTER OUTSIDE = FULL WIDTH + STATIC POSITION -->
+    <!-- FOOTER OUTSIDE — FULL WIDTH, STATIC, NO MOVEMENT -->
     <div id="footer-placeholder"></div>
 
-    <!-- Load Navigation with Click Handler -->
+    <!-- Load Navigation + Hamburger — Attaches AFTER HTML exists -->
     <script>
         fetch('nav-menu.html')
           .then(res => {
@@ -197,7 +208,6 @@
               document.getElementById('nav-placeholder').innerHTML = content;
               console.log('✅ Nav loaded');
               
-              // Attach click AFTER menu exists — works every time
               const circle = document.querySelector('.hamburger-circle');
               if (circle) {
                 circle.onclick = function() {
@@ -218,10 +228,7 @@
     <script>
         fetch('footer.html')
           .then(res => {
-            if (!res.ok) {
-              console.log('⚠️ footer.html not found');
-              return '';
-            }
+            if (!res.ok) { return ''; }
             return res.text();
           })
           .then(content => {
