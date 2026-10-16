@@ -256,7 +256,7 @@
     <div id="footer-placeholder"></div>
     
     <script>
-        // === HAMBURGER ===
+        // === HAMBURGER MENU ===
         function toggleNav() {
             const hamburger = document.getElementById('hamburger');
             const dropdownMenu = document.getElementById('dropdownMenu');
@@ -266,17 +266,13 @@
             }
         }
 
-        // === ACCORDIONS — DIRECT BINDING, NO DELAY ===
+        // === ACCORDIONS — SIMPLE, NO CLONING ===
         function setupAccordions() {
             const toggles = document.querySelectorAll('.team-toggle');
             toggles.forEach(toggle => {
-                // Remove all existing listeners first
-                const newToggle = toggle.cloneNode(true);
-                toggle.parentNode.replaceChild(newToggle, toggle);
-                
-                newToggle.addEventListener('click', function () {
-                    const expanded = this.getAttribute('aria-expanded') === 'true';
-                    this.setAttribute('aria-expanded', String(!expanded));
+                toggle.addEventListener('click', function () {
+                    const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                    this.setAttribute('aria-expanded', String(!isExpanded));
                     
                     const contentId = this.id.replace('Toggle', 'Content');
                     const content = document.getElementById(contentId);
@@ -285,20 +281,21 @@
                     }
                 });
             });
-            console.log('✅ Accordions ready');
+            console.log('✅ Accordions initialized:', toggles.length);
         }
 
-        // === RUN ON PAGE LOAD — GUARANTEED ===
+        // === PAGE READY ===
         document.addEventListener('DOMContentLoaded', function () {
-            // Accordions FIRST — they're already on this page
+            // Accordions are already in the HTML — set them up immediately
             setupAccordions();
 
-            // Then load nav
+            // Load navigation from separate file
             fetch('nav-menu.html')
               .then(res => res.ok ? res.text() : '')
               .then(content => {
                 if (content) {
                   document.getElementById('nav-placeholder').innerHTML = content;
+                  // Attach hamburger listener AFTER nav exists in DOM
                   const circle = document.querySelector('.hamburger-circle');
                   if (circle) {
                     circle.addEventListener('click', toggleNav);
