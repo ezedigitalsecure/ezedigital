@@ -11,13 +11,15 @@ fetch('nav-menu.html')
   .catch(err => console.error('Nav load error:', err));
 
 function initHamburger() {
+  // FIX: click listener on .hamburger-circle (outer element), NOT .hamburger (which has pointer-events: none)
+  const hamburgerCircle = document.querySelector('.hamburger-circle');
   const hamburger = document.querySelector('.hamburger');
   const dropdownMenu = document.querySelector('.dropdown-menu');
   
-  if (!hamburger || !dropdownMenu) return;
+  if (!hamburgerCircle || !hamburger || !dropdownMenu) return;
 
-  // Toggle menu
-  hamburger.addEventListener('click', (e) => {
+  // Toggle menu — click on the circle
+  hamburgerCircle.addEventListener('click', (e) => {
     e.stopPropagation();
     hamburger.classList.toggle('open');
     dropdownMenu.classList.toggle('open');
