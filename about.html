@@ -9,6 +9,8 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
         html, body { height: 100%; margin: 0; padding: 0; }
+
+        /* BACKGROUND */
         .static-canvas {
             position: fixed;
             top: 0; left: 0;
@@ -19,6 +21,8 @@
                 linear-gradient(180deg, #001418 0%, #00222a 45%, #001115 100%);
             background-size: cover;
         }
+
+        /* HEADER — consistent positioning across all pages */
         header {
             position: absolute;
             top: 0; right: 0;
@@ -27,6 +31,8 @@
             display: flex;
             justify-content: flex-end;
         }
+
+        /* HAMBURGER STYLES — keep these (nav.js injects the HTML) */
         .menu-wrapper { position: relative; }
         .hamburger-circle {
             width: 52px; height: 52px; border-radius: 50%;
@@ -59,6 +65,8 @@
             border-bottom: 1px solid rgba(0, 184, 187, 0.1);
         }
         .dropdown-link:hover, .dropdown-link.active { color: #66F0F3; }
+
+        /* PAGE CONTENT */
         .scrollable-pages {
             position: relative; z-index: 50;
             overflow-y: auto;
@@ -79,17 +87,10 @@
             margin-bottom: 1.5rem;
             text-align: center;
         }
-        .page-heading-box h1 {
-            color: #00E6E9;
-            font-size: 2.2rem;
-            margin-bottom: 0.5rem;
-        }
-        .page-heading-box p {
-            color: #00B8BB;
-            font-size: 1.1rem;
-        }
-        .about-block,
-        .team-dropdown {
+        .page-heading-box h1 { color: #00E6E9; font-size: 2.2rem; margin-bottom: 0.5rem; }
+        .page-heading-box p { color: #00B8BB; font-size: 1.1rem; }
+
+        .about-block, .team-dropdown {
             background: rgba(0, 12, 14, 0.85);
             border: 1px solid rgba(0, 184, 187, 0.25);
             border-radius: 14px;
@@ -98,32 +99,27 @@
             position: relative;
             padding-left: 48px;
         }
-        .about-block::before,
-        .team-dropdown::before {
+        .about-block::before, .team-dropdown::before {
             content: "";
             position: absolute;
-            top: 18px;
-            left: 12px;
-            width: 28px;
-            height: 28px;
+            top: 18px; left: 12px;
+            width: 28px; height: 28px;
             background-image: url("data:image/svg+xml,%3Csvg width='28' height='28' viewBox='0 0 28 28' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M14 3l9 5v10l-9 5-9-5V8l9-5z' stroke='%2300E6E9' stroke-width='1.5'/%3E%3Ctext x='14' y='17.5' text-anchor='middle' fill='%2300E6E9' font-size='12' font-weight='700' font-family='Arial,sans-serif'%3EE%3C/text%3E%3C/svg%3E");
             background-size: contain;
             background-repeat: no-repeat;
             filter: drop-shadow(0 0 5px #00E6E9);
             opacity: 0.95;
         }
+
         .founders-top {
-            display: flex;
-            gap: 3rem;
+            display: flex; gap: 3rem;
             margin-bottom: 2rem;
             flex-wrap: wrap;
             justify-content: center;
         }
         .founder-portrait {
-            text-align: center;
-            flex: 1;
-            min-width: 200px;
-            max-width: 280px;
+            text-align: center; flex: 1;
+            min-width: 200px; max-width: 280px;
             background: rgba(0, 12, 14, 0.85);
             border-radius: 14px;
             padding: 2rem 1.5rem;
@@ -138,51 +134,39 @@
         }
         .founder-portrait h3 { color: #00E6E9; font-size: 1.3rem; margin-bottom: 0.3rem; }
         .founder-portrait .title { color: #00B8BB; font-size: 0.95rem; }
+
         .about-block h2 { color: #00E6E9; font-size: 1.4rem; margin-bottom: 1rem; }
         .about-block p { color: #B2F0F2; line-height: 1.7; margin-bottom: 0.7rem; }
+
         .team-toggle {
-            width: 100%;
-            background: transparent;
-            border: none;
-            color: #00B8BB;
-            font-size: 1.1rem;
-            font-weight: 600;
-            text-align: left;
-            padding: 0;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            width: 100%; background: transparent; border: none;
+            color: #00B8BB; font-size: 1.1rem; font-weight: 600;
+            text-align: left; padding: 0; cursor: pointer;
+            display: flex; align-items: center; justify-content: space-between;
         }
         .plus-icon {
-            font-size: 1.6rem;
-            color: #00B8BB;
-            transition: transform 0.3s ease;
-            line-height: 1;
+            font-size: 1.6rem; color: #00B8BB;
+            transition: transform 0.3s ease; line-height: 1;
         }
-        .team-toggle[aria-expanded="true"] .plus-icon {
-            transform: rotate(45deg);
-        }
+        .team-toggle[aria-expanded="true"] .plus-icon { transform: rotate(45deg); }
         .team-content {
-            max-height: 0;
-            overflow: hidden;
+            max-height: 0; overflow: hidden;
             transition: max-height 0.4s ease, padding 0.3s ease;
             padding-top: 0;
         }
-        .team-content.open {
-            max-height: 2000px;
-            padding-top: 1rem;
-        }
+        .team-content.open { max-height: 2000px; padding-top: 1rem; }
         .team-content p { color: #B2F0F2; line-height: 1.7; margin-bottom: 0.7rem; }
+
+        /* FOOTER — stable, consistent spacing */
         #footer-placeholder {
             width: 100%;
             margin: 0;
-            padding: 3rem 0 0;
+            padding: 2rem 0 0;  /* reduced from 3rem — less dead space */
             position: relative;
             z-index: 60;
             clear: both;
         }
-        #nav-placeholder { display: contents; }
+
         @media (max-width: 768px) {
             header { padding: 1rem 1.2rem; }
             .page-wrapper { padding: 5rem 1.2rem 0; }
@@ -192,15 +176,19 @@
 </head>
 <body>
     <div class="static-canvas"></div>
+
+    <!-- NAVIGATION — central system via nav.js -->
     <header>
-        <div id="nav-placeholder"></div>
+        <div id="nav-container"></div>
     </header>
+
     <div class="scrollable-pages">
         <div class="page-wrapper">
             <div class="page-heading-box">
                 <h1>Meet Our Founding Team</h1>
                 <p>Two different strengths, one shared vision</p>
             </div>
+
             <div class="founders-top">
                 <div class="founder-portrait">
                     <img src="38056BA2-7397-4F60-AD7D-ECE7038AD774.jpg" alt="Nicki — Founder & Business Director">
@@ -213,10 +201,12 @@
                     <p class="title">Co Founder &amp; Technology Director</p>
                 </div>
             </div>
+
             <div class="about-block">
                 <h2>Who We Are</h2>
                 <p>Eze Digital exists because every growing business and organisation deserves professional digital infrastructure. It should come without the complexity, jargon, or inflated price tags that usually apply. We noticed something that no one else seemed to be talking about. Almost every agency builds beautiful digital presences and completely leaves out the security. Even fewer offer the full package that actually keeps you safe, compliant, and confident. That is not right. Every organisation deserves to be protected, educated, and supported across everything they do.</p>
             </div>
+
             <div class="team-dropdown">
                 <button class="team-toggle" aria-expanded="false" id="nickiToggle">
                     Nicki - Founder &amp; Business Director
@@ -228,18 +218,20 @@
                     <p>I'm an entrepreneur with a background in teaching and training, I do not just hand you something finished. I help you understand it so you feel confident and in control. We deliver CPD accredited education that comes to you whether you are a school, a business, or a team that needs to upskill. We build your brand identity, guide you through compliance, and create systems that fit how you work. Technology should serve you, not confuse you. I bridge that gap so you can focus on what you do best.</p>
                 </div>
             </div>
+
             <div class="team-dropdown">
                 <button class="team-toggle" aria-expanded="false" id="praiseToggle">
                     PraiseGod - Co Founder &amp; Technology Director
                     <span class="plus-icon">+</span>
                 </button>
                 <div class="team-content" id="praiseContent">
-                     <p>I am the technical brain behind Eze Digital. I lead everything technical from custom websites and booking systems to enterprise-grade threat detection, network security, and infrastructure protection. Certified in Cisco CCNA and CyberOps, I spent years in Security Operations stopping threats before they become problems.</p>
+                    <p>I am the technical brain behind Eze Digital. I lead everything technical from custom websites and booking systems to enterprise-grade threat detection, network security, and infrastructure protection. Certified in Cisco CCNA and CyberOps, I spent years in Security Operations stopping threats before they become problems.</p>
                     <p class="tech-note">Quick techy bit! If you think Splunk is an arcade game, feel free to skip this part. I deploy SIEM tools like Splunk and Wazuh for round the clock monitoring, build secure cloud infrastructure on AWS, and design end-to-end security for systems of all kinds.</p>
                     <p>I saw the gap from the inside. I have built systems and I have seen that even technically built work often goes live without proper security. That realisation is exactly why we are here. Everything we deliver carries proper security built in from day one. Not bolted on later. Not sold as an expensive extra. Just there as standard.</p>
                     <p>Beyond building secure systems, I design and deliver the cybersecurity education that empowers people and teams to stay safe long after we leave. I create practical, accessible training that meets CPD standards and real world needs. When I am not protecting systems, I am in ethical hacking labs staying one step ahead so you do not have to.</p>
                 </div>
             </div>
+
             <div class="team-dropdown">
                 <button class="team-toggle" aria-expanded="false" id="togetherToggle">
                     Together - The Eze Digital Difference
@@ -252,66 +244,34 @@
             </div>
         </div>
     </div>
-    
-    <div id="footer-placeholder"></div>
-    
-    <script>
-        // === HAMBURGER MENU ===
-        function toggleNav() {
-            const hamburger = document.getElementById('hamburger');
-            const dropdownMenu = document.getElementById('dropdownMenu');
-            if (hamburger && dropdownMenu) {
-                hamburger.classList.toggle('open');
-                dropdownMenu.classList.toggle('open');
-            }
-        }
 
-        // === ACCORDIONS — SIMPLE, NO CLONING ===
-        function setupAccordions() {
+    <!-- FOOTER — central system -->
+    <div id="footer-placeholder"></div>
+
+    <script>
+        // === ACCORDIONS ONLY — nav and footer handled by central files ===
+        document.addEventListener('DOMContentLoaded', function () {
             const toggles = document.querySelectorAll('.team-toggle');
             toggles.forEach(toggle => {
                 toggle.addEventListener('click', function () {
                     const isExpanded = this.getAttribute('aria-expanded') === 'true';
                     this.setAttribute('aria-expanded', String(!isExpanded));
-                    
                     const contentId = this.id.replace('Toggle', 'Content');
                     const content = document.getElementById(contentId);
-                    if (content) {
-                        content.classList.toggle('open');
-                    }
+                    if (content) content.classList.toggle('open');
                 });
             });
-            console.log('✅ Accordions initialized:', toggles.length);
-        }
-
-        // === PAGE READY ===
-        document.addEventListener('DOMContentLoaded', function () {
-            // Accordions are already in the HTML — set them up immediately
-            setupAccordions();
-
-            // Load navigation from separate file
-            fetch('nav-menu.html')
-              .then(res => res.ok ? res.text() : '')
-              .then(content => {
-                if (content) {
-                  document.getElementById('nav-placeholder').innerHTML = content;
-                  // Attach hamburger listener AFTER nav exists in DOM
-                  const circle = document.querySelector('.hamburger-circle');
-                  if (circle) {
-                    circle.addEventListener('click', toggleNav);
-                  }
-                }
-              });
-
-            // Load footer
-            fetch('footer.html')
-              .then(res => res.ok ? res.text() : '')
-              .then(content => {
-                if (content) {
-                  document.getElementById('footer-placeholder').innerHTML = content;
-                }
-              });
         });
+
+        // === FOOTER — load central file ===
+        fetch('footer.html')
+            .then(res => res.ok ? res.text() : '')
+            .then(content => {
+                if (content) document.getElementById('footer-placeholder').innerHTML = content;
+            });
     </script>
+
+    <!-- NAVIGATION — central system (must be last) -->
+    <script src="nav.js"></script>
 </body>
 </html>
