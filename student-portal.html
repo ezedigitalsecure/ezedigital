@@ -1,12 +1,13 @@
 <!DOCTYPE html>
+
 <html lang="en-GB">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Portal · Eze Digital</title>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self'; font-src 'self';">
-    <link rel="stylesheet" href="footerstyles.css?v=4">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Student Portal · Eze Digital</title>
+<meta content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self'; font-src 'self';" http-equiv="Content-Security-Policy"/>
+<link href="footerstyles.css?v=4" rel="stylesheet"/>
+<style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
         html, body { height: 100%; overflow: hidden; }
         .static-canvas {
@@ -448,104 +449,59 @@
             .page-wrapper { padding: 5rem 1.2rem 0; }
         }
     </style>
-</head>
+<link href="site-fixes.css?v=1" rel="stylesheet"/></head>
 <body>
-    <div class="static-canvas"></div>
-    <header>
-        <div class="menu-wrapper">
-            <div class="hamburger-circle" onclick="toggleMenu()">
-                <div class="hamburger" id="hamburger">
-                    <span></span><span></span><span></span>
-                </div>
-            </div>
-            <nav class="dropdown-menu" id="dropdownMenu">
-                <a class="dropdown-link" href="index.html">Home</a>
-                <a class="dropdown-link" href="services.html">Services</a>
-                <a class="dropdown-link" href="about.html">About Eze Digital</a>
-                <a class="dropdown-link" href="contact.html">Contact</a>
-                <a class="dropdown-link" href="academy.html">Academy</a>
-                <a class="dropdown-link active" href="student-portal.html">Student Portal</a>
-                <a class="dropdown-link" href="#" onclick="alert('Client Portal coming soon. Watch this space.'); return false;">Client Portal</a>
-            </nav>
-        </div>
-    </header>
-    <div class="scrollable-pages">
-        <div class="page-wrapper">
-            <div class="hero">
-                <p class="hero-category">Eze Digital Academy</p>
-                <h1>Student Portal</h1>
-                <p>Secure access to your course manuals, slides and resources. Each course is unlocked separately with the password you were given on enrolment.</p>
-            </div>
-            <div class="info-banner">
-                <h2 class="banner-subheading">Your Courses</h2>
-                <p class="banner-text">Select <strong>Enter Course Password</strong> on a course to unlock its resources. Once unlocked, access stays open for this browser session — you won't need to re-enter the password until you close the tab.</p>
-                <div class="cpd-text">
-                    <h3>CPD Accredited Resources</h3>
-                    <p>All course materials carry formal Continuing Professional Development accreditation — verifiable, recognised, and built to current standards.</p>
-                </div>
-            </div>
+<div class="static-canvas"></div>
+<header><div id="nav-container"></div></header>
+<div class="scrollable-pages">
+<div class="page-wrapper">
+<div class="hero">
+<p class="hero-category">Eze Digital Academy</p>
+<h1>Student Portal</h1>
+<p>Secure access to your course manuals, slides and resources. Each course is unlocked separately with the password you were given on enrolment.</p>
+</div>
+<div class="info-banner">
+<h2 class="banner-subheading">Your Courses</h2>
+<p class="banner-text">Select <strong>Enter Course Password</strong> on a course to unlock its resources. Once unlocked, access stays open for this browser session — you won't need to re-enter the password until you close the tab.</p>
+<div class="cpd-text">
+<h3>CPD Accredited Resources</h3>
+<p>All course materials carry formal Continuing Professional Development accreditation — verifiable, recognised, and built to current standards.</p>
+</div>
+</div>
+<!-- === BLACK BOX WRAPPER === -->
+<div class="resources-section">
+<h2 class="section-heading">Course Resources</h2>
+<p class="section-subtitle">CPD accredited materials — download your manual and supporting resources for each enrolled course.</p>
+<div class="courses-grid" id="coursesGrid"></div>
+</div>
+<div class="security-note">
+<h3>Important — How Access Is Protected</h3>
+<p>This page uses a password gate to keep the course list tidy and private. For <strong>real security</strong> of the PDF files themselves, your course files are stored in separate password-protected folders on the server.</p>
+<ul>
+<li>Each course's files live in their own folder with their own password — a student on one course cannot access another course's files.</li>
+<li>Even if someone guesses a direct PDF link, the server will still ask for that course's credentials before serving the file.</li>
+<li>Passwords are issued by Eze Digital on enrolment and can be changed at any time — just get in touch.</li>
+</ul>
+<p style="margin-top:0.75rem;">Lost your password? <strong>Contact Eze Digital</strong> via the contact page and we'll re-issue your course access details after verifying your enrolment.</p>
+</div>
+</div>
 
-            <!-- === BLACK BOX WRAPPER === -->
-            <div class="resources-section">
-                <h2 class="section-heading">Course Resources</h2>
-                <p class="section-subtitle">CPD accredited materials — download your manual and supporting resources for each enrolled course.</p>
-                <div class="courses-grid" id="coursesGrid"></div>
-            </div>
 
-            <div class="security-note">
-                <h3>Important — How Access Is Protected</h3>
-                <p>This page uses a password gate to keep the course list tidy and private. For <strong>real security</strong> of the PDF files themselves, your course files are stored in separate password-protected folders on the server.</p>
-                <ul>
-                    <li>Each course's files live in their own folder with their own password — a student on one course cannot access another course's files.</li>
-                    <li>Even if someone guesses a direct PDF link, the server will still ask for that course's credentials before serving the file.</li>
-                    <li>Passwords are issued by Eze Digital on enrolment and can be changed at any time — just get in touch.</li>
-                </ul>
-                <p style="margin-top:0.75rem;">Lost your password? <strong>Contact Eze Digital</strong> via the contact page and we'll re-issue your course access details after verifying your enrolment.</p>
-            </div>
-        </div>
-        <div id="footer-placeholder">
-            <footer class="fallback-footer">
-                <div class="fb-brand">EZE DIGITAL</div>
-                <div class="fb-tag">Secure &amp; Evolve</div>
-                <div class="fb-links">
-                    <a href="index.html">Home</a>
-                    <a href="services.html">Services</a>
-                    <a href="about.html">About</a>
-                    <a href="academy.html">Academy</a>
-                    <a href="contact.html">Contact</a>
-                </div>
-                <div class="fb-copy">&copy; 2026 Eze Digital · CPD Accredited Training · All rights reserved</div>
-            </footer>
-        </div>
-        <script>
-            fetch('footer.html')
-                .then(res => { if (!res.ok) throw new Error('Footer not found'); return res.text(); })
-                .then(html => { document.getElementById('footer-placeholder').innerHTML = html; })
-                .catch(err => console.error('Footer load error:', err));
-        </script>
-    </div>
+</div>
+<div class="modal-overlay" id="modalOverlay">
+<div aria-labelledby="modalTitle" aria-modal="true" class="modal" role="dialog">
+<button aria-label="Close" class="modal-close" id="modalClose">×</button>
+<h3 id="modalTitle">Enter Course Password</h3>
+<div class="modal-course-name" id="modalCourseName"></div>
+<label for="pwInput">Course Password</label>
+<input autocomplete="off" id="pwInput" placeholder="Enter your course password" type="password"/>
+<div class="modal-error" id="modalError">Incorrect password. Please try again or contact us if you've lost your details.</div>
+<button class="btn-primary" id="pwSubmit">Unlock Course</button>
+<div class="modal-hint">Passwords are case-sensitive. Your password was sent after enrolment.</div>
+</div>
+</div>
 
-    <div class="modal-overlay" id="modalOverlay">
-        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-            <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
-            <h3 id="modalTitle">Enter Course Password</h3>
-            <div class="modal-course-name" id="modalCourseName"></div>
-            <label for="pwInput">Course Password</label>
-            <input type="password" id="pwInput" placeholder="Enter your course password" autocomplete="off">
-            <div class="modal-error" id="modalError">Incorrect password. Please try again or contact us if you've lost your details.</div>
-            <button class="btn-primary" id="pwSubmit">Unlock Course</button>
-            <div class="modal-hint">Passwords are case-sensitive. Your password was sent after enrolment.</div>
-        </div>
-    </div>
-
-    <script>
-        function toggleMenu() {
-            document.getElementById('hamburger').classList.toggle('open');
-            document.getElementById('dropdownMenu').classList.toggle('open');
-        }
-    </script>
-
-    <script>
+<script>
     (function () {
         var COURSES = [
             {
@@ -715,5 +671,8 @@
         pwInput.addEventListener('keydown', function (e) { if (e.key === 'Enter') doSubmit(); });
     })();
     </script>
-</body>
+<div id="footer-placeholder"></div><script>fetch('footer.html')
+ .then(response => { if (!response.ok) throw new Error('Footer unavailable'); return response.text(); })
+ .then(html => { const host = document.getElementById('footer-placeholder'); if (host) host.innerHTML = html; })
+ .catch(error => console.error('Footer load error:', error));</script><script src="nav.js"></script></body>
 </html>

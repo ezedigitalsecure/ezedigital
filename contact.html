@@ -1,15 +1,16 @@
 <!DOCTYPE html>
+
 <html lang="en-GB">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eze Digital — Contact</title>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://formspree.io; font-src 'self'; base-uri 'self'; frame-src 'none'; object-src 'none'; form-action 'self' https://formspree.io;">
-    <meta http-equiv="X-Frame-Options" content="DENY">
-    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
-    <meta name="referrer" content="strict-origin-when-cross-origin">
-    <link rel="stylesheet" href="footerstyles.css">
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Eze Digital — Contact</title>
+<meta content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://formspree.io; font-src 'self'; base-uri 'self'; frame-src 'none'; object-src 'none'; form-action 'self' https://formspree.io;" http-equiv="Content-Security-Policy"/>
+<meta content="DENY" http-equiv="X-Frame-Options"/>
+<meta content="geolocation=(), microphone=(), camera=()" http-equiv="Permissions-Policy"/>
+<meta content="strict-origin-when-cross-origin" name="referrer"/>
+<link href="footerstyles.css" rel="stylesheet"/>
+<style>
         * {
             margin: 0;
             padding: 0;
@@ -185,64 +186,64 @@
             .page-wrapper { padding: 5rem 1.2rem 0; }
         }
     </style>
-</head>
+<link href="site-fixes.css?v=1" rel="stylesheet"/></head>
 <body>
-    <div class="static-canvas"></div>
+<div class="static-canvas"></div>
+<header><div id="nav-container"></div></header>
+<div class="scrollable-pages">
+<div class="page-wrapper">
+<div class="contact-panel">
+<h2>Let's Talk</h2>
+<p>Tell me how you want to evolve and let's build something great together.</p>
+<form action="https://formspree.io/f/mvkoqvnp" id="contact-form" method="POST">
 
-    <header>
-        <div id="nav-container"></div>
-    </header>
-
-    <div class="scrollable-pages">
-        <div class="page-wrapper">
-
-            <div class="contact-panel">
-                <h2>Let's Talk</h2>
-                <p>Tell me how you want to evolve and let's build something great together.</p>
-
-                <form action="https://formspree.io/f/mvkoqvnp" method="POST">
-                    <input type="hidden" name="_redirect" value="https://ezedigital.co.uk/contact.html?submitted=yes">
-
-                    <div class="form-group">
-                        <label for="name">Your Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Your Email</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Your Message</label>
-                        <textarea id="message" name="message" rows="5" required></textarea>
-                    </div>
-
-                    <button type="submit" class="btn">Connect With Me</button>
-                </form>
-
-                <div id="thankYouMsg">
-                    ✅ Thank you for reaching out.<br><br>
-                    I personally answer every message and I look forward to working together soon.<br><br>
+<div class="form-group">
+<label for="name">Your Name</label>
+<input id="name" name="name" required="" type="text"/>
+</div>
+<div class="form-group">
+<label for="email">Your Email</label>
+<input id="email" name="email" required="" type="email"/>
+</div>
+<div class="form-group">
+<label for="message">Your Message</label>
+<textarea id="message" name="message" required="" rows="5"></textarea>
+</div>
+<button class="btn" type="submit">Connect With Me</button>
+</form>
+<div aria-live="polite" id="thankYouMsg" role="status">
+                    ✅ Thank you for reaching out.<br/><br/>
+                    I personally answer every message and I look forward to working together soon.<br/><br/>
                     — Nicki
                 </div>
-            </div>
+</div>
+</div>
+<!-- SHARED FOOTER -->
 
-        </div>
 
-        <!-- SHARED FOOTER -->
-        <div id="footer-placeholder"></div>
-        <script>
-            fetch('footer.html')
-                .then(res => {
-                    if (!res.ok) throw new Error('Footer not found');
-                    return res.text();
-                })
-                .then(html => {
-                    document.getElementById('footer-placeholder').innerHTML = html;
-                })
-                .catch(err => console.error('Footer load error:', err));
-        </script>
-    </div>
+</div>
 
-   <script src="nav.js"></script>
-</body>
+<div id="footer-placeholder"></div><script>fetch('footer.html')
+ .then(response => { if (!response.ok) throw new Error('Footer unavailable'); return response.text(); })
+ .then(html => { const host = document.getElementById('footer-placeholder'); if (host) host.innerHTML = html; })
+ .catch(error => console.error('Footer load error:', error));</script><script src="nav.js"></script><script>(() => {
+ const form = document.getElementById('contact-form');
+ const message = document.getElementById('thankYouMsg');
+ if (!form || !message) return;
+ form.addEventListener('submit', async event => {
+   event.preventDefault();
+   const button = form.querySelector('[type="submit"]');
+   button.disabled = true;
+   try {
+     const response = await fetch(form.action, {
+       method: 'POST', body: new FormData(form),
+       headers: { Accept: 'application/json' }
+     });
+     if (!response.ok) throw new Error('Submission failed');
+     form.reset(); form.hidden = true; message.style.display = 'block';
+   } catch (error) {
+     alert('Your message could not be sent. Please try again.');
+   } finally { button.disabled = false; }
+ });
+})();</script></body>
 </html>
