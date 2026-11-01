@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Portal · Eze Digital</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self'; font-src 'self';">
+    <link href="footerstyles.css?v=5" rel="stylesheet">
+    <link href="site-fixes.css?v=1" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        html, body { height: 100%; overflow: hidden; }
+
+        .static-canvas {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: 1;
+            background: url('mockup-bg.png') no-repeat center center,
+                        linear-gradient(180deg, #001418 0%, #00222a 45%, #001115 100%);
+            background-size: cover;
+        }
+
+        header {
+            position: absolute;
+            top: 0; right: 0;
+            padding: 1.5rem 2.5rem;
+            z-index: 100;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .menu-wrapper { position: relative; }
+        .hamburger-circle {
+            width: 52px; height: 52px; border-radius: 50%;
+            background: rgba(0, 12, 14, 0.75);
+            border: 1px solid rgba(0, 184, 187, 0.25);
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+        }
+        .hamburger { display: flex; flex-direction: column; gap: 5px; }
+        .hamburger span {
+            width: 26px; height: 3px;
+            background: linear-gradient(90deg, #00B8BB, #00E6E9);
+            border-radius: 2px;
+        }
+        .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+        .dropdown-menu {
+            position: absolute; top: 62px; right: 0;
+            background: rgba(0, 24, 28, 0.96);
+            border: 1px solid rgba(0, 184, 187, 0.35);
+            border-radius: 0 0 12px 12px;
+            min-width: 220px;
+            display: none; flex-direction: column;
+        }
+        .dropdown-menu.open { display: flex; }
+        .dropdown-link {
+            color: #00B8BB; font-weight: bold;
+            padding: 1rem 1.5rem; text-decoration: none;
+            border-bottom: 1px solid rgba(0, 184, 187, 0.1);
+        }
+        .dropdown-link:hover, .dropdown-link.active { color: #00E6E9; }
+
+        .scrollable-pages {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: 50;
+            overflow-y: auto;
+            background: transparent;
+        }
+        .page-wrapper {
+            padding: 6rem 2rem 0;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .portal-box {
+            max-width: 480px;
+            margin: 0 auto;
+            background: rgba(0, 12, 14, 0.85);
+            border: 1px solid rgba(0, 184, 187, 0.25);
+            border-radius: 14px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+        }
+        .portal-category {
+            color: #00B8BB;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+        .portal-box h1 {
+            font-size: 2.2rem;
+            color: #00E6E9;
+            margin-bottom: 1rem;
+        }
+        .portal-blurb {
+            color: #B2F0F2;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+        .portal-invite {
+            color: #00B8BB;
+            font-size: 0.85rem;
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+        .portal-box label {
+            display: block;
+            color: #00B8BB;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.5rem;
+            text-align: left;
+        }
+        .portal-box input[type="text"],
+        .portal-box input[type="password"] {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            margin-bottom: 1.2rem;
+            background: rgba(0, 12, 14, 0.9);
+            border: 1px solid rgba(0, 184, 187, 0.35);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+        }
+        .portal-box input:focus {
+            border-color: #00E6E9;
+            box-shadow: 0 0 0 2px rgba(0, 230, 233, 0.15);
+        }
+        .btn-primary {
+            display: inline-block;
+            width: 100%;
+            background: linear-gradient(90deg, #00E6E9, #00B8BB);
+            color: #001418;
+            font-weight: bold;
+            padding: 0.85rem 2rem;
+            border-radius: 28px;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 0.5rem;
+        }
+        .btn-primary:hover {
+            background: linear-gradient(90deg, #00E6E9, #00E6E9);
+            box-shadow: 0 0 20px rgba(0, 230, 233, 0.6);
+        }
+        .forgot-link {
+            margin-top: 1rem;
+            font-size: 0.85rem;
+        }
+        .forgot-link a {
+            color: #00B8BB;
+            text-decoration: none;
+        }
+        .forgot-link a:hover { color: #00E6E9; }
+        .portal-error {
+            display: none;
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: rgba(255, 82, 82, 0.08);
+            border: 1px solid rgba(255, 82, 82, 0.3);
+            border-radius: 8px;
+            color: #ff8a80;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        #footer-placeholder { margin-top: 3rem; }
+
+        @media (max-width: 768px) {
+            header { padding: 1rem 1.2rem; }
+            .page-wrapper { padding: 5rem 1.2rem 0; }
+            .portal-box { padding: 2rem 1.5rem; }
+            .portal-box h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="static-canvas"></div>
+
+    <header>
+        <div id="nav-container"></div>
+    </header>
+
+    <div class="scrollable-pages">
+        <div class="page-wrapper">
+            <div class="portal-box">
+                <p class="portal-category">Secure Client Access</p>
+                <h1>Client Portal</h1>
+                <p class="portal-blurb">Your secure dashboard for security reports, support tickets, and website maintenance updates — everything we manage for you, in one protected place.</p>
+                <p class="portal-invite">Client access is included with every ongoing support and monitoring package.</p>
+
+                <form id="portalForm" onsubmit="showPortalError(); return false;">
+                    <label for="clientEmail">Email Address</label>
+                    <input type="text" id="clientEmail" placeholder="you@example.com" autocomplete="email">
+
+                    <label for="clientPassword">Password</label>
+                    <input type="password" id="clientPassword" placeholder="Enter your password" autocomplete="current-password">
+
+                    <button type="submit" class="btn-primary">Sign In</button>
+
+                    <p class="forgot-link">
+                        <a href="contact.html">Forgotten your password?</a>
+                    </p>
+                </form>
+
+                <div class="portal-error" id="portalError">
+                    Incorrect email or password. Please try again, or contact us to reset your client access.
+                </div>
+            </div>
+        </div>
+
+        <div id="footer-placeholder"></div>
+    </div>
+
+    <script>
+        function showPortalError() {
+            document.getElementById('portalError').style.display = 'block';
+        }
+
+        fetch('footer.html')
+            .then(response => { if (!response.ok) throw new Error('Footer unavailable'); return response.text(); })
+            .then(html => { const host = document.getElementById('footer-placeholder'); if (host) host.innerHTML = html; })
+            .catch(error => console.error('Footer load error:', error));
+    </script>
+
+    <script src="nav.js"></script>
+</body>
+</html>
