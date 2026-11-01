@@ -1,47 +1,28 @@
-// Load shared navigation
 fetch('nav-menu.html')
-  .then(res => {
-    if (!res.ok) throw new Error('Nav menu not found');
-    return res.text();
-  })
+  .then(response => { if (!response.ok) throw new Error('Navigation unavailable'); return response.text(); })
   .then(html => {
-    document.getElementById('nav-container').innerHTML = html;
-    initHamburger();
-  })
-  .catch(err => console.error('Nav load error:', err));
-
-function initHamburger() {
-  // FIX: click listener on .hamburger-circle (outer element), NOT .hamburger (which has pointer-events: none)
-  const hamburgerCircle = document.querySelector('.hamburger-circle');
-  const hamburger = document.querySelector('.hamburger');
-  const dropdownMenu = document.querySelector('.dropdown-menu');
-  
-  if (!hamburgerCircle || !hamburger || !dropdownMenu) return;
-
-  // Toggle menu — click on the circle
-  hamburgerCircle.addEventListener('click', (e) => {
-    e.stopPropagation();
-    hamburger.classList.toggle('open');
-    dropdownMenu.classList.toggle('open');
-  });
-
-  // Close when clicking ANYWHERE on page
-  document.addEventListener('click', () => {
-    hamburger.classList.remove('open');
-    dropdownMenu.classList.remove('open');
-  });
-
-  // Keep open when clicking INSIDE menu
-  dropdownMenu.addEventListener('click', (e) => {
-    e.stopPropagation();
-  });
-
-  // Close when clicking a link
-  const links = dropdownMenu.querySelectorAll('.dropdown-link');
-  links.forEach(link => {
-    link.addEventListener('click', () => {
-      hamburger.classList.remove('open');
-      dropdownMenu.classList.remove('open');
+    const host = document.getElementById('nav-container');
+    if (!host) return;
+    host.innerHTML = html;
+    const button = host.querySelector('.hamburger-circle');
+    const icon = host.querySelector('.hamburger');
+    const menu = host.querySelector('.dropdown-menu');
+    if (!button || !icon || !menu) return;
+    const close = () => { icon.classList.remove('open'); menu.classList.remove('open'); button.setAttribute('aria-expanded','false'); };
+    button.addEventListener('click', event => {
+      event.stopPropagation();
+      const isOpen = menu.classList.toggle('open');
+      icon.classList.toggle('open', isOpen);
+      button.setAttribute('aria-expanded', String(isOpen));
     });
-  });
-}
+    document.addEventListener('click', event => { if (!host.contains(event.target)) close(); });
+    document.addEventListener('keydown', event => { if (event.key === 'Escape') close(); });
+    menu.querySelectorAll('a').forEach(link => link.addEventListener('click', close));
+    const current = location.pathname.split('/').pop() || 'index.html';
+    menu.querySelectorAll('a').forEach(link => {
+      const active = link.getAttribute('href') === current;
+      link.classList.toggle('active', active);
+      if (active) link.setAttribute('aria-current','page');
+    });
+  })
+  .catch(error => console.error('Navigation load error:', error));

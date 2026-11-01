@@ -1,0 +1,16 @@
+/* Unified navigation and natural document scrolling */
+html, body { height: auto !important; min-height: 100% !important; overflow: visible !important; }
+body { display: flex; flex-direction: column; min-height: 100vh !important; }
+.static-canvas { position: fixed !important; inset: 0; width: 100% !important; height: 100vh !important; pointer-events: none; }
+header { position: absolute !important; top: 0; right: 0; z-index: 150 !important; }
+#nav-container { display: block; }
+.hamburger-circle { appearance: none; padding: 0; font: inherit; }
+.hamburger-circle:focus-visible { outline: 2px solid #00E6E9; outline-offset: 4px; }
+.dropdown-menu { max-height: calc(100vh - 105px); overflow-y: auto; }
+.scrollable-pages { position: relative !important; top: auto !important; left: auto !important; width: 100% !important; height: auto !important; min-height: 0 !important; overflow: visible !important; z-index: 50; flex: 1 0 auto; padding-bottom: 0 !important; }
+.page-content { flex: 1 0 auto; }
+#footer-placeholder { position: relative !important; z-index: 60; width: 100%; margin: 0 !important; padding: 0 !important; flex-shrink: 0; }
+#footer-placeholder > footer { margin: 0; }
+.page-wrapper { padding-bottom: 1.5rem !important; }
+.page-wrapper > :last-child { margin-bottom: 0 !important; }
+@media (max-width: 768px) { .dropdown-menu { max-height: calc(100vh - 90px); } }
