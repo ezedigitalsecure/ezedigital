@@ -14,3 +14,109 @@ header { position: absolute !important; top: 0; right: 0; z-index: 150 !importan
 .page-wrapper { padding-bottom: 1.5rem !important; }
 .page-wrapper > :last-child { margin-bottom: 0 !important; }
 @media (max-width: 768px) { .dropdown-menu { max-height: calc(100vh - 90px); } }
+
+/* Sitewide horizontal-stability review update (Nov 2026) */
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip !important;
+}
+
+html {
+  scrollbar-gutter: stable;
+}
+
+body {
+  min-width: 0;
+}
+
+.scrollable-pages,
+.page-content,
+.page-wrapper,
+#footer-placeholder {
+  box-sizing: border-box;
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* Use the available content width rather than viewport width, which can
+   include the vertical scrollbar and create horizontal overflow. */
+.scrollable-pages {
+  width: 100% !important;
+  overflow-x: clip !important;
+}
+
+.page-wrapper {
+  width: 100%;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Dark content panels stay centred and do not slide sideways on hover. */
+:where(
+  .hero-box,
+  .hero,
+  .info-banner,
+  .course-card,
+  .page-heading-box,
+  .about-block,
+  .team-dropdown,
+  .contact-panel,
+  .services-heading-box,
+  .service-block,
+  .content-block,
+  .security-note,
+  .cta-box,
+  .pricing-block,
+  .pricing-container,
+  .pricing-details,
+  .pricing-header,
+  .block,
+  .two-col,
+  .tech-note,
+  .team-content,
+  .founders-top
+) {
+  box-sizing: border-box;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+:where(
+  .hero-box,
+  .hero,
+  .info-banner,
+  .course-card,
+  .page-heading-box,
+  .about-block,
+  .team-dropdown,
+  .contact-panel,
+  .services-heading-box,
+  .service-block,
+  .content-block,
+  .security-note,
+  .cta-box,
+  .pricing-block,
+  .pricing-container,
+  .pricing-details,
+  .pricing-header,
+  .block,
+  .two-col,
+  .tech-note,
+  .team-content,
+  .founders-top
+):hover {
+  left: auto;
+  right: auto;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  transform: none !important;
+  translate: none !important;
+}
+
+/* Keep the existing subtle vertical lift on course cards; no horizontal shift. */
+.course-card:hover {
+  transform: translateY(-4px) !important;
+}
