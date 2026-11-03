@@ -1,0 +1,122 @@
+/* Unified navigation and natural document scrolling */
+html, body { height: auto !important; min-height: 100% !important; overflow: visible !important; }
+body { display: flex; flex-direction: column; min-height: 100vh !important; }
+.static-canvas { position: fixed !important; inset: 0; width: 100% !important; height: 100vh !important; pointer-events: none; }
+header { position: absolute !important; top: 0; right: 0; z-index: 150 !important; }
+#nav-container { display: block; }
+.hamburger-circle { appearance: none; padding: 0; font: inherit; }
+.hamburger-circle:focus-visible { outline: 2px solid #00E6E9; outline-offset: 4px; }
+.dropdown-menu { max-height: calc(100vh - 105px); overflow-y: auto; }
+.scrollable-pages { position: relative !important; top: auto !important; left: auto !important; width: 100% !important; height: auto !important; min-height: 0 !important; overflow: visible !important; z-index: 50; flex: 1 0 auto; padding-bottom: 0 !important; }
+.page-content { flex: 1 0 auto; }
+#footer-placeholder { position: relative !important; z-index: 60; width: 100%; margin: 0 !important; padding: 0 !important; flex-shrink: 0; }
+#footer-placeholder > footer { margin: 0; }
+.page-wrapper { padding-bottom: 1.5rem !important; }
+.page-wrapper > :last-child { margin-bottom: 0 !important; }
+@media (max-width: 768px) { .dropdown-menu { max-height: calc(100vh - 90px); } }
+
+/* Sitewide horizontal-stability review update (Nov 2026) */
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip !important;
+}
+
+html {
+  scrollbar-gutter: stable;
+}
+
+body {
+  min-width: 0;
+}
+
+.scrollable-pages,
+.page-content,
+.page-wrapper,
+#footer-placeholder {
+  box-sizing: border-box;
+  min-width: 0;
+  max-width: 100%;
+}
+
+/* Use the available content width rather than viewport width, which can
+   include the vertical scrollbar and create horizontal overflow. */
+.scrollable-pages {
+  width: 100% !important;
+  overflow-x: clip !important;
+}
+
+.page-wrapper {
+  width: 100%;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Dark content panels stay centred and do not slide sideways on hover. */
+:where(
+  .hero-box,
+  .hero,
+  .info-banner,
+  .course-card,
+  .page-heading-box,
+  .about-block,
+  .team-dropdown,
+  .contact-panel,
+  .services-heading-box,
+  .service-block,
+  .content-block,
+  .security-note,
+  .cta-box,
+  .pricing-block,
+  .pricing-container,
+  .pricing-details,
+  .pricing-header,
+  .block,
+  .two-col,
+  .tech-note,
+  .team-content,
+  .founders-top
+) {
+  box-sizing: border-box;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+:where(
+  .hero-box,
+  .hero,
+  .info-banner,
+  .course-card,
+  .page-heading-box,
+  .about-block,
+  .team-dropdown,
+  .contact-panel,
+  .services-heading-box,
+  .service-block,
+  .content-block,
+  .security-note,
+  .cta-box,
+  .pricing-block,
+  .pricing-container,
+  .pricing-details,
+  .pricing-header,
+  .block,
+  .two-col,
+  .tech-note,
+  .team-content,
+  .founders-top
+):hover {
+  left: auto;
+  right: auto;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  transform: none !important;
+  translate: none !important;
+}
+
+/* Keep the existing subtle vertical lift on course cards; no horizontal shift. */
+.course-card:hover {
+  transform: translateY(-4px) !important;
+}
