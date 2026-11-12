@@ -1,3 +1,12 @@
+// Site logo (top left, every page)
+(() => {
+  if (document.querySelector('.site-logo')) return;
+  const a = document.createElement('a');
+  a.className = 'site-logo'; a.href = 'index.html'; a.setAttribute('aria-label', 'Eze Digital home');
+  const img = document.createElement('img');
+  img.src = 'logo-header.png'; img.alt = 'Eze Digital, Secure & Evolve'; img.width = 85; img.height = 56;
+  a.appendChild(img); document.body.prepend(a);
+})();
 fetch('nav-menu.html')
   .then(response => { if (!response.ok) throw new Error('Navigation unavailable'); return response.text(); })
   .then(html => {
