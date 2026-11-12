@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /client-portal.html
+Disallow: /student-portal.html
+Disallow: /downloads/
+
+Sitemap: https://ezedigital.co.uk/sitemap.xml
