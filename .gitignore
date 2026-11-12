@@ -1,3 +1,6 @@
 # NEVER upload private manuals to GitHub
 portal-resources/
 *.pdf
+
+# Public free downloads only (everything else stays private)
+!downloads/*.pdf
