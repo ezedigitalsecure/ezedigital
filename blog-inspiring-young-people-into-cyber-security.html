@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+<html lang="en-GB">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Why aren't kids excited about cyber security? | Eze Digital Blog</title>
+<meta name="description" content="Why many young people switch off from cyber security, what CyberFirst and TechFirst offer schools, and how Eze Digital Academy wants to help."/>
+<meta content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://formspree.io; font-src 'self'; base-uri 'self'; frame-src 'none'; object-src 'none'; form-action 'self' https://formspree.io;" http-equiv="Content-Security-Policy"/>
+<meta content="DENY" http-equiv="X-Frame-Options"/>
+<meta content="geolocation=(), microphone=(), camera=()" http-equiv="Permissions-Policy"/>
+<meta content="strict-origin-when-cross-origin" name="referrer"/>
+<link href="footerstyles.css?v=12" rel="stylesheet"/>
+<style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        html, body { min-height: 100%; margin: 0; padding: 0; }
+
+        /* BACKGROUND */
+        .static-canvas {
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100vh; z-index: 1;
+            background: url('mockup-bg.png') no-repeat center center,
+                        linear-gradient(180deg, #001418 0%, #00222a 45%, #001115 100%);
+            background-size: cover;
+        }
+
+        /* HEADER — consistent across all pages */
+        header {
+            position: absolute; top: 0; right: 0;
+            padding: 1.5rem 2.5rem; z-index: 100;
+        }
+
+        /* HAMBURGER STYLES — keep (nav.js injects the HTML) */
+        .menu-wrapper { position: relative; }
+        .hamburger-circle {
+            width: 52px; height: 52px; border-radius: 50%;
+            background: rgba(0, 12, 14, 0.75);
+            border: 1px solid rgba(0, 184, 187, 0.25);
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+        }
+        .hamburger { display: flex; flex-direction: column; gap: 5px; pointer-events: none; }
+        .hamburger span {
+            width: 26px; height: 3px;
+            background: linear-gradient(90deg, #00B8BB, #00E6E9);
+            border-radius: 2px;
+            box-shadow: 0 0 6px rgba(0, 184, 187, 0.4);
+        }
+        .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+        .dropdown-menu {
+            position: absolute; top: 62px; right: 0;
+            background: rgba(0, 24, 28, 0.96);
+            border: 1px solid rgba(0, 184, 187, 0.35);
+            border-radius: 0 0 12px 12px;
+            min-width: 220px; display: none; flex-direction: column;
+        }
+        .dropdown-menu.open { display: flex; }
+        .dropdown-link {
+            color: #00E6E9; font-weight: bold;
+            padding: 1rem 1.5rem; text-decoration: none;
+            border-bottom: 1px solid rgba(0, 184, 187, 0.1);
+        }
+        .dropdown-link:hover, .dropdown-link.active { color: #66F0F3; }
+
+        /* PAGE CONTENT */
+        .scrollable-pages { position: relative; z-index: 50; min-height: 100vh; padding-bottom: 3rem; }
+        .page-wrapper { padding: 6rem 2rem 0; max-width: 820px; margin: 0 auto; }
+        .panel { background: rgba(0, 12, 14, 0.88); border: 1px solid rgba(0, 184, 187, 0.25); border-radius: 14px; padding: 2rem 2.2rem; margin-bottom: 1.5rem; }
+        .kicker { color:#66F0F3; font-size:0.8rem; letter-spacing:2px; text-transform:uppercase; font-weight:700; margin-bottom:0.6rem; }
+        h1 { color:#00E6E9; font-size:2.2rem; line-height:1.2; margin-bottom:0.6rem; font-weight:600; }
+        .lede { color:#99E6E8; font-size:1.1rem; line-height:1.6; }
+        .meta { color:#6fb8ba; font-size:0.9rem; margin-top:0.8rem; }
+        .post-card { display:block; text-decoration:none; transition: border-color .2s ease; }
+        .post-card:hover, .post-card:focus { border-color:#00E6E9; }
+        .post-card h2 { color:#00E6E9; font-size:1.45rem; line-height:1.3; margin-bottom:0.5rem; }
+        .post-card p { color:#B2F0F2; line-height:1.65; }
+        .read-more { color:#66F0F3; font-weight:700; margin-top:0.9rem; display:inline-block; }
+        .guide-banner { background: linear-gradient(90deg, #00E6E9, #00B8BB); color:#001418; border-radius:14px; padding:1.5rem 1.8rem; margin-bottom:1.5rem; display:flex; gap:1.2rem; align-items:center; justify-content:space-between; flex-wrap:wrap; }
+        .guide-banner strong { font-size:1.15rem; display:block; margin-bottom:0.2rem; }
+        .guide-banner a { background:#001418; color:#00E6E9; padding:0.75rem 1.6rem; border-radius:28px; font-weight:700; text-decoration:none; white-space:nowrap; }
+        article h2 { color:#00E6E9; font-size:1.4rem; margin:1.8rem 0 0.7rem; }
+        article p, article li { color:#CDEFF0; line-height:1.75; font-size:1.05rem; }
+        article p { margin-bottom:1rem; }
+        article ul { margin:0 0 1rem 1.3rem; }
+        article li { margin-bottom:0.4rem; }
+        article a { color:#66F0F3; }
+        .highlight { border-left:4px solid #00B8BB; background: rgba(0,184,187,0.08); padding:1rem 1.2rem; border-radius:0 8px 8px 0; margin:1.2rem 0; }
+        .highlight p { margin:0; }
+        .sources { font-size:0.9rem !important; color:#8fcfd1 !important; }
+        .back { color:#66F0F3; text-decoration:none; font-weight:700; display:inline-block; margin-bottom:1rem; }
+        #footer-placeholder { position: relative; z-index: 60; width: 100%; margin: 0; padding: 2rem 0 0; }
+        @media (max-width: 768px) { header { padding: 1rem 1.2rem; } .page-wrapper { padding: 5rem 1.2rem 0; } .panel { padding: 1.5rem 1.3rem; } h1 { font-size:1.75rem; } }
+    </style>
+<link href="site-fixes.css?v=2" rel="stylesheet"/></head>
+<body>
+<div class="static-canvas"></div>
+<header><div id="nav-container"></div></header>
+<div class="scrollable-pages">
+<div class="page-wrapper">
+<a class="back" href="blog.html">← All posts</a>
+<div class="panel">
+<div class="kicker">Academy · 12 November 2026 · 4 min read</div>
+<h1>Why aren't kids excited about cyber security? (And how we can change that)</h1>
+<p class="meta">By Nicki King, Founder, Eze Digital</p>
+</div>
+<div class="panel"><article>
+<p>At a recent cyber security meetup here in Wiltshire, I got talking to someone who works in education. What they told me has stayed with me ever since.</p>
+<p>Schools want young people to get into coding and cyber security. The jobs are there, the pay is good, and the country needs them. But a lot of students just aren't interested.</p>
+
+<h2>It's not the kids</h2>
+<p>Young people spend half their lives online. They're curious, quick, and often better with tech than the adults around them. So why the shrug when cyber security comes up?</p>
+<p>Part of the answer is who's in front of them. The people who find this work exciting are mostly working in the industry, and teaching salaries can't compete. So computing is often taught by teachers who trained in other subjects and have kindly stepped up. They do their best, but it's hard to inspire anyone about a world you've never worked in.</p>
+<div class="highlight"><p><strong>The highlight:</strong> kids don't need more worksheets. They need to meet real people who do this job and love it.</p></div>
+
+<h2>What already exists</h2>
+<p>The good news is there's real support out there. The National Cyber Security Centre (part of GCHQ) has run CyberFirst for years: free courses, a girls' competition, and an awards scheme recognising schools that teach cyber security well.</p>
+<p>From September 2026, CyberFirst became part of a bigger programme called <strong>TechFirst</strong>, run by the Department for Science, Innovation and Technology. The NCSC still leads the cyber side. If you're a teacher or school leader, it's well worth a look.</p>
+
+<h2>You don't need a degree to get started</h2>
+<p>One myth I hear a lot is that cyber security is only for maths geniuses with a degree. It isn't. There are now entry-level certificates designed for people with no experience at all, such as ISC2's Certified in Cybersecurity. For many people, a short course and one recognised certificate is enough to get a foot in the door.</p>
+<p>That matters for young people, and for anyone looking for a fresh start in a well-paid career.</p>
+
+<h2>What we'd love to do</h2>
+<p>Through the Eze Digital Academy, we're exploring short sessions for schools, led by people who actually work in cyber security. Not lectures, but the fun stuff:</p>
+<ul>
+<li>How scammers really try to trick people, and how to spot it</li>
+<li>Thinking like a "good hacker" with safe, hands-on challenges</li>
+<li>What a day in a cyber job actually looks like, and how to get there</li>
+</ul>
+<p>The aim is simple: give teachers a boost, and let students see that this could be their future.</p>
+<div class="highlight"><p><strong>Are you a teacher, school or college?</strong> We'd love to hear what would help your students. <a href="contact.html">Get in touch</a>. No obligation, just a conversation.</p></div>
+
+<p class="sources"><strong>Sources:</strong> <a href="https://www.ncsc.gov.uk/cyberfirst/overview" rel="noopener">NCSC: CyberFirst overview</a> · <a href="https://www.ncsc.gov.uk/sites/default/files/2026-09/Tech-savvy-schools-gain-recognition-from-UK-experts-for-championing-cyber-skills.pdf" rel="noopener">NCSC: CyberFirst schools update (September 2026)</a> · <a href="https://www.isc2.org/landing/1MCC/korean" rel="noopener">ISC2: Certified in Cybersecurity</a></p>
+</article></div>
+<div class="guide-banner"><div><strong>Free: The 5-Minute Backup Check</strong>If your laptop died tomorrow, could you get everything back?</div><a href="free-guide.html">Get the free guide</a></div>
+</div>
+</div>
+<!-- NAV — central system (must be last) -->
+
+<div id="footer-placeholder"></div><script>fetch('footer.html')
+ .then(response => { if (!response.ok) throw new Error('Footer unavailable'); return response.text(); })
+ .then(html => { const host = document.getElementById('footer-placeholder'); if (host) host.innerHTML = html; })
+ .catch(error => console.error('Footer load error:', error));</script><script src="nav.js"></script></body>
+</html>
